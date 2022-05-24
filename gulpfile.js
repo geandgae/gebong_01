@@ -247,3 +247,87 @@ gulp.task("start", async function(){
 // //     .pipe(sass(sass_opt).on('error', sass.logError))
 // //     .pipe(gulp.dest('./src/'));
 // // });
+
+
+
+
+
+// 참고
+
+// // plug-in 연결
+// const gulp = require("gulp");                   // gulp 연결
+// const Fiber = require('fibers');                // dart sass 이용시 gulp-sass와 세트 플러그인
+// const dartSass = require('dart-sass');          // dart-sass 연결(기본)
+// const scss = require('gulp-sass');              // gulp-sass 연결(기본)
+// const sourcemaps = require('gulp-sourcemaps');  // css.map 파일 생성용
+// const minificss = require('gulp-minify-css');   // css 압축
+// const autoprefixer = require('autoprefixer');   // 고려할 브라우저 버전 설정
+// const postCss = require('gulp-postcss');        // 설정한 브라우저에 버전에 맞춰 css 컴파일
+// const rename = require('gulp-rename');          // 파일 이름 변경
+
+// // autoprefixer 옵션: 브라우저 버전 지정
+// const apfBrwsowsers = [
+//   'ie > 0', 'chrome > 0', 'firefox > 0'  // 브라우저의 모든 버전 적용
+//   //'last 2 versions'                    // 최신 브라우저 기준 하위 2개의 버전까지 적용
+// ];
+
+// // 소스 파일 경로
+// const src = './src';
+// const dist = './dist';
+// const assets = '/assets';
+// // 작업폴더 경로 ('src'에서 작업한 것을)
+// const PATH = {
+//   HTML: src + '/html',
+//   ASSETS: {
+//     CSS: src + assets + '/css',
+//     FONTS: src + assets + '/fonts',
+//     IMAGES: src + assets + '/images',
+//     JS: src + assets + '/js',
+//     LIB: src + assets + '/lib',
+//   }
+// }
+// // 산출물 경로 ('dist'에 생성한다.)
+// const DEST_PATH = {
+//   HTML: dist,
+//   ASSETS: {
+//     CSS: dist + assets +'/css',
+//     FONTS: dist + assets +'/fonts',
+//     IMAGES: dist + assets +'/images',
+//     JS: dist + assets +'/js',
+//     LIB: dist + assets + '/lib',
+//   }
+// };
+
+// // scss 컴파일
+// gulp.task('scss:compile', () => {
+//   return new Promise(resolve => {
+//     const options = {
+//       //scss 옵션 정의
+//       scss : {
+//         outputStyle: "expanded",  // 컴파일 스타일: nested(default), expanded, compact, compressed
+//         indentType: "space",      // 들여쓰기 스타일: space(default), tab
+//         indentWidth: 2,           // 들여쓰기 칸 수 (Default : 2)
+//         precision: 8,             // 컴파일 된 CSS 의 소수점 자리수 (Type : Integer , Default : 5)
+//         sourceComments: true,     // 코멘트 제거 여부 (Default : false)
+//         compiler: dartSass,       // 컴파일 도구
+//         fiber: Fiber,             // 컴파일 오버해드 방지
+//       },
+//     };
+//     gulp.src( PATH.ASSETS.CSS + '/*.scss' )                   // 컴파일 대상 scss파일 찾기
+//       // *.css 생성
+//       .pipe( sourcemaps.init() )                              // 소스맵 작성
+//       .pipe( scss(options.scss).on('error', scss.logError) )  // scss 옵션 적용, scss 작성시 watch가 멈추지 않도록 logError 설정
+//       .pipe( postCss(options.postcss) )                       // 하위 브라우저 고려
+//       .pipe( sourcemaps.write() )                             // 소스맵 적용
+//       .pipe( gulp.dest(DEST_PATH.ASSETS.CSS) )                // 컴파일 후 css파일이 생성될 목적지 설정
+//       // *.min.css 생성
+//       .pipe( minificss() )                                    // 컴파일된 css 압축
+//       .pipe( rename({ suffix: '.min' }) )                     // 압축파일 *.min.css 생성
+//       .pipe( sourcemaps.write() )                             // 소스맵 적용
+//       .pipe( gulp.dest(DEST_PATH.ASSETS.CSS) )                // 컴파일 후 css파일이 생성될 목적지 설정
+//     resolve();
+//   });
+// });
+
+// // default : 실행
+// gulp.task( 'default', gulp.series(['scss:compile']));

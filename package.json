@@ -1,0 +1,19 @@
+{
+  "name": "gebong_01",
+  "version": "1.0.0",
+  "description": "gebong_01 test",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geandgae/gebong_01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geandgae/gebong_01/issues"
+  },
+  "homepage": "https://github.com/geandgae/gebong_01#readme"
+}

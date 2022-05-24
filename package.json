@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/geandgae/gebong_01/issues"
   },
-  "homepage": "https://github.com/geandgae/gebong_01#readme"
+  "homepage": "https://github.com/geandgae/gebong_01#readme",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
 }

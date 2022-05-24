@@ -16,7 +16,7 @@
     "url": "https://github.com/geandgae/gebong_01/issues"
   },
   "homepage": "https://github.com/geandgae/gebong_01#readme",
-  "dependencies": {
+  "devDependencies": {
     "gulp": "^4.0.2"
   }
 }

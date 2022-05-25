@@ -13,6 +13,7 @@ console.log(calc(1, 5));
 
 
 
+
 // 팝업열기
 // $scope.setLayer = function (element) {
 //   var idx = element;

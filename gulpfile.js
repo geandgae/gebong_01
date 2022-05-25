@@ -2,7 +2,11 @@
 
 // plug-in
 const gulp = require("gulp");
-const sourcemaps = require("gulp-sourcemaps");
+const sourcemaps = require("gulp-sourcemaps"); // sourcemaps
+const sass = require("gulp-sass")(require('sass')); // sass
+const minificss = require('gulp-minify-css'); // css 압축
+const uglify = require("gulp-uglify-es");
+const webserver = require("gulp-webserver"); // web server
 
 // path
 const app = "./app";
@@ -18,15 +22,70 @@ const path_dist = {
   js : app + dist +"/js",
 }
 
+// webserver
+gulp.task("webstart", function () {
+  gulp.src(app).pipe(
+    webserver({
+      livereload: true,
+      open: true,
+      port: 8888,
+    })
+  );
+});
+
+// Sass
+gulp.task("sass_compile", function () {
+  return (
+    gulp
+    .src(path_assets.scss + "/*.scss") // 입력 경로
+    .pipe(sourcemaps.init()) // sourcemaps 초기화
+    .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
+    .pipe(sourcemaps.write("maps")) // sourcemaps 경로
+    .pipe(gulp.dest(path_assets.css)) // 출력 경로
+  );
+});
+
+// css min
+gulp.task("css_min", function () {
+  return (
+    gulp
+    .src(path_assets.css +"/*.css") // 입력 경로
+    .pipe(sourcemaps.init()) // sourcemaps 초기화
+    .pipe(minificss()) // min 생성
+    .pipe(sourcemaps.write("maps")) // sourcemaps 경로
+    .pipe(gulp.dest(path_dist.css)) // 출력 경로
+  );
+});
+
+// code_uglify
+gulp.task("code_uglify", function () {
+  return (
+    gulp
+    .src(path_assets.js + "/*.js") // 입력 경로
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(obfusc({
+      compact: true,
+      renameGlobals : true,
+      unicodeEscapeSequence : true,
+      splitStrings : true,
+      selfDefending : true,
+      controlFlowFlattening : true,
+    }))
+    .pipe(sourcemaps.write("maps")) // sourcemaps 경로
+    .pipe(gulp.dest(path_dist.js)) // 출력 경로
+  ); 
+});
+
+// watch
+gulp.task("watch", function () {
+  gulp.watch(path_assets.scss + "/*.scss", gulp.series("sass_compile"));
+  gulp.watch(path_assets.css +"/*.css", gulp.series("css_min"));
+  gulp.watch(path_assets.js + "/*.js", gulp.series("code_uglify"));
+});
 
 // start
-gulp.task("start", async function(){
-  console.log(assets);
-  console.log(dist);
-  console.log(path_assets);
-  console.log(path_dist);
-});
-// gulp.task("start", gulp.parallel("watch", "webstart", "css_nano", "uglify"));
+gulp.task("start", gulp.parallel("webstart", "watch"));
 
 // const gulp = require("gulp");
 // const fileinclude = require("gulp-file-include");

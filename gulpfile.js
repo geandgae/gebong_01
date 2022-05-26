@@ -3,28 +3,36 @@
 // plug-in
 const gulp = require("gulp");
 const sourcemaps = require("gulp-sourcemaps"); // sourcemaps
-const sass = require("gulp-sass")(require('sass')); // sass
-const minificss = require('gulp-minify-css'); // css 압축
-const uglify = require("gulp-uglify-es");
-const webserver = require("gulp-webserver"); // web server
+const sass = require("gulp-sass")(require("sass")); // sass
+const minificss = require("gulp-minify-css"); // css min
+const uglify = require("gulp-uglify-es").default; // js min
+const obfusc = require("gulp-javascript-obfuscator"); // js 난독화
+const fileinclude = require("gulp-file-include"); // include
+const browsersync = require("browser-sync").create(); // browsersync
+const webserver = require("gulp-webserver"); //webserver
 
 // path
 const app = "./app";
+const src = "/src"; // 작업폴더
+const dist = "/dist"; // 산출물
 const assets = "/assets";
-const dist = "/dist";
-const path_assets = {
-  scss : app + assets +"/scss",
-  css : app + assets +"/css",
-  js : app + assets +"/js",
+const html = "/html";
+const path_src = {
+  scss : app + src + assets + "/scss",
+  css : app + src + assets + "/css",
+  js : app + src + assets + "/js",
+  html : app + src + html,
 }
 const path_dist = {
-  css : app + dist +"/css",
-  js : app + dist +"/js",
+  css : app + dist + assets + "/css",
+  js : app + dist + assets + "/js",
+  root : app + dist,
 }
+
 
 // webserver
 gulp.task("webstart", function () {
-  gulp.src(app).pipe(
+  gulp.src(path_dist.root).pipe(
     webserver({
       livereload: true,
       open: true,
@@ -33,37 +41,109 @@ gulp.task("webstart", function () {
   );
 });
 
+
+// browsersync
+gulp.task("browser_sync", () => {
+  return new Promise( resolve => {
+    browsersync.init({
+      server: {
+        baseDir : path_dist.root
+      },
+      port: 3000
+    });
+
+    resolve();
+  });
+});
+
+
+// html_root
+gulp.task("html_root", () => {
+  return new Promise( resolve => {
+      gulp
+      .src(path_src.html + "/index.html" )
+      .pipe(fileinclude({
+        prefix: "@@",
+        basepath: "@file"
+      }))
+      .pipe(gulp.dest(path_dist.root) )
+      // .pipe(browsersync.reload({stream: true}));
+
+      resolve();
+  });
+});
+
+// html_comp
+gulp.task("html_comp", () => {
+  return new Promise( resolve => {
+      gulp
+      .src(path_src.html + "/**/*.html")
+      .pipe(fileinclude({
+        prefix: "@@",
+        basepath: "@file"
+      }))
+      .pipe(gulp.dest(path_dist.root) )
+      // .pipe(browsersync.reload({stream: true}));
+
+      resolve();
+  });
+});
+
+
 // Sass
 gulp.task("sass_compile", function () {
-  return (
+  return new Promise( resolve => {
+    let options = {
+      outputStyle: "expanded" // nested, expanded, compact, compressed
+      // , indentType: "space" // space, tab
+      // , indentWidth: 4 // 
+      // , precision: 8
+      // , sourceComments: true // 코멘트 제거 여부
+    };
+
     gulp
-    .src(path_assets.scss + "/*.scss") // 입력 경로
-    .pipe(sourcemaps.init()) // sourcemaps 초기화
-    .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
-    .pipe(sourcemaps.write("maps")) // sourcemaps 경로
-    .pipe(gulp.dest(path_assets.css)) // 출력 경로
-  );
+    .src(path_src.scss + "/*.scss") // 입력 경로
+    .pipe(sass(options).on("error", sass.logError)) // options
+    .pipe(gulp.dest(path_src.css)) // 출력 경로
+    // .pipe(browsersync.reload({stream: true}));
+    
+    resolve();
+  });
+
+  // return (
+  //   gulp
+  //   .src(path_src.scss + "/*.scss") // 입력 경로
+  //   .pipe(sourcemaps.init()) // sourcemaps 초기화
+  //   .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
+  //   .pipe(sourcemaps.write("maps")) // sourcemaps 경로
+  //   .pipe(gulp.dest(path_src.css)) // 출력 경로
+  // );
 });
+
 
 // css min
 gulp.task("css_min", function () {
-  return (
+  return new Promise( resolve => {
     gulp
-    .src(path_assets.css +"/*.css") // 입력 경로
+    .src(path_src.css + "/*.css") // 입력 경로
     .pipe(sourcemaps.init()) // sourcemaps 초기화
     .pipe(minificss()) // min 생성
     .pipe(sourcemaps.write("maps")) // sourcemaps 경로
     .pipe(gulp.dest(path_dist.css)) // 출력 경로
-  );
+    // .pipe(browsersync.reload({stream: true}));
+    
+    resolve();
+  });
 });
 
-// code_uglify
-gulp.task("code_uglify", function () {
-  return (
+
+// js_uglify
+gulp.task("js_uglify", function () {
+  return new Promise( resolve => {
     gulp
-    .src(path_assets.js + "/*.js") // 입력 경로
+    .src(path_src.js + "/*.js") // 입력 경로
     .pipe(sourcemaps.init())
-    .pipe(uglify())
+    .pipe(uglify(/* options */)) //min
     .pipe(obfusc({
       compact: true,
       renameGlobals : true,
@@ -71,21 +151,91 @@ gulp.task("code_uglify", function () {
       splitStrings : true,
       selfDefending : true,
       controlFlowFlattening : true,
-    }))
+    })) // 난독화
     .pipe(sourcemaps.write("maps")) // sourcemaps 경로
     .pipe(gulp.dest(path_dist.js)) // 출력 경로
-  ); 
+    // .pipe(browsersync.reload({stream: true}));
+    
+    resolve();
+  });
 });
+
+// fileinclude
+// gulp.task("fileinclude", function() {
+//   gulp.src([path_assets.html + "/*.html", path_assets.inc + "/*.html"])
+//   // gulp.src([path_assets.html + "**/*.html"])
+//     .pipe(fileinclude({
+//       prefix: "@@",
+//       basepath: "@file"
+//     }))
+//     .pipe(gulp.dest(app));
+// });
+
 
 // watch
-gulp.task("watch", function () {
-  gulp.watch(path_assets.scss + "/*.scss", gulp.series("sass_compile"));
-  gulp.watch(path_assets.css +"/*.css", gulp.series("css_min"));
-  gulp.watch(path_assets.js + "/*.js", gulp.series("code_uglify"));
+// gulp.task("watch", function () {
+//   // gulp.watch([app + "/**/*"], reload);
+//   gulp.watch(path_assets.scss + "/*.scss", gulp.series("sass_compile"));
+//   gulp.watch(path_assets.css +"/*.css", gulp.series("css_min"));
+//   gulp.watch(path_assets.js + "/*.js", gulp.series("js_uglify"));
+//   gulp.watch(path_assets.html + "/*.html", gulp.series("fileinclude"));
+//   gulp.watch(path_assets.inc + "/*.html", gulp.series("fileinclude"));
+// });
+
+gulp.task("watch", () => {
+  return new Promise( resolve => {
+    gulp.watch(path_src.html + "/index.html", gulp.series("html_root"));
+    gulp.watch(path_src.html + "/**/*.html", gulp.series("html_comp"));
+    gulp.watch(path_src.scss + "/*.scss", gulp.series("sass_compile"));
+    gulp.watch(path_src.css +"/*.css", gulp.series("css_min"));
+    gulp.watch(path_src.js + "/*.js", gulp.series("js_uglify"));
+
+    resolve();
+  });
 });
 
+
 // start
-gulp.task("start", gulp.parallel("webstart", "watch"));
+gulp.task(
+  "start", 
+  gulp.parallel(
+    "html_root",
+    "html_comp",
+    "sass_compile", 
+    "css_min", 
+    "js_uglify", 
+    // "browser_sync",
+    "webstart",
+    "watch"
+  )
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// webserver
+// gulp.task("webstart", function () {
+//   gulp.src(app).pipe(
+//     webserver({
+//       livereload: true,
+//       open: true,
+//       port: 8888,
+//     })
+//   );
+// });
 
 // const gulp = require("gulp");
 // const fileinclude = require("gulp-file-include");

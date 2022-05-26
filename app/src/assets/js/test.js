@@ -3,14 +3,13 @@
 const calc = (a, b) => {
   return a + b;
 }
+console.log(calc("ㄴ", "ㅖ"));
 console.log(calc(1, 5));
 
 // const sum = require('./sum');
 
 // console.log("function sum test!");
 // console.log("1 + 2 =", sum(1,2));
-
-
 
 
 

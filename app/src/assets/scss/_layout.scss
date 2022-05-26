@@ -8,9 +8,8 @@ body {
   background-color: beige;
   @include flex-center;
   div {
-    width: 100%;
+    width: 50px;
     height: 50px;
-    height: 500px;
     background-color: $color-primary;
   }
 }

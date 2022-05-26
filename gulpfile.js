@@ -10,6 +10,7 @@ const obfusc = require("gulp-javascript-obfuscator"); // js 난독화
 const fileinclude = require("gulp-file-include"); // include
 const browsersync = require("browser-sync").create(); // browsersync
 const webserver = require("gulp-webserver"); //webserver
+// const pug = require("gulp-pug"); // pug https://pugjs.org/language/attributes.html
 
 // path
 const app = "./app";
@@ -34,9 +35,9 @@ const path_dist = {
 gulp.task("webstart", function () {
   gulp.src(path_dist.root).pipe(
     webserver({
+      port: 8888,
       livereload: true,
       open: true,
-      port: 8888,
     })
   );
 });
@@ -57,27 +58,11 @@ gulp.task("browser_sync", () => {
 });
 
 
-// html_root
-gulp.task("html_root", () => {
+// html
+gulp.task("html", () => {
   return new Promise( resolve => {
       gulp
-      .src(path_src.html + "/index.html" )
-      .pipe(fileinclude({
-        prefix: "@@",
-        basepath: "@file"
-      }))
-      .pipe(gulp.dest(path_dist.root) )
-      // .pipe(browsersync.reload({stream: true}));
-
-      resolve();
-  });
-});
-
-// html_comp
-gulp.task("html_comp", () => {
-  return new Promise( resolve => {
-      gulp
-      .src(path_src.html + "/**/*.html")
+      .src(path_src.html + "/**/*")
       .pipe(fileinclude({
         prefix: "@@",
         basepath: "@file"
@@ -161,31 +146,42 @@ gulp.task("js_uglify", function () {
 });
 
 // fileinclude
-// gulp.task("fileinclude", function() {
-//   gulp.src([path_assets.html + "/*.html", path_assets.inc + "/*.html"])
-//   // gulp.src([path_assets.html + "**/*.html"])
-//     .pipe(fileinclude({
-//       prefix: "@@",
-//       basepath: "@file"
-//     }))
-//     .pipe(gulp.dest(app));
-// });
+gulp.task("fileinclude", function() {
+  return gulp.src([
+    path_src.html + "/*", // ★★★★ 불러올 파일의 위치
+    "!" + path_src.html + "/include*" // ★★★★ 읽지 않고 패스할 파일의 위치
+  ])
+  .pipe(fileinclude({
+    prefix: "@@",
+    basepath: "@file"
+  }))
+  .pipe(gulp.dest(path_dist.root));
+
+
+  // gulp
+  // .src([path_src.html + "/*.html", path_src.inc + "/*.html"])
+  // // .src([path_src.html + "**/*.html"])
+  // .pipe(fileinclude({
+  //   prefix: "@@",
+  //   basepath: "@file"
+  // }))
+  // .pipe(gulp.dest(app));
+});
 
 
 // watch
 // gulp.task("watch", function () {
 //   // gulp.watch([app + "/**/*"], reload);
-//   gulp.watch(path_assets.scss + "/*.scss", gulp.series("sass_compile"));
-//   gulp.watch(path_assets.css +"/*.css", gulp.series("css_min"));
-//   gulp.watch(path_assets.js + "/*.js", gulp.series("js_uglify"));
-//   gulp.watch(path_assets.html + "/*.html", gulp.series("fileinclude"));
-//   gulp.watch(path_assets.inc + "/*.html", gulp.series("fileinclude"));
+//   gulp.watch(path_src.scss + "/*.scss", gulp.series("sass_compile"));
+//   gulp.watch(path_src.css +"/*.css", gulp.series("css_min"));
+//   gulp.watch(path_src.js + "/*.js", gulp.series("js_uglify"));
+//   gulp.watch(path_src.html + "/*.html", gulp.series("fileinclude"));
+//   gulp.watch(path_src.inc + "/*.html", gulp.series("fileinclude"));
 // });
 
 gulp.task("watch", () => {
   return new Promise( resolve => {
-    gulp.watch(path_src.html + "/index.html", gulp.series("html_root"));
-    gulp.watch(path_src.html + "/**/*.html", gulp.series("html_comp"));
+    gulp.watch(path_src.html + "/**/*", gulp.series("html"));
     gulp.watch(path_src.scss + "/*.scss", gulp.series("sass_compile"));
     gulp.watch(path_src.css +"/*.css", gulp.series("css_min"));
     gulp.watch(path_src.js + "/*.js", gulp.series("js_uglify"));
@@ -199,8 +195,7 @@ gulp.task("watch", () => {
 gulp.task(
   "start", 
   gulp.parallel(
-    "html_root",
-    "html_comp",
+    "html",
     "sass_compile", 
     "css_min", 
     "js_uglify", 
@@ -213,7 +208,53 @@ gulp.task(
 
 
 
+// 참고용
 
+// import gulp from "gulp";
+// import gulppug from "gulp-pug";
+// import del from "del";
+// import ws from "gulp-webserver";
+
+// const routes = {
+//   pug: {
+//     watch: "src/**/*.pug",
+//     src: "src/*.pug",
+//     dest: "build",
+//   },
+// };
+
+// //task
+// const pug = () =>
+//   gulp.src(routes.pug.src).pipe(gulppug()).pipe(gulp.dest(routes.pug.dest));
+
+// const clean = () => del(["build"]);
+
+// const webserver = () =>
+//   gulp.src("build").pipe(
+//     ws({
+//       port: 5000,
+//       livereload: true,
+//       open: true,
+//     })
+//   );
+
+// const watch = () => {
+//   gulp.watch(routes.pug.watch, pug);
+// };
+
+// //////////////////////////execute///////////////////////////////////
+
+// // build delete for preventing conflict
+// const prepare = gulp.series([clean]);
+
+// // pug transcompile
+// const assets = gulp.series([pug]);
+
+// // execute webserver deamon
+// const postDev = gulp.parallel([webserver, watch]);
+
+// // package.json에서 script로 사용하기 위해 export
+// export const dev = gulp.series([prepare, assets, postDev]);
 
 
 

@@ -1,0 +1,1 @@
+{"version":3,"sources":["ia.css"],"names":[],"mappings":"iBACA,EACE,OAAQ,EACR,QAAS,EAIX,OACE,OAAQ,IAAI,MAAM","file":"../ia.css","sourcesContent":["@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n}\n\n/* css 주석 노출 */\n*:focus {\n  border: 1px solid red;\n}"]}

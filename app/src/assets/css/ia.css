@@ -1,0 +1,10 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* css 주석 노출 */
+*:focus {
+  border: 1px solid red;
+}

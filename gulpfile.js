@@ -197,11 +197,11 @@ gulp.task(
   gulp.parallel(
     "html",
     "sass_compile", 
-    "css_min", 
+    "css_min",
     "js_uglify", 
-    // "browser_sync",
     "webstart",
     "watch"
+    // "browser_sync",
   )
 );
 

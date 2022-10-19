@@ -1,1 +1,1 @@
-{"version":3,"sources":["sourceMap"],"names":[],"mappings":"osEAAA","file":"../ia.js","sourcesContent":["\"use strict\";"]}
+{"version":3,"sources":["sourceMap"],"names":["console"],"mappings":"22EAAA,aAAaA,OAAA,C,eAAA,E,eAAA","file":"../ia.js","sourcesContent":["\"use strict\";console.log(\"start\");"]}

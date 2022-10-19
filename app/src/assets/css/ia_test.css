@@ -1,4 +1,8 @@
 @charset "UTF-8";
+:root {
+  /* color-scheme: dark; */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -22,3 +26,62 @@ table {
 .table td {
   border: 1px solid #000;
 }
+
+
+
+
+/* .light-teme과 .dark-teme이 중첩되면 예상한 결과를 얻지 못할 수 있습니다. */
+.light-theme a { color: purple; }
+.dark-theme a { color: plum; }
+
+/* scope미디어를 사용하면 가장 가까운 범위로 스타일이 지정되므로 문제를 해결할 수 있습니다. */
+@scope (.light-scheme) { /* .light-scheme 클래스 내부의 스타일을 지정 */
+  a { color: darkmagenta; }
+}
+
+@scope (.dark-scheme) {  /* .dark-scheme 클래스 내부의 스타일을 지정 */
+  a { color: plum; }
+}
+
+
+/* prefers-color-scheme */
+.day {
+  background: #eee;
+  color: black;
+}
+.night {
+  background: #333;
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .day.dark-scheme {
+    background: #333;
+    color: white;
+  }
+  .night.dark-scheme {
+    background: black;
+    color: #ddd;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .day.light-scheme {
+    background: white;
+    color: #555;
+  }
+  .night.light-scheme {
+    background: #eee;
+    color: black;
+  }
+}
+
+.day,
+.night {
+  display: inline-block;
+  padding: 1em;
+  width: 7em;
+  height: 2em;
+  vertical-align: middle;
+}
+/* prefers-color-scheme */

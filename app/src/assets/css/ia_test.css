@@ -59,7 +59,22 @@ table {
   background: #333;
   color: white;
 }
-
+.day::before {
+  content: "before";
+  background-color: antiquewhite;
+  height: 20px;
+  width: 20px;
+  display: block;
+  padding: 20px;
+}
+.day::after {
+  content: "before";
+  background-color: aquamarine;
+  height: 20px;
+  width: 20px;
+  display: block;
+  padding: 20px;
+}
 @media (prefers-color-scheme: dark) {
   .day.dark-scheme {
     background: #333;

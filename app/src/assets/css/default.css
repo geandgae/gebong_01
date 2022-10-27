@@ -4,6 +4,7 @@
   padding: 0;
   font: inherit;
   color: inherit;
+  color: #000;
 }
 
 *,
@@ -54,6 +55,22 @@ button {
   cursor: pointer;
   appearance: button;
   outline: 1px dotted ButtonText;
+}
+
+:where(caption, legend) {
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+}
+
+.blind {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  width: 1px;
+  height: 1px;
 }
 
 /* css 주석 노출 */

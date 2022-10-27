@@ -10,6 +10,7 @@
 *,
 ::after,
 ::before {
+  background-repeat: no-repeat;
   box-sizing: border-box;
   flex-shrink: 0;
 }
@@ -35,16 +36,15 @@
   max-width: 100%;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+:where(ol, ul) {
+  list-style: none;
 }
 
-a {
+:where(a) {
   text-decoration: none;
 }
 
-button {
+:where(button) {
   background: none;
   border: none;
   padding: 0;
@@ -53,15 +53,23 @@ button {
   overflow: visible;
   white-space: nowrap;
   cursor: pointer;
-  appearance: button;
-  outline: 1px dotted ButtonText;
+}
+
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+  border-spacing: 0;
 }
 
 :where(caption, legend) {
   overflow: hidden;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
+  font-size: 1px;
+  line-height: 0;
+  color: transparent;
+}
+
+:where(iframe) {
+  border-style: none;
 }
 
 .blind {
@@ -71,6 +79,14 @@ button {
   margin: -1px;
   width: 1px;
   height: 1px;
+}
+
+.ir {
+  display: block;
+  overflow: hidden;
+  font-size: 1px;
+  line-height: 0;
+  color: transparent;
 }
 
 /* css 주석 노출 */

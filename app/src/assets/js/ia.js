@@ -52,27 +52,47 @@
       tbodyData.push(`
         <tr>
           <td>${item.index}</td>
-          <td>${item.picture}</td>
-          <td>${item.age}</td>
-          <td>${item.eyeColor}</td>
-          <td>${item.name}</td>
-          <td>${item.gender}</td>
-          <td>${item.company}</td>
-          <td>${item.email}</td>
-          <td>${item.phone}</td>
-          <td>${item.address}</td>
+          <td>${item.depth1}</td>
+          <td>${item.depth2}</td>
+          <td>${item.depth3}</td>
+          <td>${item.depth4}</td>
+          <td>${item.view_id}</td>
+          <td>${item.view_name}</td>
+          <td>${item.view_url}</td>
+          <td>${item.date}</td>
+          <td>${item.state}</td>
+          <td>${item.author}</td>
+          <td>${item.note}</td>
         </tr>
       `);
     }
 
     // table target
+    let thead = 
+    `
+      <tr>
+        <th>no</th>
+        <th>depth1</th>
+        <th>depth2</th>
+        <th>depth3</th>
+        <th>depth4</th>
+        <th>id</th>
+        <th>name</th>
+        <th>url</th>
+        <th>date</th>
+        <th>state</th>
+        <th>author</th>
+        <th>note</th>
+      </tr>
+    `;
     let table = document.querySelectorAll(".table");
     if (table) {
       table.forEach(function (item) {
         let id = item.getAttribute("id");
         if (id == target) {
           console.log(target);
-          item.innerHTML = tbodyData.join("");
+          item.querySelector("thead").innerHTML = thead;
+          item.querySelector("tbody").innerHTML = tbodyData.join("");
         }
       });
     }

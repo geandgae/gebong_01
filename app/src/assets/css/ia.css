@@ -4,7 +4,6 @@
   padding: 0;
   font: inherit;
   color: inherit;
-  color: #000;
 }
 
 *,
@@ -108,13 +107,43 @@
   height: 100%;
 }
 
-*:focus {
+:root {
+  --font: Dotum;
+  --fonts: sans-serif;
+  --font12: 12rem var(--font);
+  --font13: 13rem var(--font);
+  --font14: 14rem var(--font);
+  --font15: 15rem var(--font);
+  --font16: 16rem var(--fonts);
+  --font18: 18rem var(--fonts);
+  --color_font00: #fff;
+  --color_font01: #1a1a1a;
+  --color_font02: #5a5a5a;
+  --color_line01: #1a1a1a;
+  --color_bg01: #5a5a5a;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--color_font02);
+}
+
+.header {
   border: 1px solid red;
 }
 
-.table th {
-  border: 1px solid #000;
+.container:is(.main) {
+  background-color: #fff;
 }
-.table td {
-  border: 1px solid #000;
+
+.table :where(th, td) {
+  border: 1px solid var(--color_line01);
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+}
+
+.table th {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color_font00);
+  background-color: var(--color_bg01);
 }

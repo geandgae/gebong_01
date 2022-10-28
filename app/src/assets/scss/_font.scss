@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+//webfont
+// eot : iE8 이하브라우저 웹폰트 사용시
+// otf : 마이크로소프트 컴퓨터 글꼴 형식
+// woff : W3C에서 추천하는 글꼴 형식
+// woff2 : WOFF에서 향상된 글꼴
+// svg : 벡터방식의 글꼴형식 (IE ,FF 지원안함) 
+// svg : TTF에 2배 , WOFF 3배 용량
+// ttf : 애플에서 개발한 글꼴 형식
+// 현시점에선 woff 랑 woff2 사용하면 된다.
+// 폰트변환 : https://convertio.co/kr/download/dac3f4389b9068bfb1866d5cc35b354c972265/
+// 폰트변환 : https://onlinefontconverter.com/
+
+/*
+// 본고딕
+@font-face {
+    font-family: 'NotoSansKR-Bold';
+    src: url(../fonts/NotoSansKR-Bold.woff2) format("woff2"),
+    url(../fonts/NotoSansKR-Bold.woff) format("woff");
+}
+@font-face {
+    font-family: 'NotoSansKR-Light';
+    src: url(../fonts/NotoSansKR-Light.woff2) format("woff2"),
+    url(../fonts/NotoSansKR-Light.woff) format("woff");
+}
+@font-face {
+    font-family: 'NotoSansKR-Thin';
+    src: url(../fonts/NotoSansKR-Thin.woff2) format("woff2"),
+    url(../fonts/NotoSansKR-Thin.woff) format("woff");
+}
+@font-face {
+    font-family: 'NotoSansKR-Regular';
+    src: url(../fonts/NotoSansKR-Regular.woff2) format("woff2"),
+    url(../fonts/NotoSansKR-Regular.woff) format("woff");
+}
+@font-face {
+    font-family: 'NotoSansKR-Medium';
+    src: url(../fonts/NotoSansKR-Medium.woff2) format("woff2"),
+    url(../fonts/NotoSansKR-Medium.woff) format("woff");
+}
+@font-face {
+    font-family: 'NotoSansKR-Black';
+    src: url(../fonts/NotoSansKR-Black.woff2) format("woff2"),
+    url(../fonts/NotoSansKR-Black.woff) format("woff");
+}
+
+
+// 정고딕
+
+@font-face {
+    font-family: 'jung-110';
+    src: url(../fonts/THEjunggt110.woff) format("woff");
+}
+@font-face {
+    font-family: 'jung-120';
+    src: url(../fonts/THEjunggt120.woff) format("woff");
+}
+@font-face {
+    font-family: 'jung-130';
+    src: url(../fonts/THEjunggt130.woff) format("woff");
+}
+@font-face {
+    font-family: 'jung-140';
+    src: url(../fonts/THEjunggt140.woff) format("woff");
+}
+@font-face {
+    font-family: 'jung-150';
+    src: url(../fonts/THEjunggt150.woff) format("woff");
+}
+@font-face {
+    font-family: 'jung-160';
+    src: url(../fonts/THEjunggt160.woff) format("woff");
+}
+@font-face {
+    font-family: 'jung-170';
+    src: url(../fonts/THEjunggt170.woff) format("woff");
+}
+
+
+
+
+// Roboto 
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url(../fonts/Roboto-Bold.woff2) format("woff2"),
+    url(../fonts/Roboto-Bold.woff) format("woff");
+}
+@font-face {
+    font-family: 'Roboto-Italic';
+    src: url(../fonts/Roboto-Italic.woff2) format("woff2"),
+    url(../fonts/Roboto-Italic.woff) format("woff");
+}
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url(../fonts/Roboto-Light.woff2) format("woff2"),
+    url(../fonts/Roboto-Light.woff) format("woff");
+}
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url(../fonts/Roboto-Medium.woff2) format("woff2"),
+    url(../fonts/Roboto-Medium.woff) format("woff");
+}
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url(../fonts/Roboto-Regular.woff2) format("woff2"),
+    url(../fonts/Roboto-Regular.woff) format("woff");
+}
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url(../fonts/Roboto-Thin.woff2) format("woff2"),
+    url(../fonts/Roboto-Thin.woff) format("woff");
+}
+*/

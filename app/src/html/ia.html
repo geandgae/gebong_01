@@ -5,76 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ia</title>
-    <link href="./assets/css/ia_test.css" type="text/css" media="all" rel="stylesheet">
     <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet">
     <!-- <script src="./assets/js/ia.js"></script> -->
     <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
     <!-- <script async src="./assets/js/ia.js"></script>  -->
     <!-- 덜 중요한 리소스 로드(ex 접근성) -->
+    <script defer src="./assets/js/data.js"></script>
+    <script defer src="./assets/js/data2.js"></script>
     <script defer src="./assets/js/ia.js"></script>
   </head>
   <body>
-    <!-- rel 예 -->
-    <!-- <div class="site-navigation" rel="js-site-navigation"></div>
-  <script>
-    const nav = document.querySelector("[rel='js-site-navigation']")
-  </script> -->
-
-    <!-- <img src="" alt="">
-    <picture></picture>
-    <video src=""></video>
-    <canvas></canvas>
-    <svg width="" height="">
-    </svg> -->
-
-
-    <div class="day">Day (initial)</div>
-    <div class="day light-scheme">Day (changes in light scheme)</div>
-    <div class="day dark-scheme">Day (changes in dark scheme)</div>
-
-    <div class="night">Night (initial)</div>
-    <div class="night light-scheme">Night (changes in light scheme)</div>
-    <div class="night dark-scheme">Night (changes in dark scheme)</div>
-
-    <div class="dark-theme">
-      <a href="#">plum</a>
-      <div class="light-theme">
-        <a href="#">also plum???</a>
-      </div>
-    </div>
-
-    <img />
-
-    <article>
-      <h2>:where()</h2>
-      <section class="where">
-        <p>Section</p>
-      </section>
-      <aside class="where">
-        <p>Aside</p>
-      </aside>
-      <footer class="where">
-        <p>Footer</p>
-      </footer>
-    </article>
-    <article>
-      <h2>:is()</h2>
-      <section class="is">
-        <p>Section</p>
-      </section>
-      <aside class="is">
-        <p>Aside</p>
-      </aside>
-      <footer class="is">
-        <p>Footer</p>
-      </footer>
-    </article>
+    <!-- table_ia -->
+    <table class="table" id="table_01">
+      <caption>ia</caption>
+      <thead>
+        <tr>
+          <th>index</th>
+          <th>picture</th>
+          <th>age</th>
+          <th>eyeColor</th>
+          <th>name</th>
+          <th>gender</th>
+          <th>company</th>
+          <th>email</th>
+          <th>phone</th>
+          <th>address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>o</td>
+          <td>"http://placehold.it/32x32"</td>
+          <td>35</td>
+          <td>"brown"</td>
+          <td>"Cain Nicholson"</td>
+          <td>"male"</td>
+          <td>"NIXELT"</td>
+          <td>"cainnicholson@nixelt.com"</td>
+          <td>"+1 (923) 489-3725"</td>
+          <td>"207 Townsend Street, Garberville, Vermont, 2378"</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- //table_ia -->
 
     <!-- table_ia -->
-    <table class="table">
-      <caption>
-        ia
-      </caption>
+    <table class="table" id="table_02">
+      <caption>ia</caption>
       <thead>
         <tr>
           <th>index</th>

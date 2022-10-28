@@ -124,25 +124,35 @@ gulp.task("css_min", function () {
 
 // js_uglify
 gulp.task("js_uglify", function () {
+  // 일반 세팅
   return new Promise( resolve => {
     gulp
     .src(path_src.js + "/*.js") // 입력 경로
-    .pipe(sourcemaps.init())
-    .pipe(uglify(/* options */)) //min
-    .pipe(obfusc({
-      compact: true,
-      renameGlobals : true,
-      unicodeEscapeSequence : true,
-      splitStrings : true,
-      selfDefending : true,
-      controlFlowFlattening : true,
-    })) // 난독화
-    .pipe(sourcemaps.write("maps")) // sourcemaps 경로
     .pipe(gulp.dest(path_dist.js)) // 출력 경로
-    // .pipe(browsersync.reload({stream: true}));
     
     resolve();
   });
+
+  // 난독화 세팅
+  // return new Promise( resolve => {
+  //   gulp
+  //   .src(path_src.js + "/*.js") // 입력 경로
+  //   .pipe(sourcemaps.init())
+  //   .pipe(uglify(/* options */)) //min
+  //   .pipe(obfusc({
+  //     compact: true,
+  //     renameGlobals : true,
+  //     unicodeEscapeSequence : true,
+  //     splitStrings : true,
+  //     selfDefending : true,
+  //     controlFlowFlattening : true,
+  //   })) // 난독화
+  //   .pipe(sourcemaps.write("maps")) // sourcemaps 경로
+  //   .pipe(gulp.dest(path_dist.js)) // 출력 경로
+  //   // .pipe(browsersync.reload({stream: true}));
+    
+  //   resolve();
+  // });
 });
 
 // fileinclude
@@ -198,7 +208,7 @@ gulp.task(
     "html",
     "sass_compile", 
     "css_min",
-    "js_uglify", 
+    "js_uglify",
     "webstart",
     "watch"
     // "browser_sync",

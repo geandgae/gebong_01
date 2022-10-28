@@ -1,2 +1,85 @@
-'use strict';(function(_0x3177e1,_0x463522){const _0x1fb7e5=_0x7a42,_0x369c5f=_0x3177e1();while(!![]){try{const _0xba257c=-parseInt(_0x1fb7e5(0x1f4))/0x1+-parseInt(_0x1fb7e5(0x20c))/0x2+parseInt(_0x1fb7e5(0x1f8))/0x3*(-parseInt(_0x1fb7e5(0x1ed))/0x4)+parseInt(_0x1fb7e5(0x1ef))/0x5*(-parseInt(_0x1fb7e5(0x213))/0x6)+parseInt(_0x1fb7e5(0x21b))/0x7+parseInt(_0x1fb7e5(0x205))/0x8+parseInt(_0x1fb7e5(0x204))/0x9;if(_0xba257c===_0x463522)break;else _0x369c5f['push'](_0x369c5f['shift']());}catch(_0x2f7cf8){_0x369c5f['push'](_0x369c5f['shift']());}}}(_0xa3d0,0xb22fc));!(function(){const _0x1a1fc2=_0x7a42,_0x668147={'\x6b\x76\x41\x59\x66':_0x1a1fc2(0x214)+'\x2b\x24','\x48\x79\x6a\x64\x71':function(_0x299fa6,_0x26c5af,_0x281a2b){return _0x299fa6(_0x26c5af,_0x281a2b);},'\x4d\x76\x43\x69\x6e':function(_0x4df7a8){return _0x4df7a8();},'\x4f\x64\x66\x78\x66':'\x69\x6d\x67','\x48\x4b\x45\x73\x59':_0x1a1fc2(0x21d),'\x58\x71\x44\x76\x71':function(_0x19c243,_0x1f2c8c){return _0x19c243+_0x1f2c8c;},'\x5a\x6a\x74\x79\x4c':_0x1a1fc2(0x210)+_0x1a1fc2(0x1f6)+'\x61\x73\x65\x36\x34\x2c','\x4c\x53\x63\x57\x4e':function(_0x208b3d,_0x1d9cbf){return _0x208b3d(_0x1d9cbf);}},_0x388f69=(function(){let _0x595c3e=!![];return function(_0x5ccd1e,_0x453758){const _0x3e2bdc=_0x595c3e?function(){const _0x52521d=_0x7a42;if(_0x453758){const _0x2ddf29=_0x453758[_0x52521d(0x1f1)](_0x5ccd1e,arguments);return _0x453758=null,_0x2ddf29;}}:function(){};return _0x595c3e=![],_0x3e2bdc;};}()),_0x96aa98=_0x668147[_0x1a1fc2(0x21a)](_0x388f69,this,function(){const _0x403676=_0x1a1fc2;return _0x96aa98[_0x403676(0x1ea)]()['\x73\x65\x61\x72\x63\x68'](_0x668147[_0x403676(0x209)])['\x74\x6f\x53\x74\x72\x69\x6e\x67']()['\x63\x6f\x6e\x73\x74\x72\x75\x63\x74\x6f'+'\x72'](_0x96aa98)[_0x403676(0x1ec)](_0x668147[_0x403676(0x209)]);});_0x668147[_0x1a1fc2(0x1fa)](_0x96aa98),console[_0x1a1fc2(0x20d)](_0x1a1fc2(0x1fb));for(let _0x1288e3 of document['\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63'+_0x1a1fc2(0x1f7)](_0x668147[_0x1a1fc2(0x1ff)]))_0x1288e3['\x61\x6c\x74']=_0x668147[_0x1a1fc2(0x20e)],_0x1288e3[_0x1a1fc2(0x1f0)]=_0x668147[_0x1a1fc2(0x20f)](_0x668147[_0x1a1fc2(0x21c)],_0x668147[_0x1a1fc2(0x215)](btoa,_0x1a1fc2(0x1fc)+_0x1a1fc2(0x218)+_0x1a1fc2(0x1f9)+_0x1a1fc2(0x217)+_0x1a1fc2(0x1f3)+_0x1a1fc2(0x1eb)+_0x1a1fc2(0x1fe)+'\x77\x77\x2e\x77\x33\x2e\x6f\x72\x67\x2f'+_0x1a1fc2(0x201)+_0x1a1fc2(0x203)+_0x1a1fc2(0x20a)+_0x1a1fc2(0x208)+'\x6f\x74\x20\x7b\x20\x63\x6f\x6c\x6f\x72'+'\x3a\x20\x62\x6c\x75\x65\x20\x7d\x0a\x20'+'\x20\x20\x20\x20\x20\x20\x20\x20\x20\x40'+_0x1a1fc2(0x216)+_0x1a1fc2(0x1f2)+_0x1a1fc2(0x200)+'\x61\x72\x6b\x29\x20\x7b\x0a\x20\x20\x20'+_0x1a1fc2(0x1fd)+_0x1a1fc2(0x1ee)+_0x1a1fc2(0x1f5)+'\x20\x7d\x0a\x20\x20\x20\x20\x20\x20\x20'+'\x20\x20\x20\x7d\x0a\x20\x20\x20\x20\x20'+_0x1a1fc2(0x219)+_0x1a1fc2(0x20b)+_0x1a1fc2(0x211)+_0x1a1fc2(0x202)+_0x1a1fc2(0x212)+'\x3d\x22\x31\x36\x22\x20\x63\x79\x3d\x22'+'\x31\x36\x22\x20\x72\x3d\x22\x31\x36\x22'+_0x1a1fc2(0x207)+_0x1a1fc2(0x206))),console[_0x1a1fc2(0x20d)](_0x1288e3);}());function _0x7a42(_0x496b31,_0x243951){const _0x46fc76=_0xa3d0();return _0x7a42=function(_0xb7cf54,_0x25bc44){_0xb7cf54=_0xb7cf54-0x1ea;let _0xa3d074=_0x46fc76[_0xb7cf54];return _0xa3d074;},_0x7a42(_0x496b31,_0x243951);}function _0xa3d0(){const _0x3721af=['\x5a\x6a\x74\x79\x4c','\x63\x69\x72\x63\x6c\x65','\x74\x6f\x53\x74\x72\x69\x6e\x67','\x20\x33\x32\x22\x20\x78\x6d\x6c\x6e\x73','\x73\x65\x61\x72\x63\x68','\x34\x50\x4d\x57\x57\x67\x68','\x72\x6f\x6f\x74\x20\x7b\x20\x63\x6f\x6c','\x35\x77\x4e\x62\x64\x6f\x76','\x73\x72\x63','\x61\x70\x70\x6c\x79','\x66\x65\x72\x73\x2d\x63\x6f\x6c\x6f\x72','\x6f\x78\x3d\x22\x30\x20\x30\x20\x33\x32','\x31\x30\x36\x30\x37\x34\x36\x4f\x57\x51\x4d\x69\x6f','\x6f\x72\x3a\x20\x70\x75\x72\x70\x6c\x65','\x2f\x73\x76\x67\x2b\x78\x6d\x6c\x3b\x62','\x74\x6f\x72\x41\x6c\x6c','\x31\x34\x37\x34\x31\x36\x34\x68\x7a\x6b\x75\x47\x51','\x32\x22\x20\x68\x65\x69\x67\x68\x74\x3d','\x4d\x76\x43\x69\x6e','\x73\x74\x61\x72\x74','\x0a\x20\x20\x20\x20\x20\x20\x3c\x73\x76','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x3a','\x3d\x22\x68\x74\x74\x70\x3a\x2f\x2f\x77','\x4f\x64\x66\x78\x66','\x2d\x73\x63\x68\x65\x6d\x65\x3a\x20\x64','\x32\x30\x30\x30\x2f\x73\x76\x67\x22\x3e','\x6c\x6c\x3d\x22\x63\x75\x72\x72\x65\x6e','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x3c','\x31\x37\x39\x34\x36\x31\x38\x39\x72\x46\x61\x46\x62\x66','\x38\x30\x33\x32\x31\x38\x34\x70\x57\x66\x62\x78\x50','\x2f\x73\x76\x67\x3e\x0a\x20\x20\x20\x20','\x2f\x3e\x0a\x20\x20\x20\x20\x20\x20\x3c','\x20\x20\x20\x20\x20\x20\x20\x3a\x72\x6f','\x6b\x76\x41\x59\x66','\x73\x74\x79\x6c\x65\x3e\x0a\x20\x20\x20','\x3e\x0a\x20\x20\x20\x20\x20\x20\x20\x20','\x31\x34\x34\x33\x38\x34\x32\x6e\x70\x48\x65\x63\x70','\x6c\x6f\x67','\x48\x4b\x45\x73\x59','\x58\x71\x44\x76\x71','\x64\x61\x74\x61\x3a\x69\x6d\x61\x67\x65','\x3c\x63\x69\x72\x63\x6c\x65\x20\x66\x69','\x74\x43\x6f\x6c\x6f\x72\x22\x20\x63\x78','\x33\x32\x39\x37\x34\x30\x38\x76\x44\x6f\x46\x71\x61','\x28\x28\x28\x2e\x2b\x29\x2b\x29\x2b\x29','\x4c\x53\x63\x57\x4e','\x6d\x65\x64\x69\x61\x20\x28\x70\x72\x65','\x22\x33\x32\x22\x20\x76\x69\x65\x77\x42','\x67\x20\x77\x69\x64\x74\x68\x3d\x22\x33','\x20\x20\x20\x3c\x2f\x73\x74\x79\x6c\x65','\x48\x79\x6a\x64\x71','\x33\x38\x38\x38\x30\x31\x37\x6c\x72\x7a\x63\x78\x44'];_0xa3d0=function(){return _0x3721af;};return _0xa3d0();}
-//# sourceMappingURL=maps/ia.js.map
+// import data from "./data.js";
+
+"use strict";
+
+// s : load
+// window.addEventListener("load", function() {
+// window.addEventListener('load', init);
+// document.addEventListener('DOMContentLoaded', init);
+// s : function
+(function () {
+  /* [html 최초 로드 및 이벤트 상시 대기 실시] */
+  window.onload = function () {
+    console.log("");
+    console.log("[window onload] : [start]");
+    console.log("");
+
+    // [이벤트 함수 호출]
+    main();
+  };
+
+  /* [이벤트 수행 함수] */
+  function main() {
+    console.log("");
+    console.log("[main] : [start]");
+    console.log("");
+
+    //로컬 assets 파일에 저장된 json 파일 읽기 실시 [json 파일에 선언된 변수이름으로 호출해야합니다]
+    // var jsonData = JSON.parse(JSON.stringify(args));
+    // console.log("");
+    // console.log("[main] : [jsonData] : " + JSON.stringify(jsonData));
+    // console.log("");
+
+    // //json 데이터 파싱 실시
+    // console.log("");
+    // console.log("[main] : [idx] : " + jsonData.idx);
+    // // console.log("[main] : [name] : " + jsonData.name);
+    // // console.log("[main] : [program] : " + JSON.stringify(jsonData.program));
+    // console.log("");
+  }
+
+  // <-- JSON데이터를 받아서 정보를 넣어주는 함수 생성 -->
+  function renderTable(data, target) {
+    // <-- 빈배열에 문자열로 푸쉬해줄 예정 -->
+    let tbodyData = [];
+    // <-- 이터레이터는 회원한명의 정보(객체로된) -->
+    for (const item of data) {
+      // <-- ['...', '...', ... , '...'] -->
+      // <-- 위와 같이 배열안에 총 열개의 문자열이 생길것임 -->
+      // <-- 백틱을 써주는 것을 꼭 명심 -->
+      // console.log(tbodyData);
+      // console.log(data[0]);
+      tbodyData.push(`
+        <tr>
+          <td>${item.index}</td>
+          <td>${item.picture}</td>
+          <td>${item.age}</td>
+          <td>${item.eyeColor}</td>
+          <td>${item.name}</td>
+          <td>${item.gender}</td>
+          <td>${item.company}</td>
+          <td>${item.email}</td>
+          <td>${item.phone}</td>
+          <td>${item.address}</td>
+        </tr>
+      `);
+    }
+
+    // table target
+    let table = document.querySelectorAll(".table");
+    if (table) {
+      table.forEach(function (item) {
+        let id = item.getAttribute("id");
+        if (id == target) {
+          console.log(target);
+          item.innerHTML = tbodyData.join("");
+        }
+      });
+    }
+  }
+  renderTable(data_01, "table_01");
+  renderTable(data_02, "table_02");
+})();
+// e : function
+// });
+// e : load

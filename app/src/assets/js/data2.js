@@ -11,6 +11,6 @@ let data_02 = [
     "date": "2022-10-28",
     "state": "대기",
     "author": "author",
-    "note": "<p> Lorem ipsum dolor sit amet</p>",
+    "note": "<p>Lorem ipsum dolor sit amet</p>",
   },
 ]

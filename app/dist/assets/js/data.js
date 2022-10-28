@@ -9,7 +9,7 @@ let data_01 = [
     "view_name": "view_name",
     "view_url": "aaa/aaa.url",
     "date": "2022-10-28",
-    "state": "대기",
+    "state": "완료",
     "author": "author",
     "note": "<p>note1</p><p>note2</p>",
   },
@@ -25,7 +25,7 @@ let data_01 = [
     "date": "2022-10-28",
     "state": "대기",
     "author": "author",
-    "note": "<p> Lorem ipsum dolor sit </p>",
+    "note": "<p>Lorem ipsum dolor sit</p>",
   },
   {
     "index": "3",
@@ -37,9 +37,9 @@ let data_01 = [
     "view_name": "view_name",
     "view_url": "aaa/aaa.url",
     "date": "2022-10-28",
-    "state": "대기",
+    "state": "수정",
     "author": "author",
-    "note": "<p> Lorem ipsum dolor sit </p>",
+    "note": "<p>Lorem ipsum dolor sit</p>",
   },
   {
     "index": "4",
@@ -53,7 +53,7 @@ let data_01 = [
     "date": "2022-10-28",
     "state": "대기",
     "author": "author",
-    "note": "<p> Lorem ipsum dolor sit </p>",
+    "note": "<p>Lorem ipsum dolor sit</p>",
   },
   {
     "index": "5",
@@ -67,7 +67,7 @@ let data_01 = [
     "date": "2022-10-28",
     "state": "대기",
     "author": "author",
-    "note": "<p> Lorem ipsum dolor sit </p>",
+    "note": "<p>Lorem ipsum dolor sit</p>",
   },
   {
     "index": "6",
@@ -81,6 +81,6 @@ let data_01 = [
     "date": "2022-10-28",
     "state": "대기",
     "author": "author",
-    "note": "<p> Lorem ipsum dolor sit </p>",
+    "note": "<p>Lorem ipsum dolor sit</p>",
   },
 ]

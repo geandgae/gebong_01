@@ -1,5 +1,3 @@
-// import data from "./data.js";
-
 "use strict";
 
 // s : load
@@ -8,6 +6,10 @@
 // document.addEventListener('DOMContentLoaded', init);
 // s : function
 (function () {
+
+
+
+
   /* [html 최초 로드 및 이벤트 상시 대기 실시] */
   window.onload = function () {
     console.log("");
@@ -51,25 +53,24 @@
       // console.log(data[0]);
       tbodyData.push(`
         <tr>
-          <td>${item.index}</td>
-          <td>${item.depth1}</td>
-          <td>${item.depth2}</td>
-          <td>${item.depth3}</td>
-          <td>${item.depth4}</td>
-          <td>${item.view_id}</td>
-          <td>${item.view_name}</td>
-          <td>${item.view_url}</td>
-          <td>${item.date}</td>
-          <td>${item.state}</td>
-          <td>${item.author}</td>
-          <td>${item.note}</td>
+          <td><p>${item.index}</p></td>
+          <td><p>${item.depth1}</p></td>
+          <td><p>${item.depth2}</p></td>
+          <td><p>${item.depth3}</p></td>
+          <td><p>${item.depth4}</p></td>
+          <td><p>${item.view_id}</p></td>
+          <td><p>${item.view_name}</p></td>
+          <td><p><a href="#;">${item.view_url}</a></p></td>
+          <td><p>${item.date}</p></td>
+          <td class="state"><p>${item.state}</p></td>
+          <td><p>${item.author}</p></td>
+          <td><p>${item.note}</p></td>
         </tr>
       `);
     }
 
     // table target
-    let thead = 
-    `
+    let thead = `
       <tr>
         <th>no</th>
         <th>depth1</th>
@@ -99,6 +100,79 @@
   }
   renderTable(data_01, "table_01");
   renderTable(data_02, "table_02");
+
+  // 리스트 상태값 구분
+  function tableState() {
+    let state = document.querySelectorAll(".table td.state > p");
+    if (state) {
+      state.forEach(function (item) {
+        let text = item.innerHTML;
+        console.log(text);
+        if (text === "완료") {
+          item.closest("tr").classList.add("fin");
+        } else if (text === "수정") {
+          item.closest("tr").classList.add("mod");
+        }
+      });
+    }
+  }
+  tableState();
+
+  // 문자 복사
+  function tableCopy() {
+    let copy = document.querySelectorAll(".table td > p");
+    if (copy) {
+      copy.forEach(function (item) {
+        item.addEventListener("click", function() {
+          let range = document.createRange();
+          let sel = window.getSelection();
+          range.selectNode(item); //텍스트 정보를 Range 객체에 저장
+          sel.removeAllRanges(); //기존 선택정보 삭제
+          sel.addRange(range); //텍스트 정보 선택
+          document.execCommand("copy"); //복사
+          sel.removeRange(range); //선택 정보 삭제
+          console.log("copy");
+        });
+      });
+    }
+  }
+  tableCopy();
+
+
+  //   test
+  function start() {
+    const button = document.querySelectorAll(".btn ");
+    const storeItems = document.querySelectorAll(".store-item");
+
+    button.forEach((b) =>
+      b.addEventListener("click", (e) => {
+        e.preventDefault();
+        const filter = e.target.dataset.filter;
+
+        storeItems.forEach((i) => {
+          if (filter === "all") {
+            i.style.display = "block";
+          } else {
+            if (i.classList.contains(filter)) {
+              i.style.display = "block";
+            } else {
+              i.style.display = "none";
+            }
+          }
+        });
+      })
+    );
+  }
+  start();
+
+
+
+
+
+
+
+
+
 })();
 // e : function
 // });

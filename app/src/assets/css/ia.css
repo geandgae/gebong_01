@@ -148,10 +148,10 @@
   background-color: var(--color_bg01);
 }
 
-.table .fin td {
+.table .fin {
   background-color: bisque;
 }
 
-.table .mod td {
+.table .mod {
   background-color: rgb(196, 239, 255);
 }

@@ -21,6 +21,41 @@
     <script defer src="./assets/js/ia.js"></script>
   </head>
   <body>
+
+    <!-- <div>
+      배열 :
+      <span id="nums"></span>
+    </div>
+
+    <select id="search-select">
+      <option value="index">id</option>
+      <option value="depth1">name</option>
+      <option value="depth2">favorites</option>
+    </select>
+    <input type="text" class="search-text" />
+    <button id="btn">Search</button>
+
+    <div>
+      결과 :
+      <span id="result"></span>
+    </div> -->
+    <script>
+      // let nums = [1, 2, 3, 4, 5];
+      // document.getElementById("nums").innerHTML = nums;
+
+      // function search() {
+      //   let text = document.getElementsByClassName("search-text")[0].value;
+      //   text = parseInt(text);
+
+      //   let res = nums.find((element) => {
+      //     return element === text;
+      //   });
+
+      //   document.getElementById("result").innerText = res;
+      // }
+      // document.getElementById("btn").addEventListener("click", search);
+    </script>
+
     <!-- wrap -->
     <div id="wrap">
       <!-- header -->
@@ -28,16 +63,15 @@
         <h1>ia</h1>
 
         <div>
-          검색: <input id="filterText" type="text" />
+          검색: <input id="filterText" type="text" class="filter">
           <button class="btn">버튼</button>
-          <br />
-          <ul class="filterUL">
+          <!-- <ul class="filterUL">
             <li>나미야 잡화점의 기적(양장본)</li>
             <li>창문 넘어 도망친 노인</li>
             <li>코끼리의 무덤은 없다</li>
             <li>꾸뻬씨의 행복여행(양장본)</li>
             <li>앵무새 죽이기</li>
-          </ul>
+          </ul> -->
         </div>
       </header>
       <!-- header -->

@@ -94,7 +94,7 @@ let data_02 = [
     view_url: "#;",
     date: "2022-10-28",
     state: "대기",
-    author: "author",
+    author: "개와게",
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {

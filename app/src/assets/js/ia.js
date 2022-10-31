@@ -53,7 +53,7 @@
       // console.log(data[0]);
       tbodyData.push(`
         <tr>
-          <td class="index"><p>${item.index}</p></td>
+          <td class="index"><p></p></td>
           <td class="depth1"><p>${item.depth1}</p></td>
           <td class="depth2"><p>${item.depth2}</p></td>
           <td class="depth3"><p>${item.depth3}</p></td>
@@ -142,6 +142,20 @@
     }
   }
   tableCopy();
+
+  // tableIndex
+  function tableIndex() {
+    let index = document.querySelectorAll(".table tbody td.index p");
+    let length = index.length;
+    // console.log(index);
+    for (let i = 0; i < length; i++) {
+      let num = i + 1;
+      let item = index[i];
+      // console.log(num);
+      item.innerHTML = num;
+    }
+  }
+  tableIndex();
 
   // set toast
   function setToast(target) {
@@ -270,11 +284,14 @@
 
   // filter_test 
   function filter_test() {
-    console.log("start!!!!!");
-    let filter = document.querySelector(".filter");
-    let btn = document.querySelector(".filter_btn");
+    console.log("filter start!!!!!");
+    let filter = document.querySelector(".filter input[type=text]");
+    let btn = document.querySelector(".filter .btn");
     let td = document.querySelectorAll(".table tbody td p");
-    btn.addEventListener("click", function() {
+    let select = document.querySelectorAll(".filter select");
+
+    // filter_search
+    function filter_search() {
       let search_text = filter.value;
       console.log(search_text);
       if (td) {
@@ -295,6 +312,24 @@
           }
         });
       }
+    }
+
+    // 선택
+    if (select) {
+      select.forEach(function (item) {
+        item.addEventListener("change", function() {
+          let option = item.options[item.selectedIndex].value;
+          console.log(item);
+          console.log(option);
+          filter.value = option;
+          filter_search();
+        });
+      });
+    }
+
+    // 검색
+    btn.addEventListener("click", function() {
+      filter_search();
     });
   }
   filter_test();

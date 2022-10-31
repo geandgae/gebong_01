@@ -1,6 +1,5 @@
 let data_01 = [
   {
-    index: "1",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -14,7 +13,6 @@ let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    index: "2",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -28,7 +26,6 @@ let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    index: "4",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -42,7 +39,6 @@ let data_01 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "3",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -56,7 +52,6 @@ let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    index: "4",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -70,7 +65,6 @@ let data_01 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "3",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -84,7 +78,6 @@ let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    index: "1",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -98,7 +91,6 @@ let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    index: "3",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",
@@ -112,7 +104,6 @@ let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    index: "3",
     depth1: "d1",
     depth2: "d2",
     depth3: "d3",

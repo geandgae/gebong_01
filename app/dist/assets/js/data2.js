@@ -1,6 +1,5 @@
 let data_02 = [
   {
-    index: "4",
     depth1: "사과",
     depth2: "배",
     depth3: "자몽",
@@ -14,7 +13,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "4",
     depth1: " ",
     depth2: "  ",
     depth3: "   ",
@@ -28,7 +26,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "4",
     depth1: "",
     depth2: "",
     depth3: "",
@@ -42,7 +39,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "5",
     depth1: "a",
     depth2: "aa",
     depth3: "aaa",
@@ -56,7 +52,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "5",
     depth1: "a",
     depth2: "aa",
     depth3: "aaa",
@@ -70,7 +65,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "5",
     depth1: "a",
     depth2: "aa",
     depth3: "aaa",
@@ -84,7 +78,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "5",
     depth1: "a",
     depth2: "aa",
     depth3: "참고: 노트: 트랜지션을 완료하기 전에 애니메이션하고 있는 속성의 값이 바뀌기 때문입니다.",
@@ -98,7 +91,6 @@ let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    index: "5",
     depth1: "a",
     depth2: "aa",
     depth3: "aaa",

@@ -60,7 +60,7 @@
           <td class="depth4"><p>${item.depth4}</p></td>
           <td class="id"><p>${item.view_id}</p></td>
           <td class="name"><p>${item.view_name}</p></td>
-          <td class="url"><p><a href="#;">${item.view_url}</a></p></td>
+          <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
           <td class="date"><p>${item.date}</p></td>
           <td class="state"><p>${item.state}</p></td>
           <td class="author"><p>${item.author}</p></td>
@@ -133,13 +133,36 @@
           sel.addRange(range); //텍스트 정보 선택
           document.execCommand("copy"); //복사
           sel.removeRange(range); //선택 정보 삭제
-          console.log("copy");
+          // 복사한 정보 보기
+          let copy_text = range.endContainer.innerText;
+          // toast
+          setToast(copy_text);
         });
       });
     }
   }
   tableCopy();
 
+  // set toast
+  function setToast(target) {
+    let outland = document.querySelector("#outland");
+    let toast = `
+      <div class="toast">
+        <div class="inner">
+          <p class="text">
+            <span class="var">
+              "<em>${target}</em>"
+            </span>
+            <span>복사되었습니다.</span>
+          </p>
+        </div>
+      </div>
+    `;
+    outland.innerHTML = toast;
+    // setTimeout(() => {
+    //   outland.innerHTML = "";     
+    // }, 500);
+  }
 
 
   // check_test

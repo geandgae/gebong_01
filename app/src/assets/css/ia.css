@@ -155,3 +155,7 @@
 .table .mod {
   background-color: rgb(196, 239, 255);
 }
+
+.table .hide {
+  display: none;
+}

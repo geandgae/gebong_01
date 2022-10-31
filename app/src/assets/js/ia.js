@@ -228,29 +228,32 @@
   // test2 
   function test() {
     console.log("start!!!!!");
-    let key = document.querySelector(".filter");
-
+    let filter = document.querySelector(".filter");
+    let btn = document.querySelector(".filter_btn");
     let tr = document.querySelectorAll(".table tbody td p");
-    
-
-    
-    key.addEventListener("keyup", function() {
-      let search_text = this.value;
+    btn.addEventListener("click", function() {
+      let search_text = filter.value;
       console.log(search_text);
       if (tr) {
         tr.forEach(function (item) {
           let text = item.innerHTML;
-          if (text.includes(search_text)) {
-            console.log(text);
+          // item.closest("tr").classList.remove("block");
+          item.closest("tr").classList.add("hide");
+          // if (text.includes(search_text)) {
+          if (search_text == text) {
+            // console.log(text);
             // item.closest("tr").style.display = "block";
-            item.closest("tr").style.display = "none";
-          } else {
+            // item.closest("tr").style.display = "none";
+            setTimeout(() => {
+              item.closest("tr").classList.remove("hide");       
+            }, 100);
+          } else if (search_text == "") {
+            item.closest("tr").classList.remove("hide");
           }
         });
       }
     });
   }
-
   test();
 
 

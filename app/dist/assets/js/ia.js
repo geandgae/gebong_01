@@ -335,6 +335,18 @@
   filter_test();
 
 
+  let tagA = document.querySelector("table");
+  function exTest(text) {
+    // 태그네임 소문자로
+    let a1 = text.tagName.toLowerCase();
+    console.warn("--------------exTest--------------");
+    console.log(a1);
+    console.log(tagA.tBodies[0]);
+    console.warn("--------------exTest--------------");
+  }
+  exTest(tagA);
+
+
   
 
 

@@ -53,18 +53,18 @@
       // console.log(data[0]);
       tbodyData.push(`
         <tr>
-          <td><p class="index">${item.index}</p></td>
-          <td><p class="depth1">${item.depth1}</p></td>
-          <td><p class="depth2">${item.depth2}</p></td>
-          <td><p>${item.depth3}</p></td>
-          <td><p>${item.depth4}</p></td>
-          <td><p>${item.view_id}</p></td>
-          <td><p>${item.view_name}</p></td>
-          <td><p><a href="#;">${item.view_url}</a></p></td>
-          <td><p>${item.date}</p></td>
+          <td class="index"><p>${item.index}</p></td>
+          <td class="depth1"><p>${item.depth1}</p></td>
+          <td class="depth2"><p>${item.depth2}</p></td>
+          <td class="depth3"><p>${item.depth3}</p></td>
+          <td class="depth4"><p>${item.depth4}</p></td>
+          <td class="id"><p>${item.view_id}</p></td>
+          <td class="name"><p>${item.view_name}</p></td>
+          <td class="url"><p><a href="#;">${item.view_url}</a></p></td>
+          <td class="date"><p>${item.date}</p></td>
           <td class="state"><p>${item.state}</p></td>
-          <td><p>${item.author}</p></td>
-          <td>${item.note}</td>
+          <td class="author"><p>${item.author}</p></td>
+          <td class="note">${item.note}</td>
         </tr>
       `);
     }
@@ -72,18 +72,18 @@
     // table target
     let thead = `
       <tr>
-        <th>no</th>
-        <th>depth1</th>
-        <th>depth2</th>
-        <th>depth3</th>
-        <th>depth4</th>
-        <th>id</th>
-        <th>name</th>
-        <th>url</th>
-        <th>date</th>
-        <th>state</th>
-        <th>author</th>
-        <th>note</th>
+        <th class="index">no</th>
+        <th class="depth1">depth1</th>
+        <th class="depth2">depth2</th>
+        <th class="depth3">depth3</th>
+        <th class="depth4">depth4</th>
+        <th class="id">id</th>
+        <th class="name">name</th>
+        <th class="url">url</th>
+        <th class="date">date</th>
+        <th class="state">state</th>
+        <th class="author">author</th>
+        <th class="note">note</th>
       </tr>
     `;
     let table = document.querySelectorAll(".table");
@@ -112,6 +112,8 @@
           item.closest("tr").classList.add("fin");
         } else if (text === "수정") {
           item.closest("tr").classList.add("mod");
+        } else if (text === "삭제") {
+          item.closest("tr").classList.add("del");
         }
       });
     }
@@ -138,6 +140,24 @@
   }
   tableCopy();
 
+
+
+  // check_test
+  function check_test() {
+    let tr = document.querySelectorAll(".table tbody tr");
+    if (tr) {
+      tr.forEach(function (item) {
+        item.addEventListener("click", function() {
+          item.classList.add("select");
+        });
+      });
+    }
+  }
+  check_test();
+
+
+
+  // ----------- 검색 작업중 -----------------
   // tableSearch
   function tableSearch() {
     let data = document.querySelectorAll(".table td > p");
@@ -186,7 +206,7 @@
 
 
 
-  //   test
+  // filter_test
   function start() {
     const button = document.querySelectorAll(".btn ");
     const storeItems = document.querySelectorAll(".store-item");
@@ -225,17 +245,17 @@
   //   $(temp).parent().show();
   // }
 
-  // test2 
-  function test() {
+  // filter_test 
+  function filter_test() {
     console.log("start!!!!!");
     let filter = document.querySelector(".filter");
     let btn = document.querySelector(".filter_btn");
-    let tr = document.querySelectorAll(".table tbody td p");
+    let td = document.querySelectorAll(".table tbody td p");
     btn.addEventListener("click", function() {
       let search_text = filter.value;
       console.log(search_text);
-      if (tr) {
-        tr.forEach(function (item) {
+      if (td) {
+        td.forEach(function (item) {
           let text = item.innerHTML;
           // item.closest("tr").classList.remove("block");
           item.closest("tr").classList.add("hide");
@@ -254,8 +274,10 @@
       }
     });
   }
-  test();
+  filter_test();
 
+
+  
 
 
 

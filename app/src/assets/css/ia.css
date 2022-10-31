@@ -149,11 +149,31 @@
 }
 
 .table .fin {
-  background-color: bisque;
+  background-color: rgb(255, 253, 221);
+}
+
+.table .fin td {
+  color: rgb(255, 77, 0);
 }
 
 .table .mod {
-  background-color: rgb(196, 239, 255);
+  background-color: rgb(230, 248, 255);
+}
+
+.table .mod td {
+  color: rgb(51, 0, 255);
+}
+
+.table .del {
+  background-color: rgb(255, 229, 229);
+}
+
+.table .del td {
+  text-decoration: line-through;
+}
+
+.table .select {
+  background-color: rgb(231, 231, 231);
 }
 
 .table .hide {

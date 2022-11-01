@@ -3,18 +3,14 @@
 // s : function
 (function () {
 
-  // <-- JSON데이터를 받아서 정보를 넣어주는 함수 생성 -->
-  function renderTable(data, target) {
-    // <-- 빈배열에 문자열로 푸쉬해줄 예정 -->
-    let tbodyData = [];
-    // <-- 이터레이터는 회원한명의 정보(객체로된) -->
+  // tableData
+  function tableData(data, target) {
+    // data(table td) array
+    let td = [];
     for (const item of data) {
-      // <-- ['...', '...', ... , '...'] -->
-      // <-- 위와 같이 배열안에 총 열개의 문자열이 생길것임 -->
-      // <-- 백틱을 써주는 것을 꼭 명심 -->
-      // console.log(tbodyData);
+      // console.log(dataTd);
       // console.log(data[0]);
-      tbodyData.push(`
+      td.push(`
         <tr>
           <td class="index"><p></p></td>
           <td class="depth1"><p>${item.depth1}</p></td>
@@ -32,8 +28,8 @@
       `);
     }
 
-    // table target
-    let thead = `
+    // th
+    let th = `
       <tr>
         <th class="index">no</th>
         <th class="depth1">depth1</th>
@@ -49,27 +45,26 @@
         <th class="note">note</th>
       </tr>
     `;
-    let table = document.querySelectorAll(".table");
-    if (table) {
-      table.forEach(function (item) {
+
+    // table target
+    let el = document.querySelectorAll(".table");
+    if (el) {
+      el.forEach(function (item) {
         let id = item.getAttribute("id");
         if (id == target) {
           // console.log(target);
-          item.querySelector("thead").innerHTML = thead;
-          item.querySelector("tbody").innerHTML = tbodyData.join("");
+          item.querySelector("thead").innerHTML = th;
+          item.querySelector("tbody").innerHTML = td.join("");
         }
       });
     }
   }
-  renderTable(data_01, "table_01");
-  renderTable(data_02, "table_02");
 
   // tableState
   function tableState() {
-    let state = document.querySelectorAll(".table td.state > p");
-    if (state) {
-      state.forEach(function (item) {
-        // console.log(text);
+    let el = document.querySelectorAll(".table td.state > p");
+    if (el) {
+      el.forEach(function (item) {
         let text = item.innerHTML;
         if (text === "완료") {
           item.closest("tr").classList.add("fin");
@@ -81,13 +76,102 @@
       });
     }
   }
-  tableState();
+
+  // tableIndex
+  function tableIndex() {
+    let el = document.querySelectorAll(".table td.index > p");
+    let l = el.length;
+    if (el) {
+      for (let i = 0; i < l; i++) {
+        let item = el[i];
+        let num = i + 1;
+        item.innerHTML = num;
+      }
+    }
+  }
+
+  // tableFilter
+  function tableFilter() {
+    let filter = document.querySelector(".filter input[type=text]");
+    let btn = document.querySelector(".filter .btn");
+    let input = document.querySelector(".filter input");
+    let td = document.querySelectorAll(".table tbody td p");
+    let select = document.querySelectorAll(".filter select");
+
+    // searchInc
+    function searchInc() {
+      let fv = filter.value;
+      // console.log(fv);
+      if (td) {
+        td.forEach(function (item) {
+          let text = item.innerHTML;
+          item.closest("tr").classList.add("hide");
+          if (text.includes(fv)) {
+            setTimeout(() => {
+              item.closest("tr").classList.remove("hide");       
+            }, 100);
+          } else if (fv == "") {
+            item.closest("tr").classList.remove("hide");
+          }
+        });
+      }
+    }
+
+    // searchSel
+    function searchSel() {
+      let fv = filter.value;
+      // console.log(fv);
+      if (td) {
+        td.forEach(function (item) {
+          let text = item.innerHTML;
+          item.closest("tr").classList.add("hide");
+          if (fv == text) {
+            setTimeout(() => {
+              item.closest("tr").classList.remove("hide");       
+            }, 100);
+          } else if (fv == "") {
+            item.closest("tr").classList.remove("hide");
+          }
+        });
+      }
+    }
+
+    // enterKey
+    function enterKey() {
+      if (window.event.keyCode == 13) {
+        searchInc();
+        // 키보드 테스트
+        // window.onkeydown = (e) => console.log(e);
+        // window.addEventListener("keydown", (e) => console.log(e));
+      }
+    }
+
+    // select
+    if (select) {
+      select.forEach(function (item) {
+        item.addEventListener("change", function() {
+          let option = item.options[item.selectedIndex].value;
+          // console.log(option);
+          filter.value = option;
+          searchSel();
+        });
+      });
+    }
+
+    // run
+    btn.addEventListener("click", function() {
+      searchInc();
+    });
+    input.addEventListener("keyup", function() {
+      enterKey();
+    });
+  }
 
   // tableCopy
   function tableCopy() {
-    let copy = document.querySelectorAll(".table td > p");
-    if (copy) {
-      copy.forEach(function (item) {
+    let el = document.querySelectorAll(".table td > p");
+    if (el) {
+      el.forEach(function (item) {
         item.addEventListener("click", function() {
           let range = document.createRange();
           let sel = window.getSelection();
@@ -96,31 +180,27 @@
           sel.addRange(range); //텍스트 정보 선택
           document.execCommand("copy"); //복사
           sel.removeRange(range); //선택 정보 삭제
-          // 복사한 정보 보기
-          let copy_text = range.endContainer.innerText;
           // toast
-          setToast(copy_text);
+          let copy = range.endContainer.innerText;
+          setToast(copy);
         });
       });
     }
   }
-  tableCopy();
 
-  // tableIndex
-  function tableIndex() {
-    let index = document.querySelectorAll(".table tbody td.index p");
-    let length = index.length;
-    // console.log(index);
-    for (let i = 0; i < length; i++) {
-      let num = i + 1;
-      let item = index[i];
-      // console.log(num);
-      item.innerHTML = num;
+  // tableCheck
+  function tableCheck() {
+    let el = document.querySelectorAll(".table tbody tr");
+    if (el) {
+      el.forEach(function (item) {
+        item.addEventListener("click", function() {
+          item.classList.add("select");
+        });
+      });
     }
   }
-  tableIndex();
 
-  // set toast
+  // setToast
   function setToast(target) {
     let outland = document.querySelector("#outland");
     let toast = `
@@ -142,88 +222,33 @@
   }
 
 
-  // check_test
-  function check_test() {
-    let tr = document.querySelectorAll(".table tbody tr");
-    if (tr) {
-      tr.forEach(function (item) {
-        item.addEventListener("click", function() {
-          item.classList.add("select");
-        });
-      });
-    }
-  }
-  check_test();
-
-  
-  // filter_test 
-  function filter_test() {
-    let filter = document.querySelector(".filter input[type=text]");
-    let btn = document.querySelector(".filter .btn");
-    let input = document.querySelector(".filter input");
-    let td = document.querySelectorAll(".table tbody td p");
-    let select = document.querySelectorAll(".filter select");
-
-    // filter_search
-    function filter_search() {
-      let search_text = filter.value;
-      console.log(search_text);
-      if (td) {
-        td.forEach(function (item) {
-          let text = item.innerHTML;
-          // item.closest("tr").classList.remove("block");
-          item.closest("tr").classList.add("hide");
-          // if (search_text == text) {
-          if (text.includes(search_text)) {
-            // console.log(text);
-            // item.closest("tr").style.display = "block";
-            // item.closest("tr").style.display = "none";
-            setTimeout(() => {
-              item.closest("tr").classList.remove("hide");       
-            }, 100);
-          } else if (search_text == "") {
-            item.closest("tr").classList.remove("hide");
-          }
-        });
-      }
-    }
-
-    // enterKey
-    function enterKey() {
-      if (window.event.keyCode == 13) {
-        // 키보드 테스트
-        // window.onkeydown = (e) => console.log(e);
-        window.addEventListener("keydown", (e) => console.log(e));
-        filter_search();
-      }
-    }
-    input.addEventListener("keyup", function() {
-      enterKey();
-    });
-
-    
-
-    // 선택
-    if (select) {
-      select.forEach(function (item) {
-        item.addEventListener("change", function() {
-          let option = item.options[item.selectedIndex].value;
-          console.log(item);
-          console.log(option);
-          filter.value = option;
-          filter_search();
-        });
-      });
-    }
-
-    // 검색
-    btn.addEventListener("click", function() {
-      filter_search();
-    });
-  }
-  filter_test();
+  // function run
+  // tableData
+  tableData(data_01, "table_01");
+  tableData(data_02, "table_02");
+  // tableState
+  tableState();
+  // tableIndex
+  tableIndex();
+  // tableFilter
+  tableFilter();
+  // tableCopy
+  tableCopy();
+  // tableCheck
+  tableCheck();
   
 
+
+  
+  
+  // 로딩
+  // 정렬
+  // 다크모드
+  // 진행상태
+  // 인클루드
+  // ia 디자인
+  // 접근성 
+  // core
 
   let tagA = document.querySelector("table");
   function exTest(text) {
@@ -235,19 +260,6 @@
     console.warn("--------------exTest--------------");
   }
   exTest(tagA);
-
-
-  
-  
-  // 함수명 변경
-  // 로딩
-  // 정렬
-  // 다크모드
-  // 진행상태
-  // 인클루드
-  // ia 디자인
-  // 접근성 
-  // core
 
   
 

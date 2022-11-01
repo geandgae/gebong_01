@@ -69,7 +69,7 @@ let data_02 = [
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
-    view_id: "view_id",
+    view_id: "개와게",
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",

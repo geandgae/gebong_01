@@ -63,18 +63,64 @@
   // tableState
   function tableState() {
     let el = document.querySelectorAll(".table td.state > p");
+    let state = {
+      fin : "완료",
+      mod : "수정",
+      del : "삭제",
+      stay : "대기",
+      chk : "검수",
+      ing : "진행",
+    }
+    let count = {
+      fin : 0,
+      mod : 0,
+      del : 0,
+      stay : 0,
+      chk : 0,
+      ing : 0,
+    }
     if (el) {
       el.forEach(function (item) {
         let text = item.innerHTML;
-        if (text === "완료") {
+        if (text === state.fin) {
           item.closest("tr").classList.add("fin");
-        } else if (text === "수정") {
+          count.fin++;
+          console.log(count);
+        } else if (text === state.mod) {
           item.closest("tr").classList.add("mod");
-        } else if (text === "삭제") {
+          count.mod++;
+          console.log(count);
+        } else if (text === state.del) {
           item.closest("tr").classList.add("del");
+          count.del++;
+          console.log(count);
+        } else if (text === state.stay) {
+          item.closest("tr").classList.add("stay");
+          count.stay++;
+          console.log(count);
+        } else if (text === state.chk) {
+          item.closest("tr").classList.add("chk");
+          count.chk++;
+          console.log(count);
+        } else if (text === state.ing) {
+          item.closest("tr").classList.add("ing");
+          count.ing++;
+          console.log(count);
         }
       });
     }
+
+    // process
+    let process = document.querySelector(".process");
+    let info = `
+      <p>${state.fin} : ${count.fin}</p>
+      <p>${state.mod} : ${count.mod}</p>
+      <p>${state.del} : ${count.del}</p>
+      <p>${state.stay} : ${count.stay}</p>
+      <p>${state.chk} : ${count.chk}</p>
+      <p>${state.ing} : ${count.ing}</p>
+    `;
+    process.innerHTML = info;
   }
 
   // tableIndex
@@ -221,6 +267,8 @@
     // }, 500);
   }
 
+  
+
 
   // function run
   // tableData
@@ -239,13 +287,14 @@
   
 
 
-  
-  
-  // 로딩
-  // 정렬
-  // 다크모드
+
   // 진행상태
+  // 검색 셀렉트 포커스
   // 인클루드
+  // 다크모드
+  // 로딩
+  // 메모
+  // 정렬
   // ia 디자인
   // 접근성 
   // core

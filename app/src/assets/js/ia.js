@@ -287,6 +287,7 @@
     console.log("filter start!!!!!");
     let filter = document.querySelector(".filter input[type=text]");
     let btn = document.querySelector(".filter .btn");
+    let input = document.querySelector(".filter input");
     let td = document.querySelectorAll(".table tbody td p");
     let select = document.querySelectorAll(".filter select");
 
@@ -314,6 +315,21 @@
       }
     }
 
+    // enterKey
+    function enterKey() {
+      if (window.event.keyCode == 13) {
+        // 키보드 테스트
+        // window.onkeydown = (e) => console.log(e);
+        window.addEventListener("keydown", (e) => console.log(e));
+        filter_search();
+      }
+    }
+    input.addEventListener("keyup", function() {
+      enterKey();
+    });
+
+    
+
     // 선택
     if (select) {
       select.forEach(function (item) {
@@ -333,6 +349,7 @@
     });
   }
   filter_test();
+  
 
 
   let tagA = document.querySelector("table");
@@ -347,11 +364,15 @@
   exTest(tagA);
 
 
-  // 엔터키
+  
+  
+
   // 로딩
   // 정렬
   // 다크모드
   // 진행상태
+
+  
 
 
 

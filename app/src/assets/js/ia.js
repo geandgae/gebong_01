@@ -1,44 +1,7 @@
 "use strict";
 
-// s : load
-// window.addEventListener("load", function() {
-// window.addEventListener('load', init);
-// document.addEventListener('DOMContentLoaded', init);
 // s : function
 (function () {
-
-
-
-
-  /* [html 최초 로드 및 이벤트 상시 대기 실시] */
-  window.onload = function () {
-    console.log("");
-    console.log("[window onload] : [start]");
-    console.log("");
-
-    // [이벤트 함수 호출]
-    main();
-  };
-
-  /* [이벤트 수행 함수] */
-  function main() {
-    console.log("");
-    console.log("[main] : [start]");
-    console.log("");
-
-    //로컬 assets 파일에 저장된 json 파일 읽기 실시 [json 파일에 선언된 변수이름으로 호출해야합니다]
-    // var jsonData = JSON.parse(JSON.stringify(args));
-    // console.log("");
-    // console.log("[main] : [jsonData] : " + JSON.stringify(jsonData));
-    // console.log("");
-
-    // //json 데이터 파싱 실시
-    // console.log("");
-    // console.log("[main] : [idx] : " + jsonData.idx);
-    // // console.log("[main] : [name] : " + jsonData.name);
-    // // console.log("[main] : [program] : " + JSON.stringify(jsonData.program));
-    // console.log("");
-  }
 
   // <-- JSON데이터를 받아서 정보를 넣어주는 함수 생성 -->
   function renderTable(data, target) {
@@ -91,7 +54,7 @@
       table.forEach(function (item) {
         let id = item.getAttribute("id");
         if (id == target) {
-          console.log(target);
+          // console.log(target);
           item.querySelector("thead").innerHTML = thead;
           item.querySelector("tbody").innerHTML = tbodyData.join("");
         }
@@ -106,8 +69,8 @@
     let state = document.querySelectorAll(".table td.state > p");
     if (state) {
       state.forEach(function (item) {
+        // console.log(text);
         let text = item.innerHTML;
-        console.log(text);
         if (text === "완료") {
           item.closest("tr").classList.add("fin");
         } else if (text === "수정") {
@@ -192,99 +155,9 @@
   }
   check_test();
 
-
-
-  // ----------- 검색 작업중 -----------------
-  // tableSearch
-  function tableSearch() {
-    let data = document.querySelectorAll(".table td > p");
-
-    console.log(data)
-
-    function search() {
-      let text = document.getElementsByClassName("search-text")[0].value;
-      text = parseInt(text);
-
-      let res = data.find((element) => {
-        return element === text;
-      });
-
-      document.getElementById("result").innerText = res;
-    }
-    document.getElementById("btn").addEventListener("click", search);
-  }
-  // tableSearch();
-
-  // searchFilter
-  function searchFilter(data, type, search) {
-    // data 값을 하나하나 꺼내와서
-    return data.map((d) => {
-        // 만약 해당 데이터가 search 값을 가지고 있다면 리턴한다.
-        if (d[type].includes(search)) {
-            return d;
-        }
-    });
-  }
-  // search 버튼 클릭 시 호출되는 함수
-  function search() {
-    // 폼에 입력된 값
-    let sel = document.getElementById("search-select").value;
-    let text = document.getElementsByClassName("search-text")[0].value;
-
-    // res [undefined, {id:, name: favorites:}, undefined] 이런식으로 리턴
-    // 따라서 undefined 값을 제거해줘야하기 때문에 filter 메소드 적용
-    let res = searchFilter(data_01, sel, text).filter((d) => d !== undefined);
-
-    // 결과 값 화면 출력
-    document.getElementById("result").innerText = res.map((d) => d.index);
-  }
-  // 클릭 시 search 함수 호출
-  // document.getElementById("btn").addEventListener("click", search);
-
-
-
-  // filter_test
-  function start() {
-    const button = document.querySelectorAll(".btn ");
-    const storeItems = document.querySelectorAll(".store-item");
-
-    button.forEach((b) =>
-      b.addEventListener("click", (e) => {
-        e.preventDefault();
-        const filter = e.target.dataset.filter;
-
-        storeItems.forEach((i) => {
-          if (filter === "all") {
-            i.style.display = "block";
-          } else {
-            if (i.classList.contains(filter)) {
-              i.style.display = "block";
-            } else {
-              i.style.display = "none";
-            }
-          }
-        });
-      })
-    );
-  }
-  // start();
-
-
-  // //input에 keyup 이벤트 등록
-  // $("#inputSearchText").keyup(function(){
-  //   //keyup 이벤트 발생 시 해당 input의 value 가져오기.
-  //   var searchText = $(this).val();
-  //   //실시간 검색이 필요한 table의 모든 행(tr) 숨김 처리
-  //   $("#tableTarget > tbody > tr).hide();
-  //   //해당 table에서 input에 입력한 데이터가 있는 td Element 찾기.
-  //   var temp = $("#tableTarget > tbody > tr > td:contains('"+ searchText +"');
-  //   //입력한 데이터가 있는 Elemnet의 부모 Elemnet(td)만 표시.
-  //   $(temp).parent().show();
-  // }
-
+  
   // filter_test 
   function filter_test() {
-    console.log("filter start!!!!!");
     let filter = document.querySelector(".filter input[type=text]");
     let btn = document.querySelector(".filter .btn");
     let input = document.querySelector(".filter input");
@@ -366,7 +239,7 @@
 
   
   
-
+  // 함수명 변경
   // 로딩
   // 정렬
   // 다크모드
@@ -383,5 +256,3 @@
 
 })();
 // e : function
-// });
-// e : load

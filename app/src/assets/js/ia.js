@@ -299,8 +299,8 @@
           let text = item.innerHTML;
           // item.closest("tr").classList.remove("block");
           item.closest("tr").classList.add("hide");
-          // if (text.includes(search_text)) {
-          if (search_text == text) {
+          // if (search_text == text) {
+          if (text.includes(search_text)) {
             // console.log(text);
             // item.closest("tr").style.display = "block";
             // item.closest("tr").style.display = "none";

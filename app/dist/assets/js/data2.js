@@ -98,7 +98,7 @@ let data_02 = [
     view_id: "view_id",
     view_name: "view_name",
     view_url: "#;",
-    date: "2022-10-28",
+    date: "2022-10-29",
     state: "대기",
     author: "author",
     note: "<p>Lorem ipsum dolor sit amet</p>",

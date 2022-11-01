@@ -63,64 +63,94 @@
   // tableState
   function tableState() {
     let el = document.querySelectorAll(".table td.state > p");
+    let l = el.length;
     let state = {
-      fin : "완료",
-      mod : "수정",
-      del : "삭제",
-      stay : "대기",
-      chk : "검수",
-      ing : "진행",
-    }
-    let count = {
-      fin : 0,
-      mod : 0,
-      del : 0,
-      stay : 0,
-      chk : 0,
-      ing : 0,
+      text : {
+        fin : "완료",
+        mod : "수정",
+        del : "삭제",
+        stay : "대기",
+        chk : "검수",
+        ing : "진행",
+      },
+      count : {
+        fin : 0,
+        mod : 0,
+        del : 0,
+        stay : 0,
+        chk : 0,
+        ing : 0,
+      },
     }
     if (el) {
       el.forEach(function (item) {
         let text = item.innerHTML;
-        if (text === state.fin) {
+        if (text === state.text.fin) {
           item.closest("tr").classList.add("fin");
-          count.fin++;
-          console.log(count);
-        } else if (text === state.mod) {
+          state.count.fin++;
+        } else if (text === state.text.mod) {
           item.closest("tr").classList.add("mod");
-          count.mod++;
-          console.log(count);
-        } else if (text === state.del) {
+          state.count.mod++;
+        } else if (text === state.text.del) {
           item.closest("tr").classList.add("del");
-          count.del++;
-          console.log(count);
-        } else if (text === state.stay) {
+          state.count.del++;
+        } else if (text === state.text.stay) {
           item.closest("tr").classList.add("stay");
-          count.stay++;
-          console.log(count);
-        } else if (text === state.chk) {
+          state.count.stay++;
+        } else if (text === state.text.chk) {
           item.closest("tr").classList.add("chk");
-          count.chk++;
-          console.log(count);
-        } else if (text === state.ing) {
+          state.count.chk++;
+        } else if (text === state.text.ing) {
           item.closest("tr").classList.add("ing");
-          count.ing++;
-          console.log(count);
+          state.count.ing++;
         }
       });
     }
-
+    
     // process
+    console.log(state);
+    let total = Math.round((state.count.fin / l) * 100);
     let process = document.querySelector(".process");
     let info = `
-      <p>${state.fin} : ${count.fin}</p>
-      <p>${state.mod} : ${count.mod}</p>
-      <p>${state.del} : ${count.del}</p>
-      <p>${state.stay} : ${count.stay}</p>
-      <p>${state.chk} : ${count.chk}</p>
-      <p>${state.ing} : ${count.ing}</p>
+      <p>전체 : ${l}</p>
+      <p>백분율 : ${total}%</p>
+      <p>${state.text.fin} : ${state.count.fin}</p>
+      <p>${state.text.mod} : ${state.count.mod}</p>
+      <p>${state.text.del} : ${state.count.del}</p>
+      <p>${state.text.stay} : ${state.count.stay}</p>
+      <p>${state.text.chk} : ${state.count.chk}</p>
+      <p>${state.text.ing} : ${state.count.ing}</p>
     `;
     process.innerHTML = info;
+
+    // function move() {
+    //   var elem = document.getElementById("myBar");
+    //   var width = 1;
+    //   var id = setInterval(frame, 10);
+    //   function frame() {
+    //       if (width >= 100) {
+    //           clearInterval(id);
+    //       } else {
+    //           width++;
+    //           elem.style.width = width + '%';
+    //       }
+    //   }
+    // }
+
+    // function move() {
+    //   var elem = document.getElementById("myBar");
+    //   var width = 10;
+    //   var id = setInterval(frame, 10);
+    //   function frame() {
+    //       if (width >= 100) {
+    //           clearInterval(id);
+    //       } else {
+    //           width++;
+    //           elem.style.width = width + '%';
+    //           document.getElementById("label").innerHTML = width * 1 + '%';
+    //       }
+    //   }
+    // }
   }
 
   // tableIndex
@@ -164,8 +194,16 @@
     }
 
     // searchSel
-    function searchSel() {
+    function searchSel(type) {
       let fv = filter.value;
+      if (type === "type_author") {
+        // console.log("author")
+        td = document.querySelectorAll(".table tbody td.author p");
+      } else if (type === "type_state") {
+        // console.log("state")
+        td = document.querySelectorAll(".table tbody td.state p");
+      }
+      
       // console.log(fv);
       if (td) {
         td.forEach(function (item) {
@@ -180,6 +218,8 @@
           }
         });
       }
+
+      
     }
 
     // enterKey
@@ -196,10 +236,12 @@
     if (select) {
       select.forEach(function (item) {
         item.addEventListener("change", function() {
+          let name = item.name;
           let option = item.options[item.selectedIndex].value;
           // console.log(option);
+          // console.log(name);
           filter.value = option;
-          searchSel();
+          searchSel(name);
         });
       });
     }

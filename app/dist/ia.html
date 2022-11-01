@@ -22,6 +22,15 @@
   </head>
   <body>
 
+    <script>
+      for(let i = 1; i < 6; i++)  {
+        for(let j = 1; j <= i; j++)  {
+          document.write('*');
+        }
+        document.write('<br>');
+      }
+    </script>
+
     <!-- wrap -->
     <div id="wrap">
       <!-- header -->
@@ -32,11 +41,11 @@
 
         <!-- filter -->
         <div class="filter">
-          <select name="sel_opt1">
+          <select name="type_author">
             <option value="">author</option>
             <option value="개와게">개와게</option>
           </select>
-          <select name="sel_opt2">
+          <select name="type_state">
             <option value="">state</option>
             <option value="완료">완료</option>
             <option value="대기">대기</option>

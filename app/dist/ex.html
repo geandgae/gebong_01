@@ -11,9 +11,49 @@
     <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
     <!-- <script async src="./assets/js/ia.js"></script>  -->
     <!-- 덜 중요한 리소스 로드(ex 접근성) -->
-    <script defer src="./assets/js/ia.js"></script>
+    <!-- <script defer src="./assets/js/ia.js"></script> -->
   </head>
   <body>
+
+    <script>
+      // for(let i = 1; i < 6; i++)  {
+      //   for(let j = 1; j <= i; j++)  {
+      //     document.write('*');
+      //   }
+      //   document.write('<br>');
+      // }
+
+      // for(let i = 9; i >= 0; i--)  {
+      //   if (i == 1) {
+      //     document.write('*');
+      //     document.write('<br>');
+      //   } else if ( i == 3) {
+      //     document.write('*');
+      //     document.write('<br>');
+      //   } else if ( i == 6) {
+      //     document.write('*');
+      //     document.write('<br>');
+      //   } else {
+      //     document.write('*');
+      //   }
+      // }
+      
+      let star = 10;
+      let dot = {
+        x : "*",
+        n : 1,
+      };
+      let total = star * 2 - 1;
+      let space = "&nbsp";
+      for(let i = 0; i < star; i++)  {
+        // console.log(dot.n);
+        let al = (total - dot.n) / 2;
+        document.write(space.repeat(al) + dot.x + "<br>");
+        dot.n += 2;
+        dot.x += "**";
+      }
+    </script>
+
     <!-- rel 예 -->
     <!-- <div class="site-navigation" rel="js-site-navigation"></div>
   <script>
@@ -62,7 +102,12 @@
       // document.getElementById("btn").addEventListener("click", search);
     </script>
 
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="day">Day (initial)</div>
     <div class="day light-scheme">Day (changes in light scheme)</div>
     <div class="day dark-scheme">Day (changes in dark scheme)</div>

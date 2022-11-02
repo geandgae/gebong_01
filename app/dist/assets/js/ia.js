@@ -173,6 +173,7 @@
     let input = document.querySelector(".filter input");
     let td = document.querySelectorAll(".table tbody td p");
     let select = document.querySelectorAll(".filter select");
+    let tds = document.querySelectorAll(".table tbody td p");
 
     // searchInc
     function searchInc() {
@@ -198,15 +199,15 @@
       let fv = filter.value;
       if (type === "type_author") {
         // console.log("author")
-        td = document.querySelectorAll(".table tbody td.author p");
+        tds = document.querySelectorAll(".table tbody td.author p");
       } else if (type === "type_state") {
         // console.log("state")
-        td = document.querySelectorAll(".table tbody td.state p");
+        tds = document.querySelectorAll(".table tbody td.state p");
       }
       
       // console.log(fv);
-      if (td) {
-        td.forEach(function (item) {
+      if (tds) {
+        tds.forEach(function (item) {
           let text = item.innerHTML;
           item.closest("tr").classList.add("hide");
           if (fv == text) {
@@ -218,8 +219,6 @@
           }
         });
       }
-
-      
     }
 
     // enterKey

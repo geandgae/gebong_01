@@ -1,13 +1,20 @@
 "use strict";
 
 // import
-import data_set from "./data_set.js";
-import {data_01} from "./data_01.js";
-import {data_02} from "./data_02.js";
+import {crt, st, ctg} from "./data_options.js";
+import {data_set} from "./data_set.js";
 
 
 // s : function
 (function () {
+
+  const lengthCreator = Object.keys(crt).length;
+  const lengthState = Object.keys(st).length;
+  const lengthCategory = Object.keys(ctg).length;
+
+  console.log(lengthCreator);
+  console.log(lengthState);
+  console.log(lengthCategory);
 
   // setToast
   function setToast(target) {
@@ -55,7 +62,6 @@ import {data_02} from "./data_02.js";
   // tableData
   function tableData(data, target) {
     // data(table td) array
-    console.log(target);
     let td = [];
     for (const item of data) {
       // console.log(item.depth1);
@@ -351,9 +357,9 @@ import {data_02} from "./data_02.js";
 
   // function run
   // tableData
-  tableData(data_set, "table_00");
-  tableData(data_set, "table_01");
-  tableData(data_set, "table_02");
+  tableData(data_set, ctg.ct00);
+  tableData(data_set, ctg.ct01);
+  tableData(data_set, ctg.ct02);
   // tableState
   tableState();
   // tableIndex

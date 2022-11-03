@@ -17,13 +17,14 @@
   --color_font02: #5a5a5a;
   --color_line01: #1a1a1a;
   --color_bg01: #5a5a5a;
-  
-  font-family: 'Noto Sans KR', sans-serif;
+
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 10px;
   font-weight: 400;
   color: var(--color_font02);
 }
 
+// layout
 .header {
   border: 1px solid red;
 }
@@ -31,6 +32,7 @@
   background-color: #fff;
 }
 
+// table
 .table :where(th, td) {
   border: 1px solid var(--color_line01);
   font-size: 1.1rem;
@@ -42,8 +44,9 @@
   color: var(--color_font00);
   background-color: var(--color_bg01);
 }
-
-
+.table .hide {
+  display: none;
+}
 .table .fin {
   background-color: rgb(255, 253, 221);
 }
@@ -67,11 +70,7 @@
   // background-blend-mode: multiply;
 }
 
-.table .hide {
-  display: none;
-}
-
-// modal
+// toast
 @keyframes ani-toast {
   0% {
     bottom: 0;
@@ -106,6 +105,7 @@
   bottom: 0;
   right: 2rem;
   opacity: 0;
+  animation: ani-toast 1.5s linear;
   // transform: translate(-50%, -50%);
   // transition:all 0.5s ease;
   // transition-property: all;
@@ -113,11 +113,7 @@
   // transition-timing-function: ease;
   // transition-delay: 0.5s
 }
-.toast .inner .text {
-  display: flex;
-  align-items: center;
-}
-.toast .inner .text span {
+.toast .inner :where(.text, .text .var) {
   display: flex;
   align-items: center;
 }
@@ -130,6 +126,29 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.toast .inner {
-  animation: ani-toast 1.5s linear;
+
+// progress
+// :where(.progress, .progress-info, .progress-bar) {
+[class^="progress"] {  
+  display: flex;
+  align-items: center;
+}
+.progress-bar {
+  margin-left: 2rem;
+}
+.progress-bar > * + * {
+  margin-left: 0.5rem;
+}
+.progress-bar .bar {
+  background-color: rgb(214, 214, 214);
+  width: 10rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+}
+.progress-bar .bar span {
+  width: 0;
+  height: 100%;
+  display: block;
+  background-color: rgb(92, 125, 255);
 }

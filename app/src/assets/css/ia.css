@@ -148,6 +148,10 @@
   background-color: var(--color_bg01);
 }
 
+.table .hide {
+  display: none;
+}
+
 .table .fin {
   background-color: rgb(255, 253, 221);
 }
@@ -174,10 +178,6 @@
 
 .table .select {
   background-color: rgb(231, 231, 231);
-}
-
-.table .hide {
-  display: none;
 }
 
 @keyframes ani-toast {
@@ -214,14 +214,10 @@
   bottom: 0;
   right: 2rem;
   opacity: 0;
+  animation: ani-toast 1.5s linear;
 }
 
-.toast .inner .text {
-  display: flex;
-  align-items: center;
-}
-
-.toast .inner .text span {
+.toast .inner :where(.text, .text .var) {
   display: flex;
   align-items: center;
 }
@@ -237,6 +233,30 @@
   white-space: nowrap;
 }
 
-.toast .inner {
-  animation: ani-toast 1.5s linear;
+[class^=progress] {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  margin-left: 2rem;
+}
+
+.progress-bar > * + * {
+  margin-left: 0.5rem;
+}
+
+.progress-bar .bar {
+  background-color: rgb(214, 214, 214);
+  width: 10rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar .bar span {
+  width: 0;
+  height: 100%;
+  display: block;
+  background-color: rgb(92, 125, 255);
 }

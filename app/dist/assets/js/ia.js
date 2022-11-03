@@ -108,20 +108,26 @@
     }
     
     // process
-    console.log(state);
     let total = Math.round((state.count.fin / l) * 100);
-    let process = document.querySelector(".process");
-    let info = `
-      <p>전체 : ${l}</p>
-      <p>백분율 : ${total}%</p>
-      <p>${state.text.fin} : ${state.count.fin}</p>
-      <p>${state.text.mod} : ${state.count.mod}</p>
-      <p>${state.text.del} : ${state.count.del}</p>
-      <p>${state.text.stay} : ${state.count.stay}</p>
-      <p>${state.text.chk} : ${state.count.chk}</p>
-      <p>${state.text.ing} : ${state.count.ing}</p>
+    let progress = document.querySelector(".progress");
+    let contents = `
+      <ul class="progress-info">
+        <li>전체 : ${l}</li>
+        <li>${state.text.fin} : ${state.count.fin}</li>
+        <li>${state.text.mod} : ${state.count.mod}</li>
+        <li>${state.text.del} : ${state.count.del}</li>
+        <li>${state.text.stay} : ${state.count.stay}</li>
+        <li>${state.text.chk} : ${state.count.chk}</li>
+        <li>${state.text.ing} : ${state.count.ing}</li>
+      </ul>
+      <div class="progress-bar">
+        <div class="text">${total}%</div>  
+        <div class="bar">
+          <span role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${total}" style="width:${total}%"></span>
+        </div>  
+      </div>  
     `;
-    process.innerHTML = info;
+    progress.innerHTML = contents;
 
     // function move() {
     //   var elem = document.getElementById("myBar");
@@ -281,7 +287,7 @@
     if (el) {
       el.forEach(function (item) {
         item.addEventListener("click", function() {
-          item.classList.add("select");
+          item.classList.toggle("select");
         });
       });
     }
@@ -326,7 +332,6 @@
   // tableCheck
   tableCheck();
   
-
 
 
   // 진행상태

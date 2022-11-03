@@ -1,7 +1,6 @@
 "use strict";
 
-import crt from "./author.js";
-import st from "./state.js";
+import {crt, st, ctg} from "./data_options.js";
 
 export let data_03 = [
   {

@@ -1,11 +1,10 @@
 "use strict";
 
-import crt from "./author.js";
-import st from "./state.js";
+import {crt, st, ctg} from "./data_options.js";
 
 export let data_01 = [
   {
-    depth1: "d1",
+    depth1: ctg.ct00,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -18,7 +17,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct00,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -31,7 +30,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct00,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -44,7 +43,7 @@ export let data_01 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct01,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -57,7 +56,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct01,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -70,7 +69,7 @@ export let data_01 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct01,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -83,7 +82,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct02,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -96,7 +95,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct01,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -109,7 +108,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: "d1",
+    depth1: ctg.ct02,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",

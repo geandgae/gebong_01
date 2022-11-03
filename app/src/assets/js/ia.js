@@ -1,9 +1,9 @@
 "use strict";
 
 // import
+import data_set from "./data_set.js";
 import {data_01} from "./data_01.js";
 import {data_02} from "./data_02.js";
-import data_set from "./data_set.js";
 
 
 // s : function
@@ -55,11 +55,13 @@ import data_set from "./data_set.js";
   // tableData
   function tableData(data, target) {
     // data(table td) array
+    console.log(target);
     let td = [];
     for (const item of data) {
-      // console.log(dataTd);
+      // console.log(item.depth1);
       // console.log(data[0]);
-      td.push(`
+      if(item.depth1 == target) {
+        td.push(`
         <tr>
           <td class="index"><p></p></td>
           <td class="depth1"><p>${item.depth1}</p></td>
@@ -75,6 +77,7 @@ import data_set from "./data_set.js";
           <td class="note">${item.note}</td>
         </tr>
       `);
+      } 
     }
 
     // th
@@ -348,9 +351,9 @@ import data_set from "./data_set.js";
 
   // function run
   // tableData
-  tableData(data_01, "table_01");
-  tableData(data_02, "table_02");
-  tableData(data_set, "table_03");
+  tableData(data_set, "table_00");
+  tableData(data_set, "table_01");
+  tableData(data_set, "table_02");
   // tableState
   tableState();
   // tableIndex
@@ -381,8 +384,8 @@ import data_set from "./data_set.js";
     // 태그네임 소문자로
     let a1 = text.tagName.toLowerCase();
     console.warn("--------------exTest--------------");
-    console.log(a1);
-    console.log(tagA.tBodies[0]);
+    // console.log(a1);
+    // console.log(tagA.tBodies[0]);
     console.warn("--------------exTest--------------");
   }
   exTest(tagA);

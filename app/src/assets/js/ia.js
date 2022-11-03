@@ -390,8 +390,8 @@ import {data_set} from "./data_set.js";
     // 태그네임 소문자로
     let a1 = text.tagName.toLowerCase();
     console.warn("--------------exTest--------------");
-    // console.log(a1);
-    // console.log(tagA.tBodies[0]);
+    console.log(a1);
+    console.log(tagA.tBodies[0]);
     console.warn("--------------exTest--------------");
   }
   exTest(tagA);

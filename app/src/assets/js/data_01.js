@@ -1,3 +1,8 @@
+"use strict";
+
+import crt from "./author.js";
+import st from "./state.js";
+
 export let data_01 = [
   {
     depth1: "d1",
@@ -8,8 +13,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p00,
     note: "<p>note1</p><p>note2</p>",
   },
   {
@@ -21,8 +26,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "대기",
-    author: "author",
+    state: st.stay,
+    author: crt.p01,
     note: "<p>note1</p><p>note2</p>",
   },
   {
@@ -34,8 +39,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "수정",
-    author: "author",
+    state: st.mod,
+    author: crt.p00,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -47,8 +52,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "대기",
-    author: "author",
+    state: st.stay,
+    author: crt.p00,
     note: "<p>note1</p><p>note2</p>",
   },
   {
@@ -60,8 +65,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "수정",
-    author: "author",
+    state: st.mod,
+    author: crt.p00,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -73,8 +78,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "대기",
-    author: "author",
+    state: st.stay,
+    author: crt.p00,
     note: "<p>note1</p><p>note2</p>",
   },
   {
@@ -86,8 +91,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "삭제",
-    author: "author",
+    state: st.del,
+    author: crt.p04,
     note: "<p>note1</p><p>note2</p>",
   },
   {
@@ -99,8 +104,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "대기",
-    author: "author",
+    state: st.stay,
+    author: crt.p03,
     note: "<p>note1</p><p>note2</p>",
   },
   {
@@ -112,8 +117,8 @@ export let data_01 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "대기",
-    author: "author",
+    state: st.stay,
+    author: crt.p02,
     note: "<p>note1</p><p>note2</p>",
   },
 ]

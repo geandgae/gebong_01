@@ -1,4 +1,9 @@
-let data_02 = [
+"use strict";
+
+import crt from "./author.js";
+import st from "./state.js";
+
+export let data_02 = [
   {
     depth1: "사과",
     depth2: "배",
@@ -8,8 +13,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "진행",
-    author: "author",
+    state: st.ing,
+    author: crt.p01,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -21,8 +26,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "검수",
-    author: "author",
+    state: st.chk,
+    author: crt.p01,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -34,8 +39,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p03,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -47,8 +52,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p04,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -60,8 +65,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p02,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -73,8 +78,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p02,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -86,8 +91,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "#;",
     date: "2022-10-28",
-    state: "완료",
-    author: "개와게",
+    state: st.fin,
+    author: crt.p02,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -99,8 +104,8 @@ let data_02 = [
     view_name: "view_name",
     view_url: "#;",
     date: "2022-10-29",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p03,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -112,8 +117,8 @@ let data_02 = [
     view_name: "99999",
     view_url: "#;",
     date: "2022-10-29",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p04,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -125,8 +130,8 @@ let data_02 = [
     view_name: "99999",
     view_url: "#;",
     date: "2022-10-29",
-    state: "완료",
-    author: "author",
+    state: st.fin,
+    author: crt.p05,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
@@ -138,8 +143,8 @@ let data_02 = [
     view_name: "99999",
     view_url: "#;",
     date: "2022-10-29",
-    state: "진행",
-    author: "author",
+    state: st.ing,
+    author: crt.p05,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
 ]

@@ -1,4 +1,9 @@
-let data_02 = [
+"use strict";
+
+import crt from "./author.js";
+import st from "./state.js";
+
+export let data_03 = [
   {
     index: "4",
     depth1: "사과",

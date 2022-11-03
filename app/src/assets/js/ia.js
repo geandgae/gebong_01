@@ -1,7 +1,56 @@
 "use strict";
 
+// import
+import {data_01} from "./data_01.js";
+import {data_02} from "./data_02.js";
+import data_set from "./data_set.js";
+
+
 // s : function
 (function () {
+
+  // setToast
+  function setToast(target) {
+    let outland = document.querySelector("#outland");
+    let toast = `
+      <div class="toast">
+        <div class="inner">
+          <p class="text">
+            <span class="var">
+              "<em>${target}</em>"
+            </span>
+            <span>복사되었습니다.</span>
+          </p>
+        </div>
+      </div>
+    `;
+    outland.innerHTML = toast;
+    // setTimeout(() => {
+    //   outland.innerHTML = "";     
+    // }, 500);
+  }
+
+  // setFilter
+  function setFilter() {
+    let filter = document.querySelector(".filter");
+    let inc = `
+      <ul class="progress-info">
+        <li>전체 : ${l}</li>
+        <li>${state.text.fin} : ${state.count.fin}</li>
+        <li>${state.text.mod} : ${state.count.mod}</li>
+        <li>${state.text.del} : ${state.count.del}</li>
+        <li>${state.text.stay} : ${state.count.stay}</li>
+        <li>${state.text.chk} : ${state.count.chk}</li>
+        <li>${state.text.ing} : ${state.count.ing}</li>
+      </ul>
+      <div class="progress-bar">
+        <div class="text">${total}%</div>  
+        <div class="bar">
+          <span role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${total}" style="width:${total}%"></span>
+        </div>  
+      </div>  
+    `;
+  }
 
   // tableData
   function tableData(data, target) {
@@ -110,7 +159,7 @@
     // process
     let total = Math.round((state.count.fin / l) * 100);
     let progress = document.querySelector(".progress");
-    let contents = `
+    let inc = `
       <ul class="progress-info">
         <li>전체 : ${l}</li>
         <li>${state.text.fin} : ${state.count.fin}</li>
@@ -127,7 +176,7 @@
         </div>  
       </div>  
     `;
-    progress.innerHTML = contents;
+    progress.innerHTML = inc;
 
     // function move() {
     //   var elem = document.getElementById("myBar");
@@ -174,16 +223,15 @@
 
   // tableFilter
   function tableFilter() {
-    let filter = document.querySelector(".filter input[type=text]");
+    let input = document.querySelector(".filter input[type=text]");
     let btn = document.querySelector(".filter .btn");
-    let input = document.querySelector(".filter input");
     let td = document.querySelectorAll(".table tbody td p");
     let select = document.querySelectorAll(".filter select");
     let tds = document.querySelectorAll(".table tbody td p");
 
     // searchInc
     function searchInc() {
-      let fv = filter.value;
+      let fv = input.value;
       // console.log(fv);
       if (td) {
         td.forEach(function (item) {
@@ -202,7 +250,7 @@
 
     // searchSel
     function searchSel(type) {
-      let fv = filter.value;
+      let fv = input.value;
       if (type === "type_author") {
         // console.log("author")
         tds = document.querySelectorAll(".table tbody td.author p");
@@ -245,7 +293,7 @@
           let option = item.options[item.selectedIndex].value;
           // console.log(option);
           // console.log(name);
-          filter.value = option;
+          input.value = option;
           searchSel(name);
         });
       });
@@ -293,26 +341,7 @@
     }
   }
 
-  // setToast
-  function setToast(target) {
-    let outland = document.querySelector("#outland");
-    let toast = `
-      <div class="toast">
-        <div class="inner">
-          <p class="text">
-            <span class="var">
-              "<em>${target}</em>"
-            </span>
-            <span>복사되었습니다.</span>
-          </p>
-        </div>
-      </div>
-    `;
-    outland.innerHTML = toast;
-    // setTimeout(() => {
-    //   outland.innerHTML = "";     
-    // }, 500);
-  }
+  
 
   
 
@@ -321,6 +350,7 @@
   // tableData
   tableData(data_01, "table_01");
   tableData(data_02, "table_02");
+  tableData(data_set, "table_03");
   // tableState
   tableState();
   // tableIndex
@@ -332,8 +362,9 @@
   // tableCheck
   tableCheck();
   
-
-
+  
+  
+  // 카테고리 정리(분류)
   // 진행상태
   // 검색 셀렉트 포커스
   // 인클루드

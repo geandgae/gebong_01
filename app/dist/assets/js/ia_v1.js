@@ -104,7 +104,7 @@ import {data_set} from "./data_set.js";
           td.push(`
             <tr>
               <td class="index"><p></p></td>
-              <td class="depth1"><p>${item.aaaaa}</p></td>
+              <td class="depth1"><p>${item.depth1}</p></td>
               <td class="depth2"><p>${item.depth2}</p></td>
               <td class="depth3"><p>${item.depth3}</p></td>
               <td class="depth4"><p>${item.depth4}</p></td>
@@ -162,12 +162,12 @@ import {data_set} from "./data_set.js";
     let l = el.length;
     let state = {
       text : {
-        fin : "완료",
-        mod : "수정",
-        del : "삭제",
-        stay : "대기",
-        chk : "검수",
-        ing : "진행",
+        fin : st.fin,
+        mod : st.mod,
+        del : st.del,
+        stay : st.stay,
+        chk : st.chk,
+        ing : st.ing,
       },
       count : {
         fin : 0,
@@ -249,26 +249,32 @@ import {data_set} from "./data_set.js";
 
     // searchInc
     function searchInc() {
-      let fv = input.value;
-      // console.log(fv);
+      let iv = input.value;
+      // console.log(iv);
       if (td) {
         td.forEach(function (item) {
           let text = item.innerHTML;
           item.closest("tr").classList.add("hide");
-          if (text.includes(fv)) {
+          if (text.includes(iv)) {
             setTimeout(() => {
               item.closest("tr").classList.remove("hide");       
             }, 100);
-          } else if (fv == "") {
+          } else if (iv == "") {
             item.closest("tr").classList.remove("hide");
           }
+        });
+      }
+      // reset
+      if (select) {
+        select.forEach(function (item) {
+          item.value = "";
         });
       }
     }
 
     // searchSel
     function searchSel(type) {
-      let fv = input.value;
+      let iv = input.value;
       if (type === "type_author") {
         // console.log("author")
         tds = document.querySelectorAll(".table tbody td.author p");
@@ -277,17 +283,31 @@ import {data_set} from "./data_set.js";
         tds = document.querySelectorAll(".table tbody td.state p");
       }
       
-      // console.log(fv);
+      // console.log(iv);
       if (tds) {
         tds.forEach(function (item) {
           let text = item.innerHTML;
           item.closest("tr").classList.add("hide");
-          if (fv == text) {
+          if (iv == text) {
             setTimeout(() => {
               item.closest("tr").classList.remove("hide");       
             }, 100);
-          } else if (fv == "") {
+          } else if (iv == "") {
             item.closest("tr").classList.remove("hide");
+          }
+        });
+      }
+      
+      // reset
+      if (select) {
+        select.forEach(function (item) {
+          if (type === item.name) {
+            item.classList.remove("reset")
+          } else {
+            item.classList.add("reset")
+          }
+          if (item.classList.contains("reset")) {
+            item.value = "";
           }
         });
       }

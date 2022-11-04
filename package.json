@@ -2,7 +2,6 @@
   "name": "gebong_01",
   "version": "1.0.0",
   "description": "gebong_01 test",
-  "type": "module",
   "main": "app.js",
   "scripts": {
     "test": "test"

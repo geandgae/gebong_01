@@ -34,5 +34,17 @@ export const ctg = {
     id : "table_02",
     title : "테이블 02",
   },
+  ct03 : {
+    id : "table_03",
+    title : "테이블 03",
+  },
+  ct04 : {
+    id : "table_04",
+    title : "테이블 04",
+  },
+  ct05 : {
+    id : "table_05",
+    title : "테이블 05",
+  },
 }
 

@@ -3,7 +3,7 @@
 import {crt, st, ctg} from "./data_options.js";
 
 export let data_00 = [
-  {
+  { 
     depth1: ctg.ct00.id,
     depth2: "d2",
     depth3: "d3",

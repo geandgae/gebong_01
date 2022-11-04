@@ -8,16 +8,16 @@ import {data_02} from "./data_02.js";
 import {data_03} from "./data_03.js";
 
 for (let item in data_00) {
-  data_00[item].depth1 = ctg.ct00.id;
-  console.log(data_01[item].depth1);
+  data_00[item].id = ctg.ct00.id;
+  data_00[item].depth1 = ctg.ct00.title;
 }
 for (let item in data_01) {
-  data_01[item].depth1 = ctg.ct01.id;
-  console.log(data_02[item].depth1);
+  data_01[item].id = ctg.ct01.id;
+  data_01[item].depth1 = ctg.ct01.title;
 }
 for (let item in data_02) {
-  data_02[item].depth1 = ctg.ct02.id;
-  console.log(data_02[item].depth1);
+  data_02[item].id = ctg.ct02.id;
+  data_02[item].depth1 = ctg.ct02.title;
 }
 
 // data_set

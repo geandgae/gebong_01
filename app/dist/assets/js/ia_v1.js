@@ -3,19 +3,16 @@
 // import
 import {crt, st, ctg} from "./data_options.js";
 import {data_set} from "./data_set.js";
-import aut from "./author.js";
 
 
 // s : function
 (function () {
 
-  const lengthCreator = Object.keys(crt).length;
-  const lengthState = Object.keys(st).length;
-  const lengthCategory = Object.keys(ctg).length;
+  // var
+  const lengthCategory = [];
+  // const lengthCreator = Object.keys(crt).length;
+  // const lengthState = Object.keys(st).length;
 
-  // console.log(lengthCreator);
-  // console.log(lengthState);
-  // console.log(lengthCategory);
 
   // setTable
   function setTable() {
@@ -24,25 +21,52 @@ import aut from "./author.js";
     for (let item in ctg) {
       let id = ctg[item].id;
       let title = ctg[item].title;
+      lengthCategory.push(id);
       // console.log(ctg[item]);
       article.push(`
-      <!-- article -->
-      <article class="article">
-        <h2>${title}</h2>
-        <!-- table_ia -->
-        <table class="table" id="${id}">
-          <caption>${title}</caption>
-          <thead></thead>
-          <tbody></tbody>
-        </table>
-        <!-- //table_ia -->
-      </article>
-      <!-- //article -->
+        <!-- article -->
+        <article class="article">
+          <h2>${title}</h2>
+          <!-- table -->
+          <table class="table" id="${id}">
+            <caption>${title}</caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+          <!-- //table -->
+        </article>
+        <!-- //article -->
       `);
     }
     container.innerHTML = article.join("");
+    // run tableData
+    tableData(data_set, lengthCategory);
   }
-  setTable();
+
+
+  // setFilter
+  function setFilter() {
+    // typeAuthor
+    let typeAuthor = document.querySelector(".filter select[name=type_author]");
+    let author = [`<option value="">author</option>`];
+    for (let item in crt) {
+      author.push(`
+        <option value="${crt[item]}">${crt[item]}</option>
+      `);
+    }
+    typeAuthor.innerHTML = author.join("");
+    
+    // typeState
+    let typeState = document.querySelector(".filter select[name=type_state]");
+    let state = [`<option value="">state</option>`];
+    for (let item in st) {
+      state.push(`
+        <option value="${st[item]}">${st[item]}</option>
+      `);
+    }
+    typeState.innerHTML = state.join("");
+  }
+  
 
   // setToast
   function setToast(target) {
@@ -65,85 +89,71 @@ import aut from "./author.js";
     // }, 500);
   }
 
-  // setFilter
-  function setFilter() {
-    let filter = document.querySelector(".filter");
-    let inc = `
-      <ul class="progress-info">
-        <li>전체 : ${l}</li>
-        <li>${state.text.fin} : ${state.count.fin}</li>
-        <li>${state.text.mod} : ${state.count.mod}</li>
-        <li>${state.text.del} : ${state.count.del}</li>
-        <li>${state.text.stay} : ${state.count.stay}</li>
-        <li>${state.text.chk} : ${state.count.chk}</li>
-        <li>${state.text.ing} : ${state.count.ing}</li>
-      </ul>
-      <div class="progress-bar">
-        <div class="text">${total}%</div>  
-        <div class="bar">
-          <span role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${total}" style="width:${total}%"></span>
-        </div>  
-      </div>  
-    `;
-  }
-
+  
   // tableData
-  function tableData(data, target) {
-    // data(table td) array
-    let td = [];
-    for (let item of data) {
-      // console.log(item.depth1);
-      // console.log(data[0]);
-      if(item.depth1 == target && item.state == st.stay) {
-        td.push(`
+  function tableData(data, length) {
+    // s : length array
+    for (let target of length) {
+
+      // s : data array
+      let td = [];
+      for (let item of data) {
+        // console.log(item.depth1);
+        // console.log(data[0]);
+        if(item.id == target) {
+          td.push(`
+            <tr>
+              <td class="index"><p></p></td>
+              <td class="depth1"><p>${item.aaaaa}</p></td>
+              <td class="depth2"><p>${item.depth2}</p></td>
+              <td class="depth3"><p>${item.depth3}</p></td>
+              <td class="depth4"><p>${item.depth4}</p></td>
+              <td class="id"><p>${item.view_id}</p></td>
+              <td class="name"><p>${item.view_name}</p></td>
+              <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
+              <td class="date"><p>${item.date}</p></td>
+              <td class="state"><p>${item.state}</p></td>
+              <td class="author"><p>${item.author}</p></td>
+              <td class="note">${item.note}</td>
+            </tr>
+          `);
+        } 
+      }
+      // e : data array
+
+      // th
+      let th = `
         <tr>
-          <td class="index"><p></p></td>
-          <td class="depth1"><p>${item.depth1}</p></td>
-          <td class="depth2"><p>${item.depth2}</p></td>
-          <td class="depth3"><p>${item.depth3}</p></td>
-          <td class="depth4"><p>${item.depth4}</p></td>
-          <td class="id"><p>${item.view_id}</p></td>
-          <td class="name"><p>${item.view_name}</p></td>
-          <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
-          <td class="date"><p>${item.date}</p></td>
-          <td class="state"><p>${item.state}</p></td>
-          <td class="author"><p>${item.author}</p></td>
-          <td class="note">${item.note}</td>
+          <th class="index">no</th>
+          <th class="depth1">depth1</th>
+          <th class="depth2">depth2</th>
+          <th class="depth3">depth3</th>
+          <th class="depth4">depth4</th>
+          <th class="id">id</th>
+          <th class="name">name</th>
+          <th class="url">url</th>
+          <th class="date">date</th>
+          <th class="state">state</th>
+          <th class="author">author</th>
+          <th class="note">note</th>
         </tr>
-      `);
-      } 
-    }
+      `;
 
-    // th
-    let th = `
-      <tr>
-        <th class="index">no</th>
-        <th class="depth1">depth1</th>
-        <th class="depth2">depth2</th>
-        <th class="depth3">depth3</th>
-        <th class="depth4">depth4</th>
-        <th class="id">id</th>
-        <th class="name">name</th>
-        <th class="url">url</th>
-        <th class="date">date</th>
-        <th class="state">state</th>
-        <th class="author">author</th>
-        <th class="note">note</th>
-      </tr>
-    `;
-
-    // table target
-    let el = document.querySelectorAll(".table");
-    if (el) {
-      el.forEach(function (item) {
-        let id = item.getAttribute("id");
-        if (id == target) {
-          // console.log(target);
-          item.querySelector("thead").innerHTML = th;
-          item.querySelector("tbody").innerHTML = td.join("");
-        }
-      });
+      // table view
+      let el = document.querySelectorAll(".table");
+      if (el) {
+        el.forEach(function (item) {
+          let id = item.getAttribute("id");
+          if (id == target) {
+            // console.log(target);
+            item.querySelector("thead").innerHTML = th;
+            item.querySelector("tbody").innerHTML = td.join("");
+          }
+        });
+      }
+    
     }
+    // e : length array
   }
 
   // tableState
@@ -355,12 +365,11 @@ import aut from "./author.js";
   
 
 
-  // function run
- 
-  // tableData
-  tableData(data_set, ctg.ct00.id);
-  tableData(data_set, ctg.ct01.id);
-  tableData(data_set, ctg.ct02.id);
+  // run functions
+  // setTable
+  setTable();
+  // setFilter
+  setFilter();  
   // tableState
   tableState();
   // tableIndex

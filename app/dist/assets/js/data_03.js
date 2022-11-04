@@ -4,6 +4,7 @@ import {crt, st, ctg} from "./data_options.js";
 
 export let data_03 = [
   {
+    id: ctg.ct03.id,
     index: "4",
     depth1: "사과",
     depth2: "배",
@@ -18,6 +19,7 @@ export let data_03 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
+    id: ctg.ct03.id,
     index: "4",
     depth1: " ",
     depth2: "  ",
@@ -32,6 +34,7 @@ export let data_03 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
+    id: ctg.ct04.id,
     index: "4",
     depth1: "",
     depth2: "",
@@ -46,6 +49,7 @@ export let data_03 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
+    id: ctg.ct04.id,
     index: "5",
     depth1: "a",
     depth2: "aa",
@@ -60,6 +64,7 @@ export let data_03 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
+    id: ctg.ct05.id,
     index: "5",
     depth1: "a",
     depth2: "aa",

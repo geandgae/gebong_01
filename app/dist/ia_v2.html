@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ia_v2</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- <script type="module src="./assets/js/ia.js"></script> -->
+    <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
+    <!-- <script type="module async src="./assets/js/ia.js"></script>  -->
+    <!-- 덜 중요한 리소스 로드(ex 접근성) -->
+    <script type="module" defer src="./assets/js/ia_v2.js"></script>
+  </head>
+  <body>
+
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <header class="header">
+        <!-- h1 -->
+        <h1>ia</h1>
+        <!-- //h1 -->
+
+        <!-- filter -->
+        <div class="filter">
+          <select name="type_author">
+            <option value="">author</option>
+            <option value="개와게">개와게</option>
+          </select>
+          <select name="type_state">
+            <option value="">state</option>
+            <option value="완료">완료</option>
+            <option value="대기">대기</option>
+            <option value="수정">수정</option>
+            <option value="삭제">삭제</option>
+          </select>
+          검색: <input type="text">
+          <button class="btn">버튼</button>
+        </div>
+        <!-- //filter -->
+
+        <!-- progress -->
+        <div class="progress">
+        </div>
+        <!-- //progress -->
+      </header>
+      <!-- header -->
+
+      <!-- container -->
+      <main class="container main">
+        <!-- article -->
+        <article class="article">
+          <h2>h2</h2>
+          <!-- table_ia -->
+          <table class="table" id="table_00">
+            <caption>
+              ia
+            </caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+          <!-- //table_ia -->
+        </article>
+        <!-- //article -->
+
+        <!-- article -->
+        <article class="article">
+          <h2>h2</h2>
+          <!-- table_ia -->
+          <table class="table" id="table_01">
+            <caption>
+              ia
+            </caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+          <!-- //table_ia -->
+        </article>
+        <!-- //article -->
+
+        <!-- article -->
+        <article class="article">
+          <h2>h2</h2>
+          <!-- table_ia -->
+          <table class="table" id="table_02">
+            <caption>
+              ia
+            </caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+          <!-- //table_ia -->
+        </article>
+        <!-- //article -->
+      </main>
+      <!-- //container -->
+    </div>
+    <!-- //wrap -->
+    
+    <!-- outland -->
+    <div id="outland">  
+    </div>
+    <!-- //outland -->
+
+  </body>
+</html>

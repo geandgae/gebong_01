@@ -4,7 +4,7 @@ import {crt, st, ctg} from "./data_options.js";
 
 export let data_01 = [
   {
-    depth1: ctg.ct00,
+    depth1: ctg.ct00.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -17,7 +17,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct00,
+    depth1: ctg.ct00.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -30,7 +30,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct00,
+    depth1: ctg.ct00.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -43,7 +43,7 @@ export let data_01 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01,
+    depth1: ctg.ct01.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -56,7 +56,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct01,
+    depth1: ctg.ct01.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -69,7 +69,7 @@ export let data_01 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01,
+    depth1: ctg.ct01.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -82,7 +82,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct02,
+    depth1: ctg.ct02.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -95,7 +95,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct01,
+    depth1: ctg.ct01.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -108,7 +108,7 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct02,
+    depth1: ctg.ct02.id,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",

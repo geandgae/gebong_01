@@ -22,8 +22,17 @@ export const st = {
 
 // category
 export const ctg = {
-  ct00 : "table_00",
-  ct01 : "table_01",
-  ct02 : "table_02",
+  ct00 : {
+    id : "table_00",
+    title : "테이블 00",
+  },
+  ct01 : {
+    id : "table_01",
+    title : "테이블 01",
+  },
+  ct02 : {
+    id : "table_02",
+    title : "테이블 02",
+  },
 }
 

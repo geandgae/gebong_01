@@ -520,6 +520,26 @@ import {data_set} from "./data_set.js";
   }
   exTest(tagA);
 
+  // 숫자 실수 적용
+  function sortingNumber(a, b) {
+    if (typeof a == "number" && typeof b == "number") {
+      // console.log(a - b);
+      return a - b;
+    }
+    let na = ( a + "" ).replace(/[,\s\xA0]+/g, "");
+    let nb = ( b + "" ).replace(/[,\s\xA0]+/g, "");
+    console.log(na);
+    console.log(nb);
+    let numA = parseFloat(na) + "";
+    let numB = parseFloat(nb) + "";
+    console.log(numA);
+    console.log(numB);
+    if (numA == "NaN" || numB == "NaN" || na != numA || b != numB) {
+      return false;
+    }
+    return parseFloat(a) - parseFloat(b);
+  }
+  sortingNumber("2022-05  -11", "2022-10-  31");
   
 
 

@@ -8,12 +8,6 @@ import {data_set} from "./data_set.js";
 // s : function
 (function () {
 
-  // ios test
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sat"));
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sar"));
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sab"));
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sal"));
-  
   // var
   const lengthCategory = [];
   // const lengthCreator = Object.keys(crt).length;

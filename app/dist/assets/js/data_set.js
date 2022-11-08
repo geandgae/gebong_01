@@ -10,6 +10,9 @@ import {data_03} from "./data_03.js";
 for (let item in data_00) {
   data_00[item].id = ctg.ct00.id;
   data_00[item].depth1 = ctg.ct00.title;
+  if (data_00[item].state === "대기") {
+    data_00[item].state = st.stay;
+  }
 }
 for (let item in data_01) {
   data_01[item].id = ctg.ct01.id;

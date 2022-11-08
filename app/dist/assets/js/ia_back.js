@@ -663,6 +663,12 @@
   }
   exTest(tagA);
 
+  // ios test
+  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sat"));
+  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sar"));
+  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sab"));
+  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sal"));
+
   
 
 

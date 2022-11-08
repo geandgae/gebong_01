@@ -14,7 +14,7 @@ export let data_00 = [
     date: "2022-10-28",
     state: st.fin,
     author: crt.p00,
-    note: "<p>note1</p><p>note2</p>",
+    note: "<p>note1</p><p>note2</p><p>note2022-11-08</p>",
   },
   {
     depth1: ctg.ct00.id,

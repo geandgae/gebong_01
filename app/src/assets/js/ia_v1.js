@@ -43,7 +43,6 @@ import {data_set} from "./data_set.js";
     tableData(data_set, lengthCategory);
   }
 
-
   // setFilter
   function setFilter() {
     // typeAuthor
@@ -80,7 +79,6 @@ import {data_set} from "./data_set.js";
 
   }
   
-
   // setToast
   function setToast(target) {
     let outland = document.querySelector("#outland");
@@ -102,7 +100,6 @@ import {data_set} from "./data_set.js";
     // }, 500);
   }
 
-  
   // tableData
   function tableData(data, length) {
     // s : length array
@@ -127,7 +124,12 @@ import {data_set} from "./data_set.js";
               <td class="date"><p>${item.date}</p></td>
               <td class="state"><p>${item.state}</p></td>
               <td class="author"><p>${item.author}</p></td>
-              <td class="note">${item.note}</td>
+              <td class="note" data-wacc-toggle="true">
+                <button type="button" class="btn" title="더보기"><i></i></button>
+                <div class="note-memo target">
+                  ${item.note}
+                </div>
+              </td>
             </tr>
           `);
         } 
@@ -193,7 +195,7 @@ import {data_set} from "./data_set.js";
     }
     if (el) {
       el.forEach(function (item) {
-        let text = item.innerTextL;
+        let text = item.innerText;
         if (text === state.text.fin) {
           item.closest("tr").classList.add("fin");
           state.count.fin++;
@@ -415,6 +417,55 @@ import {data_set} from "./data_set.js";
     }
   }
 
+  // noteToggle
+  function noteToggle() {
+    let note = document.querySelectorAll(".table td.note");
+    let btn = document.querySelectorAll(".table td.note .btn");
+
+    if (note) {
+      note.forEach(function (item) {
+        let memo = item.querySelectorAll(".note-memo p");
+        memo.forEach(function (i) {
+          if (memo.length > 1) {
+            i.closest(".note").classList.add("multi");
+          }
+        });
+      });
+    }
+
+    if (btn) {
+      btn.forEach(function (item) {
+        item.addEventListener("click", function() {
+          item.closest(".note").classList.toggle("active");
+          item.classList.toggle("active");
+        });
+      });
+    }
+  }
+
+  // waccToggle
+  function waccToggle() {
+    let idx = 0;
+    let tog = document.querySelectorAll("[data-wacc-toggle=true]");
+    if (tog) {
+      tog.forEach(function (item) {
+        idx++;
+        let ctrl = item.querySelector(".btn");
+        let target = item.querySelector(".target");
+        target.setAttribute("id", `ui-tog-${idx}`);
+        ctrl.setAttribute("aria-expanded", "false");
+        ctrl.setAttribute("aria-controls", `ui-tog-${idx}`);
+        ctrl.addEventListener("click", function() {
+          if (this.classList.contains("active")) {
+            this.setAttribute("aria-expanded", "true");
+          } else {
+            this.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    }
+  }
+
 
   
 
@@ -437,7 +488,12 @@ import {data_set} from "./data_set.js";
   // tableCheck
   tableCheck();
   // categoryFilter
-  categoryFilter()
+  categoryFilter();
+  // noteToggle
+  noteToggle();
+
+  // waccToggle
+  waccToggle();
   
   
   

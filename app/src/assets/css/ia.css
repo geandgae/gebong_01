@@ -67,7 +67,8 @@
   color: transparent;
 }
 
-:where(iframe) {
+:where(iframe, fieldset) {
+  border: none;
   border-style: none;
 }
 
@@ -125,10 +126,6 @@
   font-size: 10px;
   font-weight: 400;
   color: var(--color_font02);
-  --sat: env(safe-area-inset-top);
-  --sar: env(safe-area-inset-right);
-  --sab: env(safe-area-inset-bottom);
-  --sal: env(safe-area-inset-left);
 }
 
 .header {
@@ -137,6 +134,10 @@
 
 .container:is(.main) {
   background-color: #fff;
+}
+
+.article.hide {
+  display: none;
 }
 
 .table :where(th, td) {

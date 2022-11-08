@@ -67,7 +67,8 @@
   color: transparent;
 }
 
-:where(iframe) {
+:where(iframe, fieldset) {
+  border: none;
   border-style: none;
 }
 

@@ -23,11 +23,6 @@
   font-weight: 400;
   color: var(--color_font02);
 
-  // ios 테스트
-  --sat: env(safe-area-inset-top);
-  --sar: env(safe-area-inset-right);
-  --sab: env(safe-area-inset-bottom);
-  --sal: env(safe-area-inset-left);
 }
 
 // layout
@@ -36,6 +31,11 @@
 }
 .container:is(.main) {
   background-color: #fff;
+}
+
+// article
+.article.hide {
+  display: none;
 }
 
 // table

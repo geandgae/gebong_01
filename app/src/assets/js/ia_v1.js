@@ -25,10 +25,10 @@ import {data_set} from "./data_set.js";
       // console.log(ctg[item]);
       article.push(`
         <!-- article -->
-        <article class="article">
+        <article class="article" id="${id}">
           <h2>${title}</h2>
           <!-- table -->
-          <table class="table" id="${id}">
+          <table class="table">
             <caption>${title}</caption>
             <thead></thead>
             <tbody></tbody>
@@ -65,6 +65,19 @@ import {data_set} from "./data_set.js";
       `);
     }
     typeState.innerHTML = state.join("");
+
+    // typeCategory
+    let typeCategory = document.querySelector(".category");
+    let category = [`<li><button type="button" class="btn" id="table_all">전체보기</button></li>`];
+    for (let item in ctg) {
+      let id = ctg[item].id;
+      let title = ctg[item].title;
+      category.push(`
+        <li><button type="button" class="btn" id="${id}">${title}</button></li>
+      `);
+    }
+    typeCategory.innerHTML = category.join("");
+
   }
   
 
@@ -140,7 +153,7 @@ import {data_set} from "./data_set.js";
       `;
 
       // table view
-      let el = document.querySelectorAll(".table");
+      let el = document.querySelectorAll(".article");
       if (el) {
         el.forEach(function (item) {
           let id = item.getAttribute("id");
@@ -180,7 +193,7 @@ import {data_set} from "./data_set.js";
     }
     if (el) {
       el.forEach(function (item) {
-        let text = item.innerHTML;
+        let text = item.innerTextL;
         if (text === state.text.fin) {
           item.closest("tr").classList.add("fin");
           state.count.fin++;
@@ -234,7 +247,7 @@ import {data_set} from "./data_set.js";
       for (let i = 0; i < l; i++) {
         let item = el[i];
         let num = i + 1;
-        item.innerHTML = num;
+        item.innerText = num;
       }
     }
   }
@@ -242,7 +255,7 @@ import {data_set} from "./data_set.js";
   // tableFilter
   function tableFilter() {
     let input = document.querySelector(".filter input[type=text]");
-    let btn = document.querySelector(".filter .btn");
+    let btn = document.querySelector(".filter .search .btn");
     let td = document.querySelectorAll(".table tbody td p");
     let select = document.querySelectorAll(".filter select");
     let tds = document.querySelectorAll(".table tbody td p");
@@ -253,7 +266,7 @@ import {data_set} from "./data_set.js";
       // console.log(iv);
       if (td) {
         td.forEach(function (item) {
-          let text = item.innerHTML;
+          let text = item.innerText;
           item.closest("tr").classList.add("hide");
           if (text.includes(iv)) {
             setTimeout(() => {
@@ -286,7 +299,7 @@ import {data_set} from "./data_set.js";
       // console.log(iv);
       if (tds) {
         tds.forEach(function (item) {
-          let text = item.innerHTML;
+          let text = item.innerText;
           item.closest("tr").classList.add("hide");
           if (iv == text) {
             setTimeout(() => {
@@ -379,6 +392,29 @@ import {data_set} from "./data_set.js";
     }
   }
 
+  // categoryFilter
+  function categoryFilter() {
+    let article = document.querySelectorAll(".article");
+    let btn = document.querySelectorAll(".filter .category .btn");
+
+    if (btn) {
+      btn.forEach(function (item) {
+        item.addEventListener("click", function() {
+          let id = item.id;
+          // article
+          article.forEach(function (i) {
+            i.classList.add("hide");
+            if (id === i.id) {
+              i.classList.remove("hide");
+            } else if (id === "table_all") {
+              i.classList.remove("hide");
+            }
+          });
+        });
+      });
+    }
+  }
+
 
   
 
@@ -400,6 +436,8 @@ import {data_set} from "./data_set.js";
   tableCopy();
   // tableCheck
   tableCheck();
+  // categoryFilter
+  categoryFilter()
   
   
   

@@ -663,11 +663,17 @@
   }
   exTest(tagA);
 
+   // ios 테스트 css
+  //  --sat: env(safe-area-inset-top);
+  //  --sar: env(safe-area-inset-right);
+  //  --sab: env(safe-area-inset-bottom);
+  //  --sal: env(safe-area-inset-left);
+
   // ios test
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sat"));
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sar"));
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sab"));
-  console.log(getComputedStyle(document.documentElement).getPropertyValue("--sal"));
+  // console.log(getComputedStyle(document.documentElement).getPropertyValue("--sat"));
+  // console.log(getComputedStyle(document.documentElement).getPropertyValue("--sar"));
+  // console.log(getComputedStyle(document.documentElement).getPropertyValue("--sab"));
+  // console.log(getComputedStyle(document.documentElement).getPropertyValue("--sal"));
 
   
 

@@ -513,10 +513,10 @@ import {data_set} from "./data_set.js";
   function exTest(text) {
     // 태그네임 소문자로
     let a1 = text.tagName.toLowerCase();
-    console.warn("--------------exTest--------------");
+    console.warn("--------------Test--------------");
     console.log(a1);
     console.log(tagA.tBodies[0]);
-    console.warn("--------------exTest--------------");
+    console.warn("--------------Test--------------");
   }
   exTest(tagA);
 

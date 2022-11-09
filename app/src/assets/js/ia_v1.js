@@ -496,14 +496,10 @@ import {data_set} from "./data_set.js";
   waccToggle();
   
   
-  
-  // 카테고리 정리(분류)
-  // 진행상태
-  // 검색 셀렉트 포커스
+  // json 로컬 저장
   // 인클루드
   // 다크모드
   // 로딩
-  // 메모
   // 정렬
   // ia 디자인
   // 접근성 
@@ -539,7 +535,7 @@ import {data_set} from "./data_set.js";
     }
     return parseFloat(a) - parseFloat(b);
   }
-  sortingNumber("2022-05  -11", "2022-10-  31");
+  sortingNumber("2022-05-11", "2022-10-31");
   
 
 

@@ -496,11 +496,11 @@ import {data_set} from "./data_set.js";
   waccToggle();
   
   
+  // 정렬
   // json 로컬 저장
   // 인클루드
   // 다크모드
   // 로딩
-  // 정렬
   // ia 디자인
   // 접근성 
   // core
@@ -517,26 +517,67 @@ import {data_set} from "./data_set.js";
   exTest(tagA);
 
   // 숫자 실수 적용
-  function sortingNumber(a, b) {
+  function sortingNumber(a, b){  
     if (typeof a == "number" && typeof b == "number") {
-      // console.log(a - b);
       return a - b;
     }
-    let na = ( a + "" ).replace(/[,\s\xA0]+/g, "");
-    let nb = ( b + "" ).replace(/[,\s\xA0]+/g, "");
-    console.log(na);
-    console.log(nb);
-    let numA = parseFloat(na) + "";
-    let numB = parseFloat(nb) + "";
-    console.log(numA);
-    console.log(numB);
-    if (numA == "NaN" || numB == "NaN" || na != numA || b != numB) {
-      return false;
-    }
-    return parseFloat(a) - parseFloat(b);
+    // , - 공백문자만 삭제하기.  
+    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let numA = parseFloat( na ) + ""; 
+    let numB = parseFloat( nb ) + ""; 
+    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
+      return false; 
+    } 
+    return parseFloat( na ) - parseFloat( nb ); 
   }
-  sortingNumber("2022-05-11", "2022-10-31");
-  
+  console.log(sortingNumber("2022-12-11", "2022-10-31"));
+
+
+  // changeForSorting() : 문자열 바꾸기
+  function changeForSorting(first, second){  
+    // 문자열의 복사본 만들기. 
+    let a = first.toString().replace(/[\s\xA0]+/g, " "); 
+    let b = second.toString().replace(/[\s\xA0]+/g, " "); 
+    let change = { first : a, second : b }; 
+
+    if (a.search( /\d/ ) < 0 || b.search( /\d/ ) < 0 || a.length == 0 || b.length == 0) {
+      return change;
+    }
+
+    let regExp = /(\d),(\d)/g; // 천단위 쉼표를 찾기 위한 정규식. 
+
+    a = a.replace(regExp, "$1" + "$2"); 
+    b = b.replace(regExp, "$1" + "$2"); 
+
+    let unit = 0; 
+    let aNb = a + " " + b; 
+    let numbers = aNb.match(/\d+/g); // 문자열에 들어있는 숫자 찾기 
+
+    for ( let x = 0; x < numbers.length; x++ ){ 
+      let length = numbers[ x ].length; 
+      if ( unit < length ) unit = length; 
+    } 
+
+    let addZero = function( string ){ // 숫자들의 단위 맞추기 
+
+      let match = string.match( /^0+/ ); 
+
+      if ( string.length == unit ) return ( match == null ) ? string : match + string; 
+
+      let zero = "0"; 
+
+      for ( let x = string.length; x < unit; x++ ) string = zero + string; 
+
+      return ( match == null ) ? string : match + string; 
+    }; 
+
+    change.first = a.replace( /\d+/g, addZero ); 
+    change.second = b.replace( /\d+/g, addZero ); 
+
+    return change; 
+  } 
+  console.log(changeForSorting("first", "second"));
 
 
 

@@ -495,7 +495,7 @@ import {data_set} from "./data_set.js";
   // waccToggle
   waccToggle();
   
-  
+  // 테이블세팅 자동화 data_option 변수 처리
   // 정렬
   // json 로컬 저장
   // 인클루드

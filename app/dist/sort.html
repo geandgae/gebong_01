@@ -22,18 +22,18 @@
       <p>정렬하기 <button onclick="sortLI()">▲</button> <button onclick="reverseLI()">▼</button></p>
 
       <ul id="lists">
-        <li>064-1234-5678</li>
-        <li>063-1234-5678</li>
-        <li>061-1234-5678</li>
-        <li>055-1234-5678</li>
-        <li>054-1234-5678</li>
-        <li>044-1234-5678</li>
-        <li>043-1234-5678</li>
-        <li>041-1234-5678</li>
-        <li>033-1234-5678</li>
-        <li>032-1234-5678</li>
-        <li>031-1234-5678</li>
-        <li>02-1234-5678</li>
+        <li class="li">064-1234-5678</li>
+        <li class="li">063-1234-5678</li>
+        <li class="li">061-1234-5678</li>
+        <li class="li">055-1234-5678</li>
+        <li class="li">054-1234-5678</li>
+        <li class="li">044-1234-5678</li>
+        <li class="li">043-1234-5678</li>
+        <li class="li">041-1234-5678</li>
+        <li class="li">033-1234-5678</li>
+        <li class="li">032-1234-5678</li>
+        <li class="li">031-1234-5678</li>
+        <li class="li">02-1234-5678</li>
       </ul>
 
       <!-- <table class="table" id="lists">
@@ -180,6 +180,7 @@
         // 그밖에 ul 일때 
         } else {
           // children = parent.getElementsByTagName("li");
+          // children = parent.getElementsByClassName("li");
           children = parent.querySelectorAll("li");
         }
         

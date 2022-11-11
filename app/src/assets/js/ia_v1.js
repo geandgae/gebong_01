@@ -112,7 +112,7 @@ import {data_set} from "./data_set.js";
         // console.log(data[0]);
         if(item.id == target) {
           td.push(`
-            <tr>
+            <tr data-sort="${item.date}">
               <td class="index"><p></p></td>
               <td class="depth1"><p>${item.depth1}</p></td>
               <td class="depth2"><p>${item.depth2}</p></td>
@@ -516,6 +516,8 @@ import {data_set} from "./data_set.js";
   }
   exTest(tagA);
 
+  
+
   // 숫자 실수 적용
   function sortingNumber(a, b){  
     if (typeof a == "number" && typeof b == "number") {
@@ -578,6 +580,86 @@ import {data_set} from "./data_set.js";
     return change; 
   } 
   console.log(changeForSorting("first", "second"));
+
+  let korean = [ "티스토리", "다음", "네이버", "드림위즈" ]; 
+  let english = [ "Google", "Stackoverflow", "Yahoo!", "Ask", "Bing" ]; 
+  let others = [ "Übel", "Ubah", "Atom", "Änderung", "Ansage" ]; 
+  let number = [ 100, 25, 5, 40, 1, 10 ]; 
+  let string = [ "100", "25", "5", "40", "1", "10" ]; 
+  let overall = [ "티스토리", "Google", "Übel", "Ubah", 100, 25, "5", "40" ]; 
+
+  function compare ( a , b ) { return a - b; } 
+
+  function ascending ( a , b ) {  
+    if ( a < b ) return -1; 
+    else if ( a == b ) return 0; 
+    else return 1; 
+  }
+  function descending ( a , b ) {
+    if ( b < a ) return -1;
+    else if ( b == a ) return 0; 
+    else return 1;     
+  } 
+
+  // console.log(korean.sort(compare));
+  // console.log(korean.sort(ascending));
+  // console.log(korean.sort(descending));
+  // console.log(korean.sort());
+  // console.log(number.sort(compare));
+  // console.log(number.sort());
+  // console.log(string.sort(compare));
+  // console.log(string.sort());
+  // console.log(overall.sort(compare));
+  // console.log(overall.sort());
+  // console.log(english.sort());
+  // console.log(others.sort());
+  // console.log(number.sort());
+  // console.log(string.sort());
+  // console.log(overall.sort());
+
+  function srtNum (a, b){  
+    if (typeof a == "number" && typeof b == "number") {
+      return b - a;
+    }
+    // , - 공백문자만 삭제하기.  
+    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let numA = parseFloat( na ) + ""; 
+    let numB = parseFloat( nb ) + ""; 
+    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
+      return false; 
+    } 
+    return parseFloat( nb ) - parseFloat( na ); 
+  }
+
+
+  let arrayDate = [];
+  let dataTd = document.querySelectorAll(".table tbody tr");
+  // console.log(dataTd);
+  if (dataTd) {
+    dataTd.forEach(function (item) {
+      let date = item.querySelector("td.date p").innerText;
+      arrayDate.push(date);
+    });
+  }
+  // console.log(arrayDate.sort(srtNum));
+  
+  let dateTh = document.querySelectorAll(".table th.date");
+  if (dateTh) {
+    dateTh.forEach(function (item) {
+      item.addEventListener("click", function() {
+        let arrayDate = [];
+        let date = this.closest(".table").querySelectorAll(".table tbody tr");
+        date.forEach(function (i) {
+          // arrayDate.push(i.dataset.sort);
+        });
+        // console.log(arrayDate);
+        console.log(arrayDate.sort(srtNum));
+        
+      });
+    });
+  }
+  
 
 
 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>auto</title>
+  </head>
+
+  <style>
+    * {
+      font-size: 11px;
+      line-height: 1;
+    }
+    .obj {
+      margin: 50px;
+    }
+  </style>
+  <body>
+    <pre class="obj"></pre>
+
+    <!-- wrap -->
+    <div id="wrap"></div>
+    <!-- //wrap -->
+
+    <!-- wrap -->
+    <div id="wrap2" style="margin-top: 20px; margin-bottom: 50px"></div>
+    <!-- //wrap -->
+
+    <!-- table -->
+    <table align="center" bgcolor="#ffffff" cellpadding="0" cellspacing="0" width="100%" style="border-top:1px solid #555555">
+      <colgroup>
+        <col style="width:50%">
+        <col style="width:50%">
+      </colgroup>
+      <thead>
+        <!-- header -->
+        <tr>
+          <td style="padding:20px 0; background:#f9f9f9; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 15px; font-weight:bold; line-height: 1.4; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">펀드명</td>
+          <td style="padding:20px 0; background:#f9f9f9; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 15px; font-weight:bold; line-height: 1.4; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6; border-left:1px solid #e6e6e6">자산운용보고서</td>
+        </tr>
+        <!-- //header -->
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+    <!-- //table -->
+
+    <script>
+      let str = `안정혼합형(변액연금) ,,, D005-min.pdf ,,, 인덱스혼합형(변액연금) ,,, D006-min.pdf ,,, 채권형 ,,, D007-min.pdf ,,, 단기채권형(변액연금) ,,, D008-min.pdf ,,, 그로스혼합형(변액연금) ,,, D009-min.pdf ,,, 파워인덱스혼합형(변액연금) ,,, D010-min.pdf ,,, 아시아퍼시픽혼합형(변액연금) ,,, D011-min.pdf ,,, 주식성장혼합형(변액연금) ,,, D012-min.pdf ,,, 파워인덱스200혼합형(변액연금) ,,, D013-min.pdf ,,, 파워브릭스인덱스혼합형(변액연금) ,,, D014-min.pdf ,,, 블루칩주식혼합형(변액연금) ,,, D015-min.pdf ,,, 배당주식혼합형(변액연금) ,,, D016-min.pdf ,,, 인덱스100혼합형(변액연금) ,,, D017-min.pdf ,,, 코리아인덱스혼합형 ,,, D018-min.pdf ,,, 글로벌인덱스혼합형 ,,, D019-min.pdf ,,, 주식혼합형(VUL가산형) ,,, E001-min.pdf ,,, 인덱스혼합형(VUL가산형) ,,, E002-min.pdf ,,, 채권형(VUL가산형) ,,, E003-min.pdf ,,, 단기채권형(VUL가산형) ,,, E004-min.pdf ,,, 미국혼합형(Ⅱ) ,,, E007-min.pdf ,,, 일본혼합형(Ⅱ) ,,, E008-min.pdf ,,, 아시아퍼시픽혼합형(VUL가산형) ,,, E009-min.pdf ,,, 주식성장형(VUL가산형) ,,, E010-min.pdf ,,, 파워인덱스형(VUL가산형) ,,, E011-min.pdf ,,, 친디아포커스혼합형(VUL가산형) ,,, E012-min.pdf ,,, 파워브릭스인덱스혼합형(VUL가산형) ,,, E013-min.pdf ,,, 프라임주식형(VUL가산형) ,,, E014-min.pdf ,,, 프라임인덱스형(VUL가산형) ,,, E015-min.pdf ,,, 혼합형(VUL보장형) ,,, F001-min.pdf ,,, 채권형(VUL보장형) ,,, F002-min.pdf ,,, 인덱스혼합형(VUL보장형) ,,, F003-min.pdf ,,, 아시아퍼시픽혼합형(VUL보장형) ,,, F004-min.pdf ,,, 파워인덱스100혼합형(VUL보장형) ,,, F005-min.pdf ,,, 일반주식형 ,,, F006-min.pdf ,,, 인덱스주식형 ,,, F007-min.pdf ,,, 가치주식형 ,,, F008-min.pdf ,,, 성장주식형 ,,, F009-min.pdf ,,, 글로벌주식형 ,,, F010-min.pdf ,,, 글로벌채권형 ,,, F011-min.pdf ,,, K-Selection주식형 ,,, F012-min.pdf ,,, 글로벌자산배분형(구 글로벌멀티에셋형) ,,, F013-min.pdf ,,, k-커버드형 ,,, F014-min.pdf ,,, 글로벌배당주식형 ,,, F015-min.pdf ,,, 이머징주식형 ,,, F016-min.pdf ,,, 글로벌금리연동채권형 ,,, F017-min.pdf ,,, 글로벌원자재형 ,,, F018-min.pdf ,,, 글로벌ESG주식형 ,,, F019-min.pdf ,,, 글로벌자산배분형30 ,,, F020-min.pdf ,,, AI글로벌자산배분형 ,,, F021-min.pdf ,,, 장기국공채형 ,,, F022-min.pdf ,,, 국내신성장ETF주식형 ,,, F023-min.pdf ,,, 글로벌신성장주식형 ,,, F024-min.pdf ,,, 미국주식형 ,,, F025-min.pdf ,,, 중국주식형 ,,, F026-min.pdf ,,, 글로벌자산배분형50 ,,, F027-min.pdf`;
+
+      let arr = str.split(" ,,, ");
+
+      let wrap = document.querySelector("#wrap");
+      let wrap2 = document.querySelector("#wrap2");
+
+      let data_name = [];
+      let data_url = [];
+
+      // console.log(arr);
+      // console.log(arr[0]);
+      // console.log(arr[2]);
+      // console.log(arr[4]);
+      // console.log(arr[6]);
+
+      for (let i = 0; i < arr.length; i++) {
+        if (i % 2 == 0) {
+          let item = arr[i];
+          let p = `<br>${arr[i]}`;
+          // console.log(p);
+          // wrap.innerHTML += p;
+          data_name.push(item);
+        }
+      }
+
+      for (let i = 0; i < arr.length; i++) {
+        if (i % 2 == 1) {
+          let item = arr[i];
+          let p = `<br>${arr[i]}`;
+          // console.log(p);
+          // wrap2.innerHTML += p;
+          data_url.push(item);
+        }
+      }
+
+      // obj
+      // let obj = Object.assign({}, data_name);
+      // console.log(obj);
+
+      // console.log(data_name);
+      // console.log(data_url);
+      // console.log(data_length);
+
+      let data_length = data_name.length;
+      let root = "/root/";
+      let obj = document.querySelector(".obj");
+      for (let i = 0; i < data_length; i++) {
+        let item = `
+        {
+          name : "${data_name[i]}",
+          url : "${root}${data_url[i]}"
+        },`;
+        // obj.innerHTML += item;
+      }
+
+      // data
+      let data = [
+        {
+          name: "안정혼합형(변액연금)",
+          url: "/root/D005-min.pdf",
+        },
+        {
+          name: "인덱스혼합형(변액연금)",
+          url: "/root/D006-min.pdf",
+        },
+        {
+          name: "채권형",
+          url: "/root/D007-min.pdf",
+        },
+        {
+          name: "단기채권형(변액연금)",
+          url: "/root/D008-min.pdf",
+        },
+        {
+          name: "그로스혼합형(변액연금)",
+          url: "/root/D009-min.pdf",
+        },
+        {
+          name: "파워인덱스혼합형(변액연금)",
+          url: "/root/D010-min.pdf",
+        },
+        {
+          name: "아시아퍼시픽혼합형(변액연금)",
+          url: "/root/D011-min.pdf",
+        },
+        {
+          name: "주식성장혼합형(변액연금)",
+          url: "/root/D012-min.pdf",
+        },
+        {
+          name: "파워인덱스200혼합형(변액연금)",
+          url: "/root/D013-min.pdf",
+        },
+        {
+          name: "파워브릭스인덱스혼합형(변액연금)",
+          url: "/root/D014-min.pdf",
+        },
+        {
+          name: "블루칩주식혼합형(변액연금)",
+          url: "/root/D015-min.pdf",
+        },
+        {
+          name: "배당주식혼합형(변액연금)",
+          url: "/root/D016-min.pdf",
+        },
+        {
+          name: "인덱스100혼합형(변액연금)",
+          url: "/root/D017-min.pdf",
+        },
+        {
+          name: "코리아인덱스혼합형",
+          url: "/root/D018-min.pdf",
+        },
+        {
+          name: "글로벌인덱스혼합형",
+          url: "/root/D019-min.pdf",
+        },
+        {
+          name: "주식혼합형(VUL가산형)",
+          url: "/root/E001-min.pdf",
+        },
+        {
+          name: "인덱스혼합형(VUL가산형)",
+          url: "/root/E002-min.pdf",
+        },
+        {
+          name: "채권형(VUL가산형)",
+          url: "/root/E003-min.pdf",
+        },
+        {
+          name: "단기채권형(VUL가산형)",
+          url: "/root/E004-min.pdf",
+        },
+        {
+          name: "미국혼합형(Ⅱ)",
+          url: "/root/E007-min.pdf",
+        },
+        {
+          name: "일본혼합형(Ⅱ)",
+          url: "/root/E008-min.pdf",
+        },
+        {
+          name: "아시아퍼시픽혼합형(VUL가산형)",
+          url: "/root/E009-min.pdf",
+        },
+        {
+          name: "주식성장형(VUL가산형)",
+          url: "/root/E010-min.pdf",
+        },
+        {
+          name: "파워인덱스형(VUL가산형)",
+          url: "/root/E011-min.pdf",
+        },
+        {
+          name: "친디아포커스혼합형(VUL가산형)",
+          url: "/root/E012-min.pdf",
+        },
+        {
+          name: "파워브릭스인덱스혼합형(VUL가산형)",
+          url: "/root/E013-min.pdf",
+        },
+        {
+          name: "프라임주식형(VUL가산형)",
+          url: "/root/E014-min.pdf",
+        },
+        {
+          name: "프라임인덱스형(VUL가산형)",
+          url: "/root/E015-min.pdf",
+        },
+        {
+          name: "혼합형(VUL보장형)",
+          url: "/root/F001-min.pdf",
+        },
+        {
+          name: "채권형(VUL보장형)",
+          url: "/root/F002-min.pdf",
+        },
+        {
+          name: "인덱스혼합형(VUL보장형)",
+          url: "/root/F003-min.pdf",
+        },
+        {
+          name: "아시아퍼시픽혼합형(VUL보장형)",
+          url: "/root/F004-min.pdf",
+        },
+        {
+          name: "파워인덱스100혼합형(VUL보장형)",
+          url: "/root/F005-min.pdf",
+        },
+        {
+          name: "일반주식형",
+          url: "/root/F006-min.pdf",
+        },
+        {
+          name: "인덱스주식형",
+          url: "/root/F007-min.pdf",
+        },
+        {
+          name: "가치주식형",
+          url: "/root/F008-min.pdf",
+        },
+        {
+          name: "성장주식형",
+          url: "/root/F009-min.pdf",
+        },
+        {
+          name: "글로벌주식형",
+          url: "/root/F010-min.pdf",
+        },
+        {
+          name: "글로벌채권형",
+          url: "/root/F011-min.pdf",
+        },
+        {
+          name: "K-Selection주식형",
+          url: "/root/F012-min.pdf",
+        },
+        {
+          name: "글로벌자산배분형(구 글로벌멀티에셋형)",
+          url: "/root/F013-min.pdf",
+        },
+        {
+          name: "k-커버드형",
+          url: "/root/F014-min.pdf",
+        },
+        {
+          name: "글로벌배당주식형",
+          url: "/root/F015-min.pdf",
+        },
+        {
+          name: "이머징주식형",
+          url: "/root/F016-min.pdf",
+        },
+        {
+          name: "글로벌금리연동채권형",
+          url: "/root/F017-min.pdf",
+        },
+        {
+          name: "글로벌원자재형",
+          url: "/root/F018-min.pdf",
+        },
+        {
+          name: "글로벌ESG주식형",
+          url: "/root/F019-min.pdf",
+        },
+        {
+          name: "글로벌자산배분형30",
+          url: "/root/F020-min.pdf",
+        },
+        {
+          name: "AI글로벌자산배분형",
+          url: "/root/F021-min.pdf",
+        },
+        {
+          name: "장기국공채형",
+          url: "/root/F022-min.pdf",
+        },
+        {
+          name: "국내신성장ETF주식형",
+          url: "/root/F023-min.pdf",
+        },
+        {
+          name: "글로벌신성장주식형",
+          url: "/root/F024-min.pdf",
+        },
+        {
+          name: "미국주식형",
+          url: "/root/F025-min.pdf",
+        },
+        {
+          name: "중국주식형",
+          url: "/root/F026-min.pdf",
+        },
+        {
+          name: "글로벌자산배분형50",
+          url: "/root/F027-min.pdf",
+        },
+      ];
+
+      function tableData() {
+        let td = [];
+        for (let item of data) {
+          console.log(item.name);
+          console.log(item.url);
+          td.push(`
+            <tr>
+              <td style="padding:20px 8px; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 15px; font-weight:bold; line-height: 1.31; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">${item.name}</td>
+              <td style="padding:20px 8px; background:#fff; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 16px; line-height: 1.31; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">
+                <a href="${item.url}" target="_blank" style="display:inline-block; padding: 4px 14px 3px; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 14px; line-height: 1.71; color: #242424; border:1px solid #777; border-radius: 4px; box-sizing:border-box; text-decoration: none;">자산운용보고서 확인하기<img src="https://www.kyobo.com/dgt/web/pc/common/img/common/ic_pdf.png" alt="아이콘" width="24" height="24" style="display:inline-block; vertical-align:top; margin:0 0 3px 8px">
+                </a>
+              </td>
+            </tr>
+          `);
+        }
+        document.querySelector("table tbody").innerHTML = td.join("");
+      }
+      tableData();
+      
+
+
+    </script>
+  </body>
+</html>

@@ -335,12 +335,13 @@
           console.log(item.url);
           td.push(`
             <tr>
-              <td style="padding:20px 8px; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 15px; font-weight:bold; line-height: 1.31; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">${item.name}</td>
-              <td style="padding:20px 8px; background:#fff; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 16px; line-height: 1.31; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">
-                <a href="${item.url}" target="_blank" style="display:inline-block; padding: 4px 14px 3px; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 14px; line-height: 1.71; color: #242424; border:1px solid #777; border-radius: 4px; box-sizing:border-box; text-decoration: none;">자산운용보고서 확인하기<img src="https://www.kyobo.com/dgt/web/pc/common/img/common/ic_pdf.png" alt="아이콘" width="24" height="24" style="display:inline-block; vertical-align:top; margin:0 0 3px 8px">
+              <td style="padding:10px 8px; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 14px; line-height: 1.31; color: #555555; text-align:center; border-bottom:1px solid #e6e6e6">${item.name}</td>
+              <td style="padding:10px 8px; background:#fff; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 16px; line-height: 1.31; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">
+                <a href="${item.url}" target="_blank" style="display:inline-block; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 12px; line-height: 32px; width: 196px; color: #242424; border:1px solid #777; border-radius: 4px; box-sizing:border-box; text-decoration: none;">자산운용보고서 확인하기<img src="https://www.kyobo.com/dgt/web/pc/common/img/common/ic_pdf.png" alt="아이콘" width="24" height="24" style="display:inline-block; vertical-align:middle; margin:0 0 5px 8px">
                 </a>
               </td>
             </tr>
+            &&
           `);
         }
         document.querySelector("table tbody").innerHTML = td.join("");

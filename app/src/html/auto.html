@@ -93,239 +93,298 @@
       // console.log(data_length);
 
       let data_length = data_name.length;
-      let root = "/root/";
+      let root = "http://umsgw.kyobo.com:16080/TOBE/images/mail/";
       let obj = document.querySelector(".obj");
+      let num = 7;
       for (let i = 0; i < data_length; i++) {
         let item = `
         {
           name : "${data_name[i]}",
-          url : "${root}${data_url[i]}"
+          url : "${root}${data_url[i]}",
+          num : "${num}",
         },`;
-        // obj.innerHTML += item;
+        num += 1;
+        obj.innerHTML += item;
       }
 
       // data
       let data = [
         {
-          name: "안정혼합형(변액연금)",
-          url: "/root/D005-min.pdf",
+          name : "안정혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D005-min.pdf",
+          num : "7",
         },
         {
-          name: "인덱스혼합형(변액연금)",
-          url: "/root/D006-min.pdf",
+          name : "인덱스혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D006-min.pdf",
+          num : "8",
         },
         {
-          name: "채권형",
-          url: "/root/D007-min.pdf",
+          name : "채권형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D007-min.pdf",
+          num : "9",
         },
         {
-          name: "단기채권형(변액연금)",
-          url: "/root/D008-min.pdf",
+          name : "단기채권형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D008-min.pdf",
+          num : "10",
         },
         {
-          name: "그로스혼합형(변액연금)",
-          url: "/root/D009-min.pdf",
+          name : "그로스혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D009-min.pdf",
+          num : "11",
         },
         {
-          name: "파워인덱스혼합형(변액연금)",
-          url: "/root/D010-min.pdf",
+          name : "파워인덱스혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D010-min.pdf",
+          num : "12",
         },
         {
-          name: "아시아퍼시픽혼합형(변액연금)",
-          url: "/root/D011-min.pdf",
+          name : "아시아퍼시픽혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D011-min.pdf",
+          num : "13",
         },
         {
-          name: "주식성장혼합형(변액연금)",
-          url: "/root/D012-min.pdf",
+          name : "주식성장혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D012-min.pdf",
+          num : "14",
         },
         {
-          name: "파워인덱스200혼합형(변액연금)",
-          url: "/root/D013-min.pdf",
+          name : "파워인덱스200혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D013-min.pdf",
+          num : "15",
         },
         {
-          name: "파워브릭스인덱스혼합형(변액연금)",
-          url: "/root/D014-min.pdf",
+          name : "파워브릭스인덱스혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D014-min.pdf",
+          num : "16",
         },
         {
-          name: "블루칩주식혼합형(변액연금)",
-          url: "/root/D015-min.pdf",
+          name : "블루칩주식혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D015-min.pdf",
+          num : "17",
         },
         {
-          name: "배당주식혼합형(변액연금)",
-          url: "/root/D016-min.pdf",
+          name : "배당주식혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D016-min.pdf",
+          num : "18",
         },
         {
-          name: "인덱스100혼합형(변액연금)",
-          url: "/root/D017-min.pdf",
+          name : "인덱스100혼합형(변액연금)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D017-min.pdf",
+          num : "19",
         },
         {
-          name: "코리아인덱스혼합형",
-          url: "/root/D018-min.pdf",
+          name : "코리아인덱스혼합형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D018-min.pdf",
+          num : "20",
         },
         {
-          name: "글로벌인덱스혼합형",
-          url: "/root/D019-min.pdf",
+          name : "글로벌인덱스혼합형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/D019-min.pdf",
+          num : "21",
         },
         {
-          name: "주식혼합형(VUL가산형)",
-          url: "/root/E001-min.pdf",
+          name : "주식혼합형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E001-min.pdf",
+          num : "22",
         },
         {
-          name: "인덱스혼합형(VUL가산형)",
-          url: "/root/E002-min.pdf",
+          name : "인덱스혼합형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E002-min.pdf",
+          num : "23",
         },
         {
-          name: "채권형(VUL가산형)",
-          url: "/root/E003-min.pdf",
+          name : "채권형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E003-min.pdf",
+          num : "24",
         },
         {
-          name: "단기채권형(VUL가산형)",
-          url: "/root/E004-min.pdf",
+          name : "단기채권형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E004-min.pdf",
+          num : "25",
         },
         {
-          name: "미국혼합형(Ⅱ)",
-          url: "/root/E007-min.pdf",
+          name : "미국혼합형(Ⅱ)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E007-min.pdf",
+          num : "26",
         },
         {
-          name: "일본혼합형(Ⅱ)",
-          url: "/root/E008-min.pdf",
+          name : "일본혼합형(Ⅱ)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E008-min.pdf",
+          num : "27",
         },
         {
-          name: "아시아퍼시픽혼합형(VUL가산형)",
-          url: "/root/E009-min.pdf",
+          name : "아시아퍼시픽혼합형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E009-min.pdf",
+          num : "28",
         },
         {
-          name: "주식성장형(VUL가산형)",
-          url: "/root/E010-min.pdf",
+          name : "주식성장형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E010-min.pdf",
+          num : "29",
         },
         {
-          name: "파워인덱스형(VUL가산형)",
-          url: "/root/E011-min.pdf",
+          name : "파워인덱스형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E011-min.pdf",
+          num : "30",
         },
         {
-          name: "친디아포커스혼합형(VUL가산형)",
-          url: "/root/E012-min.pdf",
+          name : "친디아포커스혼합형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E012-min.pdf",
+          num : "31",
         },
         {
-          name: "파워브릭스인덱스혼합형(VUL가산형)",
-          url: "/root/E013-min.pdf",
+          name : "파워브릭스인덱스혼합형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E013-min.pdf",
+          num : "32",
         },
         {
-          name: "프라임주식형(VUL가산형)",
-          url: "/root/E014-min.pdf",
+          name : "프라임주식형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E014-min.pdf",
+          num : "33",
         },
         {
-          name: "프라임인덱스형(VUL가산형)",
-          url: "/root/E015-min.pdf",
+          name : "프라임인덱스형(VUL가산형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/E015-min.pdf",
+          num : "34",
         },
         {
-          name: "혼합형(VUL보장형)",
-          url: "/root/F001-min.pdf",
+          name : "혼합형(VUL보장형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F001-min.pdf",
+          num : "35",
         },
         {
-          name: "채권형(VUL보장형)",
-          url: "/root/F002-min.pdf",
+          name : "채권형(VUL보장형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F002-min.pdf",
+          num : "36",
         },
         {
-          name: "인덱스혼합형(VUL보장형)",
-          url: "/root/F003-min.pdf",
+          name : "인덱스혼합형(VUL보장형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F003-min.pdf",
+          num : "37",
         },
         {
-          name: "아시아퍼시픽혼합형(VUL보장형)",
-          url: "/root/F004-min.pdf",
+          name : "아시아퍼시픽혼합형(VUL보장형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F004-min.pdf",
+          num : "38",
         },
         {
-          name: "파워인덱스100혼합형(VUL보장형)",
-          url: "/root/F005-min.pdf",
+          name : "파워인덱스100혼합형(VUL보장형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F005-min.pdf",
+          num : "39",
         },
         {
-          name: "일반주식형",
-          url: "/root/F006-min.pdf",
+          name : "일반주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F006-min.pdf",
+          num : "40",
         },
         {
-          name: "인덱스주식형",
-          url: "/root/F007-min.pdf",
+          name : "인덱스주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F007-min.pdf",
+          num : "41",
         },
         {
-          name: "가치주식형",
-          url: "/root/F008-min.pdf",
+          name : "가치주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F008-min.pdf",
+          num : "42",
         },
         {
-          name: "성장주식형",
-          url: "/root/F009-min.pdf",
+          name : "성장주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F009-min.pdf",
+          num : "43",
         },
         {
-          name: "글로벌주식형",
-          url: "/root/F010-min.pdf",
+          name : "글로벌주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F010-min.pdf",
+          num : "44",
         },
         {
-          name: "글로벌채권형",
-          url: "/root/F011-min.pdf",
+          name : "글로벌채권형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F011-min.pdf",
+          num : "45",
         },
         {
-          name: "K-Selection주식형",
-          url: "/root/F012-min.pdf",
+          name : "K-Selection주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F012-min.pdf",
+          num : "46",
         },
         {
-          name: "글로벌자산배분형(구 글로벌멀티에셋형)",
-          url: "/root/F013-min.pdf",
+          name : "글로벌자산배분형(구 글로벌멀티에셋형)",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F013-min.pdf",
+          num : "47",
         },
         {
-          name: "k-커버드형",
-          url: "/root/F014-min.pdf",
+          name : "k-커버드형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F014-min.pdf",
+          num : "48",
         },
         {
-          name: "글로벌배당주식형",
-          url: "/root/F015-min.pdf",
+          name : "글로벌배당주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F015-min.pdf",
+          num : "49",
         },
         {
-          name: "이머징주식형",
-          url: "/root/F016-min.pdf",
+          name : "이머징주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F016-min.pdf",
+          num : "50",
         },
         {
-          name: "글로벌금리연동채권형",
-          url: "/root/F017-min.pdf",
+          name : "글로벌금리연동채권형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F017-min.pdf",
+          num : "51",
         },
         {
-          name: "글로벌원자재형",
-          url: "/root/F018-min.pdf",
+          name : "글로벌원자재형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F018-min.pdf",
+          num : "52",
         },
         {
-          name: "글로벌ESG주식형",
-          url: "/root/F019-min.pdf",
+          name : "글로벌ESG주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F019-min.pdf",
+          num : "53",
         },
         {
-          name: "글로벌자산배분형30",
-          url: "/root/F020-min.pdf",
+          name : "글로벌자산배분형30",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F020-min.pdf",
+          num : "54",
         },
         {
-          name: "AI글로벌자산배분형",
-          url: "/root/F021-min.pdf",
+          name : "AI글로벌자산배분형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F021-min.pdf",
+          num : "55",
         },
         {
-          name: "장기국공채형",
-          url: "/root/F022-min.pdf",
+          name : "장기국공채형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F022-min.pdf",
+          num : "56",
         },
         {
-          name: "국내신성장ETF주식형",
-          url: "/root/F023-min.pdf",
+          name : "국내신성장ETF주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F023-min.pdf",
+          num : "57",
         },
         {
-          name: "글로벌신성장주식형",
-          url: "/root/F024-min.pdf",
+          name : "글로벌신성장주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F024-min.pdf",
+          num : "58",
         },
         {
-          name: "미국주식형",
-          url: "/root/F025-min.pdf",
+          name : "미국주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F025-min.pdf",
+          num : "59",
         },
         {
-          name: "중국주식형",
-          url: "/root/F026-min.pdf",
+          name : "중국주식형",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F026-min.pdf",
+          num : "60",
         },
         {
-          name: "글로벌자산배분형50",
-          url: "/root/F027-min.pdf",
+          name : "글로벌자산배분형50",
+          url : "http://umsgw.kyobo.com:16080/TOBE/images/mail/F027-min.pdf",
+          num : "61",
         },
+
       ];
 
       function tableData() {
@@ -333,11 +392,25 @@
         for (let item of data) {
           console.log(item.name);
           console.log(item.url);
+          // td.push(`
+          //   <if !util.isNull(FUND${item.num}?trim)>
+          //   <tr>
+          //     <td>${item.name}</td>
+          //     <td>
+          //       <a href="${item.url}" target="_blank" class="btn down_pdf">
+          //         <span>자산운용보고서 확인하기</span>
+          //       </a>
+          //     </td>
+          //   </tr>
+          //   </if>
+          //   &&
+          // `);
           td.push(`
             <tr>
-              <td style="padding:10px 8px; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 14px; line-height: 1.31; color: #555555; text-align:center; border-bottom:1px solid #e6e6e6">${item.name}</td>
-              <td style="padding:10px 8px; background:#fff; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 16px; line-height: 1.31; color: #242424; text-align:center; border-bottom:1px solid #e6e6e6">
-                <a href="${item.url}" target="_blank" style="display:inline-block; font-family:'맑은 고딕', 'Malgun Gothic', sans-serf; font-size: 12px; line-height: 32px; width: 196px; color: #242424; border:1px solid #777; border-radius: 4px; box-sizing:border-box; text-decoration: none;">자산운용보고서 확인하기<img src="https://www.kyobo.com/dgt/web/pc/common/img/common/ic_pdf.png" alt="아이콘" width="24" height="24" style="display:inline-block; vertical-align:middle; margin:0 0 5px 8px">
+              <td>${item.name}</td>
+              <td>
+                <a href="${item.url}" target="_blank" class="btn down_pdf">
+                  <span>자산운용보고서 확인하기</span>
                 </a>
               </td>
             </tr>

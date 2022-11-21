@@ -162,11 +162,12 @@
         for(let temp in obj){
           msg += temp + ' = ' + obj[temp] + '\n';
         }
-        console.log(msg);
+        // console.log(msg);
         // 오브젝트 속성 확인
 
         // 태그 네임 소문자로 변환
         let tagName = parent.tagName.toLowerCase();
+        // children 변수 생성
         let children;
 
         // 테이블일때
@@ -187,13 +188,19 @@
         console.log(parent);
         console.log(tagName);
         console.log(children);
+        
 
-        var replace = {
+        // replace 오브젝트 생성
+        let replace = {
           order: byLocale(),
           index: false,
+          // array
           array: (function () {
-            var array = [];
-            for (var x = 0; x < children.length; x++) array[x] = children[x];
+            let array = [];
+            for (let x = 0; x < children.length; x++) {
+              array[x] = children[x];
+              console.log(array);
+            }
             return array;
           })(),
           checkIndex: function (index) {
@@ -237,6 +244,10 @@
             this.setChildren();
           },
         };
+
+        console.log(replace);
+
+        // replace 반환
         return replace;
       }
 
@@ -272,6 +283,16 @@
       function reverseLI() {
         rep.descending();
       }
+
+      function makeAdder(x) {
+        var y = 1;
+        return function(z) {
+          y = 100;
+          return x + y + z;
+        };
+      }
+      var add5 = makeAdder(5);
+      console.log(add5(2)); 
     </script>
   </body>
 </html>

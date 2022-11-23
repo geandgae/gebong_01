@@ -147,7 +147,11 @@ import {data_set} from "./data_set.js";
           <th class="id">id</th>
           <th class="name">name</th>
           <th class="url">url</th>
-          <th class="date">date</th>
+          <th class="date">
+            date
+            <button class="sortasc">▲</button>
+            <button class="sortdesc">▼</button>
+          </th>
           <th class="state">state</th>
           <th class="author">author</th>
           <th class="note">note</th>
@@ -632,30 +636,71 @@ import {data_set} from "./data_set.js";
     return parseFloat( nb ) - parseFloat( na ); 
   }
 
+  function srtNum2 (a, b){  
+    if (typeof a == "number" && typeof b == "number") {
+      return a - b;
+    }
+    // , - 공백문자만 삭제하기.  
+    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let numA = parseFloat( na ) + ""; 
+    let numB = parseFloat( nb ) + ""; 
+    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
+      return false; 
+    } 
+    return parseFloat( na ) - parseFloat( nb ); 
+  }
+
 
   let arrayDate = [];
   let dataTd = document.querySelectorAll(".table tbody tr");
-  // console.log(dataTd);
+  console.log(dataTd);
   if (dataTd) {
     dataTd.forEach(function (item) {
       let date = item.querySelector("td.date p").innerText;
       arrayDate.push(date);
     });
   }
-  // console.log(arrayDate.sort(srtNum));
+  console.log(arrayDate.sort(srtNum));
   
+  // old
+  // let dateTh = document.querySelectorAll(".table th.date");
+  // if (dateTh) {
+  //   dateTh.forEach(function (item) {
+  //     item.addEventListener("click", function() {
+  //       let arrayDate = [];
+  //       let date = this.closest(".table").querySelectorAll(".table tbody tr");
+  //       date.forEach(function (i) {
+  //         arrayDate.push(i.dataset.sort);
+  //       });
+  //       console.log(arrayDate);
+  //       console.log(arrayDate.sort(srtNum));
+  //     });
+  //   });
+  // }
+
   let dateTh = document.querySelectorAll(".table th.date");
   if (dateTh) {
     dateTh.forEach(function (item) {
-      item.addEventListener("click", function() {
+      let asc = item.querySelector(".sortasc");
+      let desc = item.querySelector(".sortdesc");
+      asc.addEventListener("click", function() {
         let arrayDate = [];
         let date = this.closest(".table").querySelectorAll(".table tbody tr");
         date.forEach(function (i) {
-          // arrayDate.push(i.dataset.sort);
+          arrayDate.push(i.dataset.sort);
         });
-        // console.log(arrayDate);
+        console.log("원본 " + arrayDate);
+        console.log(arrayDate.sort(srtNum2));
+      });
+      desc.addEventListener("click", function() {
+        let arrayDate = [];
+        let date = this.closest(".table").querySelectorAll(".table tbody tr");
+        date.forEach(function (i) {
+          arrayDate.push(i.dataset.sort);
+        });
+        console.log("원본 " + arrayDate);
         console.log(arrayDate.sort(srtNum));
-        
       });
     });
   }

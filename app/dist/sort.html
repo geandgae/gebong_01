@@ -28,12 +28,12 @@
         <li class="li">055-1234-5678</li>
         <li class="li">054-1234-5678</li>
         <li class="li">044-1234-5678</li>
-        <li class="li">043-1234-5678</li>
+        <li class="li">2</li>
         <li class="li">041-1234-5678</li>
         <li class="li">033-1234-5678</li>
         <li class="li">032-1234-5678</li>
         <li class="li">031-1234-5678</li>
-        <li class="li">02-1234-5678</li>
+        <li class="li">0</li>
       </ul>
 
       <!-- <table class="table" id="lists">
@@ -45,6 +45,29 @@
           <tr><td> 겨울왕국 </td></tr>
         </tbody>
       </table> -->
+
+      <!-- NodeList prototype -->
+      <!-- NodeList에 프로토타입을 추가할 수도 있다. -->
+      <!-- <div class="suggestions">suggestions</div>
+      <script>
+        let elements = document.querySelectorAll(".suggestions");
+
+        NodeList.prototype.addEventListener = function(event, func) {
+          this.forEach(function(content, item) {
+            content.addEventListener(event, func);
+          });
+        }
+
+        function log() {
+          console.log(this, " was clicked");
+        }
+
+        elements.addEventListener("click", log);
+        //or
+        elements.addEventListener("click", function() {
+            console.log(this, "  awas clicked");
+        });
+      </script> -->
 
     </div>
     <!-- //wrap -->
@@ -82,7 +105,6 @@
       }
 
       /* changeForSorting() : 문자열 바꾸기. */
-
       function changeForSorting(first, second) {
         // 문자열의 복사본 만들기.
         var a = first.toString().replace(/[\s\xA0]+/g, " ");
@@ -127,7 +149,6 @@
       }
 
       /* byLocale() */
-
       function byLocale() {
         var compare = function (a, b) {
           var sorting = sortingNumber(a, b);
@@ -153,17 +174,16 @@
       }
 
       /* replacement() */
-
       function replacement(parent) {
 
-        // 오브젝트 속성 확인
+        // 오브젝트 속성 확인 test 무시함
         let obj = new Object(parent)
         let msg = '';
         for(let temp in obj){
           msg += temp + ' = ' + obj[temp] + '\n';
         }
         // console.log(msg);
-        // 오브젝트 속성 확인
+        // 오브젝트 속성 확인 test 무시함
 
         // 태그 네임 소문자로 변환
         let tagName = parent.tagName.toLowerCase();
@@ -194,35 +214,51 @@
         let replace = {
           order: byLocale(),
           index: false,
-          // array
+          // array return 함수 : children 배열을 새로운 array 배열에 담는다.
+          // children querySelectorAll 로 생성된 유사 배열 nodelist
+          // array childrend을 바탕으로 새롭게 만든 배열
+          // 참고: NodeList 가 Array 는 아니지만, forEach() 를 사용하여 반복할 수 있습니다. 또한 Array.from() 을 사용하여 Array 로 변환 할 수도 있습니다.그러나 일부 오래된 브라우저는 아직 NodeList.forEach() 또는 Array.from() 를 구현하지 않았습니다. 이것은 Array.prototype.forEach() 를 사용하여 회피할 수 있습니다. — 이 문서의 예제를 참조하세요.
           array: (function () {
             let array = [];
             for (let x = 0; x < children.length; x++) {
               array[x] = children[x];
-              console.log(array);
             }
+            // return array : replace 오브젝트 array에 return 
             return array;
           })(),
+          // array 변환 예
+          // var div_list = document.querySelectorAll('div'); // returns NodeList
+          // var div_array = Array.prototype.slice.call(div_list); // converts NodeList to Array
+          array2: (function () {
+            let array = Array.prototype.slice.call(children);
+            console.log("array 변환 예 테스트");
+            console.log(array);
+            return array;
+          })(),
+          // array 변환 예
+          // checkIndex
           checkIndex: function (index) {
-            if (index) this.index = parseInt(index, 10);
-            var tagName = parent.tagName.toLowerCase();
+            if (index) this.index = parseInt(index, 10); //index 10진수 변환
+            let tagName = parent.tagName.toLowerCase(); // 태그 네임 소문자로 변환 위에 선언한 tagName과 뭐가 다름?
             if (tagName == "tbody" && !index) this.index = 0;
           },
+          // getText
           getText: function (child) {
             if (this.index) child = child.cells[this.index];
             return getTextByClone(child);
           },
+          // setChildren
           setChildren: function () {
             var array = this.array;
             while (parent.hasChildNodes()) parent.removeChild(parent.firstChild);
             for (var x = 0; x < array.length; x++) parent.appendChild(array[x]);
           },
+          // 오름차순
           ascending: function (index) {
-            // 오름차순
             this.checkIndex(index);
-            var _self = this;
-            var order = this.order;
-            var ascending = function (a, b) {
+            let _self = this;
+            let order = this.order;
+            let ascending = function (a, b) {
               var a = _self.getText(a);
               var b = _self.getText(b);
               return order.ascending(a, b);
@@ -230,12 +266,12 @@
             this.array.sort(ascending);
             this.setChildren();
           },
+          // 내림차순
           descending: function (index) {
-            // 내림차순
             this.checkIndex(index);
-            var _self = this;
-            var order = this.order;
-            var descending = function (a, b) {
+            let _self = this;
+            let order = this.order;
+            let descending = function (a, b) {
               var a = _self.getText(a);
               var b = _self.getText(b);
               return order.descending(a, b);
@@ -246,8 +282,9 @@
         };
 
         console.log(replace);
+        
 
-        // replace 반환
+        // replace 반환 replacement에 반환
         return replace;
       }
 
@@ -284,6 +321,8 @@
         rep.descending();
       }
 
+
+      // closer test
       function makeAdder(x) {
         var y = 1;
         return function(z) {
@@ -292,7 +331,44 @@
         };
       }
       var add5 = makeAdder(5);
-      console.log(add5(2)); 
+      console.log("closer " + add5(2)); 
+
+      // foreach test
+      function logArrayElements(element, index, array) {
+        // console.log('a[' + index + '] = ' + element);
+      }
+      [2, 5, , 9].forEach(logArrayElements);
+
+      // thisArg
+      function Counter() {
+        this.sum = 0
+        this.count = 0
+      }
+      Counter.prototype.add = function(array) {
+        array.forEach(function(entry) {
+          this.sum += entry
+          ++this.count
+        }, this)
+        // ^---- 주의
+      }
+      const obj = new Counter();
+      // console.log(obj);
+      obj.add([2, 5, 9]);
+      // console.log(obj.count);
+      // console.log(obj.sum);
+
+      // test
+      let test_words = ['one', 'two', 'three', 'four'];
+      // console.log(words);
+      // console.log(words.shift());
+      test_words.forEach(function(word) {
+        // console.log(word);
+        if (word === 'two') {
+          test_words.shift();
+        }
+        // console.log(test_words);
+      })
+      
     </script>
   </body>
 </html>

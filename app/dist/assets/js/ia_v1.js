@@ -661,7 +661,7 @@ import {data_set} from "./data_set.js";
       arrayDate.push(date);
     });
   }
-  console.log(arrayDate.sort(srtNum));
+  // console.log(arrayDate.sort(srtNum));
   
   // old
   // let dateTh = document.querySelectorAll(".table th.date");
@@ -690,7 +690,7 @@ import {data_set} from "./data_set.js";
         date.forEach(function (i) {
           arrayDate.push(i.dataset.sort);
         });
-        console.log("원본 " + arrayDate);
+        // console.log("원본 " + arrayDate);
         console.log(arrayDate.sort(srtNum2));
       });
       desc.addEventListener("click", function() {
@@ -699,7 +699,7 @@ import {data_set} from "./data_set.js";
         date.forEach(function (i) {
           arrayDate.push(i.dataset.sort);
         });
-        console.log("원본 " + arrayDate);
+        // console.log("원본 " + arrayDate);
         console.log(arrayDate.sort(srtNum));
       });
     });

@@ -399,21 +399,6 @@ import {data_set} from "./data_set.js";
     }
   }
 
-  let objtest = {
-		init: function() {
-			let el;
-      console.log(el);
-      return el;
-		},
-		set: function(){
-			this.init();
-      // el = document.querySelectorAll(".table tbody tr");
-      // return el;
-      // let el = document.querySelectorAll(".table tbody tr");
-      // console.log(init.el);
-		},
-	}
-
   // categoryFilter
   function categoryFilter() {
     let article = document.querySelectorAll(".article");
@@ -485,6 +470,22 @@ import {data_set} from "./data_set.js";
       });
     }
   }
+
+  // 버그 테스트
+  let objtest = {
+		init: function() {
+			let el;
+      console.log(el);
+      return el;
+		},
+		set: function(){
+			this.init();
+      // el = document.querySelectorAll(".table tbody tr");
+      // return el;
+      // let el = document.querySelectorAll(".table tbody tr");
+      // console.log(init.el);
+		},
+	}
 
   // tableSort
   function tableSort() {
@@ -583,10 +584,10 @@ import {data_set} from "./data_set.js";
         tableState();
         tableIndex();
         tableCopy();
-        // tableCheck();
-        noteToggle();
-        waccToggle();
-        objtest.set();
+        tableCheck(); //버그
+        noteToggle(); //버그
+        waccToggle(); //버그
+        objtest.set(); //버그 테스트
 
       }
 

@@ -509,7 +509,178 @@ import {data_set} from "./data_set.js";
   // 접근성 
   // core
 
-  // sort test 2022-11-28
+  let tagA = document.querySelector("table");
+  function exTest(text) {
+    // 태그네임 소문자로
+    let a1 = text.tagName.toLowerCase();
+    console.warn("--------------Test--------------");
+    console.log(a1);
+    console.log(tagA.tBodies[0]);
+    console.warn("--------------Test--------------");
+  }
+  exTest(tagA);
+
+  
+
+  // 숫자 실수 적용
+  function sortingNumber(a, b){  
+    if (typeof a == "number" && typeof b == "number") {
+      return a - b;
+    }
+    // , - 공백문자만 삭제하기.  
+    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let numA = parseFloat( na ) + ""; 
+    let numB = parseFloat( nb ) + ""; 
+    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
+      return false; 
+    } 
+    return parseFloat( na ) - parseFloat( nb ); 
+  }
+  console.log(sortingNumber("2022-12-11", "2022-10-31"));
+
+
+  // changeForSorting() : 문자열 바꾸기
+  function changeForSorting(first, second){  
+    // 문자열의 복사본 만들기. 
+    let a = first.toString().replace(/[\s\xA0]+/g, " "); 
+    let b = second.toString().replace(/[\s\xA0]+/g, " "); 
+    let change = { first : a, second : b }; 
+
+    if (a.search( /\d/ ) < 0 || b.search( /\d/ ) < 0 || a.length == 0 || b.length == 0) {
+      return change;
+    }
+
+    let regExp = /(\d),(\d)/g; // 천단위 쉼표를 찾기 위한 정규식. 
+
+    a = a.replace(regExp, "$1" + "$2"); 
+    b = b.replace(regExp, "$1" + "$2"); 
+
+    let unit = 0; 
+    let aNb = a + " " + b; 
+    let numbers = aNb.match(/\d+/g); // 문자열에 들어있는 숫자 찾기 
+
+    for ( let x = 0; x < numbers.length; x++ ){ 
+      let length = numbers[ x ].length; 
+      if ( unit < length ) unit = length; 
+    } 
+
+    let addZero = function( string ){ // 숫자들의 단위 맞추기 
+
+      let match = string.match( /^0+/ ); 
+
+      if ( string.length == unit ) return ( match == null ) ? string : match + string; 
+
+      let zero = "0"; 
+
+      for ( let x = string.length; x < unit; x++ ) string = zero + string; 
+
+      return ( match == null ) ? string : match + string; 
+    }; 
+
+    change.first = a.replace( /\d+/g, addZero ); 
+    change.second = b.replace( /\d+/g, addZero ); 
+
+    return change; 
+  } 
+  console.log(changeForSorting("first", "second"));
+
+  let korean = [ "티스토리", "다음", "네이버", "드림위즈" ]; 
+  let english = [ "Google", "Stackoverflow", "Yahoo!", "Ask", "Bing" ]; 
+  let others = [ "Übel", "Ubah", "Atom", "Änderung", "Ansage" ]; 
+  let number = [ 100, 25, 5, 40, 1, 10 ]; 
+  let string = [ "100", "25", "5", "40", "1", "10" ]; 
+  let overall = [ "티스토리", "Google", "Übel", "Ubah", 100, 25, "5", "40" ]; 
+
+  function compare ( a , b ) { return a - b; } 
+
+  function ascending ( a , b ) {  
+    if ( a < b ) return -1; 
+    else if ( a == b ) return 0; 
+    else return 1; 
+  }
+  function descending ( a , b ) {
+    if ( b < a ) return -1;
+    else if ( b == a ) return 0; 
+    else return 1;     
+  } 
+
+  // console.log(korean.sort(compare));
+  // console.log(korean.sort(ascending));
+  // console.log(korean.sort(descending));
+  // console.log(korean.sort());
+  // console.log(number.sort(compare));
+  // console.log(number.sort());
+  // console.log(string.sort(compare));
+  // console.log(string.sort());
+  // console.log(overall.sort(compare));
+  // console.log(overall.sort());
+  // console.log(english.sort());
+  // console.log(others.sort());
+  // console.log(number.sort());
+  // console.log(string.sort());
+  // console.log(overall.sort());
+
+  function srtNum (a, b){  
+    if (typeof a == "number" && typeof b == "number") {
+      return b - a;
+    }
+    // , - 공백문자만 삭제하기.  
+    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let numA = parseFloat( na ) + ""; 
+    let numB = parseFloat( nb ) + ""; 
+    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
+      return false; 
+    } 
+    return parseFloat( nb ) - parseFloat( na ); 
+  }
+
+  function srtNum2 (a, b){  
+    if (typeof a == "number" && typeof b == "number") {
+      return a - b;
+    }
+    // , - 공백문자만 삭제하기.  
+    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let numA = parseFloat( na ) + ""; 
+    let numB = parseFloat( nb ) + ""; 
+    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
+      return false; 
+    } 
+    return parseFloat( na ) - parseFloat( nb ); 
+  }
+
+
+  // 전체 배열 테스트
+  // let arrayDate = [];
+  // let dataTd = document.querySelectorAll(".table tbody tr");
+  // console.log(dataTd);
+  // if (dataTd) {
+  //   dataTd.forEach(function (item) {
+  //     let date = item.querySelector("td.date p").innerText;
+  //     arrayDate.push(date);
+  //   });
+  // }
+  
+  // old
+  // let dateTh = document.querySelectorAll(".table th.date");
+  // if (dateTh) {
+  //   dateTh.forEach(function (item) {
+  //     item.addEventListener("click", function() {
+  //       let arrayDate = [];
+  //       let date = this.closest(".table").querySelectorAll(".table tbody tr");
+  //       date.forEach(function (i) {
+  //         arrayDate.push(i.dataset.sort);
+  //       });
+  //       console.log(arrayDate);
+  //       console.log(arrayDate.sort(srtNum));
+  //     });
+  //   });
+  // }
+
+
+  // 신규 작성 2022-11-28
   function srtAsc (a, b){
     let datasetA = a.dataset.sort;
     let datasetB = b.dataset.sort;
@@ -545,7 +716,7 @@ import {data_set} from "./data_set.js";
 
   
 
-  // sort test
+  // 실행부
   let dateTh = document.querySelectorAll(".table th.date");
   if (dateTh) {
     

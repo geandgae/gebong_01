@@ -509,125 +509,32 @@ import {data_set} from "./data_set.js";
   // 접근성 
   // core
 
-  let tagA = document.querySelector("table");
-  function exTest(text) {
-    // 태그네임 소문자로
-    let a1 = text.tagName.toLowerCase();
-    console.warn("--------------Test--------------");
-    console.log(a1);
-    console.log(tagA.tBodies[0]);
-    console.warn("--------------Test--------------");
-  }
-  exTest(tagA);
-
-  
-
-  // 숫자 실수 적용
-  function sortingNumber(a, b){  
+  // sort test 2022-11-28
+  function srtAsc (a, b){
+    let datasetA = a.dataset.sort;
+    let datasetB = b.dataset.sort;
     if (typeof a == "number" && typeof b == "number") {
       return a - b;
     }
-    // , - 공백문자만 삭제하기.  
-    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
-    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    // , - 공백문자만 삭제하기.
+    let na = ( datasetA + "" ).replace(/[-,\s\xA0]+/gi, "");
+    let nb = ( datasetB + "" ).replace(/[-,\s\xA0]+/gi, "");
     let numA = parseFloat( na ) + ""; 
     let numB = parseFloat( nb ) + ""; 
     if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
       return false; 
     } 
-    return parseFloat( na ) - parseFloat( nb ); 
+    return parseFloat( na ) - parseFloat( nb );
   }
-  console.log(sortingNumber("2022-12-11", "2022-10-31"));
-
-
-  // changeForSorting() : 문자열 바꾸기
-  function changeForSorting(first, second){  
-    // 문자열의 복사본 만들기. 
-    let a = first.toString().replace(/[\s\xA0]+/g, " "); 
-    let b = second.toString().replace(/[\s\xA0]+/g, " "); 
-    let change = { first : a, second : b }; 
-
-    if (a.search( /\d/ ) < 0 || b.search( /\d/ ) < 0 || a.length == 0 || b.length == 0) {
-      return change;
-    }
-
-    let regExp = /(\d),(\d)/g; // 천단위 쉼표를 찾기 위한 정규식. 
-
-    a = a.replace(regExp, "$1" + "$2"); 
-    b = b.replace(regExp, "$1" + "$2"); 
-
-    let unit = 0; 
-    let aNb = a + " " + b; 
-    let numbers = aNb.match(/\d+/g); // 문자열에 들어있는 숫자 찾기 
-
-    for ( let x = 0; x < numbers.length; x++ ){ 
-      let length = numbers[ x ].length; 
-      if ( unit < length ) unit = length; 
-    } 
-
-    let addZero = function( string ){ // 숫자들의 단위 맞추기 
-
-      let match = string.match( /^0+/ ); 
-
-      if ( string.length == unit ) return ( match == null ) ? string : match + string; 
-
-      let zero = "0"; 
-
-      for ( let x = string.length; x < unit; x++ ) string = zero + string; 
-
-      return ( match == null ) ? string : match + string; 
-    }; 
-
-    change.first = a.replace( /\d+/g, addZero ); 
-    change.second = b.replace( /\d+/g, addZero ); 
-
-    return change; 
-  } 
-  console.log(changeForSorting("first", "second"));
-
-  let korean = [ "티스토리", "다음", "네이버", "드림위즈" ]; 
-  let english = [ "Google", "Stackoverflow", "Yahoo!", "Ask", "Bing" ]; 
-  let others = [ "Übel", "Ubah", "Atom", "Änderung", "Ansage" ]; 
-  let number = [ 100, 25, 5, 40, 1, 10 ]; 
-  let string = [ "100", "25", "5", "40", "1", "10" ]; 
-  let overall = [ "티스토리", "Google", "Übel", "Ubah", 100, 25, "5", "40" ]; 
-
-  function compare ( a , b ) { return a - b; } 
-
-  function ascending ( a , b ) {  
-    if ( a < b ) return -1; 
-    else if ( a == b ) return 0; 
-    else return 1; 
-  }
-  function descending ( a , b ) {
-    if ( b < a ) return -1;
-    else if ( b == a ) return 0; 
-    else return 1;     
-  } 
-
-  // console.log(korean.sort(compare));
-  // console.log(korean.sort(ascending));
-  // console.log(korean.sort(descending));
-  // console.log(korean.sort());
-  // console.log(number.sort(compare));
-  // console.log(number.sort());
-  // console.log(string.sort(compare));
-  // console.log(string.sort());
-  // console.log(overall.sort(compare));
-  // console.log(overall.sort());
-  // console.log(english.sort());
-  // console.log(others.sort());
-  // console.log(number.sort());
-  // console.log(string.sort());
-  // console.log(overall.sort());
-
-  function srtNum (a, b){  
+  function srtDesc (a, b){
+    let datasetA = a.dataset.sort;
+    let datasetB = b.dataset.sort;  
     if (typeof a == "number" && typeof b == "number") {
       return b - a;
     }
     // , - 공백문자만 삭제하기.  
-    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
-    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let na = ( datasetA + "" ).replace(/[-,\s\xA0]+/gi, ""); 
+    let nb = ( datasetB + "" ).replace(/[-,\s\xA0]+/gi, ""); 
     let numA = parseFloat( na ) + ""; 
     let numB = parseFloat( nb ) + ""; 
     if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
@@ -636,71 +543,106 @@ import {data_set} from "./data_set.js";
     return parseFloat( nb ) - parseFloat( na ); 
   }
 
-  function srtNum2 (a, b){  
-    if (typeof a == "number" && typeof b == "number") {
-      return a - b;
-    }
-    // , - 공백문자만 삭제하기.  
-    let na = ( a + "" ).replace(/[-,\s\xA0]+/gi, ""); 
-    let nb = ( b + "" ).replace(/[-,\s\xA0]+/gi, ""); 
-    let numA = parseFloat( na ) + ""; 
-    let numB = parseFloat( nb ) + ""; 
-    if (numA == "NaN" || numB == "NaN" || na != numA || nb != numB) {
-      return false; 
-    } 
-    return parseFloat( na ) - parseFloat( nb ); 
-  }
-
-
-  let arrayDate = [];
-  let dataTd = document.querySelectorAll(".table tbody tr");
-  console.log(dataTd);
-  if (dataTd) {
-    dataTd.forEach(function (item) {
-      let date = item.querySelector("td.date p").innerText;
-      arrayDate.push(date);
-    });
-  }
-  // console.log(arrayDate.sort(srtNum));
   
-  // old
-  // let dateTh = document.querySelectorAll(".table th.date");
-  // if (dateTh) {
-  //   dateTh.forEach(function (item) {
-  //     item.addEventListener("click", function() {
-  //       let arrayDate = [];
-  //       let date = this.closest(".table").querySelectorAll(".table tbody tr");
-  //       date.forEach(function (i) {
-  //         arrayDate.push(i.dataset.sort);
-  //       });
-  //       console.log(arrayDate);
-  //       console.log(arrayDate.sort(srtNum));
-  //     });
-  //   });
-  // }
 
+  // sort test
   let dateTh = document.querySelectorAll(".table th.date");
   if (dateTh) {
+    
+    let arraySort;
+    let tbody;
+
+    // tableSort
+    function tableSort(array) {
+      tbody.innerHTML = "";
+      console.log(array);
+      console.log(tbody);
+      let td = [];
+      let data = [];
+      
+      array.forEach(function (i) {
+        
+        let obj = new Object();
+
+        obj.depth1 = i.querySelector(".depth1").innerText;
+        obj.depth2 = i.querySelector(".depth2").innerText;
+        obj.depth3 = i.querySelector(".depth3").innerText;
+        obj.depth4 = i.querySelector(".depth4").innerText;
+        obj.view_id = i.querySelector(".id").innerText;
+        obj.view_name = i.querySelector(".name").innerText;
+        obj.view_url = i.querySelector(".url").innerText;
+        obj.date = i.querySelector(".date").innerText;
+        obj.state = i.querySelector(".state").innerText;
+        obj.author = i.querySelector(".author").innerText;
+        obj.note = i.querySelector(".note-memo").innerHTML;
+
+        data.push(obj);
+        // console.log(data);
+
+      });
+
+      for (let item of data) {
+        td.push(`
+          <tr data-sort="${item.date}">
+            <td class="index"><p></p></td>
+            <td class="depth1"><p>${item.depth1}</p></td>
+            <td class="depth2"><p>${item.depth2}</p></td>
+            <td class="depth3"><p>${item.depth3}</p></td>
+            <td class="depth4"><p>${item.depth4}</p></td>
+            <td class="id"><p>${item.view_id}</p></td>
+            <td class="name"><p>${item.view_name}</p></td>
+            <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
+            <td class="date"><p>${item.date}</p></td>
+            <td class="state"><p>${item.state}</p></td>
+            <td class="author"><p>${item.author}</p></td>
+            <td class="note" data-wacc-toggle="true">
+              <button type="button" class="btn" title="더보기"><i></i></button>
+              <div class="note-memo target">
+                ${item.note}
+              </div>
+            </td>
+          </tr>
+        `);
+      }
+
+      tbody.innerHTML = td.join("");
+
+      noteToggle();
+      waccToggle();
+      tableState();
+      tableIndex();
+    }
+
+    // dateTh
     dateTh.forEach(function (item) {
       let asc = item.querySelector(".sortasc");
       let desc = item.querySelector(".sortdesc");
       asc.addEventListener("click", function() {
+        tbody = this.closest(".table").querySelector("tbody");
         let arrayDate = [];
         let date = this.closest(".table").querySelectorAll(".table tbody tr");
         date.forEach(function (i) {
-          arrayDate.push(i.dataset.sort);
+          // console.log(i);
+          // arrayDate.push(i.dataset.sort);
+          arrayDate.push(i);
         });
-        // console.log("원본 " + arrayDate);
-        console.log(arrayDate.sort(srtNum2));
+        // console.log(arrayDate[0].closest("table"));
+        // console.log(arrayDate);
+        arraySort = arrayDate.sort(srtAsc);
+        tableSort(arraySort);     
       });
       desc.addEventListener("click", function() {
+        tbody = this.closest(".table").querySelector("tbody");
         let arrayDate = [];
         let date = this.closest(".table").querySelectorAll(".table tbody tr");
         date.forEach(function (i) {
-          arrayDate.push(i.dataset.sort);
+          // arrayDate.push(i.dataset.sort);
+          arrayDate.push(i);
         });
         // console.log("원본 " + arrayDate);
-        console.log(arrayDate.sort(srtNum));
+        // console.log(arrayDate.sort(srtDesc));
+        arraySort = arrayDate.sort(srtDesc);
+        tableSort(arraySort); 
       });
     });
   }

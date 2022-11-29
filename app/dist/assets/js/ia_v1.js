@@ -389,7 +389,7 @@ import {data_set} from "./data_set.js";
   
   
   // tableCheck
-  function tableCheck(e) {
+  function tableCheck() {
     // let event = function(e) {
     //   // console.log(item);
     //   // console.log(e.target);
@@ -424,9 +424,8 @@ import {data_set} from "./data_set.js";
         });
       }
     }
-    if (e == "all") {
-      tableCheckEvt();
-    }
+    tableCheckEvt();
+
     document.addEventListener("click", function() {
       tableCheckEvt();
     });
@@ -457,28 +456,64 @@ import {data_set} from "./data_set.js";
 
   // noteToggle
   function noteToggle() {
-    let note = document.querySelectorAll(".table td.note");
-    let btn = document.querySelectorAll(".table td.note .btn");
+    // let note = document.querySelectorAll(".table td.note");
+    // let btn = document.querySelectorAll(".table td.note .btn");
 
-    if (note) {
-      note.forEach(function (item) {
-        let memo = item.querySelectorAll(".note-memo p");
-        memo.forEach(function (i) {
-          if (memo.length > 1) {
-            i.closest(".note").classList.add("multi");
-          }
-        });
-      });
-    }
+    // if (note) {
+    //   note.forEach(function (item) {
+    //     let memo = item.querySelectorAll(".note-memo p");
+    //     memo.forEach(function (i) {
+    //       if (memo.length > 1) {
+    //         i.closest(".note").classList.add("multi");
+    //       }
+    //     });
+    //   });
+    // }
 
-    if (btn) {
-      btn.forEach(function (item) {
-        item.addEventListener("click", function() {
-          item.closest(".note").classList.toggle("active");
-          item.classList.toggle("active");
+    // if (btn) {
+    //   btn.forEach(function (item) {
+    //     item.addEventListener("click", function() {
+    //       item.closest(".note").classList.toggle("active");
+    //       item.classList.toggle("active");
+    //     });
+    //   });
+    // }
+
+    let evt = function(e) {
+      // item.closest(".note").classList.toggle("active");
+      // item.classList.toggle("active");
+      console.log(e.currentTarget);
+      e.currentTarget.closest(".note").classList.toggle("active");
+      e.currentTarget.classList.toggle("active");
+    };
+    
+    function noteToggleEvt() {
+      let note = document.querySelectorAll(".table td.note");
+      let btn = document.querySelectorAll(".table td.note .btn");
+
+      if (note) {
+        note.forEach(function (item) {
+          let memo = item.querySelectorAll(".note-memo p");
+          memo.forEach(function (i) {
+            if (memo.length > 1) {
+              i.closest(".note").classList.add("multi");
+            }
+          });
         });
-      });
+      }
+
+      if (btn) {
+        btn.forEach(function (item) {
+          item.addEventListener("click", evt);
+        });
+      }
     }
+    noteToggleEvt();
+
+    document.addEventListener("click", function() {
+      noteToggleEvt();
+    });
+
   }
 
   // waccToggle
@@ -617,7 +652,6 @@ import {data_set} from "./data_set.js";
         tableState();
         tableIndex();
         tableCopy();
-        noteToggle(); //버그
         waccToggle(); //버그
         objtest.set(); //버그 테스트
 
@@ -670,7 +704,7 @@ import {data_set} from "./data_set.js";
   // tableCopy
   tableCopy();
   // tableCheck
-  tableCheck("all");
+  tableCheck();
   // categoryFilter
   categoryFilter();
   // noteToggle

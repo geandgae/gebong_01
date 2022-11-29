@@ -390,23 +390,20 @@ import {data_set} from "./data_set.js";
   
   // tableCheck
   function tableCheck(e) {
-    let el;
-    let clickListener = function(e) {
-      // console.log(item);
-      // console.log(e.target);
-      console.log(e.currentTarget);
-      e.currentTarget.classList.toggle("select");
-    };
-    function tableCheckSet() {
-      el = document.querySelectorAll(".table tbody tr");
-    }
-    function tableCheckEvt() {
-      if (el) {
-        el.forEach(function (item) {
-          item.addEventListener("click", clickListener);
-        });
-      }
-    }
+    // let event = function(e) {
+    //   // console.log(item);
+    //   // console.log(e.target);
+    //   console.log(e.currentTarget);
+    //   e.currentTarget.classList.toggle("select");
+    // };
+    // function tableCheckEvt() {
+    //   let el = document.querySelectorAll(".table tbody tr");
+    //   if (el) {
+    //     el.forEach(function (item) {
+    //       item.addEventListener("click", event);
+    //     });
+    //   }
+    // }
     // function tableCheckDel() {
     //   if (el) {
     //     el.forEach(function (item) {
@@ -414,15 +411,23 @@ import {data_set} from "./data_set.js";
     //     });
     //   }
     // }
-    if (e == "set") {
-      tableCheckSet();
-    } 
+
+    let evt = function(e) {
+      console.log(e.currentTarget);
+      e.currentTarget.classList.toggle("select");
+    };
+    function tableCheckEvt() {
+      let el = document.querySelectorAll(".table tbody tr");
+      if (el) {
+        el.forEach(function (item) {
+          item.addEventListener("click", evt);
+        });
+      }
+    }
     if (e == "all") {
-      tableCheckSet();
       tableCheckEvt();
     }
     document.addEventListener("click", function() {
-      tableCheckSet();
       tableCheckEvt();
     });
   }
@@ -612,7 +617,6 @@ import {data_set} from "./data_set.js";
         tableState();
         tableIndex();
         tableCopy();
-        // tableCheck("set"); //버그
         noteToggle(); //버그
         waccToggle(); //버그
         objtest.set(); //버그 테스트

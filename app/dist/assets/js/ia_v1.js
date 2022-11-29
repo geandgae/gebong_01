@@ -386,17 +386,45 @@ import {data_set} from "./data_set.js";
     }
   }
 
+  
+  
   // tableCheck
-  function tableCheck() {
-    let el = document.querySelectorAll(".table tbody tr");
-    if (el) {
-      el.forEach(function (item) {
-        item.addEventListener("click", function() {
-          console.log(item);
-          item.classList.toggle("select");
-        });
-      });
+  function tableCheck(e) {
+    let el;
+    let clickListener = function(e) {
+      // console.log(item);
+      // console.log(e.target);
+      console.log(e.currentTarget);
+      e.currentTarget.classList.toggle("select");
+    };
+    function tableCheckSet() {
+      el = document.querySelectorAll(".table tbody tr");
     }
+    function tableCheckEvt() {
+      if (el) {
+        el.forEach(function (item) {
+          item.addEventListener("click", clickListener);
+        });
+      }
+    }
+    // function tableCheckDel() {
+    //   if (el) {
+    //     el.forEach(function (item) {
+    //       item.removeEventListener('click', clickListener);
+    //     });
+    //   }
+    // }
+    if (e == "set") {
+      tableCheckSet();
+    } 
+    if (e == "all") {
+      tableCheckSet();
+      tableCheckEvt();
+    }
+    document.addEventListener("click", function() {
+      tableCheckSet();
+      tableCheckEvt();
+    });
   }
 
   // categoryFilter
@@ -584,7 +612,7 @@ import {data_set} from "./data_set.js";
         tableState();
         tableIndex();
         tableCopy();
-        tableCheck(); //버그
+        // tableCheck("set"); //버그
         noteToggle(); //버그
         waccToggle(); //버그
         objtest.set(); //버그 테스트
@@ -638,7 +666,7 @@ import {data_set} from "./data_set.js";
   // tableCopy
   tableCopy();
   // tableCheck
-  tableCheck();
+  tableCheck("all");
   // categoryFilter
   categoryFilter();
   // noteToggle

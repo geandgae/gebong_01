@@ -126,8 +126,13 @@ gulp.task("css_min", function () {
 gulp.task("js_uglify", function () {
   // 일반 세팅
   return new Promise( resolve => {
+    // js
     gulp
     .src(path_src.js + "/*.js") // 입력 경로
+    .pipe(gulp.dest(path_dist.js)) // 출력 경로
+    // json
+    gulp
+    .src(path_src.js + "/*.json") // 입력 경로
     .pipe(gulp.dest(path_dist.js)) // 출력 경로
     
     resolve();
@@ -195,7 +200,7 @@ gulp.task("watch", () => {
     gulp.watch(path_src.scss + "/*.scss", gulp.series("sass_compile"));
     gulp.watch(path_src.css +"/*.css", gulp.series("css_min"));
     gulp.watch(path_src.js + "/*.js", gulp.series("js_uglify"));
-
+    gulp.watch(path_src.js + "/*.json", gulp.series("js_uglify"));
     resolve();
   });
 });

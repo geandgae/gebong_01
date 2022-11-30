@@ -412,8 +412,8 @@ import {data_set} from "./data_set.js";
     //   }
     // }
 
-    let evt = function(e) {
-      console.log(e.currentTarget);
+    const evt = function(e) {
+      // console.log(e.currentTarget);
       e.currentTarget.classList.toggle("select");
     };
     function tableCheckEvt() {
@@ -479,10 +479,10 @@ import {data_set} from "./data_set.js";
     //   });
     // }
 
-    let evt = function(e) {
+    const evt = function(e) {
       // item.closest(".note").classList.toggle("active");
       // item.classList.toggle("active");
-      console.log(e.currentTarget);
+      // console.log(e.currentTarget);
       e.currentTarget.closest(".note").classList.toggle("active");
       e.currentTarget.classList.toggle("active");
     };
@@ -517,29 +517,76 @@ import {data_set} from "./data_set.js";
   }
 
   // waccToggle
-  function waccToggle() {
+  function waccToggle(e) {
+    // let idx = 0;
+    // let tog = document.querySelectorAll("[data-wacc-toggle=true]");
+    // if (tog) {
+    //   tog.forEach(function (item) {
+    //     idx++;
+    //     let ctrl = item.querySelector(".btn");
+    //     let target = item.querySelector(".target");
+    //     target.setAttribute("id", `ui-tog-${idx}`);
+    //     ctrl.setAttribute("aria-expanded", "false");
+    //     ctrl.setAttribute("aria-controls", `ui-tog-${idx}`);
+    //     ctrl.addEventListener("click", function() {
+    //       console.log(ctrl);
+    //       if (this.classList.contains("active")) {
+    //         this.setAttribute("aria-expanded", "true");
+    //       } else {
+    //         this.setAttribute("aria-expanded", "false");
+    //       }
+    //     });
+    //   });
+    // }
+
     let idx = 0;
-    let tog = document.querySelectorAll("[data-wacc-toggle=true]");
-    if (tog) {
-      tog.forEach(function (item) {
-        idx++;
-        let ctrl = item.querySelector(".btn");
-        let target = item.querySelector(".target");
-        target.setAttribute("id", `ui-tog-${idx}`);
-        ctrl.setAttribute("aria-expanded", "false");
-        ctrl.setAttribute("aria-controls", `ui-tog-${idx}`);
-        ctrl.addEventListener("click", function() {
-          if (this.classList.contains("active")) {
-            this.setAttribute("aria-expanded", "true");
+    let tog;
+    const evt = function(e) {
+      console.log(e.currentTarget);
+      if (e.currentTarget.classList.contains("active")) {
+        e.currentTarget.setAttribute("aria-expanded", "true");
+      } else {
+        e.currentTarget.setAttribute("aria-expanded", "false");
+      }
+    };
+    function waccToggleInit() {
+      tog = document.querySelectorAll("[data-wacc-toggle=true]");
+      if (tog) {
+        tog.forEach(function (item) {
+          idx++;
+          let ctrl = item.querySelector(".btn");
+          let target = item.querySelector(".target");
+          target.setAttribute("id", `ui-tog-${idx}`);
+          ctrl.setAttribute("aria-expanded", "false");
+          ctrl.setAttribute("aria-controls", `ui-tog-${idx}`);
+          if (ctrl.classList.contains("active")) {
+            ctrl.setAttribute("aria-expanded", "true");
           } else {
-            this.setAttribute("aria-expanded", "false");
+            ctrl.setAttribute("aria-expanded", "false");
           }
         });
-      });
+      }
     }
+    
+    function waccToggleEvt() {
+      if (tog) {
+        tog.forEach(function (item) {
+          let ctrl = item.querySelector(".btn");
+          ctrl.addEventListener("click", evt);
+        });
+      }
+    }
+    
+    waccToggleInit();
+    document.addEventListener("click", function() {
+      waccToggleInit();
+      idx = 0;
+      waccToggleEvt();
+    });
+
   }
 
-  // 버그 테스트
+  // 오브젝트
   let objtest = {
 		init: function() {
 			let el;
@@ -646,14 +693,10 @@ import {data_set} from "./data_set.js";
 
         tbody.innerHTML = tr.join("");
 
-        // document.removeEventListener('click', tableCheck);
-
         // update();
         tableState();
         tableIndex();
         tableCopy();
-        waccToggle(); //버그
-        objtest.set(); //버그 테스트
 
       }
 
@@ -723,9 +766,9 @@ import {data_set} from "./data_set.js";
   // 다크모드
   // 로딩
   // ia 디자인
-  // 접근성 
   // core
-  // 코드정리, 경로 관리 파일
+  // 코드정리 init, 실행부 분리
+  // 접근성 분리
 
 
   

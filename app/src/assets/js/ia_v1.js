@@ -305,6 +305,7 @@ import {data_set} from "./data_set.js";
       // console.log(iv);
       if (tds) {
         tds.forEach(function (item) {
+          console.log(item);
           let text = item.innerText;
           item.closest("tr").classList.add("hide");
           if (iv == text) {
@@ -773,6 +774,8 @@ import {data_set} from "./data_set.js";
 
   // 팝업 1.딤체크 / 2.딤에따른 분기 / 3.팝업의 현재 z-index / 4.팝업종류
 
+  // 검색속도 개선
+
   // async function f() {
   //   return Promise.resolve(1);
   // }
@@ -909,5 +912,24 @@ showJson();
 
 window.addEventListener('DOMContentLoaded', function() {
   let loadDiv = this.document.querySelector(".loading");
-  loadDiv.classList.remove("active")
+  loadDiv.classList.remove("active");
 });
+
+function showTest() {
+  let td = document.querySelectorAll(".table tbody td p");
+  if (td) {
+    td.forEach(function (item) {
+      // let text = item.innerText;
+      // item.closest("tr").classList.add("hide");
+      // if (text.includes(iv)) {
+      //   setTimeout(() => {
+      //     item.closest("tr").classList.remove("hide");       
+      //   }, 100);
+      // } else if (iv == "") {
+      //   item.closest("tr").classList.remove("hide");
+      // }
+      console.log(item);
+    });
+  }
+}
+// showTest();

@@ -2,17 +2,205 @@
 
 // import
 import {crt, st, ctg} from "./data_options.js";
+import {data_00} from "./data_00.js";
+import {data_01} from "./data_01.js";
+import {data_02} from "./data_02.js";
+import {data_03} from "./data_03.js";
 import {data_set} from "./data_set.js";
 
 
 // s : function
 (function () {
 
-  // var
-  const lengthCategory = [];
-  // const lengthCreator = Object.keys(crt).length;
-  // const lengthState = Object.keys(st).length;
 
+  // tableData
+  const tableData = function(data) {
+    // table view
+    let el = document.querySelectorAll(".article");
+    if (el) {
+      el.forEach(function(target) {
+        let td = [];
+        let id = target.getAttribute("id");
+
+        // s : td array loop
+        // for (let i = 0; i < data.length; i++) {
+        //   if (id == data[i].id) {  
+        //     td.push(`
+        //       <tr data-sort="${data[i].date}" data-id="${data[i].id}">
+        //         <td class="index"><p></p></td>
+        //         <td class="depth1"><p>${data[i].depth1}</p></td>
+        //         <td class="depth2"><p>${data[i].depth2}</p></td>
+        //         <td class="depth3"><p>${data[i].depth3}</p></td>
+        //         <td class="depth4"><p>${data[i].depth4}</p></td>
+        //         <td class="id"><p>${data[i].view_id}</p></td>
+        //         <td class="name"><p>${data[i].view_name}</p></td>
+        //         <td class="url"><p><a href="${data[i].view_url}" target="blank">${data[i].view_url}</a></p></td>
+        //         <td class="date"><p>${data[i].date}</p></td>
+        //         <td class="state"><p>${data[i].state}</p></td>
+        //         <td class="author"><p>${data[i].author}</p></td>
+        //         <td class="note" data-wacc-toggle="true">
+        //           <button type="button" class="btn" title="더보기"><i></i></button>
+        //           <div class="note-memo target">
+        //             ${data[i].note}
+        //           </div>
+        //         </td>
+        //       </tr>
+        //     `);
+        //   }
+        // }
+        // e : td array loop
+
+        // s : data array for of
+        // for (let item of data) {
+        //   if(item.id == id) {
+        //     td.push(`
+        //       <tr data-sort="${item.date}" data-id="${item.id}">
+        //         <td class="index"><p></p></td>
+        //         <td class="depth1"><p>${item.depth1}</p></td>
+        //         <td class="depth2"><p>${item.depth2}</p></td>
+        //         <td class="depth3"><p>${item.depth3}</p></td>
+        //         <td class="depth4"><p>${item.depth4}</p></td>
+        //         <td class="id"><p>${item.view_id}</p></td>
+        //         <td class="name"><p>${item.view_name}</p></td>
+        //         <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
+        //         <td class="date"><p>${item.date}</p></td>
+        //         <td class="state"><p>${item.state}</p></td>
+        //         <td class="author"><p>${item.author}</p></td>
+        //         <td class="note" data-wacc-toggle="true">
+        //           <button type="button" class="btn" title="더보기"><i></i></button>
+        //           <div class="note-memo target">
+        //             ${item.note}
+        //           </div>
+        //         </td>
+        //       </tr>
+        //     `);
+        //   } 
+        // }
+        // e : data array for of
+
+        // s : data array for each
+        data.forEach(function(item) {
+          if(item.id == id) {
+            td.push(`
+              <tr data-sort="${item.date}" data-id="${item.id}">
+                <td class="index"><p></p></td>
+                <td class="depth1"><p>${item.depth1}</p></td>
+                <td class="depth2"><p>${item.depth2}</p></td>
+                <td class="depth3"><p>${item.depth3}</p></td>
+                <td class="depth4"><p>${item.depth4}</p></td>
+                <td class="id"><p>${item.view_id}</p></td>
+                <td class="name"><p>${item.view_name}</p></td>
+                <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
+                <td class="date"><p>${item.date}</p></td>
+                <td class="state"><p>${item.state}</p></td>
+                <td class="author"><p>${item.author}</p></td>
+                <td class="note" data-wacc-toggle="true">
+                  <button type="button" class="btn" title="더보기"><i></i></button>
+                  <div class="note-memo target">
+                    ${item.note}
+                  </div>
+                </td>
+              </tr>
+            `);
+          }
+        });
+        // e : data array for each
+
+        target.querySelector("tbody").innerHTML = td.join("");
+        
+      });
+    }
+  };
+
+  // tableDataEach
+  const tableDataEach = function(data, target) {
+    let td = [];
+
+    // s : data array for each
+    data.forEach(function(item) {
+      td.push(`
+        <tr data-sort="${item.date}" data-id="${item.id}">
+          <td class="index"><p></p></td>
+          <td class="depth1"><p>${item.depth1}</p></td>
+          <td class="depth2"><p>${item.depth2}</p></td>
+          <td class="depth3"><p>${item.depth3}</p></td>
+          <td class="depth4"><p>${item.depth4}</p></td>
+          <td class="id"><p>${item.view_id}</p></td>
+          <td class="name"><p>${item.view_name}</p></td>
+          <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
+          <td class="date"><p>${item.date}</p></td>
+          <td class="state"><p>${item.state}</p></td>
+          <td class="author"><p>${item.author}</p></td>
+          <td class="note" data-wacc-toggle="true">
+            <button type="button" class="btn" title="더보기"><i></i></button>
+            <div class="note-memo target">
+              ${item.note}
+            </div>
+          </td>
+        </tr>
+      `);
+    });
+    // e : data array for each
+
+    // table view
+    let el = document.querySelectorAll(".article");
+    if (el) {
+      el.forEach(function(item) {
+        let id = item.getAttribute("id");
+        if (id == target) {
+          item.querySelector("tbody").innerHTML = td.join("");
+        }
+      });
+    }
+
+  };
+
+  // tableDataFilter
+  const tableDataFilter = function(data) {
+    // array
+    let td = [];
+    data.forEach(function(item) {
+      td.push(`
+        <tr data-sort="${item.date}" data-id="${item.id}">
+          <td class="index"><p></p></td>
+          <td class="depth1"><p>${item.depth1}</p></td>
+          <td class="depth2"><p>${item.depth2}</p></td>
+          <td class="depth3"><p>${item.depth3}</p></td>
+          <td class="depth4"><p>${item.depth4}</p></td>
+          <td class="id"><p>${item.view_id}</p></td>
+          <td class="name"><p>${item.view_name}</p></td>
+          <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
+          <td class="date"><p>${item.date}</p></td>
+          <td class="state"><p>${item.state}</p></td>
+          <td class="author"><p>${item.author}</p></td>
+          <td class="note" data-wacc-toggle="true">
+            <button type="button" class="btn" title="더보기"><i></i></button>
+            <div class="note-memo target">
+              ${item.note}
+            </div>
+          </td>
+        </tr>
+      `);
+    });
+
+    // filterItems
+    const filterItems = (query) => {
+      return td.filter((i) =>
+        i.toLowerCase().indexOf(query.toLowerCase()) > -1
+      );
+    }
+
+    // table view
+    let el = document.querySelectorAll(".article");
+    if (el) {
+      el.forEach(function(target) {
+        let tda = [];
+        let id = target.getAttribute("id");
+        tda = filterItems(id);
+        target.querySelector("tbody").innerHTML = tda.join("");
+      });
+    }
+  };
 
   // setTable
   function setTable() {
@@ -21,7 +209,6 @@ import {data_set} from "./data_set.js";
     for (let item in ctg) {
       let id = ctg[item].id;
       let title = ctg[item].title;
-      lengthCategory.push(id);
       // console.log(ctg[item]);
       article.push(`
         <!-- article -->
@@ -30,7 +217,26 @@ import {data_set} from "./data_set.js";
           <!-- table -->
           <table class="table">
             <caption>${title}</caption>
-            <thead></thead>
+            <thead>
+              <tr>
+                <th class="index">no</th>
+                <th class="depth1">depth1</th>
+                <th class="depth2">depth2</th>
+                <th class="depth3">depth3</th>
+                <th class="depth4">depth4</th>
+                <th class="id">id</th>
+                <th class="name">name</th>
+                <th class="url">url</th>
+                <th class="date">
+                  date
+                  <button class="sortasc">▲</button>
+                  <button class="sortdesc">▼</button>
+                </th>
+                <th class="state">state</th>
+                <th class="author">author</th>
+                <th class="note">note</th>
+              </tr>
+            </thead>
             <tbody></tbody>
           </table>
           <!-- //table -->
@@ -39,8 +245,18 @@ import {data_set} from "./data_set.js";
       `);
     }
     container.innerHTML = article.join("");
+
     // run tableData
-    tableData(data_set, lengthCategory);
+    tableData(data_set);
+
+    // run tableDataEach
+    // tableDataEach(data_00, "table_00");
+    // tableDataEach(data_01, "table_01");
+    // tableDataEach(data_02, "table_02");
+    // tableDataEach(data_03, "table_05");
+
+    // run tableDataFilter
+    // tableDataFilter(data_set);
   }
 
   // setFilter
@@ -98,81 +314,6 @@ import {data_set} from "./data_set.js";
     // setTimeout(() => {
     //   outland.innerHTML = "";     
     // }, 500);
-  }
-
-  // tableData
-  function tableData(data, length) {
-    // s : length array
-    for (let target of length) {
-
-      // s : data array
-      let td = [];
-      for (let item of data) {
-        // console.log(item.depth1);
-        // console.log(data[0]);
-        if(item.id == target) {
-          td.push(`
-            <tr data-sort="${item.date}">
-              <td class="index"><p></p></td>
-              <td class="depth1"><p>${item.depth1}</p></td>
-              <td class="depth2"><p>${item.depth2}</p></td>
-              <td class="depth3"><p>${item.depth3}</p></td>
-              <td class="depth4"><p>${item.depth4}</p></td>
-              <td class="id"><p>${item.view_id}</p></td>
-              <td class="name"><p>${item.view_name}</p></td>
-              <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
-              <td class="date"><p>${item.date}</p></td>
-              <td class="state"><p>${item.state}</p></td>
-              <td class="author"><p>${item.author}</p></td>
-              <td class="note" data-wacc-toggle="true">
-                <button type="button" class="btn" title="더보기"><i></i></button>
-                <div class="note-memo target">
-                  ${item.note}
-                </div>
-              </td>
-            </tr>
-          `);
-        } 
-      }
-      // e : data array
-
-      // th
-      let th = `
-        <tr>
-          <th class="index">no</th>
-          <th class="depth1">depth1</th>
-          <th class="depth2">depth2</th>
-          <th class="depth3">depth3</th>
-          <th class="depth4">depth4</th>
-          <th class="id">id</th>
-          <th class="name">name</th>
-          <th class="url">url</th>
-          <th class="date">
-            date
-            <button class="sortasc">▲</button>
-            <button class="sortdesc">▼</button>
-          </th>
-          <th class="state">state</th>
-          <th class="author">author</th>
-          <th class="note">note</th>
-        </tr>
-      `;
-
-      // table view
-      let el = document.querySelectorAll(".article");
-      if (el) {
-        el.forEach(function (item) {
-          let id = item.getAttribute("id");
-          if (id == target) {
-            // console.log(target);
-            item.querySelector("thead").innerHTML = th;
-            item.querySelector("tbody").innerHTML = td.join("");
-          }
-        });
-      }
-    
-    }
-    // e : length array
   }
 
   // tableState
@@ -386,8 +527,6 @@ import {data_set} from "./data_set.js";
       });
     }
   }
-
-  
   
   // tableCheck
   function tableCheck() {
@@ -813,6 +952,8 @@ async function f() {
 }
 // f();
 
+
+
 // 제이슨 파일 테스트
 async function showJson() {
   console.log("start!!")
@@ -862,6 +1003,8 @@ async function showJson() {
 }
 // showJson();
 
+
+
 // 테스트
 function showTest() {
   let td = document.querySelectorAll(".table tbody td p");
@@ -884,6 +1027,7 @@ function showTest() {
 
 // 로딩 테스트
 window.addEventListener('DOMContentLoaded', function() {
+  
   let loadDiv = this.document.querySelector(".loading");
   loadDiv.classList.remove("active");
 
@@ -900,7 +1044,7 @@ window.addEventListener('DOMContentLoaded', function() {
     var dom = ntime.domComplete - ntime.domLoading; // DOM객체 생성 시간 *******************
     var load = ntime.loadEventEnd - ntime.loadEventStart; // 브라우저의 Load 이벤트 실행시간
     var pageEnd = ntime.loadEventEnd - ntime.responseEnd; //  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간
-    var networkDelay = ntime.responseEnd - ntime.fetchStart; //  네트워크 지연 시간
+    // var networkDelay = ntime.responseEnd - ntime.fetchStart; //  네트워크 지연 시간
      
     console.log("total : " + total + "ms  >>>>>>>  전체 소요시간");
     console.log("redirect : " + redirect + "ms  >>>>>>>   동일 origin에서의 redirect 시간");
@@ -913,7 +1057,9 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log("load : " + load + "ms  >>>>>>>  브라우저의 Load 이벤트 실행시간");
     console.log("pageEnd : " + pageEnd + "ms  >>>>>>>  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간");
                  
-  }, 7000);
+  }, 5000);
+
+  console.log("==================== start!! ====================");
 });
 
 // 로딩시간 체크

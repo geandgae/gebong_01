@@ -4,7 +4,8 @@ import {crt, st, ctg} from "./data_options.js";
 
 export let data_01 = [
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct01.id,
+    depth1: ctg.ct01.title,
     depth2: "222",
     depth3: "222",
     depth4: "d4",
@@ -17,7 +18,8 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct01.id,
+    depth1: ctg.ct01.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -30,7 +32,8 @@ export let data_01 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct01.id,
+    depth1: ctg.ct01.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",

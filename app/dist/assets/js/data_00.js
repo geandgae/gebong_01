@@ -4,7 +4,8 @@ import {crt, st, ctg} from "./data_options.js";
 
 export let data_00 = [
   { 
-    depth1: ctg.ct00.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -17,7 +18,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p><p>note2022-11-08</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -30,7 +32,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -43,7 +46,8 @@ export let data_00 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -56,7 +60,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -69,7 +74,8 @@ export let data_00 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -82,7 +88,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct02.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -95,7 +102,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -108,7 +116,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    depth1: ctg.ct02.id,
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "d2",
     depth3: "d3",
     depth4: "d4",
@@ -121,9 +130,8 @@ export let data_00 = [
     note: "<p>note1</p><p>note2</p>",
   },
   {
-    id: ctg.ct04.id,
-    index: "5",
-    depth1: "a",
+    id: ctg.ct00.id,
+    depth1: ctg.ct00.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -131,7 +139,7 @@ export let data_00 = [
     view_name: "view_name",
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
-    state: "대기",
+    state: st.stay,
     author: "author",
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },

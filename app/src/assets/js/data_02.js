@@ -4,7 +4,8 @@ import {crt, st, ctg} from "./data_options.js";
 
 export let data_02 = [
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "배",
     depth3: "자몽",
     depth4: "개",
@@ -17,7 +18,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "  ",
     depth3: "   ",
     depth4: "개게",
@@ -30,7 +32,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "",
     depth3: "",
     depth4: "개 게",
@@ -43,7 +46,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -56,7 +60,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct02.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -69,7 +74,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct02.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -82,7 +88,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "참고: 노트: 트랜지션을 완료하기 전에 애니메이션하고 있는 속성의 값이 바뀌기 때문입니다.",
     depth4: "aaaa",
@@ -95,7 +102,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -108,7 +116,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct00.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -121,7 +130,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "aa",
     depth3: "aaa",
     depth4: "aaaa",
@@ -134,7 +144,8 @@ export let data_02 = [
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
   {
-    depth1: ctg.ct01.id,
+    id: ctg.ct02.id,
+    depth1: ctg.ct02.title,
     depth2: "대기2222",
     depth3: "aaa",
     depth4: "aaaa",

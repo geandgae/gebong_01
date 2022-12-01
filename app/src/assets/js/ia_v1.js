@@ -737,28 +737,38 @@ import {data_set} from "./data_set.js";
   // run functions
   // setTable
   setTable();
+
   // setFilter
-  setFilter();  
+  // setFilter();  
+
   // tableState
-  tableState();
+  // tableState();
+
   // tableIndex
-  tableIndex();
+  // tableIndex();
+
   // tableFilter
-  tableFilter();
+  // tableFilter();
+
   // tableCopy
-  tableCopy();
+  // tableCopy();
+
   // tableCheck
-  tableCheck();
+  // tableCheck();
+
   // categoryFilter
-  categoryFilter();
+  // categoryFilter();
+
   // noteToggle
-  noteToggle();
+  // noteToggle();
 
   // waccToggle
-  waccToggle();
+  // waccToggle();
 
   // tableSort
-  tableSort();
+  // tableSort();
+
+
   
   // 테이블세팅 자동화 data_option 변수 처리
   // 정렬
@@ -788,65 +798,8 @@ import {data_set} from "./data_set.js";
 // e : function
 
 
-// 로딩시간 체크
-// window.onload = function(){
-
-//   setTimeout(function(){
-
-//     let t = performance.timing.loadEventEnd - performance.timing.responseEnd;
-//     console.log(t);
-//     console.log(performance.timing.loadEventEnd);
-//     console.log(performance.timing.responseEnd);
-
-//   }, 0);
-
-// }
-
-// window.addEventListener('DOMContentLoaded', function() {
-//   // let t = performance.timing.loadEventEnd - performance.timing.responseEnd;
-//   // console.log(t);
-  
-//   setTimeout(function(){
-
-//     // let t = performance.timing.loadEventEnd - performance.timing.responseEnd;
-//     // console.log(t);
-//     console.log(performance.timing.loadEventEnd);
-//     console.log(performance.timing.responseEnd);
-
-//   }, 0);
-// });
-
-setTimeout(function() {
-  var ntime = performance.timing;
-  var total = ntime.loadEventEnd - ntime.navigationStart; //전체 소요시간
-  var redirect = ntime.redirectEnd - ntime.redirectStart; // 동일 origin에서의 redirect 시간
-  var cache = ntime.domainLookupStart - ntime.fetchStart; // cache 시간
-  var dnslookup = ntime.domainLookupEnd - ntime.domainLookupStart; //DNS Lookup 시간
-  var connect = ntime.connectEnd - ntime.connectStart; // 웹서버 연결 시간
-  var request = ntime.responseStart - ntime.requestStart; // 요청 소요 시간
-  var response = ntime.responseEnd - ntime.responseStart; // 응답 데이터를 모두 받은 시간
-  var dom = ntime.domComplete - ntime.domLoading; // DOM객체 생성 시간 *******************
-  var load = ntime.loadEventEnd - ntime.loadEventStart; // 브라우저의 Load 이벤트 실행시간
-  var pageEnd = ntime.loadEventEnd - ntime.responseEnd; //  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간
-  var networkDelay = ntime.responseEnd - ntime.fetchStart; //  네트워크 지연 시간
-   
-  console.log("total : " + total + "ms  >>>>>>>  전체 소요시간");
-  console.log("redirect : " + redirect + "ms  >>>>>>>   동일 origin에서의 redirect 시간");
-  console.log("cache : " + cache + "ms   >>>>>>>  cache 시간");
-  console.log("dnslookup : " + dnslookup + "ms  >>>>>>>  DNS Lookup 시간");
-  console.log("connect : " + connect + "ms  >>>>>>>  웹서버 연결 시간");
-  console.log("request : " + request + "ms  >>>>>>>  요청 소요 시간");
-  console.log("response : " + response + "ms  >>>>>>>  첫 응답으로 부터 응답 데이터를 모두 받은 시간");
-  console.log("dom : " + dom + "ms  >>>>>>>  DOM객체 로드 완료 시간");
-  console.log("load : " + load + "ms  >>>>>>>  브라우저의 Load 이벤트 실행시간");
-  console.log("pageEnd : " + pageEnd + "ms  >>>>>>>  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간");
-               
-}, 7000); //30초 뒤 수행
-
 
 // async test
-let loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-
 async function f() {
 
   let promise = new Promise((resolve, reject) => {
@@ -858,9 +811,9 @@ async function f() {
 
   console.log(result);
 }
-f();
+// f();
 
-
+// 제이슨 파일 테스트
 async function showJson() {
   console.log("start!!")
 
@@ -907,14 +860,9 @@ async function showJson() {
   //   console.log(item);
   // });
 }
+// showJson();
 
-showJson();
-
-window.addEventListener('DOMContentLoaded', function() {
-  let loadDiv = this.document.querySelector(".loading");
-  loadDiv.classList.remove("active");
-});
-
+// 테스트
 function showTest() {
   let td = document.querySelectorAll(".table tbody td p");
   if (td) {
@@ -933,3 +881,65 @@ function showTest() {
   }
 }
 // showTest();
+
+// 로딩 테스트
+window.addEventListener('DOMContentLoaded', function() {
+  let loadDiv = this.document.querySelector(".loading");
+  loadDiv.classList.remove("active");
+
+  // 시간체크
+  setTimeout(function() {
+    var ntime = performance.timing;
+    var total = ntime.loadEventEnd - ntime.navigationStart; //전체 소요시간
+    var redirect = ntime.redirectEnd - ntime.redirectStart; // 동일 origin에서의 redirect 시간
+    var cache = ntime.domainLookupStart - ntime.fetchStart; // cache 시간
+    var dnslookup = ntime.domainLookupEnd - ntime.domainLookupStart; //DNS Lookup 시간
+    var connect = ntime.connectEnd - ntime.connectStart; // 웹서버 연결 시간
+    var request = ntime.responseStart - ntime.requestStart; // 요청 소요 시간
+    var response = ntime.responseEnd - ntime.responseStart; // 응답 데이터를 모두 받은 시간
+    var dom = ntime.domComplete - ntime.domLoading; // DOM객체 생성 시간 *******************
+    var load = ntime.loadEventEnd - ntime.loadEventStart; // 브라우저의 Load 이벤트 실행시간
+    var pageEnd = ntime.loadEventEnd - ntime.responseEnd; //  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간
+    var networkDelay = ntime.responseEnd - ntime.fetchStart; //  네트워크 지연 시간
+     
+    console.log("total : " + total + "ms  >>>>>>>  전체 소요시간");
+    console.log("redirect : " + redirect + "ms  >>>>>>>   동일 origin에서의 redirect 시간");
+    console.log("cache : " + cache + "ms   >>>>>>>  cache 시간");
+    console.log("dnslookup : " + dnslookup + "ms  >>>>>>>  DNS Lookup 시간");
+    console.log("connect : " + connect + "ms  >>>>>>>  웹서버 연결 시간");
+    console.log("request : " + request + "ms  >>>>>>>  요청 소요 시간");
+    console.log("response : " + response + "ms  >>>>>>>  첫 응답으로 부터 응답 데이터를 모두 받은 시간");
+    console.log("dom : " + dom + "ms  >>>>>>>  DOM객체 로드 완료 시간");
+    console.log("load : " + load + "ms  >>>>>>>  브라우저의 Load 이벤트 실행시간");
+    console.log("pageEnd : " + pageEnd + "ms  >>>>>>>  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간");
+                 
+  }, 7000);
+});
+
+// 로딩시간 체크
+// window.onload = function(){
+
+//   setTimeout(function(){
+
+//     let t = performance.timing.loadEventEnd - performance.timing.responseEnd;
+//     console.log(t);
+//     console.log(performance.timing.loadEventEnd);
+//     console.log(performance.timing.responseEnd);
+
+//   }, 0);
+
+// }
+
+// window.addEventListener('DOMContentLoaded', function() {
+//   // let t = performance.timing.loadEventEnd - performance.timing.responseEnd;
+//   // console.log(t);
+  
+//   setTimeout(function(){
+
+//     // let t = performance.timing.loadEventEnd - performance.timing.responseEnd;
+//     // console.log(t);
+//     console.log(performance.timing.loadEventEnd);
+//     console.log(performance.timing.responseEnd);
+
+//   }, 0);
+// });

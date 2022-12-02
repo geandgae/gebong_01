@@ -6,6 +6,7 @@ import {data_00} from "./data_00.js";
 import {data_01} from "./data_01.js";
 import {data_02} from "./data_02.js";
 import {data_03} from "./data_03.js";
+import {data_04} from "./data_04.js";
 
 // for (let item in data_00) {
 //   data_00[item].id = ctg.ct00.id;
@@ -28,7 +29,8 @@ export const data_set = [
   ...data_00,
   ...data_01, 
   ...data_02,
-  // ...data_03,
+  ...data_03,
+  // ...data_04,
 ];
 
 // export default data_set;

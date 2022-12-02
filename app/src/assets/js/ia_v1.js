@@ -2,124 +2,23 @@
 
 // import
 import {crt, st, ctg} from "./data_options.js";
-import {data_00} from "./data_00.js";
-import {data_01} from "./data_01.js";
-import {data_02} from "./data_02.js";
-import {data_03} from "./data_03.js";
 import {data_set} from "./data_set.js";
 
 
 // s : function
 (function () {
 
+  // init
+  let dataOrign = [];
+  let dataClone = [];
+  let dataSort = [];
 
-  // tableData
-  const tableData = function(data) {
-    // table view
-    let el = document.querySelectorAll(".article");
-    if (el) {
-      el.forEach(function(target) {
-        let td = [];
-        let id = target.getAttribute("id");
-
-        // s : td array loop
-        for (let i = 0; i < data.length; i++) {
-          if (id == data[i].id) {  
-            td.push(`
-              <tr data-sort="${data[i].date}" data-id="${data[i].id}" data-author="${data[i].author}" data-state="${data[i].state}">
-                <td class="index"><p>${[i + 1]}</p></td>
-                <td class="depth1"><p>${data[i].depth1}</p></td>
-                <td class="depth2"><p>${data[i].depth2}</p></td>
-                <td class="depth3"><p>${data[i].depth3}</p></td>
-                <td class="depth4"><p>${data[i].depth4}</p></td>
-                <td class="id"><p>${data[i].view_id}</p></td>
-                <td class="name"><p>${data[i].view_name}</p></td>
-                <td class="url"><p><a href="${data[i].view_url}" target="blank">${data[i].view_url}</a></p></td>
-                <td class="date"><p>${data[i].date}</p></td>
-                <td class="state"><p>${data[i].state}</p></td>
-                <td class="author"><p>${data[i].author}</p></td>
-                <td class="note" data-wacc-toggle="true">
-                  <button type="button" class="btn" title="더보기"><i></i></button>
-                  <div class="note-memo target">
-                    ${data[i].note}
-                  </div>
-                </td>
-              </tr>
-            `);
-          }
-        }
-        // e : td array loop
-
-        // s : data array for of
-        // for (let item of data) {
-        //   if(item.id == id) {
-        //     td.push(`
-        //       <tr data-sort="${item.date}" data-id="${item.id}">
-        //         <td class="index"><p></p></td>
-        //         <td class="depth1"><p>${item.depth1}</p></td>
-        //         <td class="depth2"><p>${item.depth2}</p></td>
-        //         <td class="depth3"><p>${item.depth3}</p></td>
-        //         <td class="depth4"><p>${item.depth4}</p></td>
-        //         <td class="id"><p>${item.view_id}</p></td>
-        //         <td class="name"><p>${item.view_name}</p></td>
-        //         <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
-        //         <td class="date"><p>${item.date}</p></td>
-        //         <td class="state"><p>${item.state}</p></td>
-        //         <td class="author"><p>${item.author}</p></td>
-        //         <td class="note" data-wacc-toggle="true">
-        //           <button type="button" class="btn" title="더보기"><i></i></button>
-        //           <div class="note-memo target">
-        //             ${item.note}
-        //           </div>
-        //         </td>
-        //       </tr>
-        //     `);
-        //   } 
-        // }
-        // e : data array for of
-
-        // s : data array for each
-        // data.forEach(function(item) {
-        //   if(item.id == id) {
-        //     td.push(`
-        //       <tr data-sort="${item.date}" data-id="${item.id}">
-        //         <td class="index"><p></p></td>
-        //         <td class="depth1"><p>${item.depth1}</p></td>
-        //         <td class="depth2"><p>${item.depth2}</p></td>
-        //         <td class="depth3"><p>${item.depth3}</p></td>
-        //         <td class="depth4"><p>${item.depth4}</p></td>
-        //         <td class="id"><p>${item.view_id}</p></td>
-        //         <td class="name"><p>${item.view_name}</p></td>
-        //         <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
-        //         <td class="date"><p>${item.date}</p></td>
-        //         <td class="state"><p>${item.state}</p></td>
-        //         <td class="author"><p>${item.author}</p></td>
-        //         <td class="note" data-wacc-toggle="true">
-        //           <button type="button" class="btn" title="더보기"><i></i></button>
-        //           <div class="note-memo target">
-        //             ${item.note}
-        //           </div>
-        //         </td>
-        //       </tr>
-        //     `);
-        //   }
-        // });
-        // e : data array for each
-
-        target.querySelector("tbody").innerHTML = td.join("");
-        
-      });
-    }
-  };
-
-  // tableDataEach
-  const tableDataEach = function(data, target) {
-    let td = [];
-
+  // dataInit
+  const dataInit = function(data, out) {
     // s : data array for each
     data.forEach(function(item) {
-      td.push(`
-        <tr data-sort="${item.date}" data-id="${item.id}">
+      out.push(`
+        <tr data-sort="${item.date}" data-id="${item.id}" data-author="${item.author}" data-state="${item.state}">
           <td class="index"><p></p></td>
           <td class="depth1"><p>${item.depth1}</p></td>
           <td class="depth2"><p>${item.depth2}</p></td>
@@ -141,69 +40,41 @@ import {data_set} from "./data_set.js";
       `);
     });
     // e : data array for each
+  }
 
-    // table view
+  // dataFilter
+  const dataFilter = (data, query) => {
+    return data.filter((i) =>
+      i.toLowerCase().indexOf(query.toLowerCase()) > -1
+    );
+  }
+
+  // tableView
+  const tableView = function(data, target) {
     let el = document.querySelectorAll(".article");
     if (el) {
-      el.forEach(function(item) {
-        let id = item.getAttribute("id");
-        if (id == target) {
-          item.querySelector("tbody").innerHTML = td.join("");
-        }
-      });
+      if(target) {
+        let tr = [];
+        let id = target.closest(".article").getAttribute("id");
+        tr = dataFilter(data, id);
+        target.innerHTML = tr.join("");
+      } else {
+        el.forEach(function(item) {
+          let tr = [];
+          let id = item.getAttribute("id");
+          tr = dataFilter(data, id);
+          item.querySelector("tbody").innerHTML = tr.join("");
+        });
+      }
     }
+ 
+    tableIndex();
+    tableState();
+    tableCopy();
+  }
 
-  };
-
-  // tableDataFilter
-  const tableDataFilter = function(data) {
-    // array
-    let td = [];
-    data.forEach(function(item) {
-      td.push(`
-        <tr data-sort="${item.date}" data-id="${item.id}">
-          <td class="index"><p></p></td>
-          <td class="depth1"><p>${item.depth1}</p></td>
-          <td class="depth2"><p>${item.depth2}</p></td>
-          <td class="depth3"><p>${item.depth3}</p></td>
-          <td class="depth4"><p>${item.depth4}</p></td>
-          <td class="id"><p>${item.view_id}</p></td>
-          <td class="name"><p>${item.view_name}</p></td>
-          <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
-          <td class="date"><p>${item.date}</p></td>
-          <td class="state"><p>${item.state}</p></td>
-          <td class="author"><p>${item.author}</p></td>
-          <td class="note" data-wacc-toggle="true">
-            <button type="button" class="btn" title="더보기"><i></i></button>
-            <div class="note-memo target">
-              ${item.note}
-            </div>
-          </td>
-        </tr>
-      `);
-    });
-
-    // filterItems
-    const filterItems = (query) => {
-      return td.filter((i) =>
-        i.toLowerCase().indexOf(query.toLowerCase()) > -1
-      );
-    }
-
-    // table view
-    let el = document.querySelectorAll(".article");
-    if (el) {
-      el.forEach(function(target) {
-        let tda = [];
-        let id = target.getAttribute("id");
-        tda = filterItems(id);
-        target.querySelector("tbody").innerHTML = tda.join("");
-      });
-    }
-  };
-
-  // setTable
-  function setTable() {
+  // tableSet
+  const tableSet = function() {
     let container = document.querySelector(".container.main");
     let article = [];
     for (let item in ctg) {
@@ -246,290 +117,12 @@ import {data_set} from "./data_set.js";
     }
     container.innerHTML = article.join("");
 
-    // run tableData
-    tableData(data_set);
-
-    // run tableDataEach
-    // tableDataEach(data_00, "table_00");
-    // tableDataEach(data_01, "table_01");
-    // tableDataEach(data_02, "table_02");
-    // tableDataEach(data_03, "table_05");
-
-    // run tableDataFilter
-    // tableDataFilter(data_set);
-  }
-
-
-
-  // tableIndex
-  function tableIndex() {
-    let el = document.querySelectorAll(".table td.index > p");
-    if (el) {
-      for (let i = 0; i < el.length; i++) {
-        let item = el[i];
-        let num = i + 1;
-        item.innerText = num;
-      }
-    }
-  }
-
-
-  
-  // setFilter
-  function setFilter() {
-    // typeAuthor
-    let typeAuthor = document.querySelector(".filter select[name=author]");
-    let author = [`<option value="">author</option>`];
-    for (let item in crt) {
-      author.push(`
-        <option value="${crt[item]}">${crt[item]}</option>
-      `);
-    }
-    typeAuthor.innerHTML = author.join("");
-    
-    // typeState
-    let typeState = document.querySelector(".filter select[name=state]");
-    let state = [`<option value="">state</option>`];
-    for (let item in st) {
-      state.push(`
-        <option value="${st[item]}">${st[item]}</option>
-      `);
-    }
-    typeState.innerHTML = state.join("");
-
-    // typeCategory
-    let typeCategory = document.querySelector(".category");
-    let category = [`<li><button type="button" class="btn" id="table_all">전체보기</button></li>`];
-    for (let item in ctg) {
-      let id = ctg[item].id;
-      let title = ctg[item].title;
-      category.push(`
-        <li><button type="button" class="btn" id="${id}">${title}</button></li>
-      `);
-    }
-    typeCategory.innerHTML = category.join("");
-
-    categoryFilter();
-    tableFilter();
-  }
-
-  // categoryFilter
-  function categoryFilter() {
-    let article = document.querySelectorAll(".article");
-    let btn = document.querySelectorAll(".filter .category .btn");
-
-    if (btn) {
-      btn.forEach(function (item) {
-        item.addEventListener("click", function() {
-          let id = item.id;
-          // article
-          article.forEach(function (i) {
-            i.classList.add("hide");
-            if (id === i.id) {
-              i.classList.remove("hide");
-            } else if (id === "table_all") {
-              i.classList.remove("hide");
-            }
-          });
-        });
-      });
-    }
-  }
-
-  // tableFilter
-  function tableFilter() {
-    let input = document.querySelector(".filter input[type=text]");
-    let btn = document.querySelector(".filter .search .btn");
-    let select = document.querySelectorAll(".filter select");
-    let tra = document.querySelectorAll(".article:not(.hide) .table tbody tr");
-    let tr;
-    let reset = false;
-
-    // searchSel
-    function searchSel(type) {
-      // init
-      let sn = type;
-      let iv = input.value;
-
-      // hide
-      const trHide = function() {
-        tra.forEach(function (item) {
-          item.classList.add("hide");
-        });
-      }
-
-      // keyword
-      if(type == "keyword") {
-        console.log(type);
-        console.log(reset);
-        console.log(iv);
-        tr = "";
-        if(iv == "") {
-          setTable();
-        } else {
-          let dataSet = [];
-          let dataFilter = [];
-
-          // s : td array loop
-          let data = data_set;
-          for (let i = 0; i < data.length; i++) {
-            dataSet.push(`
-              <tr data-sort="${data[i].date}" data-id="${data[i].id}" data-author="${data[i].author}" data-state="${data[i].state}">
-                <td class="index"><p>${[i + 1]}</p></td>
-                <td class="depth1"><p>${data[i].depth1}</p></td>
-                <td class="depth2"><p>${data[i].depth2}</p></td>
-                <td class="depth3"><p>${data[i].depth3}</p></td>
-                <td class="depth4"><p>${data[i].depth4}</p></td>
-                <td class="id"><p>${data[i].view_id}</p></td>
-                <td class="name"><p>${data[i].view_name}</p></td>
-                <td class="url"><p><a href="${data[i].view_url}" target="blank">${data[i].view_url}</a></p></td>
-                <td class="date"><p>${data[i].date}</p></td>
-                <td class="state"><p>${data[i].state}</p></td>
-                <td class="author"><p>${data[i].author}</p></td>
-                <td class="note" data-wacc-toggle="true">
-                  <button type="button" class="btn" title="더보기"><i></i></button>
-                  <div class="note-memo target">
-                    ${data[i].note}
-                  </div>
-                </td>
-              </tr>
-            `);
-          }
-          // e : td array loop
-
-          // filterItems
-          const filterItems = (data, query) => {
-            return data.filter((i) =>
-              i.toLowerCase().indexOf(query.toLowerCase()) > -1
-            );
-          }
-          dataFilter = filterItems(dataSet, iv);
-
-
-          if (dataSet) {
-            // td.forEach(function (item) {
-            //   let text = item.innerText;
-            //   trHide();
-            //     setTimeout(() => {
-            //       item.closest("tr").classList.remove("hide");       
-            //     }, 10);
-            //   }
-            // });
-
-            console.log("dataSet : " + dataSet.length);
-            console.log(tra.length);
-            
-            // table view
-            let el = document.querySelectorAll(".article");
-            if (el) {
-              console.log(el);
-              el.forEach(function(target) {
-                let tda = [];
-                let id = target.getAttribute("id");
-                tda = filterItems(dataFilter, id);
-                
-                target.querySelector("tbody").innerHTML = tda.join("");
-
-                // console.log("tdal : " + tda.length);
-                // console.log(tda);
-              });
-            }
-          }
-        }
-      }
-      // select
-      else {
-        if(iv == "") {
-          tr = "";
-          reset = true;
-        } else {
-          tr = document.querySelectorAll(`.article:not(.hide) .table tbody tr[data-${sn}=${iv}]`);
-          reset = false;
-          console.log(tr);
-        }
-      }
-
-      // view
-      if (tr) {
-        console.log(tr.length);
-        trHide();
-        // tr
-        tr.forEach(function (item) {
-          item.classList.remove("hide");
-          input.value = "";
-        });
-      }
-
-      // reset
-      if (reset) {
-        console.log("reset");
-        // tra
-        tra.forEach(function (item) {
-          item.classList.remove("hide");
-        });
-      }
-      if (select) {
-        select.forEach(function (item) {
-          if (type === item.name) {
-            item.classList.remove("reset")
-          } else {
-            item.classList.add("reset")
-          }
-          if (item.classList.contains("reset")) {
-            item.value = "";
-          }
-        });
-      }
-
-    }
-
-    // select
-    if (select) {
-      select.forEach(function (item) {
-        item.addEventListener("change", function() {
-          let name = item.name;
-          let option = item.options[item.selectedIndex].value;
-          input.value = option;
-          searchSel(name);
-        });
-      });
-    }
-
-    // keyword
-    btn.addEventListener("click", function() {
-      searchSel("keyword");
-    });
-    input.addEventListener("keyup", function() {
-      if (window.event.keyCode == 13) {
-        searchSel("keyword");
-      }
-    });
-  }
-
-  
-  // setToast
-  function setToast(target) {
-    let outland = document.querySelector("#outland");
-    let toast = `
-      <div class="toast">
-        <div class="inner">
-          <p class="text">
-            <span class="var">
-              "<em>${target}</em>"
-            </span>
-            <span>복사되었습니다.</span>
-          </p>
-        </div>
-      </div>
-    `;
-    outland.innerHTML = toast;
-    // setTimeout(() => {
-    //   outland.innerHTML = "";     
-    // }, 500);
+    // tableView
+    tableView(dataOrign);
   }
 
   // tableState
-  function tableState() {
+  const tableState = function() {
     let el = document.querySelectorAll(".table tbody tr[data-state]");
     let l = el.length;
     let state = {
@@ -598,9 +191,163 @@ import {data_set} from "./data_set.js";
     progress.innerHTML = inc;
   }
 
+  // tableIndex
+  const tableIndex = function() {
+    let el = document.querySelectorAll(".table td.index > p");
+    let counter = document.querySelector(".counter");
+    let length = el.length;
+    counter.innerHTML = `총 ${length} 개`;
+    if (el) {
+      for (let i = 0; i < el.length; i++) {
+        let item = el[i];
+        let num = i + 1;
+        item.innerText = num;
+      }
+    }
+  }
+  
+  // filterSet
+  const filterSet = function() {
+    // typeAuthor
+    let typeAuthor = document.querySelector(".filter select[name=author]");
+    let author = [`<option value="">author</option>`];
+    for (let item in crt) {
+      author.push(`
+        <option value="${crt[item]}">${crt[item]}</option>
+      `);
+    }
+    typeAuthor.innerHTML = author.join("");
+    
+    // typeState
+    let typeState = document.querySelector(".filter select[name=state]");
+    let state = [`<option value="">state</option>`];
+    for (let item in st) {
+      state.push(`
+        <option value="${st[item]}">${st[item]}</option>
+      `);
+    }
+    typeState.innerHTML = state.join("");
+
+    // typeCategory
+    let typeCategory = document.querySelector(".category");
+    let category = [`<li><button type="button" class="btn" id="table_all">전체보기</button></li>`];
+    for (let item in ctg) {
+      let id = ctg[item].id;
+      let title = ctg[item].title;
+      category.push(`
+        <li><button type="button" class="btn" id="${id}">${title}</button></li>
+      `);
+    }
+    typeCategory.innerHTML = category.join("");
+
+    // categoryFilter
+    const categoryFilter = function() {
+      let article = document.querySelectorAll(".article");
+      let btn = document.querySelectorAll(".filter .category .btn");
+
+      if (btn) {
+        btn.forEach(function (item) {
+          item.addEventListener("click", function() {
+            let id = item.id;
+            // article
+            article.forEach(function (i) {
+              i.classList.add("hide");
+              if (id === i.id) {
+                i.classList.remove("hide");
+              } else if (id === "table_all") {
+                i.classList.remove("hide");
+              }
+            });
+          });
+        });
+      }
+    }
+
+    // selectFilter
+    const selectFilter = function() {
+      let input = document.querySelector(".filter input[type=text]");
+      let btn = document.querySelector(".filter .search .btn");
+      let select = document.querySelectorAll(".filter select");
+
+      // searchSel
+      function searchSel(type) {
+        // init
+        let iv = input.value;
+
+        // dataFilter
+        dataClone = dataFilter(dataOrign, iv);
+
+        // tableView
+        tableView(dataClone);
+
+        // reset
+        if (select) {
+          select.forEach(function (item) {
+            if (type === item.name) {
+              item.classList.remove("reset")
+            } else {
+              item.classList.add("reset")
+            }
+            if (item.classList.contains("reset")) {
+              item.value = "";
+            }
+          });
+        }
+      }
+
+      // select
+      if (select) {
+        select.forEach(function (item) {
+          item.addEventListener("change", function() {
+            let name = item.name;
+            let option = item.options[item.selectedIndex].value;
+            input.value = option;
+            searchSel(name);
+          });
+        });
+      }
+
+      // keyword
+      btn.addEventListener("click", function() {
+        searchSel("keyword");
+      });
+      input.addEventListener("keyup", function() {
+        if (window.event.keyCode == 13) {
+          searchSel("keyword");
+        }
+      });
+    }
+
+    // run
+    categoryFilter();
+    selectFilter();
+  }
+
   // tableCopy
-  function tableCopy() {
-    let el = document.querySelectorAll(".table td > p");
+  const tableCopy = function() {
+
+    // setToast
+    const setToast = function(target) {
+      let outland = document.querySelector("#outland");
+      let toast = `
+        <div class="toast">
+          <div class="inner">
+            <p class="text">
+              <span class="var">
+                "<em>${target}</em>"
+              </span>
+              <span>복사되었습니다.</span>
+            </p>
+          </div>
+        </div>
+      `;
+      outland.innerHTML = toast;
+      // setTimeout(() => {
+      //   outland.innerHTML = "";     
+      // }, 500);
+    }
+  
+    let el = document.querySelectorAll(".table td p"); //메모 복사 안됨
     if (el) {
       el.forEach(function (item) {
         item.addEventListener("click", function() {
@@ -620,28 +367,7 @@ import {data_set} from "./data_set.js";
   }
   
   // tableCheck
-  function tableCheck() {
-    // let event = function(e) {
-    //   // console.log(item);
-    //   // console.log(e.target);
-    //   console.log(e.currentTarget);
-    //   e.currentTarget.classList.toggle("select");
-    // };
-    // function tableCheckEvt() {
-    //   let el = document.querySelectorAll(".table tbody tr");
-    //   if (el) {
-    //     el.forEach(function (item) {
-    //       item.addEventListener("click", event);
-    //     });
-    //   }
-    // }
-    // function tableCheckDel() {
-    //   if (el) {
-    //     el.forEach(function (item) {
-    //       item.removeEventListener('click', clickListener);
-    //     });
-    //   }
-    // }
+  const tableCheck = function() {
 
     const evt = function(e) {
       // console.log(e.currentTarget);
@@ -662,37 +388,10 @@ import {data_set} from "./data_set.js";
     });
   }
 
-  
-
   // noteToggle
-  function noteToggle() {
-    // let note = document.querySelectorAll(".table td.note");
-    // let btn = document.querySelectorAll(".table td.note .btn");
-
-    // if (note) {
-    //   note.forEach(function (item) {
-    //     let memo = item.querySelectorAll(".note-memo p");
-    //     memo.forEach(function (i) {
-    //       if (memo.length > 1) {
-    //         i.closest(".note").classList.add("multi");
-    //       }
-    //     });
-    //   });
-    // }
-
-    // if (btn) {
-    //   btn.forEach(function (item) {
-    //     item.addEventListener("click", function() {
-    //       item.closest(".note").classList.toggle("active");
-    //       item.classList.toggle("active");
-    //     });
-    //   });
-    // }
+  const noteToggle = function() {
 
     const evt = function(e) {
-      // item.closest(".note").classList.toggle("active");
-      // item.classList.toggle("active");
-      // console.log(e.currentTarget);
       e.currentTarget.closest(".note").classList.toggle("active");
       e.currentTarget.classList.toggle("active");
     };
@@ -727,27 +426,7 @@ import {data_set} from "./data_set.js";
   }
 
   // waccToggle
-  function waccToggle(e) {
-    // let idx = 0;
-    // let tog = document.querySelectorAll("[data-wacc-toggle=true]");
-    // if (tog) {
-    //   tog.forEach(function (item) {
-    //     idx++;
-    //     let ctrl = item.querySelector(".btn");
-    //     let target = item.querySelector(".target");
-    //     target.setAttribute("id", `ui-tog-${idx}`);
-    //     ctrl.setAttribute("aria-expanded", "false");
-    //     ctrl.setAttribute("aria-controls", `ui-tog-${idx}`);
-    //     ctrl.addEventListener("click", function() {
-    //       console.log(ctrl);
-    //       if (this.classList.contains("active")) {
-    //         this.setAttribute("aria-expanded", "true");
-    //       } else {
-    //         this.setAttribute("aria-expanded", "false");
-    //       }
-    //     });
-    //   });
-    // }
+  const waccToggle = function(e) {
 
     let idx = 0;
     let tog;
@@ -796,24 +475,8 @@ import {data_set} from "./data_set.js";
 
   }
 
-  // 오브젝트
-  let objtest = {
-		init: function() {
-			let el;
-      console.log(el);
-      return el;
-		},
-		set: function(){
-			this.init();
-      // el = document.querySelectorAll(".table tbody tr");
-      // return el;
-      // let el = document.querySelectorAll(".table tbody tr");
-      // console.log(init.el);
-		},
-	}
-
   // tableSort
-  function tableSort() {
+  const tableSort = function() {
     let dateTh = document.querySelectorAll(".table th.date");
     if (dateTh) {
       
@@ -850,16 +513,13 @@ import {data_set} from "./data_set.js";
       }
 
       // arrayReload
-      function arrayReload(array) {
-        // console.log(array);
-        // tbody.innerHTML = "";
+      function arrayReload(array, target) {
         let data = [];
-        let tr = [];
         
-        array.forEach(function (i) {
-          
+        array.forEach(function(i) {
           let obj = new Object();
 
+          obj.id = i.dataset.id;
           obj.depth1 = i.querySelector(".depth1").innerText;
           obj.depth2 = i.querySelector(".depth2").innerText;
           obj.depth3 = i.querySelector(".depth3").innerText;
@@ -873,45 +533,18 @@ import {data_set} from "./data_set.js";
           obj.note = i.querySelector(".note-memo").innerHTML;
 
           data.push(obj);
-          // console.log(data);
-
         });
 
-        for (let item of data) {
-          tr.push(`
-            <tr data-sort="${item.date}">
-              <td class="index"><p></p></td>
-              <td class="depth1"><p>${item.depth1}</p></td>
-              <td class="depth2"><p>${item.depth2}</p></td>
-              <td class="depth3"><p>${item.depth3}</p></td>
-              <td class="depth4"><p>${item.depth4}</p></td>
-              <td class="id"><p>${item.view_id}</p></td>
-              <td class="name"><p>${item.view_name}</p></td>
-              <td class="url"><p><a href="${item.view_url}" target="blank">${item.view_url}</a></p></td>
-              <td class="date"><p>${item.date}</p></td>
-              <td class="state"><p>${item.state}</p></td>
-              <td class="author"><p>${item.author}</p></td>
-              <td class="note" data-wacc-toggle="true">
-                <button type="button" class="btn" title="더보기"><i></i></button>
-                <div class="note-memo target">
-                  ${item.note}
-                </div>
-              </td>
-            </tr>
-          `);
-        }
-
-        tbody.innerHTML = tr.join("");
-
-        // update();
-        // tableIndex();
-        // tableState();
-        // tableCopy();
-
+        // dataInit
+        dataSort = [];
+        dataInit(data, dataSort);
+        
+        // tableView
+        tableView(dataSort, target);
       }
 
       // dateTh
-      dateTh.forEach(function (item) {
+      dateTh.forEach(function(item) {
         let asc = item.querySelector(".sortasc");
         let desc = item.querySelector(".sortdesc");
         asc.addEventListener("click", function() {
@@ -920,11 +553,10 @@ import {data_set} from "./data_set.js";
           let arrayDate = [];
           let date = this.closest(".table").querySelectorAll(".table tbody tr");
           date.forEach(function (i) {
-            // arrayDate.push(i.dataset.sort);
             arrayDate.push(i);
           });
           arraySort = arrayDate.sort(sortNum);
-          arrayReload(arraySort);
+          arrayReload(arraySort, tbody);
         });
         desc.addEventListener("click", function() {
           sortType = this.getAttribute("class");
@@ -932,39 +564,32 @@ import {data_set} from "./data_set.js";
           let arrayDate = [];
           let date = this.closest(".table").querySelectorAll(".table tbody tr");
           date.forEach(function (i) {
-            // arrayDate.push(i.dataset.sort);
             arrayDate.push(i);
           });
           arraySort = arrayDate.sort(sortNum);
-          arrayReload(arraySort); 
+          arrayReload(arraySort, tbody); 
         });
       });
     }
   }
 
 
-  // run functions
-  // setTable
-  setTable();
-  // tableIndex();
-
-  // filter
-  setFilter();
-
-  // tableState
-  tableState();
-
-  // tableCopy
-  tableCopy();
-
-  // tableCheck
-  tableCheck();
-
   
 
+
+  // dataInit
+  dataInit(data_set, dataOrign);
+  
+  // tableSet
+  tableSet();
+
+  // filterSet
+  filterSet();
+  
+  // tableCheck
+  tableCheck();
   // noteToggle
   noteToggle();
-
   // waccToggle
   waccToggle();
 
@@ -1121,7 +746,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log("load : " + load + "ms  >>>>>>>  브라우저의 Load 이벤트 실행시간");
     console.log("pageEnd : " + pageEnd + "ms  >>>>>>>  서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간");
                  
-  }, 5000);
+  }, 6000);
 
   console.log("==================== start!! ====================");
 });

@@ -140,7 +140,7 @@ export let data_00 = [
     view_url: "aaa/aaa.url",
     date: "2022-10-28",
     state: st.stay,
-    author: "author",
+    author: crt.p02,
     note: "<p>Lorem ipsum dolor sit amet</p>",
   },
 ]

@@ -156,14 +156,32 @@
   display: none;
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.category {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.table {
+  width: 100%;
+}
+
 .table :where(th, td) {
   border: 1px solid var(--color_line01);
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
 }
 
 .table th {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--color_font00);
   background-color: var(--color_bg01);

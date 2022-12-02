@@ -274,7 +274,7 @@ import {data_set} from "./data_set.js";
   // setFilter
   function setFilter() {
     // typeAuthor
-    let typeAuthor = document.querySelector(".filter select[name=type_author]");
+    let typeAuthor = document.querySelector(".filter select[name=author]");
     let author = [`<option value="">author</option>`];
     for (let item in crt) {
       author.push(`
@@ -284,7 +284,7 @@ import {data_set} from "./data_set.js";
     typeAuthor.innerHTML = author.join("");
     
     // typeState
-    let typeState = document.querySelector(".filter select[name=type_state]");
+    let typeState = document.querySelector(".filter select[name=state]");
     let state = [`<option value="">state</option>`];
     for (let item in st) {
       state.push(`
@@ -336,15 +336,75 @@ import {data_set} from "./data_set.js";
   function tableFilter() {
     let input = document.querySelector(".filter input[type=text]");
     let btn = document.querySelector(".filter .search .btn");
-    // let td = document.querySelectorAll(".table tbody td p");
     let select = document.querySelectorAll(".filter select");
-    // let tds = document.querySelectorAll(".table tbody td p");
-    let tds;
+    let tra = document.querySelectorAll(".article:not(.hide) .table tbody tr");
+    let td = document.querySelectorAll(".article:not(.hide) .table tbody td p");
+    let tr;
+    let reset = false;
+
+    // searchSel
+    function searchSel(type) {
+      // init
+      let sn = type;
+      let iv = input.value;
+
+      // keyword
+      if(type == "keyword") {
+        console.log(type);
+        console.log(reset);
+      }
+      // select
+      else {
+        if(iv == "") {
+          tr = "";
+          reset = true;
+        } else {
+          tr = document.querySelectorAll(`.article:not(.hide) .table tbody tr[data-${sn}=${iv}]`);
+          reset = false;
+          console.log(tr);
+        }
+      }
+
+      // view
+      if (tr) {
+        console.log(tr.length);
+        // tra
+        tra.forEach(function (item) {
+          item.classList.add("hide");
+        });
+        // tr
+        tr.forEach(function (item) {
+          item.classList.remove("hide");
+          input.value = "";
+        });
+      }
+
+      // reset
+      if (reset) {
+        console.log("reset");
+        // tra
+        tra.forEach(function (item) {
+          item.classList.remove("hide");
+        });
+      }
+      if (select) {
+        select.forEach(function (item) {
+          if (type === item.name) {
+            item.classList.remove("reset")
+          } else {
+            item.classList.add("reset")
+          }
+          if (item.classList.contains("reset")) {
+            item.value = "";
+          }
+        });
+      }
+      
+    }
 
     // searchInc
     function searchInc() {
       let iv = input.value;
-      // console.log(iv);
       if (td) {
         td.forEach(function (item) {
           let text = item.innerText;
@@ -363,57 +423,12 @@ import {data_set} from "./data_set.js";
         select.forEach(function (item) {
           item.value = "";
         });
-      }
-    }
-
-    // searchSel
-    function searchSel(type) {
-      let iv = input.value;
-      if (type === "type_author") {
-        // console.log("author")
-        // tds = document.querySelectorAll(".table tbody td.author p");
-        tds = document.querySelectorAll(".table tbody tr[data-author]");
-      } else if (type === "type_state") {
-        // console.log("state")
-        // tds = document.querySelectorAll(".table tbody td.state p");
-        tds = document.querySelectorAll(".table tbody tr[data-state]");
-      }
-      
-      // console.log(iv);
-      if (tds) {
-        tds.forEach(function (item) {
-          let text = item.dataset.author;
-          console.log(text);
-          // if (iv == text) {
-          //   console.log(iv);
-          // }
-          // console.log(item);
-          // item.classList.add("hide");
-          // item.closest("tr").classList.add("hide");
-          // if (iv == text) {
-          //   setTimeout(() => {
-          //     item.closest("tr").classList.remove("hide");       
-          //   }, 0);
-          // } else if (iv == "") {
-          //   item.closest("tr").classList.remove("hide");
-          // }
+        // reset
+      if (select) {
+        select.forEach(function (item) {
           
         });
-        console.log(tds.length);
       }
-      
-      // reset
-      if (select) {
-        // select.forEach(function (item) {
-        //   if (type === item.name) {
-        //     item.classList.remove("reset")
-        //   } else {
-        //     item.classList.add("reset")
-        //   }
-        //   if (item.classList.contains("reset")) {
-        //     item.value = "";
-        //   }
-        // });
       }
     }
 
@@ -433,17 +448,17 @@ import {data_set} from "./data_set.js";
         item.addEventListener("change", function() {
           let name = item.name;
           let option = item.options[item.selectedIndex].value;
-          // console.log(option);
-          // console.log(name);
           input.value = option;
           searchSel(name);
         });
       });
+
+      
     }
 
     // run
     btn.addEventListener("click", function() {
-      // searchInc();
+      searchSel("keyword");
     });
     input.addEventListener("keyup", function() {
       // enterKey();

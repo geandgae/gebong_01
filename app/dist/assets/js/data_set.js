@@ -30,7 +30,7 @@ export const data_set = [
   ...data_01, 
   ...data_02,
   ...data_03,
-  ...data_04,
+  // ...data_04,
 ];
 
 // export default data_set;

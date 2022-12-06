@@ -4,6 +4,7 @@
 import {crt, st, ctg} from "./data_options.js";
 import {data_set} from "./data_set.js";
 
+let loadDiv = document.querySelector(".loading");
 
 // s : function
 (function () {
@@ -67,7 +68,7 @@ import {data_set} from "./data_set.js";
         });
       }
     }
- 
+    
     tableIndex();
     tableState();
     tableCopy();
@@ -268,7 +269,6 @@ import {data_set} from "./data_set.js";
       let input = document.querySelector(".filter input[type=text]");
       let btn = document.querySelector(".filter .search .btn");
       let select = document.querySelectorAll(".filter select");
-
       // searchSel
       function searchSel(type) {
         // init
@@ -276,9 +276,21 @@ import {data_set} from "./data_set.js";
 
         // dataFilter
         dataClone = dataFilter(dataOrign, iv);
+        function runView() {
+          return new Promise((resolve, reject) => {
+            resolve(dataClone = dataFilter(dataOrign, iv));
+          })
+        }
+        const runResult = async () => {
+          console.log("loding");
+          await runView();
+          console.log("loding-end");
+          loadDiv.classList.remove("active");
+        }
+        runResult();
 
-        // tableView
-        tableView(dataClone);
+        // tableView 로딩 테스트
+        tableView(dataClone)
 
         // reset
         if (select) {
@@ -303,6 +315,8 @@ import {data_set} from "./data_set.js";
             let option = item.options[item.selectedIndex].value;
             input.value = option;
             searchSel(name);
+            // console.log(loadDiv);
+            loadDiv.classList.add("active");
           });
         });
       }
@@ -717,7 +731,6 @@ function showTest() {
 // 로딩 테스트
 window.addEventListener('DOMContentLoaded', function() {
   
-  let loadDiv = this.document.querySelector(".loading");
   loadDiv.classList.remove("active");
 
   // 시간체크
@@ -777,4 +790,55 @@ window.addEventListener('DOMContentLoaded', function() {
 //     console.log(performance.timing.responseEnd);
 
 //   }, 0);
+// });
+
+
+// async 테스트
+// function gotoCodestates() {
+//   return new Promise((resolve, reject) => {
+//       setTimeout(() => { resolve('1. go to codestates') }, Math.floor(Math.random() * 10000) + 1)
+//   })
+// }
+
+// function sitAndCode() {
+//   return new Promise((resolve, reject) => {
+//       setTimeout(() => { resolve('2. sit and code') }, Math.floor(Math.random() * 10000) + 1)
+//   })
+// }
+
+// function eatLunch() {
+//   return new Promise((resolve, reject) => {
+//       setTimeout(() => { resolve('3. eat lunch') }, Math.floor(Math.random() * 10000) + 1)
+//   })
+// }
+
+// function goToBed() {
+//   return new Promise((resolve, reject) => {
+//       setTimeout(() => { resolve('4. goToBed') }, Math.floor(Math.random() * 10000) + 1)
+//   })
+// }
+
+// const result = async () => {
+
+//   loadDiv.classList.add("active");
+
+//   console.log("loding");
+
+//   const one = await gotoCodestates();
+//   console.log(one);
+
+//   const two = await sitAndCode();
+//   console.log(two);
+
+//   const three = await eatLunch();
+//   console.log(three);
+
+//   const four = await goToBed();
+//   console.log(four);
+
+//   loadDiv.classList.remove("active");
+// }
+
+// document.addEventListener("click", function() {
+//   result();
 // });

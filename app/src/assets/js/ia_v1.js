@@ -274,7 +274,7 @@ let loadDiv = document.querySelector(".loading");
         // init
         let iv = input.value;
 
-        // dataFilter
+        // dataFilter 로딩 테스트
         dataClone = dataFilter(dataOrign, iv);
         function runView() {
           return new Promise((resolve, reject) => {
@@ -282,6 +282,8 @@ let loadDiv = document.querySelector(".loading");
           })
         }
         const runResult = async () => {
+          // console.log(loadDiv);
+          loadDiv.classList.add("active");
           console.log("loding");
           await runView();
           console.log("loding-end");
@@ -289,7 +291,7 @@ let loadDiv = document.querySelector(".loading");
         }
         runResult();
 
-        // tableView 로딩 테스트
+        // tableView
         tableView(dataClone)
 
         // reset
@@ -315,8 +317,6 @@ let loadDiv = document.querySelector(".loading");
             let option = item.options[item.selectedIndex].value;
             input.value = option;
             searchSel(name);
-            // console.log(loadDiv);
-            loadDiv.classList.add("active");
           });
         });
       }
@@ -794,51 +794,51 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 // async 테스트
-// function gotoCodestates() {
-//   return new Promise((resolve, reject) => {
-//       setTimeout(() => { resolve('1. go to codestates') }, Math.floor(Math.random() * 10000) + 1)
-//   })
-// }
+function gotoCodestates() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => { resolve('1. go to codestates') }, Math.floor(Math.random() * 10000) + 1)
+  })
+}
 
-// function sitAndCode() {
-//   return new Promise((resolve, reject) => {
-//       setTimeout(() => { resolve('2. sit and code') }, Math.floor(Math.random() * 10000) + 1)
-//   })
-// }
+function sitAndCode() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => { resolve('2. sit and code') }, Math.floor(Math.random() * 10000) + 1)
+  })
+}
 
-// function eatLunch() {
-//   return new Promise((resolve, reject) => {
-//       setTimeout(() => { resolve('3. eat lunch') }, Math.floor(Math.random() * 10000) + 1)
-//   })
-// }
+function eatLunch() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => { resolve('3. eat lunch') }, Math.floor(Math.random() * 10000) + 1)
+  })
+}
 
-// function goToBed() {
-//   return new Promise((resolve, reject) => {
-//       setTimeout(() => { resolve('4. goToBed') }, Math.floor(Math.random() * 10000) + 1)
-//   })
-// }
+function goToBed() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => { resolve('4. goToBed') }, Math.floor(Math.random() * 10000) + 1)
+  })
+}
 
-// const result = async () => {
+const result2232 = async () => {
 
-//   loadDiv.classList.add("active");
+  loadDiv.classList.add("active");
 
-//   console.log("loding");
+  console.log("loding");
 
-//   const one = await gotoCodestates();
-//   console.log(one);
+  const one = await gotoCodestates();
+  console.log(one);
 
-//   const two = await sitAndCode();
-//   console.log(two);
+  const two = await sitAndCode();
+  console.log(two);
 
-//   const three = await eatLunch();
-//   console.log(three);
+  const three = await eatLunch();
+  console.log(three);
 
-//   const four = await goToBed();
-//   console.log(four);
+  const four = await goToBed();
+  console.log(four);
 
-//   loadDiv.classList.remove("active");
-// }
+  loadDiv.classList.remove("active");
+}
 
 // document.addEventListener("click", function() {
-//   result();
+//   result2232();
 // });

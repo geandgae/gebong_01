@@ -58,13 +58,19 @@ let loadDiv = document.querySelector(".loading");
         let tr = [];
         let id = target.closest(".article").getAttribute("id");
         tr = dataFilter(data, id);
-        target.innerHTML = tr.join("");
+        // target.innerHTML = tr.join("");
+        return new Promise((resolve, reject) => {
+          resolve(target.innerHTML = tr.join(""));
+        })
       } else {
         el.forEach(function(item) {
           let tr = [];
           let id = item.getAttribute("id");
           tr = dataFilter(data, id);
-          item.querySelector("tbody").innerHTML = tr.join("");
+          // item.querySelector("tbody").innerHTML = tr.join("");
+          return new Promise((resolve, reject) => {
+            resolve(item.querySelector("tbody").innerHTML = tr.join(""));
+          })
         });
       }
     }
@@ -72,6 +78,7 @@ let loadDiv = document.querySelector(".loading");
     tableIndex();
     tableState();
     tableCopy();
+    noteToggle();
   }
 
   // tableSet
@@ -274,25 +281,18 @@ let loadDiv = document.querySelector(".loading");
         // init
         let iv = input.value;
 
-        // dataFilter 로딩 테스트
+        // dataFilter 
         dataClone = dataFilter(dataOrign, iv);
-        function runView() {
-          return new Promise((resolve, reject) => {
-            resolve(dataClone = dataFilter(dataOrign, iv));
-          })
-        }
+        
+        // tableView
         const runResult = async () => {
-          // console.log(loadDiv);
-          loadDiv.classList.add("active");
           console.log("loding");
-          await runView();
+          await tableView(dataClone);
           console.log("loding-end");
           loadDiv.classList.remove("active");
         }
         runResult();
-
-        // tableView
-        tableView(dataClone)
+        
 
         // reset
         if (select) {
@@ -316,7 +316,11 @@ let loadDiv = document.querySelector(".loading");
             let name = item.name;
             let option = item.options[item.selectedIndex].value;
             input.value = option;
-            searchSel(name);
+            // 로딩 테스트
+            loadDiv.classList.add("active");
+            setTimeout(() => {
+              searchSel(name);
+            }, 0);
           });
         });
       }
@@ -404,39 +408,26 @@ let loadDiv = document.querySelector(".loading");
 
   // noteToggle
   const noteToggle = function() {
-
     const evt = function(e) {
+      console.log("noteToggleEvt!!!!! --- evt");
       e.currentTarget.closest(".note").classList.toggle("active");
-      e.currentTarget.classList.toggle("active");
     };
     
-    function noteToggleEvt() {
+    const noteToggleEvt = function() {
+      console.log("noteToggleEvt!!!!! --- loading");
       let note = document.querySelectorAll(".table td.note");
-      let btn = document.querySelectorAll(".table td.note .btn");
-
       if (note) {
         note.forEach(function (item) {
           let memo = item.querySelectorAll(".note-memo p");
-          memo.forEach(function (i) {
-            if (memo.length > 1) {
-              i.closest(".note").classList.add("multi");
-            }
-          });
-        });
-      }
-
-      if (btn) {
-        btn.forEach(function (item) {
-          item.addEventListener("click", evt);
+          let btn = item.querySelector(".btn");
+          if (memo.length > 1) {
+            item.closest(".note").classList.add("multi");
+            btn.addEventListener("click", evt);
+          }
         });
       }
     }
     noteToggleEvt();
-
-    document.addEventListener("click", function() {
-      noteToggleEvt();
-    });
-
   }
 
   // waccToggle
@@ -602,10 +593,6 @@ let loadDiv = document.querySelector(".loading");
   
   // tableCheck
   tableCheck();
-  // noteToggle
-  noteToggle();
-  // waccToggle
-  waccToggle();
 
   // tableSort
   tableSort();

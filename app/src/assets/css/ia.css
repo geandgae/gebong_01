@@ -138,6 +138,7 @@
   left: 0;
   overflow: hidden;
   z-index: 100;
+  opacity: 0.5;
 }
 
 .loading.active {
@@ -258,7 +259,7 @@
   transition: all 0.3s;
 }
 
-.table td.note .btn.active i::after {
+.table td.note.active .btn i::after {
   opacity: 0;
   transform: rotate(90deg);
 }

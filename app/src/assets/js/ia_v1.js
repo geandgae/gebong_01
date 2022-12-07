@@ -58,19 +58,23 @@ let loadDiv = document.querySelector(".loading");
         let tr = [];
         let id = target.closest(".article").getAttribute("id");
         tr = dataFilter(data, id);
-        // target.innerHTML = tr.join("");
-        return new Promise((resolve, reject) => {
-          resolve(target.innerHTML = tr.join(""));
-        })
+        target.innerHTML = tr.join("");
+        // 로딩 테스트
+        // return new Promise((resolve, reject) => {
+        //   resolve(target.innerHTML = tr.join(""));
+        // })
+        // 로딩 테스트
       } else {
         el.forEach(function(item) {
           let tr = [];
           let id = item.getAttribute("id");
           tr = dataFilter(data, id);
-          // item.querySelector("tbody").innerHTML = tr.join("");
+          item.querySelector("tbody").innerHTML = tr.join("");
+          // 로딩 테스트
           return new Promise((resolve, reject) => {
             resolve(item.querySelector("tbody").innerHTML = tr.join(""));
           })
+          // 로딩 테스트
         });
       }
     }
@@ -253,22 +257,50 @@ let loadDiv = document.querySelector(".loading");
       let article = document.querySelectorAll(".article");
       let btn = document.querySelectorAll(".filter .category .btn");
 
+      const evt = function(e) {
+        let id = e.currentTarget.id;
+
+        console.log(id);
+
+        const articleView = function() {
+          // article
+          article.forEach(function (i) {
+            i.classList.add("hide");
+            if (id === i.id) {
+              i.classList.remove("hide");
+            } else if (id === "table_all") {
+              i.classList.remove("hide")
+            }
+          });
+        }
+
+        // 로딩 테스트
+        loadDiv.classList.add("active");
+        const promise = function() {
+          return new Promise((resolve, reject) => {
+            resolve(articleView());
+          })
+        }
+        const runResult = async () => {
+          console.log("loding");
+          await promise();
+          console.log("loding-end");
+          loadDiv.classList.remove("active");
+        }
+        setTimeout(() => {
+          runResult();
+        }, 0);
+        // 로딩 테스트
+
+      };
+
       if (btn) {
         btn.forEach(function (item) {
-          item.addEventListener("click", function() {
-            let id = item.id;
-            // article
-            article.forEach(function (i) {
-              i.classList.add("hide");
-              if (id === i.id) {
-                i.classList.remove("hide");
-              } else if (id === "table_all") {
-                i.classList.remove("hide");
-              }
-            });
-          });
+          item.addEventListener("click", evt);
         });
       }
+
+      
     }
 
     // selectFilter
@@ -285,6 +317,8 @@ let loadDiv = document.querySelector(".loading");
         dataClone = dataFilter(dataOrign, iv);
         
         // tableView
+        // tableView(dataClone);
+        // 로딩 테스트
         const runResult = async () => {
           console.log("loding");
           await tableView(dataClone);
@@ -292,6 +326,7 @@ let loadDiv = document.querySelector(".loading");
           loadDiv.classList.remove("active");
         }
         runResult();
+        // 로딩 테스트
         
 
         // reset
@@ -321,17 +356,29 @@ let loadDiv = document.querySelector(".loading");
             setTimeout(() => {
               searchSel(name);
             }, 0);
+            // 로딩 테스트
           });
         });
       }
 
       // keyword
       btn.addEventListener("click", function() {
-        searchSel("keyword");
+        // 로딩 테스트
+        loadDiv.classList.add("active");
+        setTimeout(() => {
+          searchSel("keyword");
+        }, 0);
+        // 로딩 테스트
+        
       });
       input.addEventListener("keyup", function() {
         if (window.event.keyCode == 13) {
-          searchSel("keyword");
+          // 로딩 테스트
+          loadDiv.classList.add("active");
+          setTimeout(() => {
+            searchSel("keyword");
+          }, 0);
+          // 로딩 테스트
         }
       });
     }
@@ -411,6 +458,7 @@ let loadDiv = document.querySelector(".loading");
     const evt = function(e) {
       console.log("noteToggleEvt!!!!! --- evt");
       e.currentTarget.closest(".note").classList.toggle("active");
+      e.currentTarget.classList.toggle("active");
     };
     
     const noteToggleEvt = function() {
@@ -426,8 +474,10 @@ let loadDiv = document.querySelector(".loading");
           }
         });
       }
-    }
+    };
+
     noteToggleEvt();
+    waccToggle();
   }
 
   // waccToggle
@@ -458,25 +508,12 @@ let loadDiv = document.querySelector(".loading");
           } else {
             ctrl.setAttribute("aria-expanded", "false");
           }
-        });
-      }
-    }
-    
-    function waccToggleEvt() {
-      if (tog) {
-        tog.forEach(function (item) {
-          let ctrl = item.querySelector(".btn");
           ctrl.addEventListener("click", evt);
         });
       }
     }
     
     waccToggleInit();
-    document.addEventListener("click", function() {
-      waccToggleInit();
-      idx = 0;
-      waccToggleEvt();
-    });
 
   }
 
@@ -546,6 +583,22 @@ let loadDiv = document.querySelector(".loading");
         
         // tableView
         tableView(dataSort, target);
+        // 로딩 테스트
+        // const runResult = async () => {
+        //   console.log("loding");
+        //   await tableView(dataSort, target);
+        //   console.log("loding-end");
+        //   loadDiv.classList.remove("active");
+        // }
+        // loadDiv.classList.add("active");
+        // setTimeout(() => {
+        //   runResult();
+        //   tableIndex();
+        //   tableState();
+        //   tableCopy();
+        //   noteToggle();
+        // }, 0);
+        // 로딩 테스트
       }
 
       // dateTh
@@ -715,7 +768,7 @@ function showTest() {
 }
 // showTest();
 
-// 로딩 테스트
+// 로딩 시간 체크
 window.addEventListener('DOMContentLoaded', function() {
   
   loadDiv.classList.remove("active");

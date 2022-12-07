@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>layer</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
+    <script type="module" async src="./assets/js/layer.js"></script> 
+  </head>
+  <body>
+
+    <style>
+      .wrap {
+        background-color: rgb(255, 255, 238);
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .wrap > * {
+        text-align: center;
+        display: block;
+      }
+      .scroll {
+        width: 100%;
+        height: 2000px;
+      }
+      button {
+        font-size: 10px;
+        font-weight: normal;
+        border: 1px solid #000;
+        padding: 3px;
+        background-color: #fff;
+        letter-spacing: -0.5px;
+      }
+      .btn-set {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      
+      .outland {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .outland.active {
+        display: block;
+      }
+
+      .layer {
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background-color: transparent;
+      }
+      .layer.active {
+        display: flex;
+      }
+      .layer.current {
+        z-index: 2;
+      }
+      .layer .inner {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .layer .inner.alt {
+        margin-top: 200px;
+        margin-left: 200px;
+      }
+      .layer .inner.alt2 {
+        margin-bottom: 200px;
+        margin-left: 200px;
+      }
+      *:focus {
+        border: 1px solid red;
+      }
+    </style>
+
+    <!-- wrap -->
+    <div id="wrap" class="wrap">
+      <span>wrap</span>
+      <div class="btn-set">
+        <button class="btn" data-layer="layer-d1">layer-d1</button>
+        <button class="btn" data-layer="layer-d2">layer-d2</button>
+        <button class="btn" data-layer="layer-d3">layer-d3</button>
+      </div>
+      <div class="scroll"></div>
+    </div>
+    <!-- //wrap -->
+    
+    <!-- outland -->
+    <div id="outland" class="outland">
+
+      <!-- layer -->
+      <div class="layer" data-layer="layer-d1">
+        <div class="inner">
+          <span>layer-d1</span>
+          <button class="btn open" data-layer="layer-d2">layer-d2</button>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //layer -->
+
+      <!-- layer -->
+      <div class="layer" data-layer="layer-d2">
+        <div class="inner alt">
+          <span>layer-d2</span>
+          <button class="btn" data-layer="layer-d3">layer-d3</button>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //layer -->
+
+      <!-- layer -->
+      <div class="layer" data-layer="layer-d3">
+        <div class="inner alt2">
+          <span>layer-d3</span>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //layer -->
+
+    </div>
+    <!-- //outland -->
+
+  </body>
+</html>

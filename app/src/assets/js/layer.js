@@ -37,7 +37,8 @@
           item.setAttribute("aria-hidden", "false");
           focus = item;
           item.focus();
-          console.log(focus);
+          // console.log(focus);
+          console.log(document.activeElement);
           evtKeytab();
         } else {
           item.setAttribute("tabindex", -1);
@@ -45,6 +46,7 @@
           item.classList.remove("focus");
         }
       });
+      
     }
 
     const evtClose = function(e) {
@@ -58,6 +60,7 @@
           outer?.classList.remove("active");
         }
       })
+      console.log(document.activeElement);
     }
     
     if (btn) {
@@ -97,6 +100,7 @@ const test = function(e) {
   modalToggle.addEventListener('click', openModal);
 
   function openModal() {
+    // document.activeElement 현재 포커스된 요소를 반환
     focusedElementBeforeModal = document.activeElement;// focus된게 아니라 'active'된 el.
 
     modal.addEventListener('keydown', trapTabKey);// key를 누르고 있을때

@@ -14,9 +14,6 @@
     <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
     <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
     <script type="module" async src="./assets/js/layer.js"></script> 
-  </head>
-  <body>
-
     <style>
       .wrap {
         background-color: rgb(255, 255, 238);
@@ -84,9 +81,10 @@
         z-index: 10;
       }
       .layer .inner {
-        width: 100px;
-        height: 100px;
+        min-width: 100px;
+        min-height: 100px;
         background-color: #fff;
+        padding: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -97,13 +95,15 @@
         margin-left: 200px;
       }
       .layer .inner.alt2 {
-        margin-bottom: 200px;
-        margin-left: 200px;
+        margin-bottom: 500px;
+        margin-left: 400px;
       }
       *:focus {
         border: 1px solid red;
       }
     </style>
+  </head>
+  <body>
 
     <!-- wrap -->
     <div id="wrap" class="wrap">
@@ -112,6 +112,8 @@
         <button class="btn" data-layer="layer-d1">layer-d1</button>
         <button class="btn" data-layer="layer-d2">layer-d2</button>
         <button class="btn" data-layer="layer-d3">layer-d3</button>
+        <button class="btn" data-layer="popupTest">popupTest</button>
+        <button class="btn make">생성자</button>
       </div>
       <div class="scroll"></div>
     </div>
@@ -121,17 +123,17 @@
     <div id="outland" class="outland">
 
       <!-- layer -->
-      <div class="layer" data-layer="layer-d1">
+      <div class="layer" data-layer="layer-d1" data-ui-depth="0">
         <div class="inner">
           <span>layer-d1</span>
-          <button class="btn open" data-layer="layer-d2">layer-d2</button>
+          <button class="btn" data-layer="layer-d2">layer-d2</button>
           <button class="btn close">close</button>
         </div>
       </div>
       <!-- //layer -->
 
       <!-- layer -->
-      <div class="layer" data-layer="layer-d2">
+      <div class="layer" data-layer="layer-d2" data-ui-depth="0">
         <div class="inner alt">
           <span>layer-d2</span>
           <button class="btn" data-layer="layer-d3">layer-d3</button>
@@ -141,9 +143,25 @@
       <!-- //layer -->
 
       <!-- layer -->
-      <div class="layer" data-layer="layer-d3">
+      <div class="layer" data-layer="layer-d3" data-ui-depth="0">
         <div class="inner alt2">
           <span>layer-d3</span>
+          <a href="#;">aaa</a>
+          <a href="#;">aaa2</a>
+          <a href="#;">aaa3</a>
+          <a href="#;">aaa4</a>
+          <button>adas</button>
+          <button class="btn" data-layer="popupTest">popupTest</button>
+          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //layer -->
+
+      <!-- layer -->
+      <div class="layer" data-layer="popupTest" data-ui-depth="0">
+        <div class="inner alt">
+          <span>popupTest</span>
           <button class="btn close">close</button>
         </div>
       </div>

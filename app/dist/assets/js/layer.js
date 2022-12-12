@@ -110,8 +110,8 @@
   const outland = function() {
     
     let outer = document.querySelector(".outland");
-    let btn = document.querySelectorAll(".btn[data-layer]");
-    let close = document.querySelectorAll(".layer .btn.close");
+    // let btn = document.querySelectorAll(".btn[data-layer]");
+    // let close = document.querySelectorAll(".layer .btn.close");
     let depth = 0;
 
     // evtOpen
@@ -211,19 +211,46 @@
         }
       })
     }
+
+    function outlandOpen() {
+      let btn = document.querySelectorAll(".btn[data-layer]");
+      console.log(btn);
+      if (btn) {
+        btn.forEach(function(item) {
+          item.addEventListener("click", evtOpen);
+        });
+      }
+    }
+    outlandOpen();
+
+    function outlandClose() {
+      let close = document.querySelectorAll(".layer .btn.close");
+      if (close) {
+        close.forEach(function(item) {
+          item.addEventListener("click", evtClose);
+        });
+      }
+    }
+    outlandClose();
+
+
+    document.addEventListener("click", function() {
+      outlandOpen();
+      outlandClose();
+    });
     
 
-    if (btn) {
-      btn.forEach(function(item) {
-        item.addEventListener("click", evtOpen);
-      });
-    }
+    // if (btn) {
+    //   btn.forEach(function(item) {
+    //     item.addEventListener("click", evtOpen);
+    //   });
+    // }
 
-    if (close) {
-      close.forEach(function(item) {
-        item.addEventListener("click", evtClose);
-      });
-    }
+    // if (close) {
+    //   close.forEach(function(item) {
+    //     item.addEventListener("click", evtClose);
+    //   });
+    // }
 
   }
 
@@ -233,48 +260,43 @@
   let makeBtn = document.querySelector(".make");
 
   const evtMake = function() {
-    let body = document.querySelector("body");
+    let wrap = document.querySelector(".wrap");
+    let out = document.querySelector(".outland");
     let cont = `
-    <!-- wrap -->
-    <div id="wrap" class="wrap">
       <span>wrap</span>
       <div class="btn-set">
-        <button class="btn" data-layer="layer-d1">layer-d1</button>
-        <button class="btn" data-layer="layer-d2">layer-d2</button>
-        <button class="btn" data-layer="layer-d3">layer-d3</button>
-        <button class="btn" data-layer="popupTest">popupTest</button>
+        <button class="btn" data-layer="layer-d100">layer-d100</button>
+        <button class="btn" data-layer="layer-d200">layer-d200</button>
+        <button class="btn" data-layer="layer-d300">layer-d300</button>
+        <button class="btn" data-layer="popupTest2">popupTest2</button>
       </div>
       <div class="scroll"></div>
-    </div>
-    <!-- //wrap -->
-    
-    <!-- outland -->
-    <div id="outland" class="outland">
-
+    `;
+    let cont2 = `
       <!-- layer -->
-      <div class="layer" data-layer="layer-d1" data-ui-depth="0">
+      <div class="layer" data-layer="layer-d100" data-ui-depth="0">
         <div class="inner">
-          <span>layer-d1</span>
-          <button class="btn" data-layer="layer-d2">layer-d2</button>
+          <span>layer-d100</span>
+          <button class="btn" data-layer="layer-d200">layer-d200</button>
           <button class="btn close">close</button>
         </div>
       </div>
       <!-- //layer -->
 
       <!-- layer -->
-      <div class="layer" data-layer="layer-d2" data-ui-depth="0">
+      <div class="layer" data-layer="layer-d200" data-ui-depth="0">
         <div class="inner alt">
-          <span>layer-d2</span>
-          <button class="btn" data-layer="layer-d3">layer-d3</button>
+          <span>layer-d200</span>
+          <button class="btn" data-layer="layer-d300">layer-d300</button>
           <button class="btn close">close</button>
         </div>
       </div>
       <!-- //layer -->
 
       <!-- layer -->
-      <div class="layer" data-layer="layer-d3" data-ui-depth="0">
+      <div class="layer" data-layer="layer-d300" data-ui-depth="0">
         <div class="inner alt2">
-          <span>layer-d3</span>
+          <span>layer-d300</span>
           <a href="#;">aaa</a>
           <a href="#;">aaa2</a>
           <a href="#;">aaa3</a>
@@ -287,20 +309,17 @@
       <!-- //layer -->
 
       <!-- layer -->
-      <div class="layer" data-layer="popupTest" data-ui-depth="0">
+      <div class="layer" data-layer="popupTest2" data-ui-depth="0">
         <div class="inner alt">
-          <span>popupTest</span>
+          <span>popupTest2</span>
           <button class="btn close">close</button>
         </div>
       </div>
       <!-- //layer -->
-
-    </div>
-    <!-- //outland -->
     `;
     setTimeout(() => {
-      body.innerHTML = cont;
-      outland();
+      wrap.innerHTML = cont;
+      out.innerHTML = cont2;
     }, 500);
     
   }

@@ -1,7 +1,7 @@
 "use strict";
 
 // s : function
-(function () {
+const startFunction = (function() {
 
   const test = function(e) {
 
@@ -106,12 +106,87 @@
     });
   }
 
+  // test
+  const testblock = function() {
+    let makeBtn = document.querySelector(".make");
+  
+    const evtMake = function() {
+      let wrap = document.querySelector(".wrap");
+      let out = document.querySelector(".outland");
+      let cont = `
+        <span>wrap</span>
+        <div class="btn-set">
+          <button class="btn" data-layer="layer-d100">layer-d100</button>
+          <button class="btn" data-layer="layer-d200">layer-d200</button>
+          <button class="btn" data-layer="layer-d300">layer-d300</button>
+          <button class="btn" data-layer="popupTest2">popupTest2</button>
+        </div>
+        <div class="scroll"></div>
+      `;
+      let cont2 = `
+        <!-- layer -->
+        <div class="layer" data-layer="layer-d100" data-ui-depth="0">
+          <div class="inner">
+            <span>layer-d100</span>
+            <button class="btn" data-layer="layer-d200">layer-d200</button>
+            <button class="btn close">close</button>
+          </div>
+        </div>
+        <!-- //layer -->
+  
+        <!-- layer -->
+        <div class="layer" data-layer="layer-d200" data-ui-depth="0">
+          <div class="inner alt">
+            <span>layer-d200</span>
+            <button class="btn" data-layer="layer-d300">layer-d300</button>
+            <button class="btn close">close</button>
+          </div>
+        </div>
+        <!-- //layer -->
+  
+        <!-- layer -->
+        <div class="layer" data-layer="layer-d300" data-ui-depth="0">
+          <div class="inner alt2">
+            <span>layer-d300</span>
+            <a href="#;">aaa</a>
+            <a href="#;">aaa2</a>
+            <a href="#;">aaa3</a>
+            <a href="#;">aaa4</a>
+            <button>adas</button>
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <button class="btn close">close</button>
+          </div>
+        </div>
+        <!-- //layer -->
+  
+        <!-- layer -->
+        <div class="layer" data-layer="popupTest2" data-ui-depth="0">
+          <div class="inner alt">
+            <span>popupTest2</span>
+            <button class="btn close">close</button>
+          </div>
+        </div>
+        <!-- //layer -->
+      `;
+      setTimeout(() => {
+        wrap.innerHTML = cont;
+        out.innerHTML = cont2;
+      }, 500);
+      
+    }
+  
+    makeBtn.addEventListener("click", evtMake);
+  }
+
+
+
+
   // outland
   const outland = function() {
     
     let outer = document.querySelector(".outland");
-    // let btn = document.querySelectorAll(".btn[data-layer]");
-    // let close = document.querySelectorAll(".layer .btn.close");
+    let btn = document.querySelectorAll(".btn[data-layer]");
+    let close = document.querySelectorAll(".layer .btn.close");
     let depth = 0;
 
     // evtOpen
@@ -212,124 +287,194 @@
       })
     }
 
-    function outlandOpen() {
-      let btn = document.querySelectorAll(".btn[data-layer]");
-      console.log(btn);
-      if (btn) {
-        btn.forEach(function(item) {
-          item.addEventListener("click", evtOpen);
-        });
-      }
+    // run
+    if (btn) {
+      btn.forEach(function(item) {
+        item.addEventListener("click", evtOpen);
+      });
     }
-    outlandOpen();
-
-    function outlandClose() {
-      let close = document.querySelectorAll(".layer .btn.close");
-      if (close) {
-        close.forEach(function(item) {
-          item.addEventListener("click", evtClose);
-        });
-      }
+    if (close) {
+      close.forEach(function(item) {
+        item.addEventListener("click", evtClose);
+      });
     }
-    outlandClose();
+
+  }
+
+  // outland2 document type
+  const outland2 = function() {
+
+    console.log("outland2");
+
+    let outer = document.querySelector(".outland");
+    let btn = document.querySelectorAll(".btn[data-layer]");
+    let close = document.querySelectorAll(".layer .btn.close");
+    let depth = 0;
+
+    
+
+    // evtOpen
+    const evtOpen = function(e) {
+      let id = e.currentTarget.dataset.layer;
+      console.log(id);
+      let target = document.querySelectorAll(".outland .layer");
+      // 포커스가 갈 수 있는 엘레먼트
+      let focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+      
+      target.forEach(function(item) {
+        if(id === item.dataset.layer) {
+          // focusEl nodelist array
+          let focusNodelist = item.querySelectorAll(focusEl);
+          let focusArray = Array.from(focusNodelist);
+          // let focusArray = [...focusNodelist];
+          let firstStop = focusArray[0];
+          let lastStop = focusArray[focusArray.length - 1];
+          console.log(firstStop);
+          // console.log(lastStop);
+          // key tab
+          const keyTab = function(e) {
+            // Check key
+            if (e.keyCode === 9) {
+              // SHIFT + TAB
+              if (e.shiftKey) {
+                if (document.activeElement === firstStop) {
+                e.preventDefault();
+                lastStop.focus();
+                }
+              // TAB
+              } else {
+                if (document.activeElement === lastStop) {
+                e.preventDefault();
+                firstStop.focus();
+                }
+              }
+            }
+          }
+          depth += 1;
+          outer?.classList.add("active");
+          item.classList.add("active");
+          item.classList.add("focus");
+          item.setAttribute("aria-hidden", "false");
+          item.setAttribute("data-ui-depth", depth);
+          firstStop.focus();
+          item.addEventListener('keydown', keyTab);
+          console.log(depth);
+        } else {
+          item.setAttribute("aria-hidden", "true");
+          item.classList.remove("focus");
+        }
+      });
+
+      
+    }
+
+    // evtClose
+    const evtClose = function(e) {
+      let id = e.currentTarget.closest(".layer").dataset.layer;
+      let target = document.querySelectorAll(".outland .layer.active");
+      let focusTarget;
+      // moveFocus
+      const moveFocus = function() {
+        // focus 이동
+        target.forEach(function(item) {
+          if(depth > 0 && item.dataset.uiDepth == depth) {
+            focusTarget = document.querySelector(`.layer .btn[data-layer=${id}]`);
+            // console.log(item.dataset.uiDepth);
+            // console.log(depth);
+            item.setAttribute("aria-hidden", "false");
+            item.classList.add("focus");
+            focusTarget.focus();
+          } else if(depth <= 0) {
+            focusTarget = document.querySelector(`.wrap .btn[data-layer=${id}]`);
+            focusTarget.focus();
+          }
+        })
+      }
+      target.forEach(function(item) {
+        // layer 1개 이상일때
+        if(id === item.dataset.layer) {
+          item.classList.remove("active");
+          item.setAttribute("aria-hidden", "true");
+          item.classList.remove("focus");
+          item.setAttribute("data-ui-depth", 0);
+          depth -= 1;
+          moveFocus();
+        }
+        // layer 1개 일때
+        if(target.length === 1) {
+          outer?.classList.remove("active");
+        }
+      })
+    }
 
 
-    document.addEventListener("click", function() {
-      outlandOpen();
-      outlandClose();
+    // document.addEventListener("click", function(e) {
+      
+    //   if(e.target.classList == "btn" && e.target.dataset.layer) {
+    //     let btn = document.querySelectorAll(".btn[data-layer]");
+    //     // console.log(e.target.dataset.layer);
+    //     // console.log(e.target.classList);
+    //     btn.forEach(function(item) {
+    //       // console.log(item.dataset.layer);
+    //       // console.log(id);
+    //       // item.addEventListener("click", evtOpen);
+    //       item.addEventListener("click", function(e){
+    //         let id = e.currentTarget.dataset.layer;
+    //         console.log(id);
+    //       });
+    //     });
+    //   } else if(e.target.classList == "btn close") {
+    //     // console.log(e.target.classList);
+    //     let close = document.querySelectorAll(".layer .btn.close");
+    //     if (close) {
+    //       close.forEach(function(item) {
+    //         // item.addEventListener("click", evtClose);
+    //         // console.log(item);
+    //       });
+    //     }
+    //   }
+    // });
+
+
+    btn.forEach(function(item) {
+      item.onclick = (e) => {
+        evtOpen(e);
+      }
     });
-    
 
-    // if (btn) {
-    //   btn.forEach(function(item) {
-    //     item.addEventListener("click", evtOpen);
-    //   });
-    // }
-
-    // if (close) {
-    //   close.forEach(function(item) {
-    //     item.addEventListener("click", evtClose);
-    //   });
-    // }
+    close.forEach(function(item) {
+      item.onclick = (e) => {
+        evtClose(e);
+      }
+    });
 
   }
 
-  outland();
+  document.addEventListener("click", function() {
+    outland2();
+  });
 
-
-  let makeBtn = document.querySelector(".make");
-
-  const evtMake = function() {
-    let wrap = document.querySelector(".wrap");
-    let out = document.querySelector(".outland");
-    let cont = `
-      <span>wrap</span>
-      <div class="btn-set">
-        <button class="btn" data-layer="layer-d100">layer-d100</button>
-        <button class="btn" data-layer="layer-d200">layer-d200</button>
-        <button class="btn" data-layer="layer-d300">layer-d300</button>
-        <button class="btn" data-layer="popupTest2">popupTest2</button>
-      </div>
-      <div class="scroll"></div>
-    `;
-    let cont2 = `
-      <!-- layer -->
-      <div class="layer" data-layer="layer-d100" data-ui-depth="0">
-        <div class="inner">
-          <span>layer-d100</span>
-          <button class="btn" data-layer="layer-d200">layer-d200</button>
-          <button class="btn close">close</button>
-        </div>
-      </div>
-      <!-- //layer -->
-
-      <!-- layer -->
-      <div class="layer" data-layer="layer-d200" data-ui-depth="0">
-        <div class="inner alt">
-          <span>layer-d200</span>
-          <button class="btn" data-layer="layer-d300">layer-d300</button>
-          <button class="btn close">close</button>
-        </div>
-      </div>
-      <!-- //layer -->
-
-      <!-- layer -->
-      <div class="layer" data-layer="layer-d300" data-ui-depth="0">
-        <div class="inner alt2">
-          <span>layer-d300</span>
-          <a href="#;">aaa</a>
-          <a href="#;">aaa2</a>
-          <a href="#;">aaa3</a>
-          <a href="#;">aaa4</a>
-          <button>adas</button>
-          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-          <button class="btn close">close</button>
-        </div>
-      </div>
-      <!-- //layer -->
-
-      <!-- layer -->
-      <div class="layer" data-layer="popupTest2" data-ui-depth="0">
-        <div class="inner alt">
-          <span>popupTest2</span>
-          <button class="btn close">close</button>
-        </div>
-      </div>
-      <!-- //layer -->
-    `;
-    setTimeout(() => {
-      wrap.innerHTML = cont;
-      out.innerHTML = cont2;
-    }, 500);
-    
+  
+  return {
+    outland2 : outland2,
+    // outland : outland,
+    // testblock : testblock,
   }
-
-  makeBtn.addEventListener("click", evtMake);
 
 
   // 팝업 1.딤체크 / 2.딤에따른 분기 / 3.팝업의 현재 z-index / 4.팝업종류
 
   
+  
 
 })();
 // e : function
+
+// startFunction.outland();
+startFunction.outland2();
+// startFunction.testblock();
+
+
+
+
+

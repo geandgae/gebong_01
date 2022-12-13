@@ -451,13 +451,13 @@ const startFunction = (function() {
   }
 
   document.addEventListener("click", function() {
-    outland2();
+    // outland2();
   });
 
   
   return {
-    outland2 : outland2,
-    // outland : outland,
+    outland : outland,
+    // outland2 : outland2,
     // testblock : testblock,
   }
 
@@ -470,8 +470,8 @@ const startFunction = (function() {
 })();
 // e : function
 
-// startFunction.outland();
-startFunction.outland2();
+startFunction.outland();
+// startFunction.outland2();
 // startFunction.testblock();
 
 

@@ -178,129 +178,6 @@ const startFunction = (function() {
     makeBtn.addEventListener("click", evtMake);
   }
 
-
-
-
-  // outland
-  const outland = function() {
-    
-    let outer = document.querySelector(".outland");
-    let btn = document.querySelectorAll(".btn[data-layer]");
-    let close = document.querySelectorAll(".layer .btn.close");
-    let depth = 0;
-
-    // evtOpen
-    const evtOpen = function(e) {
-      let id = e.currentTarget.dataset.layer;
-      let target = document.querySelectorAll(".outland .layer");
-      // 포커스가 갈 수 있는 엘레먼트
-      let focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
-       
-      target.forEach(function(item) {
-        if(id === item.dataset.layer) {
-          // focusEl nodelist array
-          let focusNodelist = item.querySelectorAll(focusEl);
-          let focusArray = Array.from(focusNodelist);
-          // let focusArray = [...focusNodelist];
-          let firstStop = focusArray[0];
-          let lastStop = focusArray[focusArray.length - 1];
-          console.log(firstStop);
-          // console.log(lastStop);
-          // key tab
-          const keyTab = function(e) {
-            // Check key
-            if (e.keyCode === 9) {
-              // SHIFT + TAB
-              if (e.shiftKey) {
-                if (document.activeElement === firstStop) {
-                e.preventDefault();
-                lastStop.focus();
-                }
-              // TAB
-              } else {
-                if (document.activeElement === lastStop) {
-                e.preventDefault();
-                firstStop.focus();
-                }
-              }
-            }
-            // ESCAPE
-            // if (e.keyCode === 27) {
-            //   evtClose();
-            // }
-            // console.log(e.keyCode);
-          }
-          depth += 1;
-          outer?.classList.add("active");
-          item.classList.add("active");
-          item.classList.add("focus");
-          item.setAttribute("aria-hidden", "false");
-          item.setAttribute("data-ui-depth", depth);
-          firstStop.focus();
-          item.addEventListener('keydown', keyTab);
-          console.log(depth);
-        } else {
-          item.setAttribute("aria-hidden", "true");
-          item.classList.remove("focus");
-        }
-      });
-
-      
-    }
-
-    // evtClose
-    const evtClose = function(e) {
-      let id = e.currentTarget.closest(".layer").dataset.layer;
-      let target = document.querySelectorAll(".outland .layer.active");
-      let focusTarget;
-      // moveFocus
-      const moveFocus = function() {
-        // focus 이동
-        target.forEach(function(item) {
-          if(depth > 0 && item.dataset.uiDepth == depth) {
-            focusTarget = document.querySelector(`.layer .btn[data-layer=${id}]`);
-            // console.log(item.dataset.uiDepth);
-            // console.log(depth);
-            item.setAttribute("aria-hidden", "false");
-            item.classList.add("focus");
-            focusTarget.focus();
-          } else if(depth <= 0) {
-            focusTarget = document.querySelector(`.wrap .btn[data-layer=${id}]`);
-            focusTarget.focus();
-          }
-        })
-      }
-      target.forEach(function(item) {
-        // layer 1개 이상일때
-        if(id === item.dataset.layer) {
-          item.classList.remove("active");
-          item.setAttribute("aria-hidden", "true");
-          item.classList.remove("focus");
-          item.setAttribute("data-ui-depth", 0);
-          depth -= 1;
-          moveFocus();
-        }
-        // layer 1개 일때
-        if(target.length === 1) {
-          outer?.classList.remove("active");
-        }
-      })
-    }
-
-    // run
-    if (btn) {
-      btn.forEach(function(item) {
-        item.addEventListener("click", evtOpen);
-      });
-    }
-    if (close) {
-      close.forEach(function(item) {
-        item.addEventListener("click", evtClose);
-      });
-    }
-
-  }
-
   // outland2 document type
   const outland2 = function() {
 
@@ -450,9 +327,134 @@ const startFunction = (function() {
 
   }
 
-  document.addEventListener("click", function() {
-    // outland2();
-  });
+  // document.addEventListener("click", function() {
+  //   outland2();
+  // });
+
+
+
+
+  // outland
+  const outland = function() {
+    
+    let outer = document.querySelector(".outland");
+    let btn = document.querySelectorAll(".btn[data-layer]");
+    let close = document.querySelectorAll(".layer .btn.close");
+    let depth = 0;
+
+    // evtOpen
+    const evtOpen = function(e) {
+      let id = e.currentTarget.dataset.layer;
+      let target = document.querySelectorAll(".outland .layer");
+      // 포커스가 갈 수 있는 엘레먼트
+      let focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+       
+      target.forEach(function(item) {
+        if(id === item.dataset.layer) {
+          // focusEl nodelist array
+          let focusNodelist = item.querySelectorAll(focusEl);
+          let focusArray = Array.from(focusNodelist);
+          // let focusArray = [...focusNodelist];
+          let firstStop = focusArray[0];
+          let lastStop = focusArray[focusArray.length - 1];
+          console.log(firstStop);
+          // console.log(lastStop);
+          // key tab
+          const keyTab = function(e) {
+            // Check key
+            if (e.keyCode === 9) {
+              // SHIFT + TAB
+              if (e.shiftKey) {
+                if (document.activeElement === firstStop) {
+                e.preventDefault();
+                lastStop.focus();
+                }
+              // TAB
+              } else {
+                if (document.activeElement === lastStop) {
+                e.preventDefault();
+                firstStop.focus();
+                }
+              }
+            }
+            // ESCAPE
+            // if (e.keyCode === 27) {
+            //   evtClose();
+            // }
+            // console.log(e.keyCode);
+          }
+          depth += 1;
+          outer?.classList.add("active");
+          item.classList.add("active");
+          item.classList.add("focus");
+          item.setAttribute("aria-hidden", "false");
+          item.setAttribute("data-ui-depth", depth);
+          firstStop.focus();
+          item.addEventListener('keydown', keyTab);
+          console.log(depth);
+        } else {
+          item.setAttribute("aria-hidden", "true");
+          item.classList.remove("focus");
+        }
+      });
+
+      
+    }
+
+    // evtClose
+    const evtClose = function(e) {
+      let id = e.currentTarget.closest(".layer").dataset.layer;
+      let target = document.querySelectorAll(".outland .layer.active");
+      let focusTarget;
+      // moveFocus
+      const moveFocus = function() {
+        // focus 이동
+        target.forEach(function(item) {
+          if(depth > 0 && item.dataset.uiDepth == depth) {
+            focusTarget = document.querySelector(`.layer .btn[data-layer=${id}]`);
+            // console.log(item.dataset.uiDepth);
+            // console.log(depth);
+            item.setAttribute("aria-hidden", "false");
+            item.classList.add("focus");
+            focusTarget.focus();
+          } else if(depth <= 0) {
+            focusTarget = document.querySelector(`.wrap .btn[data-layer=${id}]`);
+            focusTarget.focus();
+          }
+        })
+      }
+      target.forEach(function(item) {
+        // layer 1개 이상일때
+        if(id === item.dataset.layer) {
+          item.classList.remove("active");
+          item.setAttribute("aria-hidden", "true");
+          item.classList.remove("focus");
+          item.setAttribute("data-ui-depth", 0);
+          depth -= 1;
+          moveFocus();
+        }
+        // layer 1개 일때
+        if(target.length === 1) {
+          outer?.classList.remove("active");
+        }
+      })
+    }
+
+    // run
+    if (btn) {
+      btn.forEach(function(item) {
+        item.addEventListener("click", evtOpen);
+      });
+    }
+    if (close) {
+      close.forEach(function(item) {
+        item.addEventListener("click", evtClose);
+      });
+    }
+
+  }
+
+  
 
   
   return {

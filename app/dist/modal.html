@@ -169,7 +169,7 @@
         <div class="inner">
           <span>modal-d1</span>
           <button class="btn" data-modal="modal-d2">modal-d2</button>
-          <button class="btn close" onclick="modal.close()">close</button>
+          <button class="btn close">close</button>
         </div>
       </div>
       <!-- //modal -->
@@ -218,53 +218,21 @@
     // startFunction.outland();
     // startFunction.testblock();
 
-    const modalOpen = function() {
-      // let btn = document.querySelector(".btn[data-modal=modal-d1]");
-      let btn = document.querySelectorAll(".btn[data-modal]");
-      if (btn) {
-        btn.forEach(function(item) {
-          let id = item.dataset.modal;
-          item.addEventListener("click", function(e){
-            // console.log(e);
-            modal.open(id);
-          }); 
-        });
-      }
-      // onclick="modal.open('modal-d1')"
-      // btn.addEventListener("click", function(){
-      //   modal.open("modal-d1");
-      // }); 
-    }
-    modalOpen();
-
     const testblock = function() {
       let makeBtn = document.querySelector(".make");
     
       const evtMake = function() {
-        let btnset = document.querySelector(".btn-set");
+        let wrap = document.querySelector(".wrap");
         let out = document.querySelector(".outland");
-
-        let newBtn = document.createElement("button");
-        newBtn.innerHTML = "modal-d100";
-        newBtn.setAttribute("class", "btn");
-        newBtn.setAttribute("data-modal", "modal-d100");
-
-        let newModal = document.createElement("div");
-        newModal.innerHTML = `
-        <div class="inner">
-          <span>modal-d100</span>
-          <button class="btn" data-modal="modal-d1">modal-d1</button>
-          <button class="btn close">close</button>
-        </div>
-        `;
-        newModal.setAttribute("class", "modal");
-        newModal.setAttribute("data-modal", "modal-d100");
-
         let cont = `
-          <button class="btn" data-modal="modal-d100">modal-d100</button>
-          <button class="btn" data-modal="modal-d200">modal-d200</button>
-          <button class="btn" data-modal="modal-d300">modal-d300</button>
-          <button class="btn" data-modal="popupTest2">popupTest2</button>
+          <span>wrap</span>
+          <div class="btn-set">
+            <button class="btn" data-modal="modal-d100">modal-d100</button>
+            <button class="btn" data-modal="modal-d200">modal-d200</button>
+            <button class="btn" data-modal="modal-d300">modal-d300</button>
+            <button class="btn" data-modal="popupTest2">popupTest2</button>
+          </div>
+          <div class="scroll"></div>
         `;
         let cont2 = `
           <div class="dim"></div>
@@ -315,28 +283,20 @@
           <!-- //modal -->
         `;
         setTimeout(() => {
-          // btnset.innerHTML = cont;
-          // out.innerHTML = cont2;
-          btnset.appendChild(newBtn);
-          out.appendChild(newModal);
-          modal.update();
+          wrap.innerHTML = cont;
+          out.innerHTML = cont2;
+          startFunction.outland();
         }, 500);
         
       }
     
       makeBtn.addEventListener("click", evtMake);
-
     }
     testblock();
 
     // startFunction.outland().evtAuto("auto-01");
     // startFunction.outland().init();
-    
-
-
-    
-    
-    
+    startFunction.outland().evtAuto("auto-01");
     
     
   </script>

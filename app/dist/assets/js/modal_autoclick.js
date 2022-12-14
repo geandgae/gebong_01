@@ -1,77 +1,43 @@
 "use strict";
 
 // s : function
-const startFunction = (function() {
+const modal = (function() {
 
+  // let
+  let outer;
+  let btn;
+  let close;
+  let auto;
+  let depth;
+  // 포커스가 갈 수 있는 엘레먼트
+  let focusEl;
+  let tabFirst;
+  let tabLast;
+  
+  // function
+  // let focusTab;
+  // let keyTab;
+  let evtAuto;
+  let evtOpen;
+  let evtClose;
 
-  // inittest
-  const inittest = function() {
+  // init
+  const init = function() {
+    outer = document.querySelector(".outland");
+    btn = Array.from(document.querySelectorAll(".btn[data-modal]"));
+    close = Array.from(outer.querySelectorAll(".modal .btn.close"));
+    auto = Array.from(outer.querySelectorAll(".modal.type-auto"));
+    depth = 0;
+    focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
-    let earth = "earth";
-    let space = "space";
-
-    return {
-      earth : earth,
-      space : space,
-    }
+    let initTarget = outer.querySelectorAll(".modal");
+    initTarget.forEach(function(item) {
+      item.setAttribute("data-modal-level", depth);
+    });
   }
 
-  // test
-  const test = function() {
-
-    console.log(inittest().earth);
-    console.log(inittest().space);
-
-    const a = function(el) {
-      console.log(el);
-    }
-
-    const b = function(el) {
-      console.log(el);
-    }
-
-    const c = function(el) {
-      console.log(el);
-    }
-
-
-    return {
-      a : a,
-      b : b,
-      c : c,
-    }
-  }
-
-  // outland
-  const outland = function() {
-
-    // let
-    let outer;
-    let btn;
-    let close;
-    let auto;
-    let depth;
-    // 포커스가 갈 수 있는 엘레먼트
-    let focusEl;
-    let tabFirst;
-    let tabLast;
-
-    // init
-    const init = function() {
-      outer = document.querySelector(".outland");
-      btn = Array.from(document.querySelectorAll(".btn[data-modal]"));
-      close = Array.from(outer.querySelectorAll(".modal .btn.close"));
-      auto = Array.from(outer.querySelectorAll(".modal.type-auto"));
-      depth = 0;
-      focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
-
-      let target = outer.querySelectorAll(".modal");
-      target.forEach(function(item) {
-        item.setAttribute("data-modal-level", depth);
-      });
-    }
-    init();
-    
+  // set
+  const set = function() {
 
     // focusTab
     const focusTab = function() {
@@ -108,8 +74,7 @@ const startFunction = (function() {
         }
       }
     }
-    
-    
+
     const elOpen = function(id, el) {
       el.forEach(function(item) {
         if(id === item.dataset.modal) {
@@ -131,7 +96,7 @@ const startFunction = (function() {
     }
 
     // evtAuto
-    const evtAuto = function(tg){
+    evtAuto = function(tg){
       if (auto) {
         let id = tg;
         elOpen(id, auto);
@@ -141,14 +106,14 @@ const startFunction = (function() {
     // evtAuto("auto-02");
 
     // evtOpen
-    const evtOpen = function(e) {
+    evtOpen = function(e) {
       let id = e.currentTarget.dataset.modal;
       let target = outer.querySelectorAll(".modal");
       elOpen(id, target);
     }
 
     // evtClose
-    const evtClose = function(e) {
+    evtClose = function(e) {
       let id = e.currentTarget.closest(".modal").dataset.modal;
       let target = outer.querySelectorAll(".modal.active");
       let focusTarget;
@@ -190,7 +155,17 @@ const startFunction = (function() {
       })
     }
 
-    // run
+    
+    // return
+    return {
+      evtAuto : evtAuto,
+    }
+
+  }
+  
+
+  // run 
+  const run = function() {
     if (btn) {
       btn.forEach(function(item) {
         item.addEventListener("click", evtOpen);
@@ -201,23 +176,23 @@ const startFunction = (function() {
         item.addEventListener("click", evtClose);
       });
     }
-
-    // return
-    return {
-      evtAuto : evtAuto,
-    }
-
   }
 
-  
+  // update
+  const update = function() {
+    init();
+    set();
+  }
+
 
   
 
   
   return {
-    outland : outland,
-    test : test,
-    inittest : inittest,
+    init : init,
+    set : set,
+    run : run,
+    update : update,
   }
 
 

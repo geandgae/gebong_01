@@ -169,7 +169,7 @@
         <div class="inner">
           <span>modal-d1</span>
           <button class="btn" data-modal="modal-d2">modal-d2</button>
-          <button class="btn close" onclick="modal.close()">close</button>
+          <button class="btn close">close</button>
         </div>
       </div>
       <!-- //modal -->
@@ -217,25 +217,6 @@
 
     // startFunction.outland();
     // startFunction.testblock();
-
-    const modalOpen = function() {
-      // let btn = document.querySelector(".btn[data-modal=modal-d1]");
-      let btn = document.querySelectorAll(".btn[data-modal]");
-      if (btn) {
-        btn.forEach(function(item) {
-          let id = item.dataset.modal;
-          item.addEventListener("click", function(e){
-            // console.log(e);
-            modal.open(id);
-          }); 
-        });
-      }
-      // onclick="modal.open('modal-d1')"
-      // btn.addEventListener("click", function(){
-      //   modal.open("modal-d1");
-      // }); 
-    }
-    modalOpen();
 
     const testblock = function() {
       let makeBtn = document.querySelector(".make");
@@ -331,12 +312,9 @@
 
     // startFunction.outland().evtAuto("auto-01");
     // startFunction.outland().init();
-    
-
-
-    
-    
-    
+    modal.init();
+    modal.set();
+    modal.run();
     
     
   </script>

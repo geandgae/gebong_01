@@ -26,7 +26,7 @@ const modal = (function() {
     outer = document.querySelector(".outland");
     // btn = Array.from(document.querySelectorAll(".btn[data-modal]"));
     // close = Array.from(outer.querySelectorAll(".modal .btn.close"));
-    // auto = Array.from(outer.querySelectorAll(".modal.type-auto"));
+    
     depth = 0;
     focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
@@ -34,10 +34,6 @@ const modal = (function() {
     initTarget.forEach(function(item) {
       item.setAttribute("data-modal-level", depth);
     });
-  }
-
-  // set
-  const set = function() {
 
     // focusTab
     const focusTab = function() {
@@ -54,7 +50,7 @@ const modal = (function() {
       }
       tabFirst.focus();
     }
-
+    
     // key tab
     const keyTab = function(e) {
       // Check key
@@ -75,6 +71,7 @@ const modal = (function() {
       }
     }
 
+    // elOpen
     const elOpen = function(id, el) {
       el.forEach(function(item) {
         if(id === item.dataset.modal) {
@@ -96,9 +93,11 @@ const modal = (function() {
     }
 
     // evtAuto
-    evtAuto = function(tg){
+    evtAuto = function(el){
+      console.log("auto-start");
+      let auto = Array.from(outer.querySelectorAll(".modal.type-auto"));
       if (auto) {
-        let id = tg;
+        let id = el;
         elOpen(id, auto);
       }
     }
@@ -113,61 +112,90 @@ const modal = (function() {
     }
 
     // evtClose
-    evtClose = function(e) {
-      let id = e.currentTarget.closest(".modal").dataset.modal;
+    evtClose = function(el) {
       let target = outer.querySelectorAll(".modal.active");
+      let targetOn = outer.querySelector(`.modal.active.focus[data-modal=${el}]`);
+      let close = targetOn?.querySelectorAll(".close");
       let focusTarget;
 
-      // moveFocus
-      const moveFocus = function() {
-        target.forEach(function(item) {
-          if(depth > 0 && item.dataset.modalLevel == depth) {
-            // console.log(item.dataset.modalLevel);
-            // console.log(item);
-            item.setAttribute("aria-hidden", "false");
-            item.classList.add("focus");
-            if(!item.classList.contains("type-auto")) {
-              focusTarget = document.querySelector(`.modal .btn[data-modal=${id}]`);
-              focusTarget.focus();
-            }
-          } else if(depth <= 0) {
-            if(!item.classList.contains("type-auto")) {
-              focusTarget = document.querySelector(`.wrap .btn[data-modal=${id}]`);
-              focusTarget.focus();
-            }
+      close?.forEach(function(item) {
+        item.addEventListener("click", function(){
+          // moveFocus
+          const moveFocus = function() {
+            target.forEach(function(item) {
+              if(depth > 0 && item.dataset.modalLevel == depth) {
+                // console.log(item.dataset.modalLevel);
+                // console.log(item);
+                item.setAttribute("aria-hidden", "false");
+                item.classList.add("focus");
+                if(!item.classList.contains("type-auto")) {
+                  focusTarget = document.querySelector(`.modal .btn[data-modal=${el}]`);
+                  focusTarget.focus();
+                }
+              } else if(depth <= 0) {
+                if(!item.classList.contains("type-auto")) {
+                  focusTarget = document.querySelector(`.wrap .btn[data-modal=${el}]`);
+                  focusTarget.focus();
+                }
+              }
+            })
           }
-        })
-      }
-      target.forEach(function(item) {
-        // modal 1개 이상일때
-        if(id === item.dataset.modal) {
-          item.classList.remove("active");
-          item.setAttribute("aria-hidden", "true");
-          item.classList.remove("focus");
-          item.setAttribute("data-modal-level", 0);
-          depth -= 1;
-          moveFocus();
-        }
-        // modal 1개 일때
-        if(target.length === 1) {
-          outer?.classList.remove("active");
-        }
-      })
+          target.forEach(function(item) {
+            // modal 1개 이상일때
+            if(el === item.dataset.modal) {
+              item.classList.remove("active");
+              item.setAttribute("aria-hidden", "true");
+              item.classList.remove("focus");
+              item.setAttribute("data-modal-level", 0);
+              depth -= 1;
+              moveFocus();
+            }
+            // modal 1개 일때
+            if(target.length === 1) {
+              outer?.classList.remove("active");
+            }
+          })
+        });
+      });
+
+
+      
+    }
+
+  }
+
+  // auto
+  const auto = function(el, option) {
+    evtAuto(el);
+    evtClose(el);
+
+    if(option) {
+      let callback = option;
+      callback();
     }
 
   }
   
   // open
-  const open = function(el) {
+  const open = function(el, option) {
     // let el = e.currentTarget.dataset.modal;
     evtOpen(el);
+    evtClose(el);
+
+    if(option) {
+      let callback = option;
+      callback();
+    }
   }
 
   // close
-  const close = function(e) {
-    // let el = e.currentTarget.dataset.modal;
-    console.log(e);
-    // evtClose(e);
+  const close = function(el, option) {
+    evtClose(el);
+
+    if(option) {
+      let callback = option;
+      callback();
+    }
   }
 
   // run 
@@ -184,20 +212,13 @@ const modal = (function() {
     }
   }
 
-  // update
-  const update = function() {
-    init();
-    set();
-  }
-
 
   
 
   
   return {
     init : init,
-    set : set,
-    update : update,
+    auto : auto,
     open : open,
     close : close,
   }
@@ -224,5 +245,4 @@ const modal = (function() {
 
 
 modal.init();
-modal.set();
 

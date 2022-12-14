@@ -165,11 +165,22 @@
       <!-- //modal auto -->
 
       <!-- modal -->
+      <!-- <div class="modal active focus type-auto" data-modal="modal-d1000">
+        <div class="inner">
+          <span>modal-d1000</span>
+          <button class="btn close">close1000</button>
+        </div>
+      </div> -->
+      <!-- //modal -->
+
+      <!-- modal -->
       <div class="modal" data-modal="modal-d1">
         <div class="inner">
           <span>modal-d1</span>
           <button class="btn" data-modal="modal-d2">modal-d2</button>
-          <button class="btn close" onclick="modal.close()">close</button>
+          <button class="btn close">close</button>
+          <button class="btn close">close2</button>
+          <button class="btn close">close3</button>
         </div>
       </div>
       <!-- //modal -->
@@ -319,7 +330,28 @@
           // out.innerHTML = cont2;
           btnset.appendChild(newBtn);
           out.appendChild(newModal);
-          modal.update();
+          modal.init();
+          const modalOpen2 = function() {
+            let btn = document.querySelector(".btn[data-modal=modal-d100]");
+            btn?.addEventListener("click", function(e){
+              modal.open(
+                "modal-d100",
+                function(){
+                  let btn2 = document.querySelector(".modal.active.focus .btn[data-modal=modal-d1]");
+                  btn2?.addEventListener("click", function(e){
+                    console.log(btn2);
+                    modal.open(
+                      "modal-d1",
+                      function(){
+                        console.log("call-back-hell")
+                      }
+                    );
+                  });
+                }
+              );
+            }); 
+          }
+          modalOpen2()
         }, 500);
         
       }
@@ -333,6 +365,17 @@
     // startFunction.outland().init();
     
 
+    // auto
+    // setTimeout(() => {
+    //   // modal.auto(
+    //   //   "auto-01", 
+    //   //   function(){
+    //   //    console.log("callback") 
+    //   //   }
+    //   // );
+    //   modal.auto("auto-01");
+    //   // modal.close("auto-01");
+    // }, 1000);
 
     
     

@@ -105,6 +105,16 @@ const modal = (function() {
     // evtAuto("auto-01");
     // evtAuto("auto-02");
 
+    // evtAuto
+    // evtAuto = function(el){
+    //   console.log("auto-start");
+    //   let auto = outer.querySelectorAll(".modal.type-auto");
+    //   if (auto) {
+    //     let id = el;
+    //     elOpen(id, auto);
+    //   }
+    // }
+
     // evtOpen
     evtOpen = function(e) {
       let id = e.currentTarget.dataset.modal;

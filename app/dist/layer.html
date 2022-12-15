@@ -138,11 +138,21 @@
     <div id="wrap" class="wrap">
       <span>wrap</span>
       <div class="btn-set">
-        <button class="btn" data-modal="modal-d1">modal-d1</button>
-        <button class="btn" data-modal="modal-d2">modal-d2</button>
-        <button class="btn" data-modal="modal-d3">modal-d3</button>
-        <button class="btn" data-modal="popupTest">popupTest</button>
+        <button class="btn open" data-modal="modal-d1">modal-d1</button>
+        <button class="btn open" data-modal="modal-d1">modal-d1 copy</button>
+        <button class="btn open" data-modal="modal-d2">modal-d2</button>
+        <button class="btn open" data-modal="modal-d3">modal-d3</button>
+        <button class="btn open" data-modal="popupTest">popupTest</button>
         <button class="btn make">생성자</button>
+      </div>
+      <div class="test" style="border: 1px solid #000; width: 200px; height: 100px;">
+        test
+        <div class="test_a" style="border: 1px solid #000; width: 150px; height: 80px;">
+          test_a
+          <div class="test_a_b" style="border: 1px solid #000; width: 100px; height: 40px;">
+            test_a_b
+          </div>
+        </div>
       </div>
       <div class="scroll"></div>
     </div>
@@ -156,7 +166,7 @@
       <!-- //dim -->
 
       <!-- modal auto -->
-      <div class="modal type-auto" data-modal="auto-01">
+      <div class="modal type-auto" data-modal="modal-d0">
         <div class="inner">
           <span>data-modal-auto</span>
           <button class="btn close">close</button>
@@ -177,7 +187,7 @@
       <div class="modal" data-modal="modal-d1">
         <div class="inner">
           <span>modal-d1</span>
-          <button class="btn" data-modal="modal-d2">modal-d2</button>
+          <button class="btn open" data-modal="modal-d2">modal-d2</button>
           <button class="btn close">close</button>
           <button class="btn close">close2</button>
           <button class="btn close">close3</button>
@@ -189,7 +199,7 @@
       <div class="modal" data-modal="modal-d2">
         <div class="inner alt">
           <span>modal-d2</span>
-          <button class="btn" data-modal="modal-d3">modal-d3</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3</button>
           <button class="btn close">close</button>
         </div>
       </div>
@@ -204,7 +214,7 @@
           <a href="#;">aaa3</a>
           <a href="#;">aaa4</a>
           <button>adas</button>
-          <button class="btn" data-modal="popupTest">popupTest</button>
+          <button class="btn open" data-modal="popupTest">popupTest</button>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           <button class="btn close">close</button>
         </div>
@@ -231,13 +241,14 @@
 
     const modalOpen = function() {
       // let btn = document.querySelector(".btn[data-modal=modal-d1]");
-      let btn = document.querySelectorAll(".btn[data-modal]");
+      let btn = document.querySelectorAll(".open[data-modal]");
       if (btn) {
         btn.forEach(function(item) {
           let id = item.dataset.modal;
           item.addEventListener("click", function(e){
             // console.log(e);
             modal.open(id);
+            modal.close(id);
           }); 
         });
       }
@@ -246,7 +257,36 @@
       //   modal.open("modal-d1");
       // }); 
     }
-    modalOpen();
+    // modalOpen();
+
+    const modalOpen2 = function() {
+      let btn = document.querySelector(".btn[data-modal=modal-d2]");
+      // let close = document.querySelector(".modal[data-modal=modal-d2] .close");
+      btn?.addEventListener("click", function(){
+        modal.open("modal-d2");
+      });
+      // close?.addEventListener("click", function(){
+      //   modal.close("modal-d2");
+      // }); 
+    }
+    // modalOpen2();
+
+    const modalOpen3 = function() {
+      // let btn = document.querySelector(".btn[data-modal=modal-d1]");
+      let btn = document.querySelectorAll(".open[data-modal]");
+      if (btn) {
+        btn.forEach(function(item) {
+          let id = item.dataset.modal;
+          modal.open(id);
+          // modal.close(id);
+        });
+      }
+      // onclick="modal.open('modal-d1')"
+      // btn.addEventListener("click", function(){
+      //   modal.open("modal-d1");
+      // }); 
+    }
+    // modalOpen3();
 
     const testblock = function() {
       let makeBtn = document.querySelector(".make");
@@ -257,14 +297,14 @@
 
         let newBtn = document.createElement("button");
         newBtn.innerHTML = "modal-d100";
-        newBtn.setAttribute("class", "btn");
+        newBtn.setAttribute("class", "btn open");
         newBtn.setAttribute("data-modal", "modal-d100");
 
         let newModal = document.createElement("div");
         newModal.innerHTML = `
         <div class="inner">
           <span>modal-d100</span>
-          <button class="btn" data-modal="modal-d1">modal-d1</button>
+          <button class="btn open" data-modal="modal-d1">modal-d1</button>
           <button class="btn close">close</button>
         </div>
         `;
@@ -331,27 +371,13 @@
           btnset.appendChild(newBtn);
           out.appendChild(newModal);
           modal.init();
-          const modalOpen2 = function() {
-            let btn = document.querySelector(".btn[data-modal=modal-d100]");
-            btn?.addEventListener("click", function(e){
-              modal.open(
-                "modal-d100",
-                function(){
-                  let btn2 = document.querySelector(".modal.active.focus .btn[data-modal=modal-d1]");
-                  btn2?.addEventListener("click", function(e){
-                    console.log(btn2);
-                    modal.open(
-                      "modal-d1",
-                      function(){
-                        console.log("call-back-hell")
-                      }
-                    );
-                  });
-                }
-              );
-            }); 
-          }
-          modalOpen2()
+          modal.open(
+            "modal-d100",
+            function(){
+              console.log("call-back-hell")
+            }
+          );
+          modal.close("modal-d100");
         }, 500);
         
       }
@@ -367,19 +393,83 @@
 
     // auto
     // setTimeout(() => {
-    //   // modal.auto(
-    //   //   "auto-01", 
-    //   //   function(){
-    //   //    console.log("callback") 
-    //   //   }
-    //   // );
-    //   modal.auto("auto-01");
-    //   // modal.close("auto-01");
+    //   modal.open("modal-d0");
+    //   modal.close("modal-d0");
     // }, 1000);
 
+    var parentDiv = document.createElement("div");
+    parentDiv.addEventListener("click", function(){
+        alert("parentDiv click");
+    });
+    var childDiv = document.createElement("div");
+    childDiv.addEventListener("click", function(e){
+        e.stopPropagation();
+        alert("child click");
+    });
+    var a = document.createElement("a");
+    a.addEventListener("click", function(e){
+        e.stopPropagation();
+        alert("a click");
+    });
     
+    let testC = document.querySelector(".test");
+    let testCa = document.querySelector(".test_a");
+    let testCab = document.querySelector(".test_a_b");
+    testC.addEventListener("click", function(){
+      console.log(testC);
+    }, true);
+    testCa.addEventListener("click", function(e){
+      e.stopPropagation();
+      console.log(testCa);
+    });
+    testCab.addEventListener("click", function(e){
+      e.stopPropagation();
+      console.log(testCab);
+    });
+
+
+    // var parentDiv = document.createElement("div");
+    // parentDiv.addEventListener("click", function(){
+    //     alert("parentDiv click");
+    // }, true);
+    // var childDiv = document.createElement("div");
+    // childDiv.addEventListener("click", function(e){
+    //     alert("child click");
+    // });
+    // var a = document.createElement("a");
+    // a.addEventListener("click", function(e){
+    //     alert("a click");
+    // }, true);
+    // childDiv.appendChild(a);
+    // parentDiv.appendChild(childDiv);
     
-    
+    // modal.open(
+    //   "modal-d1",
+    //   function(){
+    //     let close = document.querySelector(".modal[data-modal=modal-d1] .close");
+    //     close.addEventListener("click", () => {
+    //       console.log("callback-close")
+    //     })
+    //   }
+    // );
+    modal.open("modal-d2");
+    modal.open("modal-d3");
+    modal.open("popupTest");
+
+    // modal.close("modal-d1");
+    modal.close("modal-d2");
+    modal.close("modal-d3");
+    modal.close("popupTest");
+
+    modal.run(
+      "modal-d1",
+      function(){
+        let close = document.querySelector(".modal[data-modal=modal-d1] .close");
+        close.addEventListener("click", () => {
+          console.log("callback-close")
+        })
+      }
+    );
     
     
   </script>

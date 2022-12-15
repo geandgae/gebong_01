@@ -4,29 +4,22 @@
 const modal = (function() {
 
   // let
+  let wrap;
   let outer;
-  // let btn;
-  // let close;
-  // let auto;
   let depth;
-  // 포커스가 갈 수 있는 엘레먼트
+  // focus
   let focusEl;
   let tabFirst;
   let tabLast;
-  
   // function
-  // let focusTab;
-  // let keyTab;
   let evtAuto;
   let evtOpen;
   let evtClose;
 
   // init
   const init = function() {
+    wrap = document.querySelector(".wrap");
     outer = document.querySelector(".outland");
-    // btn = Array.from(document.querySelectorAll(".btn[data-modal]"));
-    // close = Array.from(outer.querySelectorAll(".modal .btn.close"));
-    
     depth = 0;
     focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
@@ -47,6 +40,9 @@ const modal = (function() {
         // focusArray = [...focusNodelist];
         tabFirst = focusArray[0];
         tabLast = focusArray[focusArray.length - 1];
+
+        console.log(tabFirst);
+        console.log(tabLast);
       }
       tabFirst.focus();
     }
@@ -72,8 +68,8 @@ const modal = (function() {
     }
 
     // elOpen
-    const elOpen = function(id, el) {
-      el.forEach(function(item) {
+    const elOpen = function(id, target) {
+      target.forEach(function(item) {
         if(id === item.dataset.modal) {
           depth += 1;
           outer?.classList.add("active");
@@ -83,26 +79,64 @@ const modal = (function() {
           item.setAttribute("data-modal-level", depth);
           focusTab();
           item.addEventListener('keydown', keyTab);
-          console.log(depth);
-          console.log(item);
+          // console.log(depth);
+          // console.log(item);
+          console.log(item.dataset);
         } else {
           item.setAttribute("aria-hidden", "true");
           item.classList.remove("focus");
+          // console.log(depth);
+          // console.log(item);
+          console.log(item.dataset);
         }
       });
     }
 
-    // evtAuto
-    evtAuto = function(el){
-      console.log("auto-start");
-      let auto = Array.from(outer.querySelectorAll(".modal.type-auto"));
-      if (auto) {
-        let id = el;
-        elOpen(id, auto);
+    // elClose 
+    const elClose = function(id, target) {
+      let focusTarget;
+      
+      // moveFocus
+      const moveFocus = function() {
+        target.forEach(function(item) {
+          if(depth > 0 && item.dataset.modalLevel == depth) {
+            // console.log(item.dataset.modalLevel);
+            // console.log(item);
+            item.setAttribute("aria-hidden", "false");
+            item.classList.add("focus");
+            focusTab();
+            item.addEventListener('keydown', keyTab);
+            if(!item.classList.contains("type-auto")) {
+              focusTarget = document.querySelector(`.modal .open[data-modal=${id}]`);
+              focusTarget.focus();
+            }
+          } else if(depth <= 0) {
+            if(!item.classList.contains("type-auto")) {
+              focusTarget = document.querySelector(`.wrap .open[data-modal=${id}]`);
+              focusTarget.focus();
+            }
+          }
+        })
       }
+      target.forEach(function(item) {
+        // console.log(id);
+        // console.log(item.dataset.modal);
+        // modal 1개 이상일때
+        if(id === item.dataset.modal) {
+          item.classList.remove("active");
+          item.setAttribute("aria-hidden", "true");
+          item.classList.remove("focus");
+          item.setAttribute("data-modal-level", 0);
+          depth -= 1;
+          moveFocus();
+          // console.log(depth);
+          console.log(item.dataset);
+        } if (target.length === 1) {
+          outer?.classList.remove("active");
+          console.log(item.dataset);
+        }
+      })
     }
-    // evtAuto("auto-01");
-    // evtAuto("auto-02");
 
     // evtOpen
     evtOpen = function(el) {
@@ -113,118 +147,72 @@ const modal = (function() {
 
     // evtClose
     evtClose = function(el) {
+      let id = el;
       let target = outer.querySelectorAll(".modal.active");
-      let targetOn = outer.querySelector(`.modal.active.focus[data-modal=${el}]`);
-      let close = targetOn?.querySelectorAll(".close");
-      let focusTarget;
-
-      close?.forEach(function(item) {
-        item.addEventListener("click", function(){
-          // moveFocus
-          const moveFocus = function() {
-            target.forEach(function(item) {
-              if(depth > 0 && item.dataset.modalLevel == depth) {
-                // console.log(item.dataset.modalLevel);
-                // console.log(item);
-                item.setAttribute("aria-hidden", "false");
-                item.classList.add("focus");
-                if(!item.classList.contains("type-auto")) {
-                  focusTarget = document.querySelector(`.modal .btn[data-modal=${el}]`);
-                  focusTarget.focus();
-                }
-              } else if(depth <= 0) {
-                if(!item.classList.contains("type-auto")) {
-                  focusTarget = document.querySelector(`.wrap .btn[data-modal=${el}]`);
-                  focusTarget.focus();
-                }
-              }
-            })
-          }
-          target.forEach(function(item) {
-            // modal 1개 이상일때
-            if(el === item.dataset.modal) {
-              item.classList.remove("active");
-              item.setAttribute("aria-hidden", "true");
-              item.classList.remove("focus");
-              item.setAttribute("data-modal-level", 0);
-              depth -= 1;
-              moveFocus();
-            }
-            // modal 1개 일때
-            if(target.length === 1) {
-              outer?.classList.remove("active");
-            }
-          })
-        });
-      });
-
-
-      
-    }
-
-  }
-
-  // auto
-  const auto = function(el, option) {
-    evtAuto(el);
-    evtClose(el);
-
-    if(option) {
-      let callback = option;
-      callback();
+      elClose(id, target); 
     }
 
   }
   
   // open
   const open = function(el, option) {
-    // let el = e.currentTarget.dataset.modal;
-    evtOpen(el);
-    evtClose(el);
-
-    if(option) {
-      let callback = option;
-      callback();
-    }
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+        // event
+        evtOpen(el);
+        // callback
+        if(option) {
+          let callback = option;
+          callback();
+        }
+      }
+    });
   }
 
   // close
-  const close = function(el, option) {
-    evtClose(el);
-
-    if(option) {
-      let callback = option;
-      callback();
-    }
+  const close = function(el) {
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
+        // console.log(e.target.closest(".modal").classList.contains("focus"));
+        // evnet
+        evtClose(el);
+      }
+    });
   }
 
-  // run 
-  const run = function() {
-    if (btn) {
-      btn.forEach(function(item) {
-        item.addEventListener("click", evtOpen);
-      });
-    }
-    if (close) {
-      close.forEach(function(item) {
-        item.addEventListener("click", evtClose);
-      });
-    }
+  // run
+  const run = function(el, option) {
+    document.addEventListener('click', (e) => {
+      // open
+      if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+        // event
+        evtOpen(el);
+        // callback
+        if(option) {
+          let callback = option;
+          callback();
+        }
+      }
+      // close
+      if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
+        // console.log(e.target.closest(".modal").classList.contains("focus"));
+        // evnet
+        evtClose(el);
+      }
+    });
   }
-
-
-  
 
   
   return {
     init : init,
-    auto : auto,
     open : open,
     close : close,
+    run : run,
   }
 
 
-  // 팝업 1.딤체크 / 2.딤에따른 분기 / 3.팝업의 현재 z-index / 4.팝업종류 / 5.버튼으로 뜨지 않을때(자동 오픈)
+  // 팝업 1.딤체크 / 2.딤에따른 분기 / 3.팝업의 현재 z-index / 4.팝업종류 / 5.버튼으로 뜨지 않을때(자동 오픈) 
+  // n : 1 호출 / id로 실행
 
   
   

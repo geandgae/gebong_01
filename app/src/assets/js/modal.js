@@ -67,12 +67,23 @@ const modal = (function() {
       }
     }
 
+    const wacc = function() {
+      if(outer.classList.contains("active")) {
+        wrap?.classList.add("lock");
+        wrap?.setAttribute("aria-hidden", "true");
+      } else {
+        wrap?.classList.remove("lock");
+        wrap?.setAttribute("aria-hidden", "false");
+      }
+    }
+
     // elOpen
     const elOpen = function(id, target) {
       target.forEach(function(item) {
         if(id === item.dataset.modal) {
           depth += 1;
           outer?.classList.add("active");
+          wacc();
           item.classList.add("active");
           item.classList.add("focus");
           item.setAttribute("aria-hidden", "false");
@@ -131,9 +142,20 @@ const modal = (function() {
           moveFocus();
           // console.log(depth);
           console.log(item.dataset);
-        } if (target.length === 1) {
+        } 
+        if(target.length === 1) {
           outer?.classList.remove("active");
+          wacc();
           console.log(item.dataset);
+        }
+        if (id === "all") {
+          depth = 0;
+          item.classList.remove("active");
+          item.setAttribute("aria-hidden", "true");
+          item.classList.remove("focus");
+          item.setAttribute("data-modal-level", 0);
+          outer?.classList.remove("active");
+          wacc();
         }
       })
     }
@@ -150,6 +172,13 @@ const modal = (function() {
       let id = el;
       let target = outer.querySelectorAll(".modal.active");
       elClose(id, target); 
+    }
+
+    // evtAuto
+    evtAuto = function(el){
+      let id = el;
+      let target = outer.querySelectorAll(".modal.type-auto");
+      elOpen(id, target);
     }
 
   }
@@ -170,12 +199,15 @@ const modal = (function() {
   }
 
   // close
-  const close = function(el) {
+  const close = function(el, all) {
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
         // console.log(e.target.closest(".modal").classList.contains("focus"));
         // evnet
         evtClose(el);
+        if(all == "all") {
+          evtClose(all);
+        }
       }
     });
   }
@@ -202,11 +234,24 @@ const modal = (function() {
     });
   }
 
+  // auto 
+  const auto = function(el) {
+    evtClose("all");
+    evtAuto(el);
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains("close") && e.target.closest(".modal.type-auto")) {
+        evtClose("all");
+      }
+    });
+  }
+
   
   return {
     init : init,
     open : open,
     close : close,
+    auto : auto,
     run : run,
   }
 

@@ -138,8 +138,9 @@
     <div id="wrap" class="wrap">
       <span>wrap</span>
       <div class="btn-set">
+        <!-- <button class="btn open" data-modal="modal-d1" onclick="modalOCK();">modal-d1</button> -->
         <button class="btn open" data-modal="modal-d1">modal-d1</button>
-        <button class="btn open" data-modal="modal-d1">modal-d1 copy</button>
+        <!-- <button class="btn open" data-modal="modal-d2" onclick="modal.run('modal-d2')">modal-d2</button> -->
         <button class="btn open" data-modal="modal-d2">modal-d2</button>
         <button class="btn open" data-modal="modal-d3">modal-d3</button>
         <button class="btn open" data-modal="popupTest">popupTest</button>
@@ -154,6 +155,7 @@
           </div>
         </div>
       </div>
+      <div class="hand" style="border: 1px solid #000; padding: 10px;">event-test</div>
       <div class="scroll"></div>
     </div>
     <!-- //wrap -->
@@ -235,6 +237,29 @@
 
   </body>
   <script>
+
+    // event-test
+    const evetest = document.querySelector('.hand');
+
+    let etcount = 0;
+
+    function addListener() {
+      if (evetest.clickHandler) {
+        evetest.removeEventListener('click', evetest.clickHandler);
+      }
+
+      evetest.clickHandler = () => {
+        console.log(`this is in clickHandler but created ${++etcount} times`);
+      };
+
+      evetest.addEventListener('click', evetest.clickHandler);
+    }
+    addListener();
+    addListener();
+    addListener();
+    addListener();
+    addListener();
+    // event-test
 
     // startFunction.outland();
     // startFunction.testblock();
@@ -371,13 +396,13 @@
           btnset.appendChild(newBtn);
           out.appendChild(newModal);
           modal.init();
-          modal.open(
+          modal.run(
             "modal-d100",
             function(){
-              console.log("call-back-hell")
+              console.log("call-back-hell");
             }
           );
-          modal.close("modal-d100");
+          // modal.close("modal-d100");
         }, 500);
         
       }
@@ -390,12 +415,6 @@
     // startFunction.outland().evtAuto("auto-01");
     // startFunction.outland().init();
     
-
-    // auto
-    // setTimeout(() => {
-    //   modal.open("modal-d0");
-    //   modal.close("modal-d0");
-    // }, 1000);
 
     var parentDiv = document.createElement("div");
     parentDiv.addEventListener("click", function(){
@@ -452,25 +471,48 @@
     //     })
     //   }
     // );
-    modal.open("modal-d2");
-    modal.open("modal-d3");
-    modal.open("popupTest");
+    // modal.open("modal-d2");
+    // modal.open("modal-d3");
+    // modal.open("popupTest");
 
     // modal.close("modal-d1");
-    modal.close("modal-d2");
-    modal.close("modal-d3");
-    modal.close("popupTest");
+    // modal.close("modal-d2");
+    // modal.close("modal-d3");
+    // modal.close("popupTest");
 
+    // modal.run(
+    //   "modal-d1",
+    //   function(){
+    //     let close = document.querySelector(".modal[data-modal=modal-d1] .close");
+    //     close.addEventListener("click", () => {
+    //       console.log("callback-close")
+    //     })
+    //   }
+    // );
+
+    // function modalOCK() {
+    //   modal.run("modal-d1");
+    // }
     modal.run(
-      "modal-d1",
+      "modal-d3",
       function(){
-        let close = document.querySelector(".modal[data-modal=modal-d1] .close");
+        let close = document.querySelector(".modal[data-modal=modal-d3] .close");
         close.addEventListener("click", () => {
-          console.log("callback-close")
+          console.log("callback-close");
         })
+       
       }
     );
-    
+    modal.run("modal-d1");
+    modal.run("modal-d2");
+    // modal.run("popupTest");
+    modal.open("popupTest");
+    modal.close("popupTest" , "all");
+
+    // auto
+    setTimeout(() => {
+      modal.auto("modal-d0");
+    }, 5000);
     
   </script>
 </html>

@@ -151,9 +151,9 @@
         <!-- <button class="btn open" data-modal="modal-d1" onclick="modalOCK();">modal-d1</button> -->
         <!-- <button class="btn open" data-modal="modal-d2" onclick="modal.run('modal-d2')">modal-d2</button> -->
         <button class="btn open" data-modal="modal-d1">modal-d1</button>
-        <button class="btn open" data-modal="modal-d2">modal-d2</button>
-        <button class="btn open" data-modal="modal-d3">modal-d3</button>
-        <button class="btn open" data-modal="modal-test">modal-test</button>
+        <!-- <button class="btn open" data-modal="modal-d2">modal-d2</button> -->
+        <!-- <button class="btn open" data-modal="modal-d3">modal-d3</button> -->
+        <!-- <button class="btn open" data-modal="modal-test">modal-test</button> -->
         <button class="btn open" data-modal="modal-dev" onclick="devFunc();">modal-dev</button>
         <button class="btn make">생성자</button>
       </div>
@@ -178,6 +178,7 @@
         <button class="btn open" data-modal="test-btn">test-btn</button>
         <button class="btn open2">test-btn2</button>
         <button class="btn open3">test-btn3</button>
+        <!-- <button class="btn open" data-modal="modal-d1">modal-d1</button> -->
         <!-- <button class="btn open" data-modal="modal-d1">modal-d1</button> -->
       </div>
       <div class="test" style="border: 1px solid #000; width: 200px; height: 100px;">
@@ -300,7 +301,7 @@
           <span>modal-dev</span>
           <button class="btn" id="evt01">event01</button>
           <button class="btn" id="evt02">event02</button>
-          <button class="btn open" data-modal="modal-d2">modal-d2</button>
+          <!-- <button class="btn open" data-modal="modal-d2">modal-d2</button> -->
           <button class="btn close">close</button>
           <button class="btn close">close2</button>
           <button class="btn close">close3</button>
@@ -501,13 +502,17 @@
           btnset.appendChild(newBtn);
           out.appendChild(newModal);
           modal.init();
-          modal.run(
-            "modal-d100",
-            function(){
-              console.log("call-back-hell");
-            }
-          );
+          // modal.run(
+          //   "modal-d100",
+          //   function(){
+          //     console.log("call-back-hell");
+          //   }
+          // );
           // modal.close("modal-d100");
+          let btndev = document.querySelector(".open[data-modal=modal-d100]");
+          btndev.onclick = (e) => {
+            modal.objRun.auto(e);
+          }
         }, 500);
         
       }
@@ -598,18 +603,17 @@
     // function modalOCK() {
     //   modal.run("modal-d1");
     // }
-    modal.run(
-      "modal-d3",
-      function(){
-        let close = document.querySelector(".modal[data-modal=modal-d3] .close");
-        close.addEventListener("click", () => {
-          console.log("callback-close");
-        })
-       
-      }
-    );
+    // modal.run(
+    //   "modal-d3",
+    //   function(){
+    //     let close = document.querySelector(".modal[data-modal=modal-d3] .close");
+    //     close.addEventListener("click", () => {
+    //       console.log("callback-close");
+    //     })
+    //   }
+    // );
     // modal.run("modal-d1");
-    modal.run("modal-d2");
+    // modal.run("modal-d2");
     // modal.run("modal-test");
     // modal.run("modal-d10");
     // modal.run("modal-test", "" ,"blank");
@@ -622,9 +626,11 @@
     // }, 1000);
     function startModal() {
       modal.objRun.open("normal", "modal-d1");
-      modal.objRun.open("normal", "modal-d10");
+      modal.objRun.open("normal", "modal-d2");
+      modal.objRun.open("normal", "modal-d3");
       modal.objRun.open("normal", "modal-test");
       modal.objRun.open("normal", "modal-dev");
+      modal.objRun.open("normal", "modal-d10");
       // modal.objRun.open("auto", "modal-d0");
   
       modal.objRun.alert("alert-d1", "alert open !!!<br>alert-d1");
@@ -635,8 +641,44 @@
       modal.objRun.confirm("confirm-d1", "confirm open !!!<br>confirm-d1");
       modal.objRun.confirm("confirm-d2", "confirm open !!!<br>confirm-d1", "btnOk", "btnClose");
     }
-    startModal();
-    
+    // startModal();
+
+    function ctrlModal() {
+      // let btn = document.querySelectorAll(".open[data-modal]");
+      let btn1 = document.querySelectorAll(".open[data-modal=modal-d1]");
+      let btn2 = document.querySelector(".open[data-modal=modal-d2]");
+      let btn3 = document.querySelectorAll(".open[data-modal=modal-d3]");
+      let btntest = document.querySelector(".open[data-modal=modal-test]");
+      let btndev = document.querySelector(".open[data-modal=modal-dev]");
+      let btn10 = document.querySelectorAll(".open[data-modal=modal-d10]");
+
+      btn2.onclick = (e) => {
+        modal.objRun.auto(e);
+      }
+      btndev.onclick = (e) => {
+        modal.objRun.auto(e);
+      }
+      btntest.onclick = (e) => {
+        modal.objRun.auto(e, "blank");
+      }
+      btn1.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.objRun.auto(e);
+        }
+      });
+      btn3.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.objRun.auto(e);
+        }
+      });
+      btn10.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.objRun.auto(e);
+        }
+      });
+    }
+    ctrlModal();
+
     function chekTest() {
       let input = document.querySelector(".testchek .input");
       let btn = document.querySelector(".testchek .open");
@@ -648,12 +690,13 @@
       btn3.onclick = (e) => {
         modal.auto("modal-d0", e);
       }
-      btn.onclick = () => {
+      btn.onclick = (e) => {
         let value = input.value
         // console.log(value);
         if(value == "go") {
+          modal.objRun.auto(e);
           // console.log(btn);
-          modal.objRun.open("normal", "test-btn");
+          // modal.objRun.open("normal", "test-btn");
           // modal.objRun.open("normal", "modal-d1");
           // modal.objRun.alert("test-btn", "Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sint repudiandae ipsa atque quo mollitia pariatur inventore! Esse laborum,<br> totam vel eligendi, pariatur hic voluptatem velit fuga,<br> atque debitis expedita repellendus.");
         }

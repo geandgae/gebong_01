@@ -98,7 +98,7 @@ const modal = (function() {
           item.addEventListener('keydown', keyTab);
           // console.log(depth);
           // console.log(item);
-          console.log(item.dataset);
+          // console.log(item.dataset);
         } else {
           item.setAttribute("aria-hidden", "true");
           item.classList.remove("focus");
@@ -133,7 +133,7 @@ const modal = (function() {
               // focusTarget = document.querySelector(`.wrap .open[data-modal=${id}]`);
               focusTarget = accuracy;
               focusTarget.focus();
-              console.log(focusTarget);
+              // console.log(focusTarget);
               // console.log(accuracy);
             }
           }
@@ -435,6 +435,28 @@ const modal = (function() {
         if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
           // console.log(e.target.closest(".modal").classList.contains("focus"));
           // evnet
+          if(blank == "blank") {
+            evtClose(blank);
+          } else {
+            evtClose(el, accuracy);
+          }
+        }
+      });
+    },
+    auto : (e, blank) => {
+      let accuracy = e.target;
+      let el = accuracy.dataset.modal;
+      let close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+      console.log(accuracy);
+      console.log(el);
+      console.log(close);
+      // open
+      if (accuracy.classList.contains("open")) {
+        evtOpen(el);
+      }
+      // close
+      close.forEach(function(item) {
+        item.onclick = () => {
           if(blank == "blank") {
             evtClose(blank);
           } else {

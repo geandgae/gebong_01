@@ -3,14 +3,7 @@
 // s : function
 const modal = (function() {
 
-  // let
-  let wrap;
-  let outer;
-  let depth;
-  // focus
-  let focusEl;
-  let tabFirst;
-  let tabLast;
+  
   // function
   let evtAuto;
   let evtOpen;
@@ -18,6 +11,15 @@ const modal = (function() {
 
   // init
   const init = function() {
+    // let
+    let wrap;
+    let outer;
+    let depth;
+    // focus
+    let focusEl;
+    let tabFirst;
+    let tabLast;
+    
     wrap = document.querySelector(".wrap");
     outer = document.querySelector(".outland");
     depth = 0;
@@ -41,8 +43,8 @@ const modal = (function() {
         tabFirst = focusArray[0];
         tabLast = focusArray[focusArray.length - 1];
 
-        console.log(tabFirst);
-        console.log(tabLast);
+        // console.log(tabFirst);
+        // console.log(tabLast);
       }
       tabFirst.focus();
     }
@@ -98,17 +100,17 @@ const modal = (function() {
           item.classList.remove("focus");
           // console.log(depth);
           // console.log(item);
-          console.log(item.dataset);
+          // console.log(item.dataset);
         }
       });
     }
 
     // elClose 
-    const elClose = function(id, target) {
-      let focusTarget;
+    const elClose = function(id, target, accuracy) {
       
       // moveFocus
       const moveFocus = function() {
+        let focusTarget;
         target.forEach(function(item) {
           if(depth > 0 && item.dataset.modalLevel == depth) {
             // console.log(item.dataset.modalLevel);
@@ -118,13 +120,17 @@ const modal = (function() {
             focusTab();
             item.addEventListener('keydown', keyTab);
             if(!item.classList.contains("type-auto")) {
-              focusTarget = document.querySelector(`.modal .open[data-modal=${id}]`);
+              // focusTarget = document.querySelector(`.modal .open[data-modal=${id}]`);
+              focusTarget = accuracy;
               focusTarget.focus();
             }
           } else if(depth <= 0) {
             if(!item.classList.contains("type-auto")) {
-              focusTarget = document.querySelector(`.wrap .open[data-modal=${id}]`);
+              // focusTarget = document.querySelector(`.wrap .open[data-modal=${id}]`);
+              focusTarget = accuracy;
               focusTarget.focus();
+              console.log(focusTarget);
+              // console.log(accuracy);
             }
           }
         })
@@ -140,15 +146,16 @@ const modal = (function() {
           item.setAttribute("data-modal-level", 0);
           depth -= 1;
           moveFocus();
-          // console.log(depth);
-          console.log(item.dataset);
+          console.log(depth);
+          // console.log(item.dataset);
         } 
         if(target.length === 1) {
           outer?.classList.remove("active");
           wacc();
-          console.log(item.dataset);
+          console.log(depth);
+          // console.log(item.dataset);
         }
-        if (id === "all") {
+        if (id === "blank") {
           depth = 0;
           item.classList.remove("active");
           item.setAttribute("aria-hidden", "true");
@@ -156,6 +163,7 @@ const modal = (function() {
           item.setAttribute("data-modal-level", 0);
           outer?.classList.remove("active");
           wacc();
+          console.log(depth);
         }
       })
     }
@@ -168,10 +176,10 @@ const modal = (function() {
     }
 
     // evtClose
-    evtClose = function(el) {
+    evtClose = function(el, accuracy) {
       let id = el;
       let target = outer.querySelectorAll(".modal.active");
-      elClose(id, target); 
+      elClose(id, target, accuracy); 
     }
 
     // evtAuto
@@ -180,13 +188,13 @@ const modal = (function() {
       let target = outer.querySelectorAll(".modal.type-auto");
       elOpen(id, target);
     }
-
   }
   
   // open
   const open = function(el, option) {
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+        console.log(e.target);
         // event
         evtOpen(el);
         // callback
@@ -199,24 +207,26 @@ const modal = (function() {
   }
 
   // close
-  const close = function(el, all) {
+  const close = function(el, blank) {
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
         // console.log(e.target.closest(".modal").classList.contains("focus"));
         // evnet
         evtClose(el);
-        if(all == "all") {
-          evtClose(all);
+        if(blank == "blank") {
+          evtClose(blank);
         }
       }
     });
   }
 
   // run
-  const run = function(el, option) {
+  const run = function(el, option, blank) {
+    let accuracy;
     document.addEventListener('click', (e) => {
       // open
       if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+        accuracy = e.target;
         // event
         evtOpen(el);
         // callback
@@ -229,21 +239,81 @@ const modal = (function() {
       if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
         // console.log(e.target.closest(".modal").classList.contains("focus"));
         // evnet
-        evtClose(el);
+        evtClose(el, accuracy);
+        if(blank == "blank") {
+          evtClose(blank);
+        }
       }
     });
   }
 
   // auto 
   const auto = function(el) {
-    evtClose("all");
+    evtClose("blank");
     evtAuto(el);
 
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains("close") && e.target.closest(".modal.type-auto")) {
-        evtClose("all");
+        evtClose("blank");
       }
     });
+  }
+
+  // 오브젝트형 테스트
+  const objRun = {
+    init : () => {
+      let global = "global";
+      let global2 = "global2";
+      // console.log(global);
+      // console.log(global2);
+      return global
+    },
+    open : (type, el, blank, option) => {
+      let global = objRun.init();
+      // global = "open";
+      // console.log(global);
+
+      // auto
+      if(type == "auto") {
+        evtClose("blank");
+        evtAuto(el);
+        document.addEventListener('click', (e) => {
+          if (e.target.classList.contains("close") && e.target.closest(".modal.type-auto")) {
+            evtClose("blank");
+          }
+        });
+      }
+      // normal
+      if(type == "normal") {
+        let accuracy;
+        document.addEventListener('click', (e) => {
+          // open
+          if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+            accuracy = e.target;
+            // event
+            evtOpen(el);
+            // callback
+            if(option) {
+              let callback = option;
+              callback();
+            }
+          }
+          // close
+          if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
+            // console.log(e.target.closest(".modal").classList.contains("focus"));
+            // evnet
+            if(blank == "blank") {
+              evtClose(blank);
+            } else {
+              evtClose(el, accuracy);
+            }
+          }
+        });
+        }
+      
+      
+      
+    },
   }
 
   
@@ -253,6 +323,7 @@ const modal = (function() {
     close : close,
     auto : auto,
     run : run,
+    objRun : objRun,
   }
 
 

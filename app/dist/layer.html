@@ -127,6 +127,10 @@
         margin-bottom: 300px;
         margin-right: 400px;
       }
+      .modal .inner.alt10 {
+        margin-top: -200px;
+        margin-left: -200px;
+      }
       *:focus {
         border: 1px solid red;
       }
@@ -145,6 +149,15 @@
         <button class="btn open" data-modal="modal-d3">modal-d3</button>
         <button class="btn open" data-modal="popupTest">popupTest</button>
         <button class="btn make">생성자</button>
+      </div>
+      <div class="btn-set" style="margin-top: 10px;">
+        <button class="btn open" data-modal="modal-d10">modal-d10-1</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-2</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-3</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-4</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-5</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-6</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-7</button>
       </div>
       <div class="test" style="border: 1px solid #000; width: 200px; height: 100px;">
         test
@@ -201,7 +214,10 @@
       <div class="modal" data-modal="modal-d2">
         <div class="inner alt">
           <span>modal-d2</span>
-          <button class="btn open" data-modal="modal-d3">modal-d3</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-1</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-2</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-3</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-4</button>
           <button class="btn close">close</button>
         </div>
       </div>
@@ -217,6 +233,18 @@
           <a href="#;">aaa4</a>
           <button>adas</button>
           <button class="btn open" data-modal="popupTest">popupTest</button>
+          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-d10">
+        <div class="inner alt10">
+          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+          <button>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sint repudiandae ipsa atque quo mollitia pariatur inventore! Esse laborum,<br> totam vel eligendi, pariatur hic voluptatem velit fuga,<br> atque debitis expedita repellendus.</button>
+          <button class="btn open" data-modal="modal-d1">modal-d1</button>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           <button class="btn close">close</button>
         </div>
@@ -503,16 +531,22 @@
        
       }
     );
-    modal.run("modal-d1");
+    // modal.run("modal-d1");
     modal.run("modal-d2");
-    // modal.run("popupTest");
-    modal.open("popupTest");
-    modal.close("popupTest" , "all");
+    // modal.run("modal-d10");
+    // modal.run("popupTest", "" ,"blank");
+    // modal.open("popupTest");
+    // modal.close("popupTest" , "all");
 
-    // auto
-    setTimeout(() => {
-      modal.auto("modal-d0");
-    }, 5000);
+    // // auto
+    // setTimeout(() => {
+    //   modal.auto("modal-d0");
+    // }, 1000);
+    
+    modal.objRun.open("normal", "modal-d1");
+    modal.objRun.open("normal", "modal-d10");
+    modal.objRun.open("normal", "popupTest", "blank");
+    modal.objRun.open("auto", "modal-d0");
     
   </script>
 </html>

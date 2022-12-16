@@ -8,12 +8,15 @@ const modal = (function() {
   let evtAuto;
   let evtOpen;
   let evtClose;
+  let evtAlert;
+  let evtConfirm;
 
   // init
   const init = function() {
     // let
     let wrap;
     let outer;
+    let dialog;
     let depth;
     // focus
     let focusEl;
@@ -22,6 +25,7 @@ const modal = (function() {
     
     wrap = document.querySelector(".wrap");
     outer = document.querySelector(".outland");
+    dialog = outer.querySelector(".dialog");
     depth = 0;
     focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
@@ -188,6 +192,41 @@ const modal = (function() {
       let target = outer.querySelectorAll(".modal.type-auto");
       elOpen(id, target);
     }
+
+    // evtAlert
+    evtAlert = function(el, text){
+      let cont =`
+        <div class="modal active type-dialog" data-modal="${el}">
+          <div class="inner">
+            <span class="text">${text}</span>
+            <button class="btn close">close</button>
+          </div>
+        </div>
+      `
+      dialog.innerHTML = cont;
+      let target = outer.querySelectorAll(".modal.active");
+      elOpen(el, target);
+    }
+
+    // evtConfirm
+    evtConfirm = function(el, text, btn1, btn2){
+      let btnok;
+      let btnclose;
+      btn1 ? btnok = btn1 : btnok = "확인";
+      btn2 ? btnclose = btn2 : btnclose = "닫기";
+      let cont =`
+        <div class="modal active type-dialog" data-modal="${el}">
+          <div class="inner">
+            <span class="text">${text}</span>
+            <button class="btn confirm">${btnok}</button>
+            <button class="btn close">${btnclose}</button>
+          </div>
+        </div>
+      `
+      dialog.innerHTML = cont;
+      let target = outer.querySelectorAll(".modal.active");
+      elOpen(el, target);
+    }
   }
   
   // open
@@ -239,16 +278,19 @@ const modal = (function() {
       if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
         // console.log(e.target.closest(".modal").classList.contains("focus"));
         // evnet
-        evtClose(el, accuracy);
         if(blank == "blank") {
           evtClose(blank);
+        } else {
+          evtClose(el, accuracy);
         }
       }
     });
   }
 
   // auto 
-  const auto = function(el) {
+  const auto = function(el, e) {
+    console.log("---target---");
+    console.log(e.target);
     evtClose("blank");
     evtAuto(el);
 
@@ -286,6 +328,7 @@ const modal = (function() {
       // normal
       if(type == "normal") {
         let accuracy;
+        
         document.addEventListener('click', (e) => {
           // open
           if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
@@ -309,10 +352,96 @@ const modal = (function() {
             }
           }
         });
+
+        // const doc = document;
+
+        // // removeEventListener
+        // if (doc.eventHandler) {
+        //   doc.removeEventListener('click', doc.eventHandler);
+        // }
+
+        // // s: eventHandler
+        // doc.eventHandler = (e) => {
+        //   // open
+        //   if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+        //     accuracy = e.target;
+        //     // event
+        //     evtOpen(el);
+        //     // callback
+        //     if(option) {
+        //       let callback = option;
+        //       callback();
+        //     }
+        //   }
+        //   // close
+        //   if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
+        //     // console.log(e.target.closest(".modal").classList.contains("focus"));
+        //     // evnet
+        //     if(blank == "blank") {
+        //       evtClose(blank);
+        //     } else {
+        //       evtClose(el, accuracy);
+        //     }
+        //   }
+        // }
+        // // e: eventHandler
+
+        // // addEventListener
+        // doc.addEventListener('click', doc.eventHandler);
+
+      }
+    },
+    alert : (el, text, blank, option) => {
+      let accuracy;
+      document.addEventListener('click', (e) => {
+        // open
+        if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+          accuracy = e.target;
+          // event
+          evtAlert(el, text);
+          // callback
+          if(option) {
+            let callback = option;
+            callback();
+          }
         }
-      
-      
-      
+        // close
+        if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
+          // console.log(e.target.closest(".modal").classList.contains("focus"));
+          // evnet
+          if(blank == "blank") {
+            evtClose(blank);
+          } else {
+            evtClose(el, accuracy);
+          }
+        }
+      });
+    },
+    confirm : (el, text, btn1, btn2, blank, option) => {
+      let accuracy;
+      document.addEventListener('click', (e) => {
+        // open
+        if (e.target.classList.contains("open") && e.target.dataset.modal == el) {
+          accuracy = e.target;
+          // event
+          evtConfirm(el, text, btn1, btn2);
+          // callback
+          if(option) {
+            let callback = option;
+            callback();
+          }
+        }
+        // close
+        if (e.target.classList.contains("close") && e.target.closest(".modal").dataset.modal == el) {
+          // console.log(e.target.closest(".modal").classList.contains("focus"));
+          // evnet
+          if(blank == "blank") {
+            evtClose(blank);
+          } else {
+            evtClose(el, accuracy);
+          }
+        }
+      });
     },
   }
 

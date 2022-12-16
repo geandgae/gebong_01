@@ -105,6 +105,12 @@
       .modal.focus {
         z-index: 10;
       }
+      .modal.type-dialog {
+        z-index: 100;
+      }
+      .modal.type-dialog .inner {
+        border: 2px solid #000;
+      }
       .modal .inner {
         min-width: 100px;
         min-height: 100px;
@@ -143,11 +149,12 @@
       <span>wrap</span>
       <div class="btn-set">
         <!-- <button class="btn open" data-modal="modal-d1" onclick="modalOCK();">modal-d1</button> -->
-        <button class="btn open" data-modal="modal-d1">modal-d1</button>
         <!-- <button class="btn open" data-modal="modal-d2" onclick="modal.run('modal-d2')">modal-d2</button> -->
+        <button class="btn open" data-modal="modal-d1">modal-d1</button>
         <button class="btn open" data-modal="modal-d2">modal-d2</button>
         <button class="btn open" data-modal="modal-d3">modal-d3</button>
-        <button class="btn open" data-modal="popupTest">popupTest</button>
+        <button class="btn open" data-modal="modal-test">modal-test</button>
+        <button class="btn open" data-modal="modal-dev" onclick="devFunc();">modal-dev</button>
         <button class="btn make">생성자</button>
       </div>
       <div class="btn-set" style="margin-top: 10px;">
@@ -158,6 +165,20 @@
         <button class="btn open" data-modal="modal-d10">modal-d10-5</button>
         <button class="btn open" data-modal="modal-d10">modal-d10-6</button>
         <button class="btn open" data-modal="modal-d10">modal-d10-7</button>
+      </div>
+      <div class="btn-set" style="margin-top: 10px;">
+        <button class="btn open" data-modal="alert-d1">alert-d1</button>
+        <button class="btn open" data-modal="alert-d2">alert-d2</button>
+        <button class="btn open" data-modal="alert-d3">alert-d3</button>
+        <span class="open" data-modal="confirm-d1" tabindex="0">confirm-d1</span>
+        <span class="open" data-modal="confirm-d2" tabindex="0">confirm-d2</span>
+      </div>
+      <div class="testchek" style="margin: 10px; padding: 10px; border: 1px solid #000;">
+        <input type="text" name="" id="" class="input">
+        <button class="btn open" data-modal="test-btn">test-btn</button>
+        <button class="btn open2">test-btn2</button>
+        <button class="btn open3">test-btn3</button>
+        <!-- <button class="btn open" data-modal="modal-d1">modal-d1</button> -->
       </div>
       <div class="test" style="border: 1px solid #000; width: 200px; height: 100px;">
         test
@@ -206,6 +227,14 @@
           <button class="btn close">close</button>
           <button class="btn close">close2</button>
           <button class="btn close">close3</button>
+          <div class="btn-set" style="margin-top: 10px;">
+            <button class="btn open" data-modal="alert-d1">alert-d1</button>
+            <button class="btn open" data-modal="alert-d2">alert-d2</button>
+            <button class="btn open" data-modal="alert-d3">alert-d3</button>
+            <button class="btn open" data-modal="alert-d4">alert-d4</button>
+            <button class="btn open" data-modal="confirm-d1">confirm-d1</button>
+            <button class="btn open" data-modal="confirm-d2">confirm-d2</button>
+          </div>
         </div>
       </div>
       <!-- //modal -->
@@ -232,7 +261,7 @@
           <a href="#;">aaa3</a>
           <a href="#;">aaa4</a>
           <button>adas</button>
-          <button class="btn open" data-modal="popupTest">popupTest</button>
+          <button class="btn open" data-modal="modal-test">modal-test</button>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           <button class="btn close">close</button>
         </div>
@@ -246,19 +275,67 @@
           <button>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sint repudiandae ipsa atque quo mollitia pariatur inventore! Esse laborum,<br> totam vel eligendi, pariatur hic voluptatem velit fuga,<br> atque debitis expedita repellendus.</button>
           <button class="btn open" data-modal="modal-d1">modal-d1</button>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          <div class="btn-set" style="margin-top: 10px;">
+            <button class="btn open" data-modal="alert-d1">alert-d1</button>
+            <button class="btn open" data-modal="alert-d2">alert-d2</button>
+            <button class="btn open" data-modal="alert-d3">alert-d3</button>
+          </div>
           <button class="btn close">close</button>
         </div>
       </div>
       <!-- //modal -->
 
       <!-- modal -->
-      <div class="modal" data-modal="popupTest">
+      <div class="modal" data-modal="modal-test">
         <div class="inner alt3">
-          <span>popupTest</span>
+          <span>modal-test</span>
           <button class="btn close">close</button>
         </div>
       </div>
       <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-dev">
+        <div class="inner">
+          <span>modal-dev</span>
+          <button class="btn" id="evt01">event01</button>
+          <button class="btn" id="evt02">event02</button>
+          <button class="btn open" data-modal="modal-d2">modal-d2</button>
+          <button class="btn close">close</button>
+          <button class="btn close">close2</button>
+          <button class="btn close">close3</button>
+          <div class="btn-set" style="margin-top: 10px;">
+            <button class="btn open" data-modal="alert-d1">alert-d1</button>
+            <button class="btn open" data-modal="alert-d2">alert-d2</button>
+            <button class="btn open" data-modal="alert-d3">alert-d3</button>
+            <button class="btn open" data-modal="alert-d4">alert-d4</button>
+            <button class="btn open" data-modal="confirm-d1">confirm-d1</button>
+            <button class="btn open" data-modal="confirm-d2">confirm-d2</button>
+          </div>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="test-btn">
+        <div class="inner">
+          <span>test-btn</span>
+          <button class="btn">focus target</button>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
+            Consequatur cum eos nesciunt sed nostrum impedit tempora quos.<br> 
+            Necessitatibus explicabo deleniti cum sequi.<br>
+            Aspernatur nam nemo obcaecati facere ullam necessitatibus quod.
+          </div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- dialog -->
+      <div class="dialog">
+      </div>
+      <!-- //dialog -->
 
     </div>
     <!-- //outland -->
@@ -368,7 +445,7 @@
           <button class="btn" data-modal="modal-d100">modal-d100</button>
           <button class="btn" data-modal="modal-d200">modal-d200</button>
           <button class="btn" data-modal="modal-d300">modal-d300</button>
-          <button class="btn" data-modal="popupTest2">popupTest2</button>
+          <button class="btn" data-modal="modal-test2">modal-test2</button>
         `;
         let cont2 = `
           <div class="dim"></div>
@@ -397,7 +474,7 @@
           <div class="modal" data-modal="modal-d300">
             <div class="inner alt2">
               <span>modal-d300</span>
-              <button class="btn" data-modal="popupTest2">popupTest2</button>
+              <button class="btn" data-modal="modal-test2">modal-test2</button>
               <a href="#;">aaa</a>
               <a href="#;">aaa2</a>
               <a href="#;">aaa3</a>
@@ -410,9 +487,9 @@
           <!-- //modal -->
     
           <!-- modal -->
-          <div class="modal" data-modal="popupTest2">
+          <div class="modal" data-modal="modal-test2">
             <div class="inner alt3">
-              <span>popupTest2</span>
+              <span>modal-test2</span>
               <button class="btn close">close</button>
             </div>
           </div>
@@ -446,17 +523,17 @@
 
     var parentDiv = document.createElement("div");
     parentDiv.addEventListener("click", function(){
-        alert("parentDiv click");
+      alert("parentDiv click");
     });
     var childDiv = document.createElement("div");
     childDiv.addEventListener("click", function(e){
-        e.stopPropagation();
-        alert("child click");
+      e.stopPropagation();
+      alert("child click");
     });
     var a = document.createElement("a");
     a.addEventListener("click", function(e){
-        e.stopPropagation();
-        alert("a click");
+      e.stopPropagation();
+      alert("a click");
     });
     
     let testC = document.querySelector(".test");
@@ -501,12 +578,12 @@
     // );
     // modal.open("modal-d2");
     // modal.open("modal-d3");
-    // modal.open("popupTest");
+    // modal.open("modal-test");
 
     // modal.close("modal-d1");
     // modal.close("modal-d2");
     // modal.close("modal-d3");
-    // modal.close("popupTest");
+    // modal.close("modal-test");
 
     // modal.run(
     //   "modal-d1",
@@ -533,20 +610,77 @@
     );
     // modal.run("modal-d1");
     modal.run("modal-d2");
+    // modal.run("modal-test");
     // modal.run("modal-d10");
-    // modal.run("popupTest", "" ,"blank");
-    // modal.open("popupTest");
-    // modal.close("popupTest" , "all");
+    // modal.run("modal-test", "" ,"blank");
+    // modal.open("modal-test");
+    // modal.close("modal-test" , "all");
 
     // // auto
     // setTimeout(() => {
     //   modal.auto("modal-d0");
     // }, 1000);
+    function startModal() {
+      modal.objRun.open("normal", "modal-d1");
+      modal.objRun.open("normal", "modal-d10");
+      modal.objRun.open("normal", "modal-test");
+      modal.objRun.open("normal", "modal-dev");
+      // modal.objRun.open("auto", "modal-d0");
+  
+      modal.objRun.alert("alert-d1", "alert open !!!<br>alert-d1");
+      modal.objRun.alert("alert-d2", "alert open !!!<br>alert-d2");
+      modal.objRun.alert("alert-d3", "alert open !!!<br>alert-d3");
+      modal.objRun.alert("alert-d4", "alert open !!!<br>alert-d4");
+
+      modal.objRun.confirm("confirm-d1", "confirm open !!!<br>confirm-d1");
+      modal.objRun.confirm("confirm-d2", "confirm open !!!<br>confirm-d1", "btnOk", "btnClose");
+    }
+    startModal();
     
-    modal.objRun.open("normal", "modal-d1");
-    modal.objRun.open("normal", "modal-d10");
-    modal.objRun.open("normal", "popupTest", "blank");
-    modal.objRun.open("auto", "modal-d0");
+    function chekTest() {
+      let input = document.querySelector(".testchek .input");
+      let btn = document.querySelector(".testchek .open");
+      let btn2 = document.querySelector(".testchek .open2");
+      let btn3 = document.querySelector(".testchek .open3");
+      btn2.onclick = (e) => {
+        modal.auto("modal-d0", e);
+      }
+      btn3.onclick = (e) => {
+        modal.auto("modal-d0", e);
+      }
+      btn.onclick = () => {
+        let value = input.value
+        // console.log(value);
+        if(value == "go") {
+          // console.log(btn);
+          modal.objRun.open("normal", "test-btn");
+          // modal.objRun.open("normal", "modal-d1");
+          // modal.objRun.alert("test-btn", "Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sint repudiandae ipsa atque quo mollitia pariatur inventore! Esse laborum,<br> totam vel eligendi, pariatur hic voluptatem velit fuga,<br> atque debitis expedita repellendus.");
+        }
+      }
+    }
+    chekTest()
+
+    function devFunc(){
+      console.log("*******devFunc!!!!!!!!!!");
+      
+      
+      let evt01 = document.querySelector("#evt01");
+      let evt02 = document.querySelector("#evt02");
+
+      // evt01.addEventListener('click', function(){
+      //   console.log(evt01);
+      // });
+      document.onclick = (e) => {
+        // console.log(evt01);
+        if(e.target.id === "evt01") {
+          console.log(e.target.id);
+        }
+      }
+      evt02.onclick = () => {
+        console.log(evt02);
+      }
+    }
     
   </script>
 </html>

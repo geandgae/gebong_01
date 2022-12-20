@@ -501,3 +501,34 @@ const modal = (function() {
 
 modal.init();
 
+
+// test
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+
+console.log(new Food('cheese', 5).name);
+console.log(new Food('cheese', 5).price);
+console.log(new Food('cheese', 5).category);
+console.log(new Food('cheese', 5));
+
+
+// class Product {
+//   constructor(name, price) {
+//     this.name = name;
+//     this.price = price;
+//   }
+// }
+
+// class Food {
+//   constructor(name, price) {
+//     Product.call(this, name, price);
+//     this.category = 'food';
+//   }
+// }

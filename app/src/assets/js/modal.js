@@ -13,24 +13,21 @@ const modal = (function() {
 
   // init
   const init = function() {
-    // let
-    let wrap;
-    let outer;
-    let dialog;
-    let depth;
+
+    // wraps
+    let wrap = document.querySelector(".wrap");
+    let outer = document.querySelector(".outland");
+    let dialog = outer.querySelector(".dialog");
+    let depth = 0;
+
     // focus
-    let focusEl;
+    let focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
     let tabFirst;
     let tabLast;
-    
-    wrap = document.querySelector(".wrap");
-    outer = document.querySelector(".outland");
-    dialog = outer.querySelector(".dialog");
-    depth = 0;
-    focusEl = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
-    let initTarget = outer.querySelectorAll(".modal");
-    initTarget.forEach(function(item) {
+    // initModal
+    let initModal = outer.querySelectorAll(".modal");
+    initModal.forEach(function(item) {
       item.setAttribute("data-modal-level", depth);
     });
 
@@ -46,7 +43,6 @@ const modal = (function() {
         // focusArray = [...focusNodelist];
         tabFirst = focusArray[0];
         tabLast = focusArray[focusArray.length - 1];
-
         // console.log(tabFirst);
         // console.log(tabLast);
       }
@@ -57,22 +53,23 @@ const modal = (function() {
     const keyTab = function(e) {
       // Check key
       if (e.keyCode === 9) {
-        // SHIFT + TAB
+        // shift + tab
         if (e.shiftKey) {
           if (document.activeElement === tabFirst) {
-          e.preventDefault();
-          tabLast.focus();
+            e.preventDefault();
+            tabLast.focus();
           }
-        // TAB
+        // tab
         } else {
           if (document.activeElement === tabLast) {
-          e.preventDefault();
-          tabFirst.focus();
+            e.preventDefault();
+            tabFirst.focus();
           }
         }
       }
     }
 
+    // wacc
     const wacc = function() {
       if(outer.classList.contains("active")) {
         wrap?.classList.add("lock");
@@ -89,11 +86,11 @@ const modal = (function() {
         if(id === item.dataset.modal) {
           depth += 1;
           outer?.classList.add("active");
-          wacc();
           item.classList.add("active");
           item.classList.add("focus");
           item.setAttribute("aria-hidden", "false");
           item.setAttribute("data-modal-level", depth);
+          wacc();
           focusTab();
           item.addEventListener('keydown', keyTab);
           // console.log(depth);
@@ -111,7 +108,6 @@ const modal = (function() {
 
     // elClose 
     const elClose = function(id, target, accuracy) {
-      
       // moveFocus
       const moveFocus = function() {
         let focusTarget;
@@ -502,7 +498,7 @@ const modal = (function() {
 modal.init();
 
 
-// test
+// 클로져, 클래스 테스트
 function Product(name, price) {
   this.name = name;
   this.price = price;
@@ -519,16 +515,82 @@ console.log(new Food('cheese', 5).category);
 console.log(new Food('cheese', 5));
 
 
-// class Product {
-//   constructor(name, price) {
-//     this.name = name;
-//     this.price = price;
-//   }
-// }
+let Rectangle = class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+console.log(Rectangle.name);
 
-// class Food {
-//   constructor(name, price) {
-//     Product.call(this, name, price);
-//     this.category = 'food';
-//   }
-// }
+
+let Rectangle2 = class Rectangle2 {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+  // 메서드
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+const square = new Rectangle2(10, 10);
+
+console.log(square.area); // 100
+
+
+let Point = class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static displayName = "Point";
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+p1.displayName; // undefined
+p1.distance;    // undefined
+p2.displayName; // undefined
+p2.distance;    // undefined
+
+console.log(Point.displayName);      // "Point"
+console.log(Point.distance(p1, p2)); // 7.0710678118654755
+
+
+let Animal = class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a noise.`);
+  }
+}
+
+let Dog = class Dog extends Animal {
+  constructor(name) {
+    super(name); // super class 생성자를 호출하여 name 매개변수 전달
+  }
+
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
+
+let aaa = new Animal('Mitzie');
+let bbb = new Dog('Mitzie');
+aaa.speak(); // Mitzie barks.
+bbb.speak(); // Mitzie barks.

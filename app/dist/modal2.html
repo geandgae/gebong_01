@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modal-2</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
+    <script async src="./assets/js/modal2.js"></script> 
+    <style>
+      .wrap {
+        background-color: rgb(255, 255, 238);
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .wrap > * {
+        text-align: center;
+        display: block;
+      }
+      .scroll {
+        width: 100%;
+        height: 2000px;
+      }
+      button {
+        font-size: 10px;
+        font-weight: normal;
+        border: 1px solid #000;
+        padding: 3px;
+        background-color: #fff;
+        letter-spacing: -0.5px;
+      }
+      .btn-set {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .outland {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .outland.active {
+        display: block;
+      }
+      .outland .dim {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 3;
+      }
+
+      .modal {
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background-color: transparent;
+      }
+      .modal.active {
+        display: flex;
+      }
+      .modal.focus {
+        z-index: 10;
+      }
+      .modal.type-dialog {
+        z-index: 100;
+      }
+      .modal.type-dialog .inner {
+        border: 2px solid #000;
+      }
+      .modal .inner {
+        min-width: 100px;
+        min-height: 100px;
+        background-color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .modal .inner.alt {
+        margin-top: 200px;
+        margin-left: 200px;
+      }
+      .modal .inner.alt2 {
+        margin-bottom: 500px;
+        margin-left: 400px;
+      }
+      .modal .inner.alt3 {
+        margin-bottom: 300px;
+        margin-right: 400px;
+      }
+      .modal .inner.alt10 {
+        margin-top: -200px;
+        margin-left: -200px;
+      }
+      *:focus {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- wrap -->
+    <div id="wrap" class="wrap">
+      <span>wrap</span>
+      <div class="btn-set">
+        <button class="btn open" data-modal="modal-d1">modal-d1</button>
+        <button class="btn open" data-modal="modal-dev">modal-dev</button>
+        <button class="btn make">생성자</button>
+      </div>
+      <div class="btn-set" style="margin-top: 10px;">
+        <button class="btn open" data-modal="modal-d10">modal-d10-1</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-2</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-3</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-4</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-5</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-6</button>
+        <button class="btn open" data-modal="modal-d10">modal-d10-7</button>
+      </div>
+      <div class="btn-set dialog" style="margin-top: 10px;">
+        <button class="btn alert open" data-modal="alert-d1">alert-d1</button>
+        <button class="btn alert open" data-modal="alert-d2">alert-d2</button>
+        <button class="btn alert open" data-modal="alert-d3">alert-d3</button>
+        <button class="btn confirm open" data-modal="confirm-d1" tabindex="0">confirm-d1</button>
+        <button class="btn confirm open" data-modal="confirm-d2" tabindex="0">confirm-d2</button>
+      </div>
+      <div class="testchek" style="margin: 10px; padding: 10px; border: 1px solid #000;">
+        <input type="text" name="" id="" class="input">
+        <button class="btn open" data-modal="test-btn">test-btn</button>
+      </div>
+      <div class="scroll"></div>
+    </div>
+    <!-- //wrap -->
+    
+    <!-- outland -->
+    <div id="outland" class="outland">
+
+      <!-- dim -->
+      <div class="dim"></div>
+      <!-- //dim -->
+
+      <!-- modal auto -->
+      <div class="modal type-auto" data-modal="modal-auto0">
+        <div class="inner">
+          <span>data-modal-auto</span>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal auto -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-d1">
+        <div class="inner">
+          <span>modal-d1</span>
+          <button class="btn open" data-modal="modal-d2">modal-d2</button>
+          <button class="btn close">close</button>
+          <button class="btn close">close2</button>
+          <button class="btn close">close3</button>
+          <div class="btn-set" style="margin-top: 10px;">
+            <button class="btn open" data-modal="alert-d1">alert-d1</button>
+            <button class="btn open" data-modal="alert-d2">alert-d2</button>
+            <button class="btn open" data-modal="alert-d3">alert-d3</button>
+            <button class="btn open" data-modal="alert-d4">alert-d4</button>
+            <button class="btn open" data-modal="confirm-d1">confirm-d1</button>
+            <button class="btn open" data-modal="confirm-d2">confirm-d2</button>
+          </div>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-d2">
+        <div class="inner alt">
+          <span>modal-d2</span>
+          <button class="btn open" data-modal="modal-d3">modal-d3-1</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-2</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-3</button>
+          <button class="btn open" data-modal="modal-d3">modal-d3-4</button>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-d3">
+        <div class="inner alt2">
+          <span>modal-d3</span>
+          <a href="#;">aaa</a>
+          <a href="#;">aaa2</a>
+          <a href="#;">aaa3</a>
+          <a href="#;">aaa4</a>
+          <button>adas</button>
+          <button class="btn open" data-modal="modal-test">modal-test</button>
+          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-d10">
+        <div class="inner alt10">
+          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+          <button>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sint repudiandae ipsa atque quo mollitia pariatur inventore! Esse laborum,<br> totam vel eligendi, pariatur hic voluptatem velit fuga,<br> atque debitis expedita repellendus.</button>
+          <button class="btn open" data-modal="modal-d1">modal-d1</button>
+          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          <div class="btn-set" style="margin-top: 10px;">
+            <button class="btn open" data-modal="alert-d1">alert-d1</button>
+            <button class="btn open" data-modal="alert-d2">alert-d2</button>
+            <button class="btn open" data-modal="alert-d3">alert-d3</button>
+          </div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-test">
+        <div class="inner alt3">
+          <span>modal-test</span>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-dev">
+        <div class="inner">
+          <span>modal-dev</span>
+          <button class="btn" id="evt01">event01</button>
+          <button class="btn" id="evt02">event02</button>
+          <!-- <button class="btn open" data-modal="modal-d2">modal-d2</button> -->
+          <button class="btn close">close</button>
+          <button class="btn close">close2</button>
+          <button class="btn close">close3</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="test-btn">
+        <div class="inner">
+          <span>test-btn</span>
+          <button class="btn">focus target</button>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
+            Consequatur cum eos nesciunt sed nostrum impedit tempora quos.<br> 
+            Necessitatibus explicabo deleniti cum sequi.<br>
+            Aspernatur nam nemo obcaecati facere ullam necessitatibus quod.
+          </div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- modal -->
+      <div class="modal" data-modal="modal-d200">
+        <div class="inner">
+          <span>modal-d200</span>
+          <button class="btn">focus</button>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
+            Consequatur cum eos nesciunt sed nostrum impedit tempora quos.<br> 
+            Necessitatibus explicabo deleniti cum sequi.<br>
+            Aspernatur nam nemo obcaecati facere ullam necessitatibus quod.
+          </div>
+          <button class="btn close">close</button>
+        </div>
+      </div>
+      <!-- //modal -->
+
+      <!-- dialog -->
+      <div class="dialog">
+      </div>
+      <!-- //dialog -->
+
+    </div>
+    <!-- //outland -->
+
+  </body>
+  <script>
+    // makeBlock
+    const makeBlock = function() {
+      let makeBtn = document.querySelector(".make");
+      const evtMake = function() {
+        let btnset = document.querySelector(".btn-set");
+        let out = document.querySelector(".outland");
+        let newBtn = document.createElement("button");
+        newBtn.innerHTML = "modal-d100";
+        newBtn.setAttribute("class", "btn open");
+        newBtn.setAttribute("data-modal", "modal-d100");
+
+        let newModal = document.createElement("div");
+        newModal.innerHTML = `
+        <div class="inner">
+          <span>modal-d100</span>
+          <input type="text" name="" id="" class="input2">
+          <button class="btn confirm open" data-modal="modal-d200">confirm</button>
+          <button class="btn close">close</button>
+        </div>
+        `;
+        newModal.setAttribute("class", "modal");
+        newModal.setAttribute("data-modal", "modal-d100");
+        setTimeout(() => {
+          btnset.appendChild(newBtn);
+          out.appendChild(newModal);
+          modal.init();
+          let btndev = document.querySelector(".open[data-modal=modal-d100]");
+          btndev.onclick = (e) => {
+            modal.run.open(e);
+          }
+        }, 0);
+        setTimeout(() => {
+          let input = document.querySelector(".input2");
+          let confirm = document.querySelector(".confirm");
+          confirm.onclick = (e) => {
+            let value = input.value
+            if(value == "close") {
+              modal.run.close(e);
+            }
+            if(value == "open") {
+              modal.run.open(e);
+            }
+          }
+        }, 100)
+      }
+      makeBtn.addEventListener("click", evtMake);
+    }
+    makeBlock();
+
+    // chekTest
+    function chekTest() {
+      let input = document.querySelector(".testchek .input");
+      let btn = document.querySelector(".testchek .open");
+      btn.onclick = (e) => {
+        let value = input.value
+        if(value == "go") {
+          modal.run.open(e);
+        }
+      }
+    }
+    chekTest()
+    
+    // ctrlModal
+    function ctrlModal() {
+      let btn1 = document.querySelectorAll(".open[data-modal=modal-d1]");
+      let btn2 = document.querySelector(".open[data-modal=modal-d2]");
+      let btn3 = document.querySelectorAll(".open[data-modal=modal-d3]");
+      let btntest = document.querySelector(".open[data-modal=modal-test]");
+      let btndev = document.querySelector(".open[data-modal=modal-dev]");
+      let btn10 = document.querySelectorAll(".open[data-modal=modal-d10]");
+
+      btn2.onclick = (e) => {
+        modal.run.open(e);
+      }
+      btndev.onclick = (e) => {
+        modal.run.open(e);
+      }
+      btntest.onclick = (e) => {
+        modal.run.open(e, "blank");
+      }
+      btn1.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.open(e);
+        }
+      });
+      btn3.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.open(e);
+        }
+      });
+      btn10.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.open(e);
+        }
+      });
+    }
+    ctrlModal();
+
+    function ctrlDialog() {
+      let alert = document.querySelectorAll(".dialog .alert");
+      let confirm = document.querySelectorAll(".dialog .confirm");
+      alert.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.dialog(e, "alert", "text??");
+        }
+      });
+      confirm.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.dialog(e, "confirm", "text??");
+        }
+      });
+    }
+    ctrlDialog();
+
+    setTimeout((e) => {
+      // modal.run.auto("modal-auto0");
+      // let e = "alert-d00";
+      // modal.run.dialog(e, "text??");
+    }, 100);
+  </script>
+</html>

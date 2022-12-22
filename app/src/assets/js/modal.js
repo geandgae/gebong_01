@@ -461,6 +461,30 @@ const modal = (function() {
         }
       });
     },
+    // open : (e, blank) => {
+    //   run.accuracy = e.target;
+    //   let accuracy = run.accuracy;
+    //   let el = accuracy.dataset.modal;
+    //   let close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+    //   console.log("open");
+    //   console.log(run.accuracy);
+    //   // console.log(el);
+    //   // console.log(close);
+    //   // open
+    //   if (accuracy.classList.contains("open")) {
+    //     evtOpen(el);
+    //   }
+    //   // close
+    //   close.forEach(function(item) {
+    //     item.onclick = () => {
+    //       if(blank == "blank") {
+    //         evtClose(blank);
+    //       } else {
+    //         evtClose(el, accuracy);
+    //       }
+    //     }
+    //   });
+    // },
   }
 
   

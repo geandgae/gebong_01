@@ -5,7 +5,6 @@ const modal = (function() {
 
   
   // function
-  let evtAuto;
   let evtOpen;
   let evtClose;
   let evtAlert;
@@ -113,26 +112,16 @@ const modal = (function() {
         let focusTarget;
         target.forEach(function(item) {
           if(depth > 0 && item.dataset.modalLevel == depth) {
-            // console.log(item.dataset.modalLevel);
-            // console.log(item);
             item.setAttribute("aria-hidden", "false");
             item.classList.add("focus");
             focusTab();
             item.addEventListener('keydown', keyTab);
-            if(!item.classList.contains("type-auto")) {
-              focusTarget = accuracy;
-              focusTarget.focus();
-            }
-          } else if(depth <= 0) {
-            if(!item.classList.contains("type-auto")) {
-              focusTarget = accuracy;
-              focusTarget.focus();
-              // console.log(focusTarget);
-              // console.log(accuracy);
-            }
           }
+          focusTarget = accuracy;
+          focusTarget.focus();
         })
       }
+      // status
       target.forEach(function(item) {
         // console.log(item.dataset.modal);
         // modal 1개 이상일때
@@ -149,7 +138,6 @@ const modal = (function() {
         if(target.length === 1) {
           outer?.classList.remove("active");
           wacc();
-          console.log(depth);
           // console.log(item.dataset);
         }
         if (el === "blank") {
@@ -160,7 +148,6 @@ const modal = (function() {
           item.setAttribute("data-modal-level", 0);
           outer?.classList.remove("active");
           wacc();
-          console.log(depth);
         }
       })
     }
@@ -175,12 +162,6 @@ const modal = (function() {
     evtClose = function(el, accuracy) {
       let target = outer.querySelectorAll(".modal.active");
       elClose(el, target, accuracy); 
-    }
-
-    // evtAuto
-    evtAuto = function(el){
-      let target = outer.querySelectorAll(".modal.type-auto");
-      elOpen(el, target);
     }
 
     // evtAlert
@@ -200,14 +181,15 @@ const modal = (function() {
     }
 
     // evtConfirm
-    evtConfirm = function(el, text, btn1, btn2){
+    evtConfirm = function(el, text, btn_confirm, btn_cancel){
       let btnok;
       let btnclose;
-      btn1 ? btnok = btn1 : btnok = "확인";
-      btn2 ? btnclose = btn2 : btnclose = "닫기";
+      btn_confirm ? btnok = btn_confirm : btnok = "확인";
+      btn_cancel ? btnclose = btn_cancel : btnclose = "닫기";
       let cont =`
         <div class="modal active type-dialog" data-modal="${el}">
           <div class="inner">
+          <span class="text">${el}</span>
             <span class="text">${text}</span>
             <button class="btn confirm">${btnok}</button>
             <button class="btn close">${btnclose}</button>
@@ -219,36 +201,25 @@ const modal = (function() {
       elOpen(el, target);
     }
   }
-  
-  // 오브젝트형
-  const run = {
-    accuracy : "accuracy",
-    auto : (el, blank) => {
-      // type-auto 일때 포커스 이동 없음
-      let accuracy = document.querySelector("body");
-      let close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
-      // open
-      evtAuto(el);
-      // close
-      close.forEach(function(item) {
-        item.onclick = () => {
-          if(blank == "blank") {
-            evtClose(blank);
-          } else {
-            evtClose(el, accuracy);
-          }
-        }
-      });
-    },
-    open : (e, blank) => {
-      run.accuracy = e.target;
-      let accuracy = run.accuracy;
-      let el = accuracy.dataset.modal;
-      let close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+
+  // 삭제예정
+  const open = (e, o) => {
+    let accuracy = "accuracy";
+    let el = o.el;
+    let close;
+    let blank = o.blank;
+    let auto;
+    o.auto ? auto = o.auto : auto = false;
+    console.log("auto : " + auto);
+
+    // click
+    if(auto == false) {
+      accuracy = e.target;
+      el = accuracy.dataset.modal;
+      close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
       console.log("open");
-      console.log(run.accuracy);
       // console.log(el);
-      // console.log(close);
+      console.log(close);
       // open
       if (accuracy.classList.contains("open")) {
         evtOpen(el);
@@ -263,6 +234,117 @@ const modal = (function() {
           }
         }
       });
+    }
+    // auto
+    if(auto == true) {
+      // type-auto 일때 포커스 이동 없음
+      accuracy = document.querySelector("body");
+      close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+      // open
+      evtOpen(el);
+      // close
+      close.forEach(function(item) {
+        item.onclick = () => {
+          if(blank == "blank") {
+            evtClose(blank);
+          } else {
+            evtClose(el, accuracy);
+          }
+        }
+      });
+    } 
+  }
+  
+  // 오브젝트형
+  const run = {
+    accuracy : "accuracy",
+    evt : (e, object) => {
+      let auto = false;
+      let click = true;
+      console.log(auto);
+      console.log(click);
+      if(object.auto == true) {
+        auto = true;
+        click = false;
+        console.log(auto);
+        console.log(click);
+      }
+    },
+    open : (e, o) => {
+      let accuracy = "accuracy";
+      let el = o.el;
+      let close;
+      let blank = o.blank;
+      let auto;
+      o.auto ? auto = o.auto : auto = false;
+      let type;
+      o.type ? type = o.type : type = "popup";
+
+      // click
+      if(auto == false) {
+        accuracy = e.target;
+        el = accuracy.dataset.modal;
+        close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+        // open pop
+        if(type == "popup" && accuracy.classList.contains("open")) {
+          evtOpen(el);
+        }
+        // open dialog
+        if(type == "dialog") {
+          let text = o.text;
+          let confirm;
+          o.confirm ? confirm = o.confirm : confirm = false;
+          if(confirm == true) {
+            let btn_confirm = o.btn_confirm;
+            let btn_cancel = o.btn_cancel;
+            evtConfirm(el, text, btn_confirm, btn_cancel);
+            close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+          }
+          if(confirm == false) {
+            evtAlert(el, text);
+            close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+          }
+        }
+        // close
+        close.forEach(function(item) {
+          item.onclick = () => {
+            if(blank == "blank") {
+              evtClose(blank);
+            } else {
+              evtClose(el, accuracy);
+            }
+          }
+        });
+      }
+      // auto
+      if(auto == true) {
+        // type-auto 일때 포커스 이동 없음
+        accuracy = document.querySelector("body");
+        close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+        // open
+        evtOpen(el);
+        // close
+        close.forEach(function(item) {
+          item.onclick = () => {
+            if(blank == "blank") {
+              evtClose(blank);
+            } else {
+              evtClose(el, accuracy);
+            }
+          }
+        });
+      }
+    },
+    close : (blank) => {
+      let accuracy = run.accuracy;
+      let el = accuracy.dataset.modal;
+      console.log("close");
+      console.log(run.accuracy);
+      if(blank == "blank") {
+        evtClose(blank);
+      } else {
+        evtClose(el, accuracy);
+      }
     },
     dialog : (e, type, text, btn1, btn2, blank) => {
       run.accuracy = e.target;
@@ -290,22 +372,12 @@ const modal = (function() {
         }
       });
     },
-    close : (blank) => {
-      let accuracy = run.accuracy;
-      let el = accuracy.dataset.modal;
-      console.log("close");
-      console.log(run.accuracy);
-      if(blank == "blank") {
-        evtClose(blank);
-      } else {
-        evtClose(el, accuracy);
-      }
-    }
   }
 
   
   return {
     init : init,
+    open : open,
     run : run,
   }
 

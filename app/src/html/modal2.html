@@ -127,7 +127,7 @@
       }
     </style>
   </head>
-  <body>
+  <body tabindex="0">
 
     <!-- wrap -->
     <div id="wrap" class="wrap">
@@ -150,12 +150,13 @@
         <button class="btn alert open" data-modal="alert-d1">alert-d1</button>
         <button class="btn alert open" data-modal="alert-d2">alert-d2</button>
         <button class="btn alert open" data-modal="alert-d3">alert-d3</button>
-        <button class="btn confirm open" data-modal="confirm-d1" tabindex="0">confirm-d1</button>
-        <button class="btn confirm open" data-modal="confirm-d2" tabindex="0">confirm-d2</button>
+        <button class="btn alert2 open" data-modal="confirm-d1" tabindex="0">confirm-d1</button>
+        <button class="btn alert2 open" data-modal="confirm-d2" tabindex="0">confirm-d2</button>
       </div>
       <div class="testchek" style="margin: 10px; padding: 10px; border: 1px solid #000;">
         <input type="text" name="" id="" class="input">
         <button class="btn open" data-modal="test-btn">test-btn</button>
+        <button class="btn check">check</button>
       </div>
       <div class="scroll"></div>
     </div>
@@ -185,13 +186,12 @@
           <button class="btn close">close</button>
           <button class="btn close">close2</button>
           <button class="btn close">close3</button>
-          <div class="btn-set" style="margin-top: 10px;">
-            <button class="btn open" data-modal="alert-d1">alert-d1</button>
-            <button class="btn open" data-modal="alert-d2">alert-d2</button>
-            <button class="btn open" data-modal="alert-d3">alert-d3</button>
-            <button class="btn open" data-modal="alert-d4">alert-d4</button>
-            <button class="btn open" data-modal="confirm-d1">confirm-d1</button>
-            <button class="btn open" data-modal="confirm-d2">confirm-d2</button>
+          <div class="btn-set dialog2" style="margin-top: 10px;">
+            <button class="btn alert open" data-modal="alert-d10">alert-d10</button>
+            <button class="btn alert open" data-modal="alert-d20">alert-d20</button>
+            <button class="btn alert open" data-modal="alert-d30">alert-d30</button>
+            <button class="btn alert2 open" data-modal="confirm-d10" tabindex="0">confirm-d10</button>
+            <button class="btn alert2 open" data-modal="confirm-d20" tabindex="0">confirm-d20</button>
           </div>
         </div>
       </div>
@@ -234,9 +234,9 @@
           <button class="btn open" data-modal="modal-d1">modal-d1</button>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           <div class="btn-set" style="margin-top: 10px;">
-            <button class="btn open" data-modal="alert-d1">alert-d1</button>
-            <button class="btn open" data-modal="alert-d2">alert-d2</button>
-            <button class="btn open" data-modal="alert-d3">alert-d3</button>
+            <button class="btn open">test-d1</button>
+            <button class="btn open">test-d2</button>
+            <button class="btn open">test-d3</button>
           </div>
           <button class="btn close">close</button>
         </div>
@@ -336,7 +336,9 @@
           modal.init();
           let btndev = document.querySelector(".open[data-modal=modal-d100]");
           btndev.onclick = (e) => {
-            modal.run.open(e);
+            modal.run.open(e, {
+              // auto : true,
+            });
           }
         }, 0);
         setTimeout(() => {
@@ -345,10 +347,12 @@
           confirm.onclick = (e) => {
             let value = input.value
             if(value == "close") {
-              modal.run.close(e);
+              // modal.run.close(e);
             }
             if(value == "open") {
-              modal.run.open(e);
+              modal.run.open(e, {
+                // auto : true,
+              });
             }
           }
         }, 100)
@@ -364,68 +368,132 @@
       btn.onclick = (e) => {
         let value = input.value
         if(value == "go") {
-          modal.run.open(e);
+          modal.run.open(e, {
+            // auto : true,
+          });
         }
       }
     }
     chekTest()
-    
-    // ctrlModal
-    function ctrlModal() {
+
+    setTimeout((e) => {
+      // let e = "alert-d00";
+      // modal.run.dialog(e, "text??");
+    }, 100);
+
+    // testRun
+    function testRun(e) {
+      
       let btn1 = document.querySelectorAll(".open[data-modal=modal-d1]");
       let btn2 = document.querySelector(".open[data-modal=modal-d2]");
       let btn3 = document.querySelectorAll(".open[data-modal=modal-d3]");
       let btntest = document.querySelector(".open[data-modal=modal-test]");
       let btndev = document.querySelector(".open[data-modal=modal-dev]");
       let btn10 = document.querySelectorAll(".open[data-modal=modal-d10]");
-
-      btn2.onclick = (e) => {
-        modal.run.open(e);
-      }
-      btndev.onclick = (e) => {
-        modal.run.open(e);
-      }
-      btntest.onclick = (e) => {
-        modal.run.open(e, "blank");
-      }
+      
       btn1.forEach(function(item) {
         item.onclick = (e) => {
-          modal.run.open(e);
+          modal.run.open(e, {
+            // auto : true,
+          });
         }
       });
+      btn2.onclick = (e) => {
+        modal.run.open(e, {
+          // auto : true,
+        });
+      }
+      btndev.onclick = (e) => {
+        modal.run.open(e, {
+          // auto : true,
+        });
+      }
+      btntest.onclick = (e) => {
+        // modal.run.open(e, "blank");
+        modal.run.open(e, {
+          // auto : true,
+        });
+      }
       btn3.forEach(function(item) {
         item.onclick = (e) => {
-          modal.run.open(e);
+          modal.run.open(e, {
+            // auto : true,
+          });
         }
       });
       btn10.forEach(function(item) {
         item.onclick = (e) => {
-          modal.run.open(e);
+          modal.run.open(e, {
+            // auto : true,
+          });
         }
       });
-    }
-    ctrlModal();
 
-    function ctrlDialog() {
+      // let check = document.querySelector(".check");
+      // check.onclick = (e) => {
+      //   modal.run.open(e, {
+      //     auto : true,
+      //     el : "modal-auto0"
+      //   });
+      // }
+
+      // modal.run.open(e, {
+      //   auto : true,
+      //   el : "modal-auto0"
+      // });
+
       let alert = document.querySelectorAll(".dialog .alert");
-      let confirm = document.querySelectorAll(".dialog .confirm");
+      let alert2 = document.querySelectorAll(".dialog .alert2");
+      let alerta = document.querySelectorAll(".dialog2 .alert");
+      let alerta2 = document.querySelectorAll(".dialog2 .alert2");
+
       alert.forEach(function(item) {
         item.onclick = (e) => {
-          modal.run.dialog(e, "alert", "text??");
+          modal.run.open(e, {
+            // auto : true,
+            type : "dialog",
+            text : "alert!!!!!!!"
+          });
         }
       });
-      confirm.forEach(function(item) {
-        item.onclick = (e) => {
-          modal.run.dialog(e, "confirm", "text??");
-        }
-      });
-    }
-    ctrlDialog();
 
-    setTimeout((e) => {
-      // modal.run.auto("modal-auto0");
-      // let e = "alert-d00";
-      // modal.run.dialog(e, "text??");
-    }, 100);
+      alert2.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.open(e, {
+            // auto : true,
+            type : "dialog",
+            confirm : true,
+            text : "confirm!!!!!!<br>confirm!!!!!!",
+            btn_confirm : "btn_confirm",
+            btn_cancel : "btn_cancel",
+          });
+        }
+      });
+
+      alerta.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.open(e, {
+            // auto : true,
+            type : "dialog",
+            text : "alert!!!!!!!"
+          });
+        }
+      });
+
+      alerta2.forEach(function(item) {
+        item.onclick = (e) => {
+          modal.run.open(e, {
+            // auto : true,
+            type : "dialog",
+            confirm : true,
+            text : "confirm",
+            btn_confirm : "btn_confirm",
+            btn_cancel : "btn_cancel",
+          });
+        }
+      });
+
+    }
+    testRun();
   </script>
 </html>

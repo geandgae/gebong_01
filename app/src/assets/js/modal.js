@@ -487,6 +487,58 @@ const modal = (function() {
     // },
   }
 
+  // 삭제예정
+  // const open2 = (e, o) => {
+  //   let accuracy = "accuracy";
+  //   let el = o.el;
+  //   let close;
+  //   let blank = o.blank;
+  //   let auto;
+  //   o.auto ? auto = o.auto : auto = false;
+  //   console.log("auto : " + auto);
+
+  //   // click
+  //   if(auto == false) {
+  //     accuracy = e.target;
+  //     el = accuracy.dataset.modal;
+  //     close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+  //     console.log("open");
+  //     // console.log(el);
+  //     console.log(close);
+  //     // open
+  //     if (accuracy.classList.contains("open")) {
+  //       evtOpen(el);
+  //     }
+  //     // close
+  //     close.forEach(function(item) {
+  //       item.onclick = () => {
+  //         if(blank == "blank") {
+  //           evtClose(blank);
+  //         } else {
+  //           evtClose(el, accuracy);
+  //         }
+  //       }
+  //     });
+  //   }
+  //   // auto
+  //   if(auto == true) {
+  //     accuracy = document.querySelector("body");
+  //     close = document.querySelectorAll(`.modal[data-modal=${el}] .close`);
+  //     // open
+  //     evtOpen(el);
+  //     // close
+  //     close.forEach(function(item) {
+  //       item.onclick = () => {
+  //         if(blank == "blank") {
+  //           evtClose(blank);
+  //         } else {
+  //           evtClose(el, accuracy);
+  //         }
+  //       }
+  //     });
+  //   } 
+  // }
+
   
   return {
     init : init,

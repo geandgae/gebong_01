@@ -170,7 +170,7 @@
       <!-- //dim -->
 
       <!-- modal auto -->
-      <div class="modal type-auto" data-modal="modal-auto0">
+      <div class="modal" data-modal="modal-auto0">
         <div class="inner">
           <span>data-modal-auto</span>
           <button class="btn close">close</button>
@@ -324,7 +324,7 @@
         <div class="inner">
           <span>modal-d100</span>
           <input type="text" name="" id="" class="input2">
-          <button class="btn confirm open" data-modal="modal-d200">confirm</button>
+          <button class="btn btnok open" data-modal="modal-d200">confirm</button>
           <button class="btn close">close</button>
         </div>
         `;
@@ -343,13 +343,16 @@
         }, 0);
         setTimeout(() => {
           let input = document.querySelector(".input2");
-          let confirm = document.querySelector(".confirm");
-          confirm.onclick = (e) => {
+          let btnok = document.querySelector(".btnok");
+          btnok.onclick = (e) => {
             let value = input.value
-            if(value == "close") {
-              // modal.run.close(e);
+            if(value == "c") {
+              modal.run.close({
+                explosion : true,
+                ctrl : true
+              });
             }
-            if(value == "open") {
+            if(value == "o") {
               modal.run.open(e, {
                 // auto : true,
               });
@@ -378,7 +381,6 @@
 
     setTimeout((e) => {
       // let e = "alert-d00";
-      // modal.run.dialog(e, "text??");
     }, 100);
 
     // testRun
@@ -412,6 +414,7 @@
         // modal.run.open(e, "blank");
         modal.run.open(e, {
           // auto : true,
+          explosion : true,
         });
       }
       btn3.forEach(function(item) {
@@ -428,19 +431,6 @@
           });
         }
       });
-
-      // let check = document.querySelector(".check");
-      // check.onclick = (e) => {
-      //   modal.run.open(e, {
-      //     auto : true,
-      //     el : "modal-auto0"
-      //   });
-      // }
-
-      // modal.run.open(e, {
-      //   auto : true,
-      //   el : "modal-auto0"
-      // });
 
       let alert = document.querySelectorAll(".dialog .alert");
       let alert2 = document.querySelectorAll(".dialog .alert2");
@@ -462,7 +452,7 @@
           modal.run.open(e, {
             // auto : true,
             type : "dialog",
-            confirm : true,
+            dialog_confirm : true,
             text : "confirm!!!!!!<br>confirm!!!!!!",
             btn_confirm : "btn_confirm",
             btn_cancel : "btn_cancel",
@@ -485,13 +475,44 @@
           modal.run.open(e, {
             // auto : true,
             type : "dialog",
-            confirm : true,
+            dialog_confirm : true,
             text : "confirm",
             btn_confirm : "btn_confirm",
             btn_cancel : "btn_cancel",
           });
         }
       });
+
+      // let check = document.querySelector(".check");
+      // check.onclick = (e) => {
+      //   modal.run.open(e, {
+      //     auto : true,
+      //     el : "modal-auto0"
+      //   });
+      // }
+
+      // modal.run.open(e, {
+      //   auto : true,
+      //   el : "modal-auto0"
+      // });
+
+      // modal.run.open(e, {
+      //   auto : true,
+      //   el : "modal-aaaa0",
+      //   type : "dialog",
+      //   text : "alert!!!!!!!"
+      // });
+
+      // modal.run.open(e, {
+      //   auto : true,
+      //   el : "modal-12312314241",
+      //   type : "dialog",
+      //   dialog_confirm : true,
+      //   text : "안녕하세요",
+      //   btn_confirm : "예",
+      //   btn_cancel : "아니"
+      // })
+      
 
     }
     testRun();

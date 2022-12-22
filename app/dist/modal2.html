@@ -333,7 +333,7 @@
         setTimeout(() => {
           btnset.appendChild(newBtn);
           out.appendChild(newModal);
-          modal.init();
+          // modal.init();
           let btndev = document.querySelector(".open[data-modal=modal-d100]");
           btndev.onclick = (e) => {
             modal.run.open(e, {
@@ -456,6 +456,13 @@
             text : "confirm!!!!!!<br>confirm!!!!!!",
             btn_confirm : "btn_confirm",
             btn_cancel : "btn_cancel",
+            confirm_event : (e) => {
+              console.log(e.target);
+              // function goReplace(str) {
+              //   location.replace(str);
+              // }
+              // goReplace('http://kyobo.devtree.co.kr/static/mo/html/guide/ia.html');
+            }
           });
         }
       });
@@ -479,6 +486,11 @@
             text : "confirm",
             btn_confirm : "btn_confirm",
             btn_cancel : "btn_cancel",
+            confirm_event : () => {
+              modal.run.close({
+                ctrl : true
+              });
+            }
           });
         }
       });

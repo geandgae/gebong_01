@@ -103,9 +103,53 @@ const modal = (function() {
         }
       });
     }
+    
+    // evtOpen
+    evtOpen = function(el) {
+      let target = outer.querySelectorAll(".modal");
+      elOpen(el, target);
+    }
 
-    // elClose 
-    const elClose = function(el, target, accuracy) {
+    // evtAlert
+    evtAlert = function(el, text){
+      let cont =`
+        <div class="modal active type-dialog" data-modal="${el}">
+          <div class="inner">
+            <span class="text">${el}</span>
+            <span class="text">${text}</span>
+            <button class="btn close">close</button>
+          </div>
+        </div>
+      `
+      dialog.innerHTML = cont;
+      let target = outer.querySelectorAll(".modal.active");
+      elOpen(el, target);
+    }
+
+    // evtConfirm
+    evtConfirm = function(el, text, btn_confirm, btn_cancel){
+      let btnok;
+      let btnclose;
+      btn_confirm ? btnok = btn_confirm : btnok = "확인";
+      btn_cancel ? btnclose = btn_cancel : btnclose = "닫기";
+      let cont =`
+        <div class="modal active type-dialog" data-modal="${el}">
+          <div class="inner">
+          <span class="text">${el}</span>
+            <span class="text">${text}</span>
+            <button class="btn confirm">${btnok}</button>
+            <button class="btn close">${btnclose}</button>
+          </div>
+        </div>
+      `
+      dialog.innerHTML = cont;
+      let target = outer.querySelectorAll(".modal.active");
+      elOpen(el, target);
+    }
+
+    // evtClose
+    evtClose = function(el, accuracy) {
+      let target = outer.querySelectorAll(".modal.active");
       // moveFocus
       const moveFocus = function() {
         let focusTarget;
@@ -150,60 +194,11 @@ const modal = (function() {
         }
       })
     }
-
-    // evtOpen
-    evtOpen = function(el) {
-      let target = outer.querySelectorAll(".modal");
-      elOpen(el, target);
-    }
-
-    // evtClose
-    evtClose = function(el, accuracy) {
-      let target = outer.querySelectorAll(".modal.active");
-      elClose(el, target, accuracy); 
-    }
-
-    // evtAlert
-    evtAlert = function(el, text){
-      let cont =`
-        <div class="modal active type-dialog" data-modal="${el}">
-          <div class="inner">
-            <span class="text">${el}</span>
-            <span class="text">${text}</span>
-            <button class="btn close">close</button>
-          </div>
-        </div>
-      `
-      dialog.innerHTML = cont;
-      let target = outer.querySelectorAll(".modal.active");
-      elOpen(el, target);
-    }
-
-    // evtConfirm
-    evtConfirm = function(el, text, btn_confirm, btn_cancel){
-      let btnok;
-      let btnclose;
-      btn_confirm ? btnok = btn_confirm : btnok = "확인";
-      btn_cancel ? btnclose = btn_cancel : btnclose = "닫기";
-      let cont =`
-        <div class="modal active type-dialog" data-modal="${el}">
-          <div class="inner">
-          <span class="text">${el}</span>
-            <span class="text">${text}</span>
-            <button class="btn confirm">${btnok}</button>
-            <button class="btn close">${btnclose}</button>
-          </div>
-        </div>
-      `
-      dialog.innerHTML = cont;
-      let target = outer.querySelectorAll(".modal.active");
-      elOpen(el, target);
-    }
   }
 
   // run
   const run = {
-    accuracy : "accuracy",
+    accuracy : "-_-",
     open : (e, o) => {
       let accuracy = run.accuracy;
       let el = o.el;
@@ -211,6 +206,28 @@ const modal = (function() {
       o.auto ? auto = o.auto : auto = false;
       let type;
       o.type ? type = o.type : type = "popup";
+      // evtDialog
+      const evtDialog = (o) => {
+        let text = o.text;
+        let dialog_confirm;
+        o.dialog_confirm ? dialog_confirm = o.dialog_confirm : dialog_confirm = false;
+        if(dialog_confirm == true) {
+          let btn_confirm = o.btn_confirm;
+          let btn_cancel = o.btn_cancel;
+          evtConfirm(el, text, btn_confirm, btn_cancel);
+          // call event
+          let confirm_event = o.confirm_event;
+          if(confirm_event) {
+            let btn_evt = document.querySelector(`.modal.focus.type-dialog[data-modal=${el}] .confirm`);
+            btn_evt.onclick = (e) => {
+              confirm_event(e);
+            }
+          }
+        }
+        if(dialog_confirm == false) {
+          evtAlert(el, text);
+        }
+      }
       // click
       if(auto === false) {
         accuracy = e.target;
@@ -223,17 +240,7 @@ const modal = (function() {
         }
         // open dialog
         if(type === "dialog" && accuracy.classList.contains("open")) {
-          let text = o.text;
-          let dialog_confirm;
-          o.dialog_confirm ? dialog_confirm = o.dialog_confirm : dialog_confirm = false;
-          if(dialog_confirm == true) {
-            let btn_confirm = o.btn_confirm;
-            let btn_cancel = o.btn_cancel;
-            evtConfirm(el, text, btn_confirm, btn_cancel);
-          }
-          if(dialog_confirm == false) {
-            evtAlert(el, text);
-          }
+          evtDialog(o);
         }
         // close
         run.close(o);
@@ -247,17 +254,7 @@ const modal = (function() {
         }
         // open dialog
         if(type === "dialog") {
-          let text = o.text;
-          let dialog_confirm;
-          o.dialog_confirm ? dialog_confirm = o.dialog_confirm : dialog_confirm = false;
-          if(dialog_confirm == true) {
-            let btn_confirm = o.btn_confirm;
-            let btn_cancel = o.btn_cancel;
-            evtConfirm(el, text, btn_confirm, btn_cancel);
-          }
-          if(dialog_confirm == false) {
-            evtAlert(el, text);
-          }
+          evtDialog(o);
         }
         // accuracy값 반환
         run.accuracy = document.querySelector(`.modal[data-modal=${el}]`);

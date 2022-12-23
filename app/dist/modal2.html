@@ -348,7 +348,6 @@
             let value = input.value
             if(value == "c") {
               modal.run.close({
-                explosion : true,
                 ctrl : true
               });
             }
@@ -488,6 +487,7 @@
             btn_cancel : "btn_cancel",
             confirm_event : () => {
               modal.run.close({
+                explosion : true,
                 ctrl : true
               });
             }
@@ -495,13 +495,13 @@
         }
       });
 
-      // let check = document.querySelector(".check");
-      // check.onclick = (e) => {
-      //   modal.run.open(e, {
-      //     auto : true,
-      //     el : "modal-auto0"
-      //   });
-      // }
+      let check = document.querySelector(".check");
+      check.onclick = (e) => {
+        modal.run.open(e, {
+          auto : true,
+          el : "modal-auto0"
+        });
+      }
 
       // modal.run.open(e, {
       //   auto : true,

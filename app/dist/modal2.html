@@ -71,7 +71,35 @@
         overflow: hidden;
         z-index: 3;
       }
-
+      /* animaition */
+      @keyframes base {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes bottom {
+        0% {
+          opacity: 0;
+          top: 50%;
+        }
+        100% {
+          opacity: 1;
+          top: 0%;
+        }
+      }
+      @keyframes left {
+        0% {
+          opacity: 0;
+          left: 50%;
+        }
+        100% {
+          opacity: 1;
+          left: 0%;
+        }
+      }
       .modal {
         display: none;
         width: 100%;
@@ -83,9 +111,21 @@
         justify-content: center;
         position: absolute;
         background-color: transparent;
+        opacity: 0;
       }
       .modal.active {
         display: flex;
+        animation: base 0.3s linear;
+        animation-fill-mode: forwards;
+        /*
+        animation-name: base; 
+        transform: translate(-50%, -50%);
+        transition:all 0.5s ease;
+        transition-property: all;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        transition-delay: 0.5s 
+        */
       }
       .modal.focus {
         z-index: 10;
@@ -482,7 +522,7 @@
             // auto : true,
             type : "dialog",
             dialog_confirm : true,
-            text : "confirm",
+            text : "confirm !!!!!!!!!!!",
             confirm_event : () => {
               modal.run.close({
                 explosion : true,

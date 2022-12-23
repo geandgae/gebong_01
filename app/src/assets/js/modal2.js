@@ -4,7 +4,7 @@
 const modal = (() => {
 
   // event
-  let evtOpen, evtClose, evtAlert, evtConfirm;
+  let evtOpen, evtClose, evtAlert;
 
   // init
   const init = () => {
@@ -89,37 +89,33 @@ const modal = (() => {
     }
 
     // evtAlert
-    evtAlert = (el, text) => {
-      let cont =`
-        <div class="modal active type-dialog" data-modal="${el}">
-          <div class="inner">
+    evtAlert = (el, o) => {
+      let text = o.text;
+      let btnok = o.btn_confirm === undefined ? "확인" : o.btn_confirm;
+      let btnclose = o.btn_cancel === undefined ? "닫기" : o.btn_cancel;
+      let cont;
+      if (o.dialog_confirm === true) {
+        cont =`
+          <div class="modal active type-dialog" data-modal="${el}">
+            <div class="inner">
             <span class="text">${el}</span>
-            <span class="text">${text}</span>
-            <button class="btn close">close</button>
+              <span class="text">${text}</span>
+              <button class="btn confirm">${btnok}</button>
+              <button class="btn close">${btnclose}</button>
+            </div>
           </div>
-        </div>
-      `
-      dialog.innerHTML = cont;
-      let target = outer.querySelectorAll(".modal.active");
-      elOpen(el, target);
-    }
-
-    // evtConfirm
-    evtConfirm = (el, text, btn_confirm, btn_cancel) => {
-      let btnok = btn_confirm === undefined ? "확인" : btn_confirm;
-      let btnclose = btn_cancel === undefined ? "닫기" : btn_cancel;
-      // btn_confirm ? btnok = btn_confirm : btnok = "확인";
-      // btn_cancel ? btnclose = btn_cancel : btnclose = "닫기";
-      let cont =`
-        <div class="modal active type-dialog" data-modal="${el}">
-          <div class="inner">
-          <span class="text">${el}</span>
-            <span class="text">${text}</span>
-            <button class="btn confirm">${btnok}</button>
-            <button class="btn close">${btnclose}</button>
+        `
+      } else {
+        cont =`
+          <div class="modal active type-dialog" data-modal="${el}">
+            <div class="inner">
+              <span class="text">${el}</span>
+              <span class="text">${text}</span>
+              <button class="btn close">close</button>
+            </div>
           </div>
-        </div>
-      `
+        `
+      }
       dialog.innerHTML = cont;
       let target = outer.querySelectorAll(".modal.active");
       elOpen(el, target);
@@ -177,7 +173,7 @@ const modal = (() => {
     accuracy : "-_-",
     valid : (o, n) => {
       if (o[n] === undefined) {
-        throw `${n} 정의되지 않음!!`
+        throw `${n} undefined!!!!!`
       }
     },
     open : (e, o) => {
@@ -187,24 +183,15 @@ const modal = (() => {
       let type = o.type === undefined ? "popup" : "dialog";
       // evtDialog
       const evtDialog = (o) => {
-        let text = o.text;
-        let dialog_confirm = o.dialog_confirm === undefined ? false : true;
         // valid
-        let essential = ["type", "text"];
+        let essential = ["text"];
         essential.forEach(i => run.valid(o, i));
-        if (dialog_confirm == true) {
-          let btn_confirm = o.btn_confirm;
-          let btn_cancel = o.btn_cancel;
-          evtConfirm(el, text, btn_confirm, btn_cancel);
-          // call event
-          let confirm_event = o.confirm_event;
-          if (confirm_event) {
-            let btn_evt = document.querySelector(`.modal.focus.type-dialog[data-modal=${el}] .confirm`);
-            btn_evt.onclick = e => confirm_event(e);
-          }
-        }
-        if (dialog_confirm == false) {
-          evtAlert(el, text);
+        evtAlert(el, o);
+        // call event
+        let confirm_event = o.confirm_event;
+        if (confirm_event) {
+          let btn_evt = document.querySelector(`.modal.focus.type-dialog[data-modal=${el}] .confirm`);
+          btn_evt.onclick = e => confirm_event(e);
         }
       }
       // click
@@ -213,8 +200,9 @@ const modal = (() => {
         // accuracy값 반환
         run.accuracy = accuracy;
         el = accuracy.dataset.modal;
+        let ta = document.querySelector(`.modal[data-modal=${el}]`)
         // open pop
-        if (type === "popup" && accuracy.classList.contains("open")) {
+        if (type === "popup" && accuracy.classList.contains("open") && ta) {
           evtOpen(el);
         }
         // open dialog

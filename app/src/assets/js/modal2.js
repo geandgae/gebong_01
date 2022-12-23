@@ -106,10 +106,10 @@ const modal = (() => {
 
     // evtConfirm
     evtConfirm = (el, text, btn_confirm, btn_cancel) => {
-      let btnok;
-      let btnclose;
-      btn_confirm ? btnok = btn_confirm : btnok = "확인";
-      btn_cancel ? btnclose = btn_cancel : btnclose = "닫기";
+      let btnok = btn_confirm === undefined ? "확인" : btn_confirm;
+      let btnclose = btn_cancel === undefined ? "닫기" : btn_cancel;
+      // btn_confirm ? btnok = btn_confirm : btnok = "확인";
+      // btn_cancel ? btnclose = btn_cancel : btnclose = "닫기";
       let cont =`
         <div class="modal active type-dialog" data-modal="${el}">
           <div class="inner">
@@ -177,7 +177,7 @@ const modal = (() => {
     accuracy : "-_-",
     valid : (o, n) => {
       if (o[n] === undefined) {
-        throw `${n} 정의 되지 않았습니다.`
+        throw `${n} 정의되지 않음!!`
       }
     },
     open : (e, o) => {

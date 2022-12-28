@@ -134,6 +134,76 @@ const calendar = (function() {
             calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
           }
         }
+
+        
+
+        let datearray = [];
+        let datechk = ["1225", "1227", "11"];
+        console.log(datearray);
+        function pushDate() {
+          let days = document.querySelectorAll(".day.current");
+          days.forEach(i => {
+            // let datenum = () => {
+            //   let first;
+            //   if (currentMonth + 1 < 10) {
+            //     first = currentMonth + 1;
+            //   }
+            //   console.log(first);
+            // }
+            // datenum();
+            datearray.push(currentMonth + 1 + i.innerText);
+            i.setAttribute("data-date", currentMonth + 1 + i.innerText);
+          })
+          console.log(datearray);
+        }
+        pushDate();
+
+        // dataFilter
+        const dataFilter = (data, query) => {
+          return data.filter(x=> query.includes(x))
+        }
+
+        // let aaa = dataFilter(datearray, datechk);
+        
+
+        // 공휴일 표기
+        // if (currentMonth + 1 == 12) {
+        //   let currentMonthDate = document.querySelectorAll(".day.current");
+        //   currentMonthDate.forEach(i => {
+        //     if (i.innerText == 25) {
+        //       i.classList.add('dday');
+        //     }
+        //   })
+        // }
+        // if (currentMonth + 1 == 1) {
+        //   let currentMonthDate = document.querySelectorAll(".day.current");
+        //   currentMonthDate.forEach(i => {
+        //     if (i.innerText == 1) {
+        //       i.classList.add('dday');
+        //     }
+        //   })
+        // }
+
+        function sunday() {
+          let cnt = document.querySelectorAll(".day.current");
+          let currentMonthDate = document.querySelectorAll(".day");
+          datechk.forEach(i => {
+            console.log(i);
+            cnt.forEach(a => {
+              if (i === a.dataset.date) {
+                a.classList.add('dday')
+              }
+            })
+          })
+          for (let i = 0; i < 42; i+=7) {
+            currentMonthDate[i].classList.add('dday')
+          }
+          for (let i = 6; i < 42; i+=7) {
+            currentMonthDate[i].classList.add('sat')
+          }
+        }
+        sunday();
+        
   
         // 오늘 날짜 표기
         if (today.getMonth() == currentMonth && today.getFullYear() == currentYear) {

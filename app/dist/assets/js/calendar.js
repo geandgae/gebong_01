@@ -75,142 +75,162 @@ const calendar = (function() {
   
     function renderCalender(thisMonth) {
   
-        // 렌더링을 위한 데이터 정리
-        currentYear = thisMonth.getFullYear();
-        currentMonth = thisMonth.getMonth();
-        currentDate = thisMonth.getDate();
-  
-        // 이전 달의 마지막 날 날짜와 요일 구하기
-        let startDay = new Date(currentYear, currentMonth, 0);
-        let prevDate = startDay.getDate();
-        let prevDay = startDay.getDay();
+      // 렌더링을 위한 데이터 정리
+      currentYear = thisMonth.getFullYear();
+      currentMonth = thisMonth.getMonth();
+      currentDate = thisMonth.getDate();
 
-        // console.log(startDay);
-        // console.log(prevDate);
-        // console.log(prevDay);
-  
-        // 이번 달의 마지막날 날짜와 요일 구하기
-        let endDay = new Date(currentYear, currentMonth + 1, 0);
-        let nextDate = endDay.getDate();
-        let nextDay = endDay.getDay();
-        
-  
-        // console.log(prevDate, prevDay, nextDate, nextDay);
-  
-        // 현재 월 표기
-        let month = document.querySelector(".month");
-        month.innerText = `${currentYear}.${currentMonth + 1}`;
-  
-        // 렌더링 html 요소 생성
-        let calendar = document.querySelector(".calendar");
-        calendar.innerHTML = '';
+      // 이전 달의 마지막 날 날짜와 요일 구하기
+      let startDay = new Date(currentYear, currentMonth, 0);
+      let prevDate = startDay.getDate();
+      let prevDay = startDay.getDay();
 
-        console.log("prevDay" + prevDay);
-        console.log("nextDay" + nextDay);
-        console.log(7 - nextDay);
-        
-        // 지난달
-        if (!(prevDay == 6)) {
-          for (let i = prevDate - prevDay; i <= prevDate; i++) {
-            calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
-          }
+      // console.log(startDay);
+      // console.log(prevDate);
+      // console.log(prevDay);
+
+      // 이번 달의 마지막날 날짜와 요일 구하기
+      let endDay = new Date(currentYear, currentMonth + 1, 0);
+      let nextDate = endDay.getDate();
+      let nextDay = endDay.getDay();
+      
+
+      // console.log(prevDate, prevDay, nextDate, nextDay);
+
+      // 현재 월 표기
+      let month = document.querySelector(".month");
+      month.innerText = `${currentYear}.${currentMonth + 1}`;
+
+      // 렌더링 html 요소 생성
+      let calendar = document.querySelector(".calendar");
+      calendar.innerHTML = '';
+
+      console.log("prevDay" + prevDay);
+      console.log("nextDay" + nextDay);
+      console.log(7 - nextDay);
+      
+      // 지난달
+      if (!(prevDay == 6)) {
+        for (let i = prevDate - prevDay; i <= prevDate; i++) {
+          calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
         }
-        // 이번달
-        for (let i = 1; i <= nextDate; i++) {
-          calendar.innerHTML = calendar.innerHTML + `<div class="day current">${i}</div>`
+      }
+      // 이번달
+      for (let i = 1; i <= nextDate; i++) {
+        calendar.innerHTML = calendar.innerHTML + `<div class="day current">${i}</div>`
+      }
+      // 다음달
+      // if (!(nextDay == 6)) {
+      //   for (let i = 1; i < 7 - nextDay; i++) {
+      //     calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
+      //   }
+      // }
+      if (!(prevDay == 6)) {
+        for (let i = 1; i < 42 - nextDate - prevDay; i++) {
+          calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
         }
-        // 다음달
-        // if (!(nextDay == 6)) {
-        //   for (let i = 1; i < 7 - nextDay; i++) {
-        //     calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
-        //   }
-        // }
-        if (!(prevDay == 6)) {
-          for (let i = 1; i < 42 - nextDate - prevDay; i++) {
-            calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
-          }
-        } else {
-          for (let i = 1; i <= 42 - nextDate; i++) {
-            calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
-          }
+      } else {
+        for (let i = 1; i <= 42 - nextDate; i++) {
+          calendar.innerHTML = calendar.innerHTML + `<div class="day disabled">${i}</div>`
         }
+      }
 
-        
+      
+      // 현재 월 배열에 넣음
+      let datearray = [];
+      // 휴일 배열(양력 / 음력은 복잡함... lunar... 참조)
+      let datechk = ["1225", "1227", "0101", "0102", "0103", "0105", "0228"];
+      console.log(datearray);
+      function pushDate() {
+        let days = document.querySelectorAll(".day.current");
+        let first;
+        let last;
+        days.forEach(i => {
+          let datenum = () => {
+            if (currentMonth + 1 < 10) {
+              let num = currentMonth + 1;
+              first = "0" + num;
+            } else if (currentMonth + 1 > 10) {
+              let num = currentMonth + 1;
+              first = num.toString();
+            }
 
-        let datearray = [];
-        let datechk = ["1225", "1227", "11"];
+            if (i.innerText < 10) {
+              last = "0" + i.innerText;
+            } else if (i.innerText > 10) {
+              last = i.innerText;
+            }
+            // console.log(first);
+            // console.log(last);
+          }
+          datenum();
+          // datearray.push(currentMonth + 1 + i.innerText);
+          datearray.push(first + last);
+          // i.setAttribute("data-date", currentMonth + 1 + i.innerText);
+          i.setAttribute("data-date", first + last);
+        })
         console.log(datearray);
-        function pushDate() {
-          let days = document.querySelectorAll(".day.current");
-          days.forEach(i => {
-            // let datenum = () => {
-            //   let first;
-            //   if (currentMonth + 1 < 10) {
-            //     first = currentMonth + 1;
-            //   }
-            //   console.log(first);
-            // }
-            // datenum();
-            datearray.push(currentMonth + 1 + i.innerText);
-            i.setAttribute("data-date", currentMonth + 1 + i.innerText);
+      }
+      pushDate();
+
+      // 각 월에 해당하는 휴일만 걸러서 새로운 배열(rechk)에 생성
+      // dataFilter
+      const dataFilter = (data, query) => {
+        return data.filter(x=> query.includes(x))
+      }
+      let reChk = dataFilter(datearray, datechk);
+      console.log(reChk);
+      
+
+      // 공휴일 표기
+      // if (currentMonth + 1 == 12) {
+      //   let currentMonthDate = document.querySelectorAll(".day.current");
+      //   currentMonthDate.forEach(i => {
+      //     if (i.innerText == 25) {
+      //       i.classList.add('dday');
+      //     }
+      //   })
+      // }
+      // if (currentMonth + 1 == 1) {
+      //   let currentMonthDate = document.querySelectorAll(".day.current");
+      //   currentMonthDate.forEach(i => {
+      //     if (i.innerText == 1) {
+      //       i.classList.add('dday');
+      //     }
+      //   })
+      // }
+
+      function sunday() {
+        let cnt = document.querySelectorAll(".day.current");
+        let currentMonthDate = document.querySelectorAll(".day");
+        // 휴일 체크 부분
+        reChk.forEach(i => {
+          console.log("rechk");
+          cnt.forEach(a => {
+            console.log("cnt");
+            if (i === a.dataset.date) {
+              a.classList.add('dday')
+            }
           })
-          console.log(datearray);
+        })
+        // 일요일 체크 부분
+        for (let i = 0; i < 42; i+=7) {
+          currentMonthDate[i].classList.add('dday')
         }
-        pushDate();
-
-        // dataFilter
-        const dataFilter = (data, query) => {
-          return data.filter(x=> query.includes(x))
+        // 토요일 체크 부분
+        for (let i = 6; i < 42; i+=7) {
+          currentMonthDate[i].classList.add('sat')
         }
+      }
+      sunday();
+      
 
-        // let aaa = dataFilter(datearray, datechk);
-        
-
-        // 공휴일 표기
-        // if (currentMonth + 1 == 12) {
-        //   let currentMonthDate = document.querySelectorAll(".day.current");
-        //   currentMonthDate.forEach(i => {
-        //     if (i.innerText == 25) {
-        //       i.classList.add('dday');
-        //     }
-        //   })
-        // }
-        // if (currentMonth + 1 == 1) {
-        //   let currentMonthDate = document.querySelectorAll(".day.current");
-        //   currentMonthDate.forEach(i => {
-        //     if (i.innerText == 1) {
-        //       i.classList.add('dday');
-        //     }
-        //   })
-        // }
-
-        function sunday() {
-          let cnt = document.querySelectorAll(".day.current");
-          let currentMonthDate = document.querySelectorAll(".day");
-          datechk.forEach(i => {
-            console.log(i);
-            cnt.forEach(a => {
-              if (i === a.dataset.date) {
-                a.classList.add('dday')
-              }
-            })
-          })
-          for (let i = 0; i < 42; i+=7) {
-            currentMonthDate[i].classList.add('dday')
-          }
-          for (let i = 6; i < 42; i+=7) {
-            currentMonthDate[i].classList.add('sat')
-          }
-        }
-        sunday();
-        
-  
-        // 오늘 날짜 표기
-        if (today.getMonth() == currentMonth && today.getFullYear() == currentYear) {
-          let todayDate = today.getDate();
-          let currentMonthDate = document.querySelectorAll(".day.current");
-          currentMonthDate[todayDate -1].classList.add('today');
-        }
+      // 오늘 날짜 표기
+      if (today.getMonth() == currentMonth && today.getFullYear() == currentYear) {
+        let todayDate = today.getDate();
+        let currentMonthDate = document.querySelectorAll(".day.current");
+        currentMonthDate[todayDate -1].classList.add('today');
+      }
     }
   
     // 이전달로 이동

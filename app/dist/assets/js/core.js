@@ -1,5 +1,22 @@
 "use strict";
 
+// let num = 0;
+// function showNum() {
+//   console.log(this.num);
+// }
+// showNum(); //0
+
+let person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function () {
+    return this.firstName + ' ' + this.lastName;
+  },
+};
+
+console.log(person.fullName());
+
+
 // s : function
 (function () {
   

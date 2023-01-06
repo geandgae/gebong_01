@@ -20,8 +20,62 @@
   </head>
   <body>
 
+    <!-- 로딩 방식 테스트 -->
+    <script>
+      function ready() {
+        console.log('DOM이 준비되었습니다!');
+    
+        // 이미지가 로드되지 않은 상태이기 때문에 사이즈는 0x0입니다.
+        console.log(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`);
+
+        setTimeout(() => {
+          console.log(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`);
+        }, 3000);
+      }
+    
+      document.addEventListener("DOMContentLoaded", ready);
+
+      // 스크롤 테스트 
+      function scrollDrtc() {
+				let doc = document.querySelector('html');
+				let tick = 1000;
+				let show;
+				let lastScrollY = 0;
+				document.addEventListener('scroll', e => {
+					// 스크롤 방향 체크
+					let scrollY = doc.scrollTop;
+					let direction = scrollY > lastScrollY ? "Scroll Down" : "Scroll Up";
+					lastScrollY = scrollY;
+					if (direction == "Scroll Up") {
+						console.log("up")
+					} else {
+						console.log("down")
+					}
+					// 일정 시간 후 나타남
+					let setHide = e => {
+						show = setTimeout(e => {
+              console.log("show")
+						}, tick);
+					};
+					// 중첩 동작 방지.
+					clearTimeout(show);
+					// 스크롤 종료 시점 한 번만 실행되도록 처리
+					setHide();
+				});
+      }
+			scrollDrtc();
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+    <script>
+      console.log('loading !!!!!');
+    </script>
+
+    <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+    <!-- //로딩 방식 테스트 -->
+
     <!-- wrap -->
-    <div id="wrap" class="wrap">
+    <div id="wrap" class="wrap" style="height: 3000px;">
       <span>core</span>
 
       <!-- form -->

@@ -680,6 +680,38 @@ let loadDiv = document.querySelector(".loading");
 // e : function
 
 
+// 기능 테스트 2023-09-22
+// selectAll
+function selectAll() {
+  const all = document.querySelector(".selector .all input[type=checkbox]");
+  const nor = document.querySelectorAll(".selector .boxs input[type=checkbox]");
+  let checked = document.querySelectorAll(".selector .boxs input[type=checkbox]:checked");
+
+  all.addEventListener("click", function() {
+    if (all.checked === true) {
+      for (const item of nor) {
+        item.checked = true;
+      } 
+    } else {
+      for (const item of nor) {
+        item.checked = false;
+      } 
+    }
+  });
+
+  for (const item of nor) {
+    item.addEventListener("click", function() {
+      if (nor.length === checked.length) {
+        all.checked = true;
+      } else {
+        all.checked = false;
+      }
+      checked = document.querySelectorAll(".selector .boxs input[type=checkbox]:checked");
+    })
+  } 
+}
+selectAll();
+
 
 // async test
 async function f() {

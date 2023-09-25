@@ -360,15 +360,18 @@
   padding: 30px;
   margin-bottom: 20px;
 }
+
 .selector .all {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
+
 .selector .boxs {
   display: flex;
   align-items: center;
 }
+
 .selector .boxs span {
   margin-right: 10px;
 }

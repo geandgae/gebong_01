@@ -48,13 +48,13 @@
         background-color: aqua;
         z-index: 100;
         height: 50px;
-        width: 50PX;
+        width: 50px;
       }
       .chk label {
         width: 100%;
         height: 100%;
         display: block;
-      } 
+      }
       .chk input {
         display: none;
       }
@@ -167,6 +167,12 @@
         const radio = document.querySelectorAll(".radioitem input[type=radio]");
         // const radio = document.querySelectorAll(".radioitem");
 
+        function selected(val) {
+          let tc = val.closest(".card");
+          selectd = document.querySelectorAll(".selected");
+          console.log(tc);
+        }
+
         // reset
         for (const item of chk) {
           item.addEventListener("click", function (event) {
@@ -175,33 +181,53 @@
         }
 
         // radio
+        // for (const item of radio) {
+        //   item.addEventListener("click", function (event) {
+        //     event.stopPropagation();
+        //     // event.preventDefault();
+        //     let total = item.closest(".card").querySelector(".total");
+        //     let inchk = item.closest(".card").querySelector(".chk input[type=checkbox]");
+        //     let cardin = item.closest(".card");
+        //     let val = item.closest(".radioitem").querySelector(".val").innerHTML;
+        //     console.log(card);
+        //     total.innerHTML = `${val}원`;
+        //     inchk.checked = true;
+        //     cardin.classList.add("selected");
+
+        //     selectd = document.querySelectorAll(".selected");
+        //     console.log(card.length);
+        //     console.log(selectd.length);
+
+        //     if (card.length === selectd.length) {
+        //       all.checked = true;
+        //     } else {
+        //       all.checked = false;
+        //     }
+        //   });
+        // }
+
+        // for (var i = 0; i < ele.length; i++) {
+        //   if (ele[i].checked === true) {
+        //     // checked 속성이 true 와 같은지 비교합니다.
+        //     console.log(ele[i].value); //blue 만 출력합니다.
+        //   }
+        // }
+
         for (const item of radio) {
           item.addEventListener("click", function (event) {
             event.stopPropagation();
-            // event.preventDefault();
-            let total = item.closest(".card").querySelector(".total");
             let inchk = item.closest(".card").querySelector(".chk input[type=checkbox]");
             let cardin = item.closest(".card");
-            let val = item.closest(".radioitem").querySelector(".val").innerHTML;
-            console.log(card);
-            total.innerHTML = `${val}원`;
-            inchk.checked = true;
-            cardin.classList.add("selected");
-
-            selectd = document.querySelectorAll(".selected");
-            console.log(card.length);
-            console.log(selectd.length);
-
-            if(card.length === selectd.length) {
-              all.checked = true; 
-            } else {
-              all.checked = false;
+            let total = item.closest(".card").querySelector(".total");
+            if (item.checked === true) {
+              total.innerHTML = `${item.value}원`;
+              inchk.checked = true;
+              cardin.classList.add("selected");
             }
-            
-            
+
+            selected(item);
           });
         }
-
 
         // card
         for (const item of card) {
@@ -226,9 +252,11 @@
               total.innerHTML = `${val}원`;
             }
 
-            selectd = document.querySelectorAll(".selected");
-            if(card.length === selectd.length) {
-              all.checked = true; 
+            selected(item);
+
+            // selectd = document.querySelectorAll(".selected");
+            if (card.length === selectd.length) {
+              all.checked = true;
             } else {
               all.checked = false;
             }
@@ -256,12 +284,12 @@
               item.querySelector(".total").innerHTML = `${val}원`;
             }
           } else {
-            for (const item of card) {            
+            for (const item of card) {
               item.classList.remove("selected");
               item.querySelector(".chk input[type=checkbox]").checked = false;
               item.querySelector(".radioitem input[type=radio][value='1']").checked = false;
               item.querySelector(".radioitem input[type=radio][value='2']").checked = false;
-              item.querySelector(".total").innerHTML = "0"
+              item.querySelector(".total").innerHTML = "0";
             }
           }
         });

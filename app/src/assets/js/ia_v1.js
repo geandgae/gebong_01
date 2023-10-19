@@ -711,6 +711,7 @@ function selectAll() {
   } 
 }
 selectAll();
+// 기능 테스트 2023-09-22
 
 
 // async test

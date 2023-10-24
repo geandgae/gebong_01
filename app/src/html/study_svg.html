@@ -13,10 +13,63 @@
 
     <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
   </head>
+
+  <style>
+    #wrap {
+      padding: 50px;
+      color: #111;
+    }
+    [class^="svg-"] {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+    [class^="svg-"] + [class^="svg-"] {
+      margin-top: 20px;
+    }
+    [class^="svg-"] textarea {  
+      width: 100%;
+      height: 300px;
+      font-size: 12px;
+      outline: none;
+      resize: none;
+      border-radius: 8px;
+      border: 1px solid #777;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    [class^="svg-"] textarea:focus {  
+      border: 1px solid #95b1ff;
+    }
+    .btn-group {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .btn-run {
+      font-size: 14px;
+      margin-left: auto;
+      min-width: 100px;
+      min-height: 40px;
+      border: 1px solid #777;
+      border-radius: 8px;
+    }
+  </style>
   <body>
     <!-- wrap -->
     <div id="wrap">
-      Intl
+      <div class="svg-in">
+        <span>in</span>
+        <input type="text" name="id-name">
+        <textarea name="in-code" id="in-code"></textarea>
+      </div>
+      <div class="svg-out">
+        <span>out</span>
+        <textarea name="out-code" id="out-code"></textarea>
+      </div>
+      <div class="btn-group">
+        <button class="btn-run">run</button>
+      </div>
     </div>
     <!-- //wrap -->
 
@@ -26,71 +79,32 @@
 
     <script>
 
-      const koDate1 = new Intl.DateTimeFormat("ko", { dateStyle: "full" });
-      const koDate2 = new Intl.DateTimeFormat("ko", { dateStyle: "long" });
-      const koDate3 = new Intl.DateTimeFormat("ko", { dateStyle: "medium" });
-      const koDate4 = new Intl.DateTimeFormat("ko", { dateStyle: "short" });
-      let result = koDate3.format(new Date());
-      console.log(result);
+      function runSvg() {
+        const btn = document.querySelector(".btn-run");
+        const inCode = document.querySelector("textarea[name=in-code]"); // input
+        const outCode = document.querySelector("textarea[name=out-code]"); // output
+        
+        let input = inCode.value;
+        let output = outCode.value;
 
-      const koTime1 = new Intl.DateTimeFormat("ko", { timeStyle: "full" });
-      const koTime2 = new Intl.DateTimeFormat("ko", { timeStyle: "long" });
-      const koTime3 = new Intl.DateTimeFormat("ko", { timeStyle: "medium" });
-      const koTime4 = new Intl.DateTimeFormat("ko", { timeStyle: "short" });
-      let result2 = koTime3.format(new Date());
-      console.log(result2);
+        btn.addEventListener("click", () => {
+          let idName = document.querySelector("input[name=id-name]").value;
+          input = inCode.value;
+          if (input) {
+            // 정규식 개행 제거
+            // output = input.replace(/\n$/gm, ''); 
+            // output = input.replace('/\r\n|\r|\n/','',input);
+            // let text2 = text1.split(`xmlns="http://www.w3.org/2000/svg">`);
+            // let text3 = text2[1].split(`</svg>`);
+            let reptext = input.split(`\n`).join(``);
+            output = reptext.split(`#`).join(`%23`);
+            // 최종결과
+            outCode.value = `${idName}: url('data:image/svg+xml, ${output}');`;
+          }
+        })
 
-      console.log(new Intl.ListFormat('en').format(['a', 'b', 'Chrome', 'Safari', 'Firefox']));
-      console.log(new Intl.ListFormat('ko').format(['크롬', '사파리', '파이어폭스']));
-      console.log(new Intl.ListFormat('en', {type: 'disjunction'}).format(['a', 'b', 'Chrome', 'Safari', 'Firefox']));
-      console.log(new Intl.ListFormat('ko', {type: 'disjunction'}).format(['크롬', '사파리', '파이어폭스']));
-
-      console.log(new Intl.NumberFormat('ko', {style: 'percent'}).format(0.7));
-      console.log(new Intl.NumberFormat('ko', {style: 'percent'}).format(1/4));
-      console.log(new Intl.NumberFormat('ko', {style: 'currency', currency: 'KRW'}).format(9000000000));
-      console.log(new Intl.NumberFormat('ko', {style: 'currency', currency: 'USD'}).format(9000000000));
-      console.log(new Intl.NumberFormat('ko', {style: 'unit', unit: 'kilogram'}).format(60));
-      console.log(new Intl.NumberFormat('ko', {style: 'unit', unit: 'pound'}).format(110));
-
-      let pr = new Intl.PluralRules("en")
-      console.log(pr.select(0));
-      console.log(pr.select(1));
-      console.log(pr.select(2));
-      console.log(pr.select(3));
-      let pr2 = new Intl.PluralRules("en", { type: 'ordinal' })
-      console.log(pr2.select(0));
-      console.log(pr2.select(1));
-      console.log(pr2.select(2));
-      console.log(pr2.select(3));
-      console.log(pr2.select(4));
-      console.log(pr2.select(5));
-
-      let rtf = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
-      console.log(rtf.format(-3, "day"));
-      console.log(rtf.format(-2, "day"));
-      console.log(rtf.format(-1, "day"));
-      console.log(rtf.format(0, "day"));
-      console.log(rtf.format(1, "day"));
-      console.log(rtf.format(1, "week"));
-      console.log(rtf.format(1, "month"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      }
+      runSvg();
 
     </script>
   </body>

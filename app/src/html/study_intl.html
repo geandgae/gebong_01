@@ -15,9 +15,7 @@
   </head>
   <body>
     <!-- wrap -->
-    <div id="wrap">
-      Intl
-    </div>
+    <div id="wrap">Intl</div>
     <!-- //wrap -->
 
     <!-- outland -->
@@ -25,9 +23,36 @@
     <!-- //outland -->
 
     <script>
+
+      // 날짜 차이 계산
+      // const future = new Date(2037, 10, 19, 15, 23);
+      // console.log(+future); // 2142274980000
+
+      // const calcDaysPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+      // // 1000 million seconds * 60 seconds * 60 mins * 24 hrs
+
+      // const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
+      // console.log(days1); // 10
+
+      // const formatMovementDate = function (date) {
+      //   const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+      //   const daysPassed = calcDaysPassed(new Date(), date);
+
+      //   if (daysPassed === 0) return "Today";
+      //   if (daysPassed === 1) return "Yesterday";
+      //   if (daysPassed <= 7) return `${daysPassed} days ago`;
+      //   else {
+      //     const day = `${date.getDate()}`.padStart(2, 0);
+      //     const month = `${date.getMonth() + 1}`.padStart(2, 0);
+      //     const year = date.getFullYear();
+      //     return `${day}/${month}/${year}`;
+      //   }
+      // };
+
       // new Intl.DateTimeFormat("fr-CA", {year: "numeric", month: "2-digit", day: "2-digit"}).format(Date.now())
       // yyyy-mm-dd
-      
+
       const koDate1 = new Intl.DateTimeFormat("ko", { dateStyle: "full" });
       const koDate2 = new Intl.DateTimeFormat("ko", { dateStyle: "long" });
       const koDate3 = new Intl.DateTimeFormat("ko", { dateStyle: "medium" });
@@ -42,24 +67,24 @@
       let result2 = koTime3.format(new Date());
       console.log(result2);
 
-      console.log(new Intl.ListFormat('en').format(['a', 'b', 'Chrome', 'Safari', 'Firefox']));
-      console.log(new Intl.ListFormat('ko').format(['크롬', '사파리', '파이어폭스']));
-      console.log(new Intl.ListFormat('en', {type: 'disjunction'}).format(['a', 'b', 'Chrome', 'Safari', 'Firefox']));
-      console.log(new Intl.ListFormat('ko', {type: 'disjunction'}).format(['크롬', '사파리', '파이어폭스']));
+      console.log(new Intl.ListFormat("en").format(["a", "b", "Chrome", "Safari", "Firefox"]));
+      console.log(new Intl.ListFormat("ko").format(["크롬", "사파리", "파이어폭스"]));
+      console.log(new Intl.ListFormat("en", { type: "disjunction" }).format(["a", "b", "Chrome", "Safari", "Firefox"]));
+      console.log(new Intl.ListFormat("ko", { type: "disjunction" }).format(["크롬", "사파리", "파이어폭스"]));
 
-      console.log(new Intl.NumberFormat('ko', {style: 'percent'}).format(0.7));
-      console.log(new Intl.NumberFormat('ko', {style: 'percent'}).format(1/4));
-      console.log(new Intl.NumberFormat('ko', {style: 'currency', currency: 'KRW'}).format(9000000000));
-      console.log(new Intl.NumberFormat('ko', {style: 'currency', currency: 'USD'}).format(9000000000));
-      console.log(new Intl.NumberFormat('ko', {style: 'unit', unit: 'kilogram'}).format(60));
-      console.log(new Intl.NumberFormat('ko', {style: 'unit', unit: 'pound'}).format(110));
+      console.log(new Intl.NumberFormat("ko", { style: "percent" }).format(0.7));
+      console.log(new Intl.NumberFormat("ko", { style: "percent" }).format(1 / 4));
+      console.log(new Intl.NumberFormat("ko", { style: "currency", currency: "KRW" }).format(9000000000));
+      console.log(new Intl.NumberFormat("ko", { style: "currency", currency: "USD" }).format(9000000000));
+      console.log(new Intl.NumberFormat("ko", { style: "unit", unit: "kilogram" }).format(60));
+      console.log(new Intl.NumberFormat("ko", { style: "unit", unit: "pound" }).format(110));
 
-      let pr = new Intl.PluralRules("en")
+      let pr = new Intl.PluralRules("en");
       console.log(pr.select(0));
       console.log(pr.select(1));
       console.log(pr.select(2));
       console.log(pr.select(3));
-      let pr2 = new Intl.PluralRules("en", { type: 'ordinal' })
+      let pr2 = new Intl.PluralRules("en", { type: "ordinal" });
       console.log(pr2.select(0));
       console.log(pr2.select(1));
       console.log(pr2.select(2));
@@ -75,25 +100,6 @@
       console.log(rtf.format(1, "day"));
       console.log(rtf.format(1, "week"));
       console.log(rtf.format(1, "month"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
   </body>
 </html>

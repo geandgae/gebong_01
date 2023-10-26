@@ -25,13 +25,31 @@
     <script>
 
       // 날짜 차이 계산
+
+      //  숫자 0 제거
+      // function _setLeftZeroRemove(vValue) {
+      //   var vVal = vValue;
+
+      //   if (vVal.length > 1) {
+      //     vVal = vVal.replace(/(^0+)/, "");
+
+      //     if (vVal.length == 0) {
+      //       vVal = 0;
+      //     }
+      //   } 
+
+      //   return vVal;
+      // }
       // const future = new Date(2037, 10, 19, 15, 23);
       // console.log(+future); // 2142274980000
 
       // const calcDaysPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
       // // 1000 million seconds * 60 seconds * 60 mins * 24 hrs
 
+      // let data = "2023-10-26".split("-");
+      // let data2 = "2023-10-26".split("-");
       // const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
+      // const days1 = calcDaysPassed(new Date(data2[0], data2[1], data2[2]), new Date(data[0], data[1], data[2]));
       // console.log(days1); // 10
 
       // const formatMovementDate = function (date) {
@@ -49,6 +67,8 @@
       //     return `${day}/${month}/${year}`;
       //   }
       // };
+      
+      
 
       // new Intl.DateTimeFormat("fr-CA", {year: "numeric", month: "2-digit", day: "2-digit"}).format(Date.now())
       // yyyy-mm-dd

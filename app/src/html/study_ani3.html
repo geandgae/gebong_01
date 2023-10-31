@@ -18,38 +18,64 @@
       margin: 0;
       box-sizing: content-box;
     }
+    .pop_body {
+      padding: 80px 24px 60px;
+    }
+    .page_tit {
+      line-height: 24px;
+      font-size: 20px;
+      padding-bottom: 20px;
+    }
 
     /* new */
     :root {
-      --out_w: 268px;
-      --out_h: 520px;
-      --in_w: 223px;
-      --in_h: 460px;
+      --out_w: 220px;
+      --out_h: 456px;
+      --in_w: 206px;
+      --in_h: 426px;
+      --delay: 1s;
     }
     .ars-ani-wrap {
-      margin: 50px 20px;
+      margin-top: 20px;
+      background-color: #f6f6f6;
+      border-radius: 8px;
+      padding: 40px 0 50px;
     }
     .ani-text {
-      width: var(--out_w);
+      width: 240px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       position: relative;
-      min-height: 40px;
+      min-height: 20px;
       font-size: 15px;
       color: #222;
       overflow: hidden;
+      margin-bottom: 16px;
     }
     .ani-text [class^="text-"] {
       width: 100%;
       flex-shrink: 0;
-      background-color: #fff;
       position: absolute;
       top: 0;
       left: 0;
       opacity: 0;
-      line-height: 40px;
       text-align: center;
+      display: flex;
+      align-items: center;
+    }
+    .ani-text [class^="text-"]::before {
+      width: 16px;
+      height: 16px;
+      content: '';
+      color: #fff;
+      background-color: #ccc;
+      border-radius: 50%;
+      margin-right: 8px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .ani-text .text-1 {
       opacity: 1;
@@ -58,25 +84,26 @@
       font-style: normal;
       color: #ef3b24;
     }
-
+    .ani-text .text-1::before {
+      content: '1';
+    }
+    .ani-text .text-2::before {
+      content: '2';
+    }
+    .ani-text .text-3::before {
+      content: '3';
+    }
     .ani-shape {
       position: relative;
-      /* width: 218px;
-      height: 423px; */
-      /* width: 231px;
-      height: 450px; */
-      /* width: 240px;
-      height: 466px; */
-      /* width: 250px;
-      height: 486px; */
-      /* width: 258px;
-      height: 500px; */
       width: var(--out_w);
       height: var(--out_h);
       margin: 0 auto;
-      /* background-color: #333; */
+      background-image: url(./ani2/ars_ani_shape.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      
     }
-    .ani-shape::before {
+    /* .ani-shape::before {
       width: var(--out_w);
       height: var(--out_h);
       display: block;
@@ -84,73 +111,24 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-image: url(./ani2/ars_ani_shape.png);
-      background-size: 100%;
-      z-index: 1;
-    }
+      border-radius: 30px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    } */
     .ani-shape .ani-box {
       width: var(--in_w);
       height: var(--in_h);
       position: absolute;
-      top: 29px;
-      left: 16px;
+      top: 23px;
+      left: 7px;
       overflow: hidden;
       border-bottom-left-radius: 20px;
       border-bottom-right-radius: 20px;
-      background-image: url(./ani2/img1.png);
-      background-repeat: no-repeat;
-      background-size: 100%;
-    }
-    .ani-shape .ani-box [class^="pointer-"] {
-      width: 50px;
-      height: 42px;
-      z-index: 10;
-      position: absolute;
-      background-image: url(./ani2/ars_ani_hand.png);
-      background-repeat: no-repeat;
-      background-size: 100%;
-    }
-    .ani-shape .ani-box .wave {
-      width: 50px;
-      height: 50px;
-      position: absolute;
-      z-index: 5;
-      top: 160px; 
-      left: 80px;
-    }
-    .ani-shape .ani-box .wave::before {
-      width: 10px;
-      height: 10px;
-      content: '';
-      display: block;
-      background-color: #F7CA18;
-      border-radius: 50%;
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      margin: 0 !important;
-      opacity: 0;
-    }
-    .ani-shape .ani-box .wave::after{
-      width: 20px;
-      height: 20px;
-      content: '';
-      display: block;
-      border: 5px solid #ffefae;
-      border-radius: 50%;
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      margin: 0 !important;
-      opacity: 0;
-      box-shadow: 0px 0px 10px rgba(255, 238, 86, 0.5);
+      background-color: #fff;
     }
     .ani-shape .ani-box .arrow {
-      width: 10px;
-      height: 10px;
-      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
       background-color: #F7CA18;
       position: absolute;
       z-index: 10;
@@ -158,19 +136,69 @@
       top: 40px;
       left: 120px;
     }
+    .ani-shape .ani-box .wave {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: -16px; 
+      left: -18px;
+    }
+    .ani-shape .ani-box .wave::before,
+    .ani-shape .ani-box .wave::after {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      opacity: 0;
+    }
+    .ani-shape .ani-box .wave::before {
+      width: 20px;
+      height: 20px;
+      background-color: #F7CA18;
+    }
+    .ani-shape .ani-box .wave::after {
+      width: 30px;
+      height: 30px;
+      border: 10px solid #ffefae;
+      box-shadow: 0px 0px 20px rgba(255, 238, 86, 0.5);
+    }
+    .ani-shape .ani-box [class^="pointer-"] {
+      width: 50px;
+      height: 50px;
+      z-index: 10;
+      position: absolute;
+      opacity: 0;
+    }
+    .ani-shape .ani-box [class^="pointer-"] .hand {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+      background-image: url(./ani2/ars_ani_hand.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
     .ani-shape .ani-box .pointer-1 {
-      top: 30px;
+      top: 20px;
       left: 120px;
+      opacity: 1;
     }
     .ani-shape .ani-box .pointer-2 {
-      top: 0px;
-      left: 0px;
-      opacity: 0;
+      top: 30px;
+      left: 30px; 
     }
     .ani-shape .ani-box .pointer-3 {
       bottom: 0px;
       right: 0px;
-      opacity: 0;
+    }
+    .ani-shape .ani-box .pointer-4 {
+      bottom: 80px;
+      right: 40px;
     }
     .ani-shape .ani-box [class^="scene-"] {
       width: var(--in_w);
@@ -181,155 +209,198 @@
       top: 0;
       left: 0;
     }
+    .ani-shape .ani-box .scene-0 {
+      top: 0;
+      background-image: url(./ani2/img1.png);
+    }
     .ani-shape .ani-box .scene-1 {
-      top: -460px;
+      top: calc(0px - var(--in_h)) ;
       background-image: url(./ani2/img2.png);
     }
+    .ani-shape .ani-box .scene-1 .inner {
+      width: var(--in_w);
+      height: 30px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      background-image: url(./ani2/ars_ani_bottom.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
     .ani-shape .ani-box .scene-2 {
-      top: 460px;
+      top: var(--in_h);
+      background-color: #fff;
+    }
+    .ani-shape .ani-box .scene-2 .inner {
+      width: 100%;
+      height: 370px;
       background-image: url(./ani2/img3.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
     }
     .ani-shape .ani-box .scene-3 {
-      height: 208px;
+      height: 160px;
       position: absolute;
-      top: 113px;
+      top: 111px;
       left: 0;
       overflow: hidden;
     }
     .ani-shape .ani-box .scene-3 .inner {
       position: absolute;
-      top: 208px;
+      top: 160px;
       left: 0;
       width: 100%;
-      height: 208px;
-      background-image: url(./ani2/num.png);
+      height: 160px;
+      background-image: url(./ani2/ars_ani_num.png);
       background-repeat: no-repeat;
       background-size: 100%;
     }
     /* play */
-    .ani-play .ani-box .wave::before {
-      animation-name: wave-1;
+    .ani-play * {
       animation-timing-function: ease;
-      animation-delay: 4.5s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-    }
-    .ani-play .ani-box .wave::after {
-      animation-name: wave-2;
-      animation-timing-function: ease;
-      animation-delay: 4.5s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-    }
-    .ani-play .ani-box .arrow {
-      animation-name: arrow;
-      animation-timing-function: ease;
-      animation-delay: 1s;
-      animation-duration: 1s;
       animation-fill-mode: forwards;
     }
     .ani-play .ani-box .pointer-1 {
       animation-name: pointer-1;
-      animation-timing-function: ease;
-      animation-delay: 1s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      animation-delay: var(--delay);
+      animation-duration: var(--delay);
+    }
+    .ani-play .ani-box .arrow {
+      animation-name: arrow;
+      animation-delay: var(--delay);
+      animation-duration: var(--delay);
+    }
+    .ani-play .ani-box .scene-0 {
+      animation-name: scene-0;
+      animation-delay: var(--delay);
+      animation-duration: var(--delay);
     }
     .ani-play .ani-box .pointer-2 {
       animation-name: pointer-2;
-      animation-timing-function: ease;
-      animation-delay: 4s;
-      animation-duration: 2s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 2s);
+      animation-duration: calc(var(--delay) + 3s);
+    }
+    .ani-play .ani-box .pointer-2 .wave::before {
+      animation-name: wave-1;
+      animation-delay: calc(var(--delay) + 4s);
+      animation-duration: var(--delay);
+    }
+    .ani-play .ani-box .pointer-2 .wave::after {
+      animation-name: wave-2;
+      animation-delay: calc(var(--delay) + 4s);
+      animation-duration: var(--delay);
     }
     .ani-play .ani-box .pointer-3 {
       animation-name: pointer-3;
-      animation-timing-function: ease;
-      animation-delay: 7s;
-      animation-duration: 2s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 6s);
+      animation-duration: calc(var(--delay) + 3s);
+    }
+    .ani-play .ani-box .pointer-3 .wave::before {
+      animation-name: wave-1;
+      animation-delay: calc(var(--delay) + 8s);
+      animation-duration: var(--delay);
+    }
+    .ani-play .ani-box .pointer-3 .wave::after {
+      animation-name: wave-2;
+      animation-delay: calc(var(--delay) + 8s);
+      animation-duration: var(--delay);
+    }
+    .ani-play .ani-box .pointer-4 {
+      animation-name: pointer-4;
+      animation-delay: calc(var(--delay) + 11s);
+      animation-duration: calc(var(--delay) + 3s);
+    }
+    .ani-play .ani-box .pointer-4 .wave::before {
+      animation-name: wave-1;
+      animation-delay: calc(var(--delay) + 13s);
+      animation-duration: var(--delay);
+    }
+    .ani-play .ani-box .pointer-4 .wave::after {
+      animation-name: wave-2;
+      animation-delay: calc(var(--delay) + 13s);
+      animation-duration: var(--delay);
     }
     .ani-play .ani-box .scene-1 {
       animation-name: scene-1;
-      animation-timing-function: ease;
-      animation-duration: 2s;
-      animation-fill-mode: forwards;
+      animation-duration: calc(var(--delay) + 1s);
     }
     .ani-play .ani-box .scene-2 {
       animation-name: scene-2;
-      animation-timing-function: ease;
-      animation-delay: 6s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 5s);
+      animation-duration: var(--delay);
     }
     .ani-play .ani-box .scene-3 .inner {
       animation-name: scene-3;
-      animation-timing-function: ease;
-      animation-delay: 9s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 9s);
+      animation-duration: var(--delay);
     }
      .ani-play .ani-text .text-1 {
       animation-name: text-1;
-      animation-timing-function: ease;
-      animation-delay: 3s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 2s);
+      animation-duration: var(--delay);
     }
      .ani-play .ani-text .text-2 {
       animation-name: text-2;
-      animation-timing-function: ease;
-      animation-delay: 4s;
-      animation-duration: 2s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 3s);
+      animation-duration: calc(var(--delay) + 2s);
     }
      .ani-play .ani-text .text-3 {
       animation-name: text-3;
-      animation-timing-function: ease;
-      animation-delay: 6s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      animation-delay: calc(var(--delay) + 6s);
+      animation-duration: var(--delay);
     }
     @keyframes wave-1 {
       0% { width: 0; height: 0; opacity: 0; }
-      50% { width: 10px; height: 10px; opacity: 1; }
+      50% { width: 20px; height: 20px; opacity: 1; }
       100% { width: 0; height: 0; opacity: 0; }
     }
     @keyframes wave-2 {
       0% { width: 0; height: 0; opacity: 0; }
-      60% { width: 20px; height: 20px; opacity: 1; }
+      60% { width: 30px; height: 30px; opacity: 1; }
       100% { width: 0; height: 0; opacity: 0; }
     }
     @keyframes arrow {
       0% { height: 10px; opacity: 1; }
-      100% { height: 150px; opacity: 0; }
+      100% { height: 180px; opacity: 0; }
     }
     @keyframes pointer-1 {
-      0% { top: 30px; left: 120px; opacity: 1; }
+      0% { top: 20px; left: 120px; opacity: 1; }
       100% { top: 200px; left: 120px; opacity: 0; }
     }
     @keyframes pointer-2 {
       0% { opacity: 0; }
-      30% { opacity: 1; top: 180px; left: 100px; }
-      80% { opacity: 1; top: 180px; left: 100px; }
-      100% { opacity: 0; top: 180px; left: 100px; }
+      25% { opacity: 1; top: 100px; left: 90px; }
+      80% { opacity: 1; top: 100px; left: 90px; }
+      100% { opacity: 0; top: 100px; left: 90px; }
     }
     @keyframes pointer-3 {
-      0% { opacity: 0; bottom: 0; right: 0; }
-      50% { opacity: 1; bottom: 70px; right: 40px; }
-      100% { opacity: 0; bottom: 70px; right: 40px; }
+      0% { opacity: 0; }
+      25% { opacity: 1; bottom: 80px; right: 40px; }
+      80% { opacity: 1; bottom: 80px; right: 40px; }
+      100% { opacity: 0; bottom: 80px; right: 40px; }
+    }
+    @keyframes pointer-4 {
+      0% { opacity: 0; }
+      25% { opacity: 1; bottom: 250px; right: 65px; }
+      80% { opacity: 1; bottom: 250px; right: 65px; }
+      100% { opacity: 0; bottom: 250px; right: 65px; }
+    }
+    @keyframes scene-0 {
+      0% { opacity: 1; }
+      100% { opacity: 0; filter: blur(10px); }
     }
     @keyframes scene-1 {
-      0% { top: -460px; }
-      60% { top: -460px; }
+      0% { top: calc(0px - var(--in_h)); }
+      60% { top: calc(0px - var(--in_h)); }
       100% { top: 0; }
     }
     @keyframes scene-2 {
-      0% { top: 460px; }
-      100% { top: 0; }
+      0% { top: var(--in_h); }
+      100% { top: 22px; }
     }
     @keyframes scene-3 {
-      0% { top: 260px; }
+      0% { top: 160px; }
       100% { top: 0; }
     }
     @keyframes text-1 {
@@ -339,6 +410,7 @@
     @keyframes text-2 {
       0% { opacity: 0; }
       50% { opacity: 1; }
+      80% { opacity: 1; }
       100% { opacity: 0; }
     }
     @keyframes text-3 {
@@ -347,46 +419,96 @@
     }
   </style>
   <body>
-
-    <!-- ars-ani-wrap -->
-    <div class="ars-ani-wrap ani-play">
-      <!-- ani-text -->
-      <div class="ani-text">
-        <span class="text-1">화면상단 <em>알림바</em>를 내리고</span>
-        <span class="text-2">통화중 <em>상태 알림</em>을 선택!</span>
-        <span class="text-3"><em>키패드</em> 선택, 음성듣고 숫자 선택</span>
-      </div>
-      <!-- //ani-text -->
-      <!-- ani-shape -->
-      <div class="ani-shape">
-        <div class="ani-box">
-          <div class="wave"></div>
-          <div class="arrow"></div>
-          <!-- pointer -->
-          <div class="pointer-1"></div>
-          <div class="pointer-2"></div>
-          <div class="pointer-3"></div>
-          <!-- scene -->
-          <div class="scene-1"></div>
-          <div class="scene-2"></div>
-          <div class="scene-3"><div class="inner"></div></div>
+    <div class="pop_body">
+      <h2 class="page_tit">통화화면으로 이동해주세요.</h2>
+      <!-- ars-ani-wrap -->
+      <div class="ars-ani-wrap ani-play">
+        <!-- ani-text -->
+        <div class="ani-text">
+          <span class="text-1">화면상단 <em>알림바</em>를 내리고</span>
+          <span class="text-2">통화중 <em>상태 알림</em>을 선택!</span>
+          <span class="text-3"><em>키패드</em> 선택, 음성듣고 숫자 선택</span>
         </div>
+        <!-- //ani-text -->
+        <!-- ani-shape -->
+        <div class="ani-shape">
+          <div class="ani-box">
+            <!-- pointer -->
+            <div class="arrow"></div>
+            <div class="pointer-1">
+              <span class="hand"></span>
+            </div>
+            <div class="pointer-2">
+              <span class="hand"></span>
+              <span class="wave"></spa>
+            </div>
+            <div class="pointer-3">
+              <span class="hand"></span>
+              <span class="wave"></spa>
+            </div>
+            <div class="pointer-4">
+              <span class="hand"></span>
+              <span class="wave"></spa>
+            </div>
+            <!-- scene -->
+            <div class="scene-0"></div>
+            <div class="scene-1"><div class="inner"></div></div>
+            <div class="scene-2"><div class="inner"></div></div>
+            <div class="scene-3"><div class="inner"></div></div>
+          </div>
+        </div>
+        <!-- //ani-shape -->
       </div>
-      <!-- //ani-shape -->
+      <!-- //ars-ani-wrap -->
     </div>
-    <!-- //ars-ani-wrap -->
+
     
     <script>
-      function restart() {
+      function setArsGuide() {
+        const shape = document.querySelector(".ani-shape");
+        const box = document.querySelector(".ani-box");
+        let scene = document.querySelectorAll(".ani-shape .ani-box [class^=scene-]");
+        // --out_w: 220px;
+        // --out_h: 456px;
+        // --in_w: 206px;
+        // --in_h: 426px;
+        let w = 240
+        let h = 497
+        let iw = Math.floor(w * 0.94);
+        let ih = Math.floor(h * 0.935);
+        console.log(w * 0.94);
+        console.log(h * 0.935);
+        console.log(iw);
+        console.log(ih);
+        console.log(scene);
+
+        shape.style.width = `${w}px`;
+        shape.style.height = `${h}px`;
+        box.style.width = `${iw}px`;
+        box.style.height = `${ih}px`;
+
+        // for (let item in scene) {
+        //   item.style.width = `${iw}px`;
+        //   item.style.height = `${ih}px`;
+        // }
+
+
+        
+      }
+      // setArsGuide();
+
+      function aniRestart() {
         const play = document.querySelector(".ars-ani-wrap");
         setInterval(() => {
           play.classList.remove("ani-play");
           void play.offsetWidth; 
           play.classList.add("ani-play")
           console.log(play);
-        }, 15000);
+        }, 18000);
       }
-      restart();
+      aniRestart();
+
+      
     </script>
   </body>
 </html>

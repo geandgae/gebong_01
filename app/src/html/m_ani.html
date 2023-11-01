@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animation</title>
+
+    <!-- font -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" /> -->
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+
+    .intro-motion-wrap {
+      width: 100%;
+      background-color: beige;
+    }
+    .intro-motion {
+      margin: 0 auto;
+      width: 246px;
+      height: 124px;
+      border: 1px solid #111;
+      position: relative;
+    }
+    .intro-motion::before  {
+      display: block;
+      content: '';
+      width: 128px;
+      height: 52px;
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      background-image: url(./m/intro_booky.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    .intro-motion::after {
+      display: block;
+      content: '';
+      width: 145px;
+      height: 89px;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      background-image: url(./m/intro_bookr.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    
+    .intro-motion .scene-0 {
+      position: absolute;
+      top: 10px;
+      left: 90px;
+      z-index: 1;
+      animation-name: scene-0;
+      animation-timing-function: ease-in-out;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+    .intro-motion .scene-0 .item-pen {
+      display: block;
+      width: 44px;
+      height: 64px;
+      animation-name: rotate;
+      animation-timing-function: ease-in-out;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      background-image: url(./m/intro_pen.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    @keyframes rotate {
+      50% { transform: rotate(20deg); }
+      100% { transform: rotate(0); }
+    }
+    @keyframes scene-0 {
+      50% { top: 10px; left: 110px; }
+      100% { top: 10px; left: 90px; }
+    }
+  </style>
+  <body style="padding-top: 473px;">
+
+    <div class="intro-motion-wrap">
+      <div class="intro-motion">
+        <div class="scene-0">
+          <span class="item-pen"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    </script>
+  </body>
+</html>

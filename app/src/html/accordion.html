@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>accordion</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .div {
+      display: none;
+      width: 800px;
+      height: 800px;
+      border: 1px solid #111;
+      margin: 50px;
+    }
+    .div.active {
+      display: block;
+    }
+    button {
+      padding: 10px;
+      display: block;
+      cursor: pointer;
+    }
+    [data-accordion="item"] + [data-accordion="item"] {
+      margin-top: 20px;
+    }
+    [data-accordion="header"],
+    [data-accordion="panel"] {
+      border-top: 1px solid red;
+      border-bottom: 1px solid red;
+      background-color: azure;
+    }
+    [data-accordion="panel"] {
+      background-color: beige;
+      /* overflow: hidden; */
+    }
+  </style>
+  <body>
+    <div class="div tab1 active">
+
+    </div>
+    <div class="div tab2">
+      <!-- accordion -->
+      <div data-accordion="accordion">
+        <div data-accordion="item">
+          <div data-accordion="header">
+            <button data-accordion="btn">tog</button>
+          </div>
+          <div data-accordion="panel">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
+          </div>
+        </div>
+        <div data-accordion="item">
+          <div data-accordion="header">
+            <button data-accordion="btn">tog</button>
+          </div>
+          <div data-accordion="panel">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
+          </div>
+        </div>
+        <div data-accordion="item">
+          <div data-accordion="header">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
+            <button data-accordion="btn">tog</button>
+          </div>
+          <div data-accordion="panel">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
+          </div>
+        </div>
+      </div>
+      <!-- accordion -->
+    </div>
+
+    <hr />
+
+    <button class="btn1">tab1</button>
+    <button class="btn2">tab2</button>
+
+    <script>
+      // tab
+      const tab = function () {
+        const div1 = document.querySelector(".tab1");
+        const div2 = document.querySelector(".tab2");
+        const btn1 = document.querySelector(".btn1");
+        const btn2 = document.querySelector(".btn2");
+
+        // console.log(div.clientHeight);
+        // console.log(div.offsetHeight);
+        // console.log(div.scrollHeight);
+
+        btn1.addEventListener("click", () => {
+          div1.classList.add("active");
+          div2.classList.remove("active");
+        });
+        btn2.addEventListener("click", () => {
+          div1.classList.remove("active");
+          div2.classList.add("active");
+        });
+      };
+      tab();
+
+      // tab
+      const accordion = function () {
+        const accd = document.querySelector("[data-accordion=accordion]");
+        const accdItem = accd.querySelectorAll("[data-accordion=item]");
+        const div = accd.closest(".div");
+        if(div) {
+          div.classList.add("active");
+          setTimeout(() => {
+            div.classList.remove("active");
+          }, 0);
+        }
+
+        if (accdItem.length >= 1) {
+          for (const item of accdItem) {
+            const header = item.querySelector("[data-accordion=header]");
+            const btn = header.querySelector("[data-accordion=btn]");
+            const panel = item.querySelector("[data-accordion=panel]");
+            const ph = panel.clientHeight
+            console.log(ph);
+            item.style.overflow = "hidden";
+            panel.style.opacity = "0";
+            panel.style.height = "0";
+            panel.style.transition = "all 0.3s ease";
+            btn.addEventListener("click", () => {
+              item.classList.toggle("active");
+              if (item.classList.contains("active")) {
+                panel.style.height = `${ph}px`;
+                panel.style.opacity = "1";
+              } else {
+                panel.style.height = "0";
+                panel.style.opacity = "0";
+              }
+            });
+          }
+        }
+      };
+      accordion();
+    </script>
+  </body>
+</html>

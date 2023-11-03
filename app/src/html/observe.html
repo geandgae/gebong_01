@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mutations - observe</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    button {
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <div class="div" style="width: 200px; height: 200px; border: 1px solid #111; display: flex; align-items: center; justify-content: center; margin: 20px">
+      mutations - observe
+    </div>
+
+    <hr />
+
+    <button class="width">width</button>
+    <button class="back">back</button>
+    <button class="text">text</button>
+    <button class="reset">reset</button>
+
+    <script>
+      const divChange = function () {
+        const div = document.querySelector("div");
+        const btnW = document.querySelector(".width");
+        const btnB = document.querySelector(".back");
+        const btnT = document.querySelector(".text");
+        const btnR = document.querySelector(".reset");
+
+        const reset = () => {
+          div.style.width = "200px";
+          div.style.height = "200px";
+          div.style.backgroundColor = "#fff";
+          div.innerText = "mutations - observe";
+        };
+
+        btnW.addEventListener("click", () => {
+          div.style.width = "400px";
+          div.style.height = "400px";
+        });
+        btnB.addEventListener("click", () => {
+          div.style.backgroundColor = "aqua";
+        });
+        btnT.addEventListener("click", () => {
+          div.innerText = "divChange";
+        });
+        btnR.addEventListener("click", () => {
+          reset();
+        });
+
+        // Mutation Observer
+        // 감시자 인스턴스 만들기
+        let observer = new MutationObserver((mutations) => {
+          console.log("mutations");
+          setTimeout(() => {
+            div.style.backgroundColor = "yellow";
+          }, 1000);
+        });
+
+        // 감시자의 설정
+        let option = {
+          attributes: true,
+          childList: true,
+          characterData: true,
+
+          //  childList
+          // 대상 노드의 자식 요소(텍스트 포함)의 변화 감지
+          // false
+
+          // attributes
+          // 대상 노드의 속성 변화 감지
+          // false
+
+          // characterData
+          // 대상 노드의 데이터 변화 감지
+          // false
+
+          // subtree
+          // 대상 노드의 자식 요소뿐만 아니라 후손 요소의 변화까지 감지
+          // false
+
+          // attributeOldValue
+          // 대상 노드의 속성 변경 전의 값도 기록에 남김
+          // false
+
+          // characterDataOldValue
+          // 대상 노드의 데이터 변경 전의 값도 기록에 남김
+          // false
+
+          // attributeFilter
+          // 모든 속성의 변화를 감지할 필요가 없는 경우 속성의 네임 스페이스 없이 속성 로컬 명의 배열로 설정
+        };
+
+        // 대상 노드에 감시자 전달
+        observer.observe(div, option);
+      };
+      divChange();
+    </script>
+  </body>
+</html>

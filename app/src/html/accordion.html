@@ -138,13 +138,16 @@
             item.style.overflow = "hidden";
             panel.style.opacity = "0";
             panel.style.height = "0";
+            // panel.style.maxHeight = "0";
             panel.style.transition = "all 0.3s ease";
             btn.addEventListener("click", () => {
               item.classList.toggle("active");
               if (item.classList.contains("active")) {
+                // panel.style.maxHeight = "100vh";
                 panel.style.height = `${ph}px`;
                 panel.style.opacity = "1";
               } else {
+                // panel.style.maxHeight = "0";
                 panel.style.height = "0";
                 panel.style.opacity = "0";
               }

@@ -116,40 +116,76 @@
       };
       tab();
 
-      // tab
+      // accordion
       const accordion = function () {
         const accd = document.querySelector("[data-accordion=accordion]");
         const accdItem = accd.querySelectorAll("[data-accordion=item]");
-        const div = accd.closest(".div");
-        if(div) {
-          div.classList.add("active");
+        const tab = accd.closest(".div");
+        // tab안에서 display none
+        if(tab) {
+          tab.classList.add("active");
           setTimeout(() => {
-            div.classList.remove("active");
+            tab.classList.remove("active");
           }, 0);
         }
 
+        // accdItem
         if (accdItem.length >= 1) {
+          // 접근성
+          let idx = 0;
           for (const item of accdItem) {
             const header = item.querySelector("[data-accordion=header]");
             const btn = header.querySelector("[data-accordion=btn]");
             const panel = item.querySelector("[data-accordion=panel]");
             const ph = panel.clientHeight
+
+            // 접근성
+            idx++;
+            panel.setAttribute("id", `ui-tog-${idx}`);
+            btn.setAttribute("aria-expanded", "false");
+            btn.setAttribute("aria-controls", `ui-tog-${idx}`);
+            console.log(panel);
+            console.log(btn);
+
+            // 초기 세팅
             console.log(ph);
             item.style.overflow = "hidden";
             panel.style.opacity = "0";
             panel.style.height = "0";
             // panel.style.maxHeight = "0";
             panel.style.transition = "all 0.3s ease";
+
+            // 토글 이벤트
             btn.addEventListener("click", () => {
               item.classList.toggle("active");
               if (item.classList.contains("active")) {
-                // panel.style.maxHeight = "100vh";
                 panel.style.height = `${ph}px`;
                 panel.style.opacity = "1";
+
+                // 접근성
+                btn.setAttribute("aria-expanded", "true");
+                btn.innerHTML = "열림";
+
+                // alt
+                // panel.style.maxHeight = "100vh";
+                // panel.style.display = "block";
+                // setTimeout(() => {
+                //   panel.style.height = `${ph}px`;
+                //   panel.style.opacity = "1";
+                // }, 0);
               } else {
-                // panel.style.maxHeight = "0";
                 panel.style.height = "0";
                 panel.style.opacity = "0";
+
+                // 접근성
+                btn.setAttribute("aria-expanded", "false");
+                btn.innerHTML = "닫힘";
+                
+                // alt
+                // panel.style.maxHeight = "0";
+                // setTimeout(() => {
+                  // panel.style.display = "none";
+                // }, 300);
               }
             });
           }

@@ -27,7 +27,7 @@
     [class^="svg-"] + [class^="svg-"] {
       margin-top: 20px;
     }
-    [class^="svg-"] textarea {  
+    [class^="svg-"] textarea {
       width: 100%;
       height: 300px;
       font-size: 12px;
@@ -38,7 +38,7 @@
       padding: 10px;
       margin-top: 5px;
     }
-    [class^="svg-"] textarea:focus {  
+    [class^="svg-"] textarea:focus {
       border: 1px solid #95b1ff;
     }
     .btn-group {
@@ -54,13 +54,22 @@
       border: 1px solid #777;
       border-radius: 8px;
     }
+    .file-box {
+      padding: 20px;
+      border: 1px solid #777;
+      margin-bottom: 20px;
+    }
   </style>
   <body>
     <!-- wrap -->
     <div id="wrap">
+      <div class="file-box">
+        <label for="file">file</label>
+        <input type="file" name="file" accept=".svg" />
+      </div>
       <div class="svg-in">
         <span>in</span>
-        <input type="text" name="id-name">
+        <input type="text" name="id-name" />
         <textarea name="in-code" id="in-code"></textarea>
       </div>
       <div class="svg-out">
@@ -78,36 +87,71 @@
     <!-- //outland -->
 
     <script>
-
       function runSvg() {
         const btn = document.querySelector(".btn-run");
         const inCode = document.querySelector("textarea[name=in-code]"); // input
         const outCode = document.querySelector("textarea[name=out-code]"); // output
-        
+        const file = document.querySelector("input[name=file]"); // file
+
         let input = inCode.value;
         let output = outCode.value;
+
+        // 파일읽기
+        // function readFile(FILE_ELEMENT, CALLBACK) {
+        //   const READER = new FileReader();
+        //   READER.onload = function () {
+        //     CALLBACK(READER.result);
+        //   };
+        //   READER.readAsText(FILE_ELEMENT.files[0], "EUC-KR");
+        // }
+
+        const readFile = (files) => {
+          const reader = new FileReader();
+          // reader.addEventListener('load', this.parser.bind(this, reader));
+          // reader.onload = function () {
+          //   reader.result;
+          //   input = reader.result;
+          //   console.log(input)
+          // };
+          reader.addEventListener('load', () => {
+            let code = reader.result;
+            let reptext = code.split(`\n`).join(``);
+            output = reptext.split(`#`).join(`%23`);
+            output = output.split(`<`).join(`%3C`);
+            output = output.split(`>`).join(`%3E`);
+            inCode.value = code;
+            outCode.value = output;
+          });
+          reader.readAsText(files[0], 'utf-8');
+        };
+
+        file.addEventListener("change", () => {
+          let cntFile = file.files;
+          console.log(cntFile);
+          readFile(cntFile);
+        });
 
         btn.addEventListener("click", () => {
           let idName = document.querySelector("input[name=id-name]").value;
           input = inCode.value;
           if (input) {
             // 정규식 개행 제거
-            // output = input.replace(/\n$/gm, ''); 
+            // output = input.replace(/\n$/gm, '');
             // output = input.replace('/\r\n|\r|\n/','',input);
             // let text2 = text1.split(`xmlns="http://www.w3.org/2000/svg">`);
             // let text3 = text2[1].split(`</svg>`);
             let reptext = input.split(`\n`).join(``);
             output = reptext.split(`#`).join(`%23`);
-            output = output .split(`<`).join(`%3C`);
-            output = output .split(`>`).join(`%3E`);
+            output = output.split(`<`).join(`%3C`);
+            output = output.split(`>`).join(`%3E`);
             // 최종결과
             outCode.value = `${idName}: url('data:image/svg+xml, ${output}');`;
           }
-        })
-
+        });
       }
       runSvg();
-
     </script>
   </body>
 </html>
+
+

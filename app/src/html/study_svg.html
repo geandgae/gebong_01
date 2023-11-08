@@ -98,6 +98,8 @@
             // let text3 = text2[1].split(`</svg>`);
             let reptext = input.split(`\n`).join(``);
             output = reptext.split(`#`).join(`%23`);
+            output = output .split(`<`).join(`%3C`);
+            output = output .split(`>`).join(`%3E`);
             // 최종결과
             outCode.value = `${idName}: url('data:image/svg+xml, ${output}');`;
           }

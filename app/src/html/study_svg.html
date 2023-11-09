@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-
-    <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
   </head>
 
   <style>
@@ -59,6 +57,11 @@
       border: 1px solid #777;
       margin-bottom: 20px;
     }
+    .file-box .img-view {
+      padding: 10px;
+      border: 1px solid #b8b8b8;
+      margin-top: 20px;
+    }
   </style>
   <body>
     <!-- wrap -->
@@ -66,6 +69,10 @@
       <div class="file-box">
         <label for="file">file</label>
         <input type="file" name="file" accept=".svg" multiple />
+        <input type="file" name="file2" />
+        <div class="img-view">
+          <img src="" width="auto"/>
+        </div>
       </div>
       <div class="svg-in">
         <span>in</span>
@@ -92,9 +99,11 @@
         const inCode = document.querySelector("textarea[name=in-code]"); // input
         const outCode = document.querySelector("textarea[name=out-code]"); // output
         const file = document.querySelector("input[name=file]"); // file
+        const file2 = document.querySelector("input[name=file2]"); // file
 
         let input = inCode.value;
         let output = outCode.value;
+
 
         // 파일읽기
         // function readFile(FILE_ELEMENT, CALLBACK) {
@@ -104,7 +113,8 @@
         //   };
         //   READER.readAsText(FILE_ELEMENT.files[0], "EUC-KR");
         // }
-
+        
+        // 파일읽기
         const readFile = (files) => {
           const reader = new FileReader();
           // reader.addEventListener('load', this.parser.bind(this, reader));
@@ -113,7 +123,7 @@
           //   input = reader.result;
           //   console.log(input)
           // };
-          reader.addEventListener('load', () => {
+          reader.addEventListener("load", () => {
             let code = reader.result;
             let reptext = code.split(`\n`).join(``);
             output = reptext.split(`#`).join(`%23`);
@@ -121,8 +131,29 @@
             output = output.split(`>`).join(`%3E`);
             inCode.value = code;
             outCode.value = output;
+            console.log(reader);
+            // readyState 2 로딩완료
           });
-          reader.readAsText(files[0], 'utf-8');
+          reader.readAsText(files[0], "utf-8");
+          // reader.readAsDataURL(files[0], "utf-8");
+          console.log(reader); 
+          // readyState 1 로딩중
+
+
+          // new 연산자를 사용하여 FileReader 객체 생성
+          // const reader = new FileReader();
+
+          // 파일의 내용은 result 속성에는 문자열 값으로 들어감
+          // 우리는 이 result 속성을 이용하여 아래의 4가지 방식으로 파일을 읽을 수 있음
+
+          // type이 file인 input 태그 <input type="file" />에서 대용량 파일을 선택하고 파일 정보를 result 속성에 저장하는 과정이 동기식으로 동작한다면,
+          // 파일 정보를 result 속성에 저장할 때까지 HTML 렌더링에 영향을 줄 수 있음
+          // *그렇기 때문에 FileReader는 비동기 방식으로 동작함
+
+          // readAsText() : 파일 객체의 내용을 텍스트로 읽음
+          // readAsDataURL() : 파일 객체를 읽은 후 데이터 URL으로 변환
+          // readAsArrayBuffer() : 파일 객체의 내용을 배열 버퍼로 읽음
+          // readAsBinaryString() : 파일 객체의 내용일 비트 문자열로 읽음
         };
 
         file.addEventListener("change", () => {
@@ -131,6 +162,29 @@
           readFile(cntFile);
         });
 
+
+        // 이미지 띄우기
+        const readFile2 = (files) => {
+          const view = document.querySelector(".img-view img");
+          const reader = new FileReader();
+          reader.addEventListener("load", () => {
+            let code = reader.result
+            console.log(code);
+            console.log(reader);
+            console.log(view.attributes);
+            view.setAttribute("src", code)
+          });
+          reader.readAsDataURL(files[0], "utf-8");
+        };
+
+        file2.addEventListener("change", () => {
+          let cntFile = file2.files;
+          console.log(cntFile);
+          readFile2(cntFile);
+        });
+
+
+        // svg 변환
         btn.addEventListener("click", () => {
           let idName = document.querySelector("input[name=id-name]").value;
           input = inCode.value;
@@ -153,5 +207,3 @@
     </script>
   </body>
 </html>
-
-

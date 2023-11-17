@@ -150,6 +150,7 @@ body article a {
   div .btn:hover {
     background-color: red;
   }
+
   .test .btn {
     background-color: red;
   }
@@ -159,6 +160,7 @@ body article a {
   span .test {
     width: 100px;
   }
+
   .outer_wrapper .wrap .box {
     margin: 0 auto;
     width: 1024px;

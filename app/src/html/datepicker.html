@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>accordion</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="../assets/jq/jquery-ui.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../assets/jq/jquery-3.7.1.min.js"></script>
+    <script src="../assets/jq/jquery-ui.js"></script>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .wrap {
+      margin: 100px;
+    }
+  </style>
+  <body>
+
+    <div class="wrap">
+      <!-- Datepicker -->
+      <div id="datepicker"></div>
+    </div>
+
+  </body>
+
+  <script>
+
+    $("#datepicker").datepicker({
+      inline: true,
+    });
+
+  </script>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>accordion</title>
+    <title>date</title>
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,19 +27,196 @@
     }
   </style>
   <body>
-
     <div class="wrap">
       <!-- Datepicker -->
       <div id="datepicker"></div>
-    </div>
+      <div style="margin-top: 20px" id="mydate2"></div>
 
+      <p style="margin-top: 20px">Date: <input type="text" id="datepickerIP" /></p>
+      <p style="margin-top: 20px">Date2: <input type="text" id="datepickerBB" /></p>
+
+      <div style="margin-top: 20px" id="mydate"></div>
+    </div>
   </body>
 
   <script>
+    // $("#datepicker").datepicker({
+    //   inline: true,
+    // });
 
     $("#datepicker").datepicker({
-      inline: true,
+      dateFormat: "yy-mm-dd", //Input Display Format 변경
+      showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+      showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+      changeYear: true, //콤보박스에서 년 선택 가능
+      changeMonth: true, //콤보박스에서 월 선택 가능
+      showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+      buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+      buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+      buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+      yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+      monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+      monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+      dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+      dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+      minDate: "-1y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+      maxDate: "+1M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
     });
 
+    // $(function () {
+    //   $("#datepickerIP").datepicker();
+    // });
+
+    // $(function () {
+    //   //input을 datepicker로 선언
+    //   $("#datepickerIP").datepicker({
+    //     dateFormat: "yy-mm-dd", //Input Display Format 변경
+    //     showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+    //     showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+    //     changeYear: true, //콤보박스에서 년 선택 가능
+    //     changeMonth: true, //콤보박스에서 월 선택 가능
+    //     showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+    //     buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+    //     buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+    //     buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+    //     yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+    //     monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+    //     monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+    //     dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+    //     dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+    //     minDate: "-1M", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+    //     maxDate: "+1M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+    //     // firstDay: 5, // 한주의 시작일
+    //   });
+
+    //   //초기값을 오늘 날짜로 설정
+    //   // $("#datepicker").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    // });
+
+    // $("#BtnDateSearch").click(function () {
+    //   if (!$("#Date1").val()) {
+    //     alert("시작날짜를 선택하세요");
+    //     return false;
+    //   }
+    //   if (!$("#Date2").val()) {
+    //     alert("끝날짜를 선택하세요");
+    //     return false;
+    //   }
+    //   var date1 = new Date($("#Date1").datepicker("getDate"));
+    //   var date2 = new Date($("#Date2").datepicker("getDate"));
+    //   if (date2 - date1 < 0) {
+    //     alert("끝 날짜가 시작날짜보다 이전일수 없습니다");
+    //     return false;
+    //   }
+    //   $("#DateSearchForm").submit();
+    // });
+
+    let fdate;
+    let sdate;
+    let findate = [ 20231120, 20231101,]
+
+    $(function () {
+      //모든 datepicker에 대한 공통 옵션 설정
+      $.datepicker.setDefaults({
+        dateFormat: "yy-mm-dd", //Input Display Format 변경
+        showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+        changeYear: true, //콤보박스에서 년 선택 가능
+        changeMonth: true, //콤보박스에서 월 선택 가능
+        showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+        buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+        buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+        yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+        monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+        monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+        dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+        dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+        minDate: "-1Y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        maxDate: "+1M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        onSelect: function (d) {
+          //-------------------------여기까지가 달력형태로 만든 후 클릭했을 때를 설정해주는 부분이야
+          //-------------------------여기서부터는 선택한 날짜를 잘라서 각각의 요소에 넣어주는 부분이야
+          // alert("d = " + d);
+
+          // var arr = d.split("/");
+
+          // $("#year").text(arr[0].trim());
+          // $("#month").text(arr[1].trim());
+          // $("#day").text(arr[2].trim());
+
+          //-------------------------가져온 날짜를 Date Class 에 넣어주는 부분이야
+          // let date = new Date($("#datepicker").datepicker({ dataFormat: "yy/mm/dd" }).val());
+          let date = new Date($("#datepicker").datepicker("getDate"));
+          let day = date.getDate();
+          let month = date.getMonth() + 1;            
+          let year =  date.getFullYear();
+          day = day < 10 ? `0${day}` : day;
+          month = month < 10 ? `0${month}` : month;
+          // console.log(day);
+          // console.log(month);
+          fdate = `${year}${month}${day}` * 1;
+          // alert("요일번호:" + date.getDay());
+          // 선택한 날짜의 요일 번호를 가져와서 무슨 요일인지 알아보려는거야
+          let week = new Array("일", "월", "화", "수", "목", "금", "토");
+          // $("#mydate2").text(week[date.getDay()]);
+          // $("#mydate2").text(date);
+          $("#mydate2").text(fdate);
+          console.log(fdate);
+        },
+      });
+
+      //input을 datepicker로 선언
+      $("#datepickerIP").datepicker({
+        onSelect: function (d) {
+          //-------------------------여기까지가 달력형태로 만든 후 클릭했을 때를 설정해주는 부분이야
+          //-------------------------여기서부터는 선택한 날짜를 잘라서 각각의 요소에 넣어주는 부분이야
+          // alert("d = " + d);
+
+          // var arr = d.split("/");
+
+          // $("#year").text(arr[0].trim());
+          // $("#month").text(arr[1].trim());
+          // $("#day").text(arr[2].trim());
+
+          //-------------------------가져온 날짜를 Date Class 에 넣어주는 부분이야
+          // let date = new Date($("#datepickerIP").datepicker({ dataFormat: "yy/mm/dd" }).val());
+          let date = new Date($("#datepickerIP").datepicker("getDate"));;
+          let day = date.getDate();
+          let month = date.getMonth() + 1;            
+          let year =  date.getFullYear();
+          day = day < 10 ? `0${day}` : day;
+          month = month < 10 ? `0${month}` : month;
+          sdate = `${year}${month}${day}` * 1;
+          // alert("요일번호:" + date.getDay());
+          // 선택한 날짜의 요일 번호를 가져와서 무슨 요일인지 알아보려는거야
+          let week = new Array("일", "월", "화", "수", "목", "금", "토");
+          // $("#mydate").text(week[date.getDay()]);
+          $("#mydate").text(sdate);
+          console.log(sdate);
+          console.log("result");
+          console.log(sdate - fdate);
+          console.log("array");
+          console.log(findate[0] - sdate);
+        },
+      });
+      $("#datepickerBB").datepicker();
+
+      //From의 초기값을 오늘 날짜로 설정
+      $("#datepickerIP").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+      //To의 초기값을 내일로 설정
+      $("#datepickerBB").datepicker("setDate", "+1D"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+
+    // getdate
+    const getDate = () => {
+      const inp = document.querySelector("#datepickerIP");
+      inp.addEventListener("change", () => {
+        let val = inp.value;
+        console.log(val);
+        console.log("!!!!");
+      });
+    };
+    getDate();
   </script>
 </html>

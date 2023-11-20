@@ -113,7 +113,7 @@
 
     let fdate;
     let sdate;
-    let findate = [ 20231120, 20231101,]
+    let findate = [20231120, 20231101];
 
     $(function () {
       //모든 datepicker에 대한 공통 옵션 설정
@@ -149,8 +149,8 @@
           // let date = new Date($("#datepicker").datepicker({ dataFormat: "yy/mm/dd" }).val());
           let date = new Date($("#datepicker").datepicker("getDate"));
           let day = date.getDate();
-          let month = date.getMonth() + 1;            
-          let year =  date.getFullYear();
+          let month = date.getMonth() + 1;
+          let year = date.getFullYear();
           day = day < 10 ? `0${day}` : day;
           month = month < 10 ? `0${month}` : month;
           // console.log(day);
@@ -168,6 +168,30 @@
 
       //input을 datepicker로 선언
       $("#datepickerIP").datepicker({
+        // Type: Function
+        // onSelect: function (dateText, inst) {
+        //   console.log(dateText);
+        // },
+
+        onChangeMonthYear: function() {
+          console.log("onChangeMonthYear");
+        },
+        onClose: function() {
+          console.log("onClose");
+        },
+        onUpdateDatepicker: function() {
+          console.log("onUpdateDatepicker");
+        },
+        beforeShow: function() {
+          console.log("beforeShow");
+        },
+        calculateWeek: function() {
+          console.log("calculateWeek");
+        },
+        // beforeShowDay: function() {
+        //   console.log("beforeShowDay");
+        // },
+
         onSelect: function (d) {
           //-------------------------여기까지가 달력형태로 만든 후 클릭했을 때를 설정해주는 부분이야
           //-------------------------여기서부터는 선택한 날짜를 잘라서 각각의 요소에 넣어주는 부분이야
@@ -181,10 +205,10 @@
 
           //-------------------------가져온 날짜를 Date Class 에 넣어주는 부분이야
           // let date = new Date($("#datepickerIP").datepicker({ dataFormat: "yy/mm/dd" }).val());
-          let date = new Date($("#datepickerIP").datepicker("getDate"));;
+          let date = new Date($("#datepickerIP").datepicker("getDate"));
           let day = date.getDate();
-          let month = date.getMonth() + 1;            
-          let year =  date.getFullYear();
+          let month = date.getMonth() + 1;
+          let year = date.getFullYear();
           day = day < 10 ? `0${day}` : day;
           month = month < 10 ? `0${month}` : month;
           sdate = `${year}${month}${day}` * 1;

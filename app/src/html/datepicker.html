@@ -33,7 +33,7 @@
       <div style="margin-top: 20px" id="mydate2"></div>
 
       <p style="margin-top: 20px">Date: <input type="text" id="datepickerIP" /></p>
-      <p style="margin-top: 20px">Date2: <input type="text" id="datepickerBB" /></p>
+      <!-- <p style="margin-top: 20px">Date2: <input type="text" id="datepickerBB" /></p> -->
 
       <div style="margin-top: 20px" id="mydate"></div>
     </div>
@@ -224,12 +224,12 @@
           console.log(findate[0] - sdate);
         },
       });
-      $("#datepickerBB").datepicker();
+      // $("#datepickerBB").datepicker();
 
       //From의 초기값을 오늘 날짜로 설정
       $("#datepickerIP").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
       //To의 초기값을 내일로 설정
-      $("#datepickerBB").datepicker("setDate", "+1D"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+      // $("#datepickerBB").datepicker("setDate", "+1D"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
     });
 
     // getdate

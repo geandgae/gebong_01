@@ -162,7 +162,7 @@
           // $("#mydate2").text(week[date.getDay()]);
           // $("#mydate2").text(date);
           $("#mydate2").text(fdate);
-          console.log(fdate);
+          // console.log(fdate);
         },
       });
 
@@ -173,21 +173,21 @@
         //   console.log(dateText);
         // },
 
-        onChangeMonthYear: function() {
-          console.log("onChangeMonthYear");
-        },
-        onClose: function() {
-          console.log("onClose");
-        },
-        onUpdateDatepicker: function() {
-          console.log("onUpdateDatepicker");
-        },
-        beforeShow: function() {
-          console.log("beforeShow");
-        },
-        calculateWeek: function() {
-          console.log("calculateWeek");
-        },
+        // onChangeMonthYear: function() {
+        //   console.log("onChangeMonthYear");
+        // },
+        // onClose: function() {
+        //   console.log("onClose");
+        // },
+        // onUpdateDatepicker: function() {
+        //   console.log("onUpdateDatepicker");
+        // },
+        // beforeShow: function() {
+        //   console.log("beforeShow");
+        // },
+        // calculateWeek: function() {
+        //   console.log("calculateWeek");
+        // },
         // beforeShowDay: function() {
         //   console.log("beforeShowDay");
         // },
@@ -217,11 +217,38 @@
           let week = new Array("일", "월", "화", "수", "목", "금", "토");
           // $("#mydate").text(week[date.getDay()]);
           $("#mydate").text(sdate);
-          console.log(sdate);
-          console.log("result");
-          console.log(sdate - fdate);
-          console.log("array");
-          console.log(findate[0] - sdate);
+          // console.log(sdate);
+          // console.log("result");
+          // console.log(sdate - fdate);
+          // console.log("array");
+          // console.log(findate[0] - sdate);
+
+          // 예약날짜 비교
+          let len = [];
+          let loop;
+          let reDate = ["2023.11.19", "2023.11.20", "2023.11.27", "2023.11.30", "2023.12.05", "2023.12.29"]
+          console.log(`reDate : ${reDate}`);
+          for (const item of reDate) {
+            let nd = new Date(item);
+            let v = (nd - date) / 86400000;
+            if (v > 0 && v <= 15) {
+              len.push(v);
+            }
+          }
+
+          console.log("----------------");
+          console.log(len);
+          // console.log(len.length);
+          // loop 설정 len.length === 0 일때 최대값 노출
+          if (len.length === 0) {
+            len.push(15);
+          }
+          // console.log(typeof(len[0]));
+          loop = len[0];
+
+          for (let i = 1; i <= loop; i++) {
+            console.log(i);
+          }
         },
       });
       // $("#datepickerBB").datepicker();

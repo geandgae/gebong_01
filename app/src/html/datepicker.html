@@ -36,6 +36,14 @@
       <!-- <p style="margin-top: 20px">Date2: <input type="text" id="datepickerBB" /></p> -->
 
       <div style="margin-top: 20px" id="mydate"></div>
+
+      <div class="sid">
+        <span class="a1"></span>
+        <span class="a2"></span>
+        <span class="a3"></span>
+        <span class="a4"></span>
+        <span class="a5"></span>
+      </div>
     </div>
   </body>
 
@@ -276,12 +284,12 @@
       for (let i = 0; i < tarray.length; i++) {
         let cnt = 1;
         let num = tarray[i];
-        
+
         while (true)
-        if (tarray.includes(++num)) cnt++;
-        else break;
+          if (tarray.includes(++num)) cnt++;
+          else break;
         console.log(num);
-        
+
         // 연속된 숫자가 목표개 있음
         if (cnt === goal) {
           // console.log("goal");
@@ -289,8 +297,8 @@
       }
     }
     // func(tarray, goal);
-    
-    let tarray = [1, 2, 3, 4, 5, 6, 10, 12, 14, 20, 21, 22, 23, 27, 28, 29];
+
+    let tarray = [1, 2, 3, 4, 5, 6, 10, 12, 14, 20, 21, 22, 23, 25, 26, 28, 29];
     let newArray = [];
     let outArray = [];
     let cntn = 0;
@@ -309,12 +317,22 @@
         //   tarray[i] = "/"
         // }
         if (tarray[i] + 1 === tarray[i + 1]) {
+          if (tarr1[cntn].includes("/")) {
+            cntn += 1;
+          }
           tarr1[cntn].push(tarray[i]);
         } else {
           cntn += 1;
+          if (tarray[i] - 1 === tarray[i - 1]) {
+            // tarr1[cntn].push(tarray[i]);
+          } else {
+            tarr1[cntn].push("/");
+            tarr1[cntn].push(tarray[i]);
+          }
         }
       }
       console.log(tarray);
+      console.log(tarr1);
       console.log("--------------");
       // console.log(newArray);
       // console.log(tarr1);
@@ -322,13 +340,19 @@
       // for (let j = 0; j < newArray.length - 1; j++) {
       //   if (newArray[j] + 1 === newArray[j + 1]) {
       //     outArray.push(newArray[j]);
-      //   }  
+      //   }
       // }
       // console.log(outArray);
 
       for (const item of tarr1) {
+        let out;
         let max = item[item.length - 1] + 1;
-        let out = `${item[0]} ~ ${max}`;
+        if (item.length >= 1 && !item.includes("/")) {
+          out = `${item[0]} ~ ${max}`;
+        } else {
+          out = `${item[1]}`;
+        }
+        // console.log(out);
         if (!out.includes(undefined)) {
           console.log(out);
         }
@@ -337,6 +361,35 @@
         // }
       }
     }
-    result()
+    result();
+
+
+    let testsib = document.querySelector(".sid .a1");
+    const tempArr = [];
+    function siblings(t) {
+      const children = t.parentElement.children;
+
+      for (let i = 0; i < children.length; i++) {
+        tempArr.push(children[i]);
+      }
+
+      return tempArr.filter(function (e) {
+        return e != t;
+      });
+    }
+    // function siblings(t, removeClass) {
+    //   const children = t.parentElement.children;
+
+    //   for (let i = 0; i < children.length; i++) {    
+    //     children[i].classList.remove(removeClass)
+    //   }  
+    // }
+
+    siblings(testsib);
+
+    console.log(testsib.nextSibling);
+    console.log(tempArr);
+
+    
   </script>
 </html>

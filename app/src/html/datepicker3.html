@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>date</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="../assets/jq/jquery-ui.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../assets/jq/jquery-3.7.1.min.js"></script>
+    <script src="../assets/jq/jquery-ui.js"></script>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .wrap {
+      margin: 100px;
+    }
+    .ui-datepicker {
+      width: 400px;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <p style="margin-top: 20px">Date: <input type="text" id="sdate" /></p>
+      <p style="margin-top: 20px">Date: <input type="text" id="edate" /></p>
+
+      <div style="margin-top: 20px" id="mydate"></div>
+
+      <div class="sid">
+        <span class="a1"></span>
+        <span class="a2"></span>
+        <span class="a3"></span>
+        <span class="a4"></span>
+        <span class="a5"></span>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      $.datepicker.regional["ko"] = {
+        closeText: "닫기",
+        prevText: "이전달",
+        nextText: "다음달",
+        currentText: "오늘",
+        monthNames: [
+          "1월(JAN)",
+          "2월(FEB)",
+          "3월(MAR)",
+          "4월(APR)",
+          "5월(MAY)",
+          "6월(JUN)",
+          "7월(JUL)",
+          "8월(AUG)",
+          "9월(SEP)",
+          "10월(OCT)",
+          "11월(NOV)",
+          "12월(DEC)",
+        ],
+        monthNamesShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+        dayNames: ["일", "월", "화", "수", "목", "금", "토"],
+        dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
+        dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+        weekHeader: "Wk",
+        dateFormat: "yy-mm-dd",
+        firstDay: 0,
+        isRTL: false,
+        showMonthAfterYear: true,
+        yearSuffix: "",
+        showOn: "both",
+        buttonText: "달력",
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        yearRange: "c-99:c+99",
+      };
+      $.datepicker.setDefaults($.datepicker.regional["ko"]);
+
+      $("#sdate").datepicker();
+      $("#sdate").datepicker("option", "maxDate", $("#edate").val());
+      $("#sdate").datepicker("option", "onClose", function (selectedDate) {
+        $("#edate").datepicker("option", "minDate", selectedDate);
+        $("#edate").datepicker("option", "beforeShow", function () {
+          var stxt = $("#sdate").val().split("-");
+          stxt[1] = stxt[1] - 1;
+          var sdate = new Date(stxt[0], stxt[1], stxt[2]);
+          var mdate = new Date(stxt[0], stxt[1], stxt[2]);
+          mdate.setDate(sdate.getDate() + 7);
+          $("#edate").datepicker("option", "maxDate", mdate);
+        });
+      });
+
+      $("#edate").datepicker();
+      $("#edate").datepicker("option", "minDate", $("#sdate").val());
+      $("#edate").datepicker("option", "onClose", function (selectedDate) {
+        $("#sdate").datepicker("option", "maxDate", selectedDate);
+      });
+    });
+
+    var today = new Date();
+    var start_month = today.getMonth() + 1;
+    var start_day = today.getDate();
+    start_month = start_month < 10 ? "0" + start_month : start_month;
+    start_day = start_day < 10 ? "0" + start_day : start_day;
+    var start_date = today.getFullYear() + "-" + start_month + "-" + start_day;
+    today.setDate(today.getDate() + 10);
+    var end_month = today.getMonth() + 1;
+    var end_day = today.getDate();
+    end_month = end_month < 10 ? "0" + end_month : end_month;
+    end_day = end_day < 10 ? "0" + end_day : end_day;
+    var end_date = today.getFullYear() + "-" + end_month + "-" + end_day;
+    $("#sdate").val(start_date);
+    $("#edate").val(end_date);
+
+    // // // 그리고 시작일 +7일 까지만 선택 하게 하신다는게 시작일을 선택하면 종료일을 시작일+7일 까지만 선택 하고 싶으신 거죠?
+    // // // 이건 maxDate 값을 시작일+7일로 설정하도록 시작일 달력을 닫을때 설정하거나 종요일 달력을 열때 설정하도록 하면 됩니다.
+    // // // 예제를 드리자면 시작일 onClose 설정 부분에 아래 내용을 추가 하시면 됩니다.
+
+    // $("#edate").datepicker("option", "beforeShow", function () {
+    //   var stxt = $("#sdate").val().split("-");
+    //   stxt[1] = stxt[1] - 1;
+    //   var sdate = new Date(stxt[0], stxt[1], stxt[2]);
+    //   var mdate = new Date(stxt[0], stxt[1], stxt[2]);
+    //   mdate.setDate(sdate.getDate() + 7);
+    //   $("#edate").datepicker("option", "maxDate", mdate);
+    // });
+  </script>
+</html>

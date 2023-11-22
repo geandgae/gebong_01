@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>date</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="../assets/jq/jquery-ui.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../assets/jq/jquery-3.7.1.min.js"></script>
+    <script src="../assets/jq/jquery-ui.js"></script>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .wrap {
+      margin: 100px;
+    }
+    .ui-datepicker {
+      width: 400px;
+    }
+    .ui-datepicker-days-cell-over {
+      background-color: aquamarine;
+    }
+    .ui-state-disabled.reserved-date span {
+      color: red !important;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <p style="margin-top: 20px">Date: <input type="text" id="datepicker" /></p>
+      <p style="margin-top: 20px">Date: <input type="text" id="selected-date" /></p>
+      <p style="margin-top: 20px">Date: <input type="text" id="selected-range" /></p>
+      <select id="reservation-select" style="margin-top: 20px"></select>
+    </div>
+    <div id="reserved-days">
+      http://itnanum.com/bbs/board.php?bo_table=O0003&wr_id=27
+      https://error-nono.tistory.com/entry/jquery-datepicker-%EC%84%A0%ED%83%9D-%EB%B6%88%EA%B0%80%EB%8A%A5%ED%95%9C-%EB%82%A0%EC%A7%9C-%EB%8F%99%EC%A0%81%EC%9C%BC%EB%A1%9C-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0
+      https://www.nextree.co.kr/p9887/
+      https://blog.munilive.com/posts/datepicker-start-date-end-date-on-use-good-tips.html
+    </div>
+  </body>
+
+  <script>
+    $(function () {
+      let reservedDates = ["2023-11-30", "2023-12-01", "2023-12-02", "2023-12-15", "2023-12-16", "2023-12-25"];
+
+      $("#datepicker").datepicker({
+        // beforeShowDay: (date) => {
+        //   const year = date.getFullYear();
+        //   const month = date.getMonth() + 1;
+        //   const day = date.getDate();
+        //   const formattedDate = `${year}-${month < 10 ? "0" : ""}${month}-${day < 10 ? "0" : ""}${day}`;
+        //   const today = new Date();
+        //   today.setHours(0, 0, 0, 0); // 현재 날짜를 시간 부분을 0으로 초기화
+
+        //   // 현재 날짜 이후의 날짜는 선택할 수 없도록 설정
+        //   const isAfterToday = date.getTime() >= today.getTime();
+
+        //   // 예약된 날짜는 선택할 수 없는 날과 구분하여 설정
+        //   const isReserved = reservedDates.includes(formattedDate);
+
+        //   // 시작일을 익일로 설정하고, 기준으로 7일 이내의 날짜만 선택 가능하게 설정
+        //   const startDate = new Date(today);
+        //   startDate.setDate(today.getDate() + 1);
+        //   const endDate = new Date(startDate);
+        //   endDate.setDate(startDate.getDate() + 6);
+
+        //   if (isAfterToday && date >= startDate && date <= endDate && !isReserved) {
+        //     return [true, ""];
+        //   } else if (!isAfterToday || isReserved) {
+        //     return [false, isReserved ? "reserved-date" : "not-available"];
+        //   } else {
+        //     return [false, "not-available"];
+        //   }
+        // },
+        beforeShowDay: (date) => {
+          const year = date.getFullYear();
+          const month = date.getMonth() + 1;
+          const day = date.getDate();
+          const formattedDate = `${year}-${month < 10 ? "0" : ""}${month}-${day < 10 ? "0" : ""}${day}`;
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          const isAfterToday = date.getTime() >= today.getTime();
+          const isReserved = reservedDates.includes(formattedDate);
+
+          const startDate = new Date(today);
+          startDate.setDate(today.getDate() + 1);
+          const endDate = new Date(startDate);
+          endDate.setDate(startDate.getDate() + 14);
+
+          if (isReserved) {
+            endDate.setDate(endDate.getDate() - 1);
+          }
+
+          if (isAfterToday && date >= startDate && date <= endDate && !isReserved) {
+            return [true, ""];
+          } else if (!isAfterToday || isReserved) {
+            return [false, isReserved ? "reserved-date" : "not-available"];
+          } else {
+            return [false, "not-available"];
+          }
+        },
+        onChangeMonthYear: (year, month, inst) => {
+          // 새로운 월에 해당하는 예약된 날짜 업데이트
+          updateReservedDays(year, month);
+        },
+        beforeShow: (input, inst) => {
+          // 초기 로딩 시 예약된 날짜 표시
+          updateReservedDays(inst.selectedYear, inst.selectedMonth + 1);
+        },
+        onSelect: (dateText) => {
+          // 사용자가 선택한 날짜를 인풋 필드에 설정
+          $("#selected-date").val(dateText);
+
+          // 선택한 날짜를 기준으로 최대 15일까지의 예약 가능한 셀렉트 박스 생성
+          createReservationSelect(dateText);
+        },
+        changeMonth: true,
+        showButtonPanel: true,
+        defaultDate: +1,
+      });
+
+      const updateReservedDays = (year, month) => {
+        // 예약된 날짜 중에서 해당 월에 해당하는 일만 추출하여 달력 아래에 표시
+        const reservedDays = reservedDates
+          .filter((dateString) => {
+            const date = new Date(dateString);
+            return date.getFullYear() === year && date.getMonth() + 1 === month;
+          })
+          .map((date) => new Date(date).getDate());
+
+        // 연속된 날짜 구간을 찾아서 표시
+        const consecutiveRanges = findConsecutiveRanges(reservedDays);
+
+        // 달력 아래에 표시
+        $("#reserved-days").text(`예약된 날짜: ${formatConsecutiveRanges(consecutiveRanges)}`);
+      };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   let foundReservedDate = false;
+
+      //   for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      //     const formattedDate = $.datepicker.formatDate("yy-mm-dd", date);
+      //     const option = $("<option>").text(formattedDate).val(formattedDate);
+      //     selectBox.append(option);
+
+      //     // 예약된 날짜가 포함된 경우 해당 예약일 전날까지만 선택 가능하도록 설정
+      //     if (reservedDates.includes(formattedDate)) {
+      //       foundReservedDate = true;
+      //       break;
+      //     }
+      //   }
+
+      //   // 예약된 날짜가 없는 경우 모든 날짜를 선택 가능하도록 설정
+      //   if (!foundReservedDate) {
+      //     selectBox.empty();
+      //     for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      //       const formattedDate = $.datepicker.formatDate("yy-mm-dd", date);
+      //       const option = $("<option>").text(formattedDate).val(formattedDate);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      //     const formattedDate = $.datepicker.formatDate("yy-mm-dd", date);
+
+      //     // 예약된 날짜가 포함되어 있으면서 현재 날짜가 예약일의 전날인 경우에만 선택 가능하도록 설정
+      //     if (reservedDates.includes(formattedDate)) {
+      //       const option = $("<option>").text(formattedDate).val(formattedDate);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (date.getTime() === endDate.getTime() || date >= new Date()) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(formattedDate).val(formattedDate);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      //     const formattedDate = $.datepicker.formatDate("yy-mm-dd", date);
+
+      //     // 예약된 날짜가 포함되어 있으면 해당 예약일은 선택할 수 없게 설정
+      //     if (reservedDates.includes(formattedDate)) {
+      //       const option = $("<option>").text(formattedDate).val(formattedDate).prop("disabled", true);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (date >= new Date()) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(formattedDate).val(formattedDate);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      //     const dayOfMonth = date.getDate(); // 날짜를 일(day) 형식으로 얻어옴
+
+      //     // 예약된 날짜가 포함되어 있으면 해당 예약일은 선택할 수 없게 설정
+      //     if (reservedDates.includes(date.toISOString().split("T")[0])) {
+      //       const option = $("<option>").text(dayOfMonth).val(dayOfMonth).prop("disabled", true);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (date >= new Date()) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(dayOfMonth).val(dayOfMonth);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      //     const dayOfMonth = date.getDate(); // 날짜를 일(day) 형식으로 얻어옴
+
+      //     // 예약된 날짜가 포함되어 있으면 해당 예약일은 선택할 수 없게 설정
+      //     if (reservedDates.includes(date.toISOString().split("T")[0])) {
+      //       const option = $("<option>").text(dayOfMonth).val(dayOfMonth).prop("disabled", true);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (date >= new Date()) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(dayOfMonth).val(dayOfMonth);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let i = 1; i <= 15; i++) {
+      //     const optionDate = new Date(startDate);
+      //     optionDate.setDate(startDate.getDate() + i - 1);
+      //     const formattedDate = $.datepicker.formatDate("yy-mm-dd", optionDate);
+
+      //     // 예약된 날짜가 포함되어 있으면 해당 예약일은 선택할 수 없게 설정
+      //     if (reservedDates.includes(formattedDate)) {
+      //       const option = $("<option>").text(i).val(i).prop("disabled", true);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (i === 1 && optionDate >= new Date()) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(i).val(i);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let i = 1; i <= 15; i++) {
+      //     const optionDate = new Date(startDate);
+      //     optionDate.setDate(startDate.getDate() + i - 1);
+      //     const formattedDate = $.datepicker.formatDate("yy-mm-dd", optionDate);
+
+      //     // 예약된 날짜가 포함되어 있으면 해당 예약일의 전날까지만 선택 가능하도록 설정
+      //     if (reservedDates.includes(formattedDate)) {
+      //       const option = $("<option>").text(i).val(i).prop("disabled", true);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (i === 1 && optionDate >= new Date()) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(i).val(i);
+      //       selectBox.append(option);
+      //     }
+      //   }
+      // };
+
+      // const createReservationSelect = (selectedDate) => {
+      //   const selectBox = $("#reservation-select");
+      //   selectBox.empty();
+
+      //   const startDate = new Date(selectedDate);
+      //   startDate.setDate(startDate.getDate() + 1);
+      //   const endDate = new Date(startDate);
+      //   endDate.setDate(startDate.getDate() + 14);
+
+      //   for (let i = 1; i <= 15; i++) {
+      //     const optionDate = new Date(startDate);
+      //     optionDate.setDate(startDate.getDate() + i - 1);
+
+      //     // 예약된 날짜가 포함되어 있으면 해당 예약일의 전날까지만 선택 가능하도록 설정
+      //     if (reservedDates.includes($.datepicker.formatDate("yy-mm-dd", optionDate))) {
+      //       const option = $("<option>").text(i).val(i).prop("disabled", true);
+      //       selectBox.append(option);
+
+      //       // 현재 날짜가 예약일의 전날인 경우 루프 종료
+      //       if (optionDate >= new Date() && !reservedDates.includes($.datepicker.formatDate("yy-mm-dd", optionDate))) {
+      //         break;
+      //       }
+      //     } else {
+      //       const option = $("<option>").text(i).val(i);
+      //       selectBox.append(option);
+      //     }
+
+      //     // 예약일 이후는 표시하지 않도록 설정
+      //     if (optionDate > endDate) {
+      //       break;
+      //     }
+      //   }
+      // };
+
+      const findConsecutiveRanges = (arr) => {
+        const ranges = [];
+        let currentRange = [arr[0]];
+
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] === arr[i - 1] + 1) {
+            currentRange.push(arr[i]);
+          } else {
+            ranges.push(currentRange);
+            currentRange = [arr[i]];
+          }
+        }
+
+        ranges.push(currentRange);
+        return ranges;
+      };
+
+      const formatConsecutiveRanges = (ranges) => {
+        return ranges.map((range) => (range.length === 1 ? `${range[0]}` : `${range[0]}-${range[range.length - 1]}`)).join(", ");
+      };
+
+
+
+      const createReservationSelect = (selectedDate) => {
+        const selectBox = $("#reservation-select");
+        selectBox.empty();
+
+        const startDate = new Date(selectedDate);
+        startDate.setDate(startDate.getDate() + 1);
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 14);
+
+        for (let i = 1; i <= 15; i++) {
+          const optionDate = new Date(startDate);
+          optionDate.setDate(startDate.getDate() + i - 1);
+
+          // 예약된 날짜가 포함되어 있으면 해당 예약일의 전날까지만 선택 가능하도록 설정
+          if (reservedDates.includes($.datepicker.formatDate("yy-mm-dd", optionDate))) {
+            const option = $("<option>").text(i).val(i).prop("disabled", true);
+            selectBox.append(option);
+
+            // 현재 날짜가 예약일의 전날인 경우 루프 종료
+            if (optionDate >= new Date() && !reservedDates.includes($.datepicker.formatDate("yy-mm-dd", optionDate))) {
+              break;
+            }
+          } else {
+            const option = $("<option>").text(i).val(i);
+            selectBox.append(option);
+          }
+
+          // 예약일 이후는 표시하지 않도록 설정
+          if (optionDate > endDate) {
+            break;
+          }
+        }
+
+        // 선택한 값에 따라 새로운 인풋에 범위 표시
+        const selectedRangeStart = $.datepicker.formatDate("yy-mm-dd", startDate);
+        const selectedRangeEnd = $.datepicker.formatDate("yy-mm-dd", new Date(endDate));
+        $("#selected-range").val(`${selectedRangeStart} ~ ${selectedRangeEnd}`);
+      };
+
+      // 예약 셀렉트 박스가 변경될 때 호출되는 함수
+      $("#reservation-select").change(function () {
+        const selectedValue = $(this).val();
+        const startDate = new Date();
+        const endDate = new Date();
+        endDate.setDate(endDate.getDate() + parseInt(selectedValue));
+
+        const selectedRangeStart = $.datepicker.formatDate("yy-mm-dd", startDate);
+        const selectedRangeEnd = $.datepicker.formatDate("yy-mm-dd", endDate);
+        $("#selected-range").val(`${selectedRangeStart} ~ ${selectedRangeEnd}`);
+      });
+
+      // 초기에 호출하여 초기 범위 표시
+      createReservationSelect($.datepicker.formatDate("yy-mm-dd", new Date()));
+
+    });
+  </script>
+</html>

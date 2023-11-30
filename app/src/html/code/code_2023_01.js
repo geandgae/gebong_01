@@ -70,6 +70,22 @@ rollStatus();
 
 console.log(typeof(userStr));
 
+// 마우스 오른쪽 이벤트
+document.oncontextmenu = function () {
+  // Use document as opposed to window for IE8 compatibility
+  return false;
+};
+
+window.addEventListener(
+  "contextmenu",
+  function (e) {
+    // Not compatible with IE < 9
+    e.preventDefault();
+    console.log("right")
+  },
+  false,
+);
+
 // =========== 변수 ===========
 // user 참조 객체(순수스탯)
 let user_origin = {

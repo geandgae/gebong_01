@@ -16,9 +16,9 @@
 })();
 
 // =========== root ===========
-let userLevel = 1;
-let userExp = 0;
 let userName = window.localStorage.getItem("userName");
+let userLevel = window.localStorage.getItem("userLevel") * 1;
+let userExp = window.localStorage.getItem("userExp") * 1;
 let userStr = window.localStorage.getItem("userStr") * 1;
 let userDex = window.localStorage.getItem("userDex") * 1;
 let userVit = window.localStorage.getItem("userVit") * 1;
@@ -44,6 +44,9 @@ const setUser = () => {
 
   // userSet
   userSet.addEventListener("click", () => {
+    // 레벨 경험치 초기화
+    window.localStorage.setItem("userExp", userExp = 0);
+    window.localStorage.setItem("userLevel", userLevel = 0);
     for (const item of inputs) {
       if (item.name === "userName") {
         window.localStorage.setItem("userName", item.value);
@@ -64,52 +67,71 @@ const rollStatus = () => {
   })
 };
 
+const rollExp = () => {
+  const btnExp = document.querySelector("#userExp");
+
+  btnExp.addEventListener("click", () => {
+    
+    window.localStorage.setItem("userExp", userExp += 110);
+    // userExp = window.localStorage.getItem("userExp") * 1;
+    levelUp();
+
+    
+  })
+};
+
+const levelUp = () => {
+  if (userExp >= (userLevel +1) * 100) {
+    window.localStorage.setItem("userExp", userExp -= (userLevel +1) * 100);
+    window.localStorage.setItem("userLevel", userLevel += 1);
+
+    console.log("levelUp")
+    console.log(userLevel);
+    console.log(userExp);
+  }
+}
+
 // run
 setUser();
 rollStatus();
+rollExp();
 
-console.log(typeof(userStr));
 
-// 마우스 오른쪽 이벤트
-document.oncontextmenu = function () {
-  // Use document as opposed to window for IE8 compatibility
-  return false;
-};
-
-window.addEventListener(
-  "contextmenu",
-  function (e) {
-    // Not compatible with IE < 9
-    e.preventDefault();
-    console.log("right")
-  },
-  false,
-);
 
 // =========== 변수 ===========
 // user 참조 객체(순수스탯)
 let user_origin = {
-  attack: 10,
+  attack: userStr * 5,
+  hp: userVit * 10,
+  hit: userDex * 10,
+  defense: userVit,
 };
 
 // user 참조 객체(장비스탯)
 let user_equipment = {
   attack: 0,
+  hp: 0,
+  hit: 0,
+  defense: 0,
 };
 
 // user 객체
 let user = {
   name: userName,
 
-  hp: 100,
-  max_hp: 100,
+  lv: 1 + userLevel,
 
-  hit: 50,
+  exp: userExp,
+
+  hp: user_origin.hp + user_equipment.hp,
+  max_hp: user_origin.hp + user_equipment.hp,
+
+  hit: user_origin.hit + user_equipment.hit,
+  defense: user_origin.defense + user_equipment.defense,
   block: 10,
   dodge: 10,
   counter: 50,
   attack: user_origin.attack + user_equipment.attack,
-  defense: 10,
   resistance: 10,
 
   fumble: 1,
@@ -278,6 +300,7 @@ function console_test3() {
 
 let stat_view = document.querySelector(".layer");
 let stat_view_name = document.querySelector(".status .st-name");
+let stat_view_lv = document.querySelector(".status .st-lv");
 let stat_view_hp = document.querySelector(".status .st-hp");
 let stat_view_hit = document.querySelector(".status .st-hit");
 let stat_view_attack = document.querySelector(".status .st-attack");
@@ -296,6 +319,7 @@ function view_status() {
   // view_mhp.innerText = `HP : ${mob.hp} / ${mob.max_hp}`;
 
   stat_view_name.innerText = `${user.name}`;
+  stat_view_lv.innerText = `lv : ${user.lv} / exp : ${user.exp}`;
   stat_view_hp.innerText = `hp : ${user.hp} / ${user.max_hp}`;
   stat_view_hit.innerText = `hit : ${user.hit}`;
   stat_view_attack.innerText = `attack : ${user.attack}`;
@@ -665,3 +689,20 @@ function start() {
     }, 500);
   }
 }
+
+
+// 마우스 오른쪽 이벤트
+document.oncontextmenu = function () {
+  // Use document as opposed to window for IE8 compatibility
+  return false;
+};
+
+window.addEventListener(
+  "contextmenu",
+  function (e) {
+    // Not compatible with IE < 9
+    e.preventDefault();
+    console.log("right")
+  },
+  false,
+);

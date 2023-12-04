@@ -22,80 +22,78 @@
       <div class="d-felx">
         <button class="btn" id="userRoll" type="button">roll</button>
         <button class="btn" id="userSet" type="button">set</button>
-        <button class="btn" id="userExp" type="button">exp</button>
+        <button class="btn" id="expReset" type="button">expReset</button>
       </div>
     </div>
     <!-- wrap -->
-    <div id="wrap" style="display: none;">
-      <!-- view-wrap -->
-      <div class="view-wrap turn_user">
-        <div class="user active">
-          <span class="hp"></span>
-          <span class="st"></span>
+    <div id="wrap">
+      <!-- view-box -->
+      <div class="view-box">
+        <!-- view-wrap -->
+        <div class="view-wrap turn_user">
+          <div class="user active">
+            <span class="hp"></span>
+            <span class="st"></span>
+          </div>
+          <div class="mob">
+            <span class="hp"></span>
+            <span class="st"></span>
+          </div>
+          <div class="dmg-box">
+            <span class="damage"></span>
+            <span class="miss"></span>
+            <span class="counter"></span>
+          </div>
         </div>
-        <div class="mob">
-          <span class="hp"></span>
-          <span class="st"></span>
+        <!-- //view-wrap -->
+
+        <!-- log-wrap -->
+        <div class="log-wrap">
+          <div class="log"></div>
         </div>
-        <div class="dmg-box">
-          <span class="damage"></span>
-          <span class="miss"></span>
-          <span class="counter"></span>
+        <!-- //log-wrap -->
+  
+        <!-- ctrl-wrap -->
+        <div class="ctrl-wrap">
+          <div class="flex">
+            <button class="hit active" type="button" onclick="start();">user hit</button>
+            <button class="hita" type="button" onclick="hitbox(user , mob);">hit_a</button>
+            <button class="hitb" type="button" onclick="hitbox(mob , user);">hit_b</button>
+          </div>
+          <div class="flex">
+            <button class="btn" type="button" onclick="weapon(user_equipment , weapon_list.a_01);">wp_01</button>
+            <button class="btn" type="button" onclick="weapon(user_equipment , weapon_list.a_02);">wp_02</button>
+            <button class="btn" type="button" onclick="console_test();">test</button>
+            <button class="btn" type="button" onclick="console_test2();">test2</button>
+            <button class="btn" type="button" onclick="console_test3();">test3</button>
+          </div>
+          <div class="flex">
+            <button class="btn-test" type="button" onclick="hitbox(user , mob);">hitbox</button>
+            <button class="btn-test" type="button" onclick="counter(user , mob);">miss</button>
+            <button class="btn-test" type="button" onclick="block(user , mob);">block</button>
+            <button class="btn-test" type="button" onclick="dodge(user , mob);">dodge</button>
+            <button class="btn-test" type="button" onclick="damage(user , mob);">damage</button>
+            <button class="btn-test" type="button" onclick="buff(user , mob);">buff</button>
+          </div>
+          <div class="flex">
+            <button class="btn clear" type="button" onclick="console.clear();">console.clear</button>
+            <button class="btn clear" type="button" onclick="location.reload();">reload</button>
+          </div>
+        </div>
+        <!-- //ctrl-wrap -->
+      </div>
+      <!-- //view-box -->
+
+      <!-- space -->
+      <div class="space">
+        <span class="player"></span>
+        <div class="bg">
+          <span class="bg-1"><i class="target-1"></i></span>
+          <span class="bg-2"></span>
+          <span class="bg-3"></span>
         </div>
       </div>
-      <!-- //view-wrap -->
-
-      <!-- log-wrap -->
-      <div class="log-wrap">
-        <div class="log"></div>
-      </div>
-      <!-- //log-wrap -->
-
-      <!-- ctrl-wrap -->
-      <div class="ctrl-wrap">
-        <div class="flex">
-          <button class="hit active" type="button" onclick="start();">user hit</button>
-          <button class="hita" type="button" onclick="hitbox(user , mob);">hit_a</button>
-          <button class="hitb" type="button" onclick="hitbox(mob , user);">hit_b</button>
-        </div>
-        <div class="flex">
-          <button class="btn" type="button" onclick="weapon(user_equipment , weapon_list.a_01);">wp_01</button>
-          <button class="btn" type="button" onclick="weapon(user_equipment , weapon_list.a_02);">wp_02</button>
-          <button class="btn" type="button" onclick="console_test();">test</button>
-          <button class="btn" type="button" onclick="console_test2();">test2</button>
-          <button class="btn" type="button" onclick="console_test3();">test3</button>
-        </div>
-        <div class="flex">
-          <button class="btn-test" type="button" onclick="hitbox(user , mob);">hitbox</button>
-          <button class="btn-test" type="button" onclick="counter(user , mob);">miss</button>
-          <button class="btn-test" type="button" onclick="block(user , mob);">block</button>
-          <button class="btn-test" type="button" onclick="dodge(user , mob);">dodge</button>
-          <button class="btn-test" type="button" onclick="damage(user , mob);">damage</button>
-          <button class="btn-test" type="button" onclick="buff(user , mob);">buff</button>
-        </div>
-        <div class="flex">
-          <button class="btn clear" type="button" onclick="console.clear();">console.clear</button>
-          <button class="btn clear" type="button" onclick="location.reload();">reload</button>
-        </div>
-
-        <div class="flex">
-          <button class="btn clear" type="button" onclick="testindex(2);">testindex</button>
-          <button class="btn clear" type="button" onclick="aaa(1);">Logger</button>
-          <button class="btn trg" type="button">trg</button>
-          <button class="btn trg2" type="button">trg2</button>
-        </div>
-
-        <div class="flex">
-          <button class="btn tab" type="button">tab</button>
-          <button class="btn tab" type="button">tab</button>
-          <button class="btn tab" type="button">tab</button>
-          <button class="btn tab" type="button">tab</button>
-          <button class="btn tab" type="button">tab</button>
-          <button class="btn tab" type="button">tab</button>
-          <button class="btn tab" type="button">tab</button>
-        </div>
-      </div>
-      <!-- //ctrl-wrap -->
+      <!-- //space -->
     </div>
     <!-- //wrap -->
     

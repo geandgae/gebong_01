@@ -2,8 +2,6 @@
 "use strict";
 
 (function () {
-  let keys = [];
-
   // 키보드 이벤트 - 임시
   document.addEventListener("keydown", function (e) {
     keys[e.key] = true;
@@ -12,6 +10,81 @@
       console.log("pushed key " + e.key);
       view_status();
     }
+  });
+
+  // move
+  let keys = [];
+  let keypress;
+  let unit = document.querySelector(".player");
+  let speed = 1;
+  let speedX = 0;
+  let speedY = 0;
+  // test 용
+  let spaceBg = document.querySelector(".space .bg");
+  let distance = 0;
+  let bgTarget = document.querySelector(".space .target-1");
+  let tl = bgTarget.offsetLeft;
+  let tt = bgTarget.offsetTop;
+  let viewBox = document.querySelector(".view-box");
+  setInterval(() => {
+    // 장애물 or 적 테스트
+    if (unit.offsetTop >= tt - 10 && unit.offsetTop <= tt + 10 && unit.offsetLeft >= tl - 10 && unit.offsetLeft <= tl + 10) {
+      // 이동금지
+      speedX = tl - 10;
+      // viewBox.classList.remove("hide");
+    } else {
+      // viewBox.classList.add("hide");
+    }
+
+    if (keys.ArrowRight === true) {
+      // console.log("right");
+      if (speedX < 90) {
+        speedX += speed;
+      } else {
+        if (distance > -200) {
+          distance -= 100;
+          spaceBg.style.left = `${distance}px`;
+          // console.log(spaceBg.style.left);
+          speedX = 0;
+        }
+      }
+    }
+    if (keys.ArrowLeft === true) {
+      // console.log("left");
+      if (speedX > 0) {
+        speedX -= speed;
+      } else {
+        if (distance >= -200 && distance < 0) {
+          distance += 100;
+          spaceBg.style.left = `${distance}px`;
+          // console.log(spaceBg.style.left);
+          speedX = 90;
+        }
+      }
+    }
+    if (keys.ArrowDown === true) {
+      // console.log("down");
+      if (speedY < 90) {
+        speedY += speed;
+      }
+    }
+    if (keys.ArrowUp === true) {
+      // console.log("up");
+      if (speedY > 0) {
+        speedY -= speed;
+      }
+    }
+    unit.style.top = `${speedY}px`;
+    unit.style.left = `${speedX}px`;
+  }, 10);
+
+  document.addEventListener("keyup", function (e) {
+    keypress = false;
+    keys[e.key] = false;
+    // if (unit.offsetTop >= tt - 10 && unit.offsetTop <= tt + 10 && unit.offsetLeft >= tl - 10 && unit.offsetLeft <= tl + 10) {
+    //   console.log(`top : ${unit.offsetTop}`);
+    //   console.log(`left : ${unit.offsetLeft}`);
+    // }
   });
 })();
 
@@ -23,14 +96,25 @@ let userStr = window.localStorage.getItem("userStr") * 1;
 let userDex = window.localStorage.getItem("userDex") * 1;
 let userVit = window.localStorage.getItem("userVit") * 1;
 let userLuc = window.localStorage.getItem("userLuc") * 1;
-if(!userName) {
+let getExp = Math.floor(Math.random() * 30) + 1;
+
+let levelExp;
+window.localStorage.setItem("levelExp", (userLevel + 1) * 100);
+levelExp = window.localStorage.getItem("levelExp") * 1
+if (!userName) {
   userName = "player";
 }
+
+// 예전에는 없어도 상관없었는데... 지금은 있어야함
+let test_type;
+
 console.log(userName);
 console.log(`userStr : ${userStr}`);
 console.log(`userDex : ${userDex}`);
 console.log(`userVit : ${userVit}`);
 console.log(`userLuc : ${userLuc}`);
+console.log(`exp : ${userExp} / ${levelExp}`);
+
 
 // =========== localStorage ===========
 const setUser = () => {
@@ -45,8 +129,8 @@ const setUser = () => {
   // userSet
   userSet.addEventListener("click", () => {
     // 레벨 경험치 초기화
-    window.localStorage.setItem("userExp", userExp = 0);
-    window.localStorage.setItem("userLevel", userLevel = 0);
+    window.localStorage.setItem("userExp", (userExp = 0));
+    window.localStorage.setItem("userLevel", (userLevel = 0));
     for (const item of inputs) {
       if (item.name === "userName") {
         window.localStorage.setItem("userName", item.value);
@@ -64,46 +148,43 @@ const rollStatus = () => {
     for (const item of inputs) {
       item.value = Math.floor(Math.random() * 10) + 1;
     }
-  })
+  });
 };
 
-const rollExp = () => {
-  const btnExp = document.querySelector("#userExp");
+const levelReset = () => {
+  const btnExp = document.querySelector("#expReset");
 
   btnExp.addEventListener("click", () => {
-    
-    window.localStorage.setItem("userExp", userExp += 110);
-    // userExp = window.localStorage.getItem("userExp") * 1;
-    levelUp();
-
-    
-  })
+    window.localStorage.setItem("userExp", (userExp = 0));
+    window.localStorage.setItem("userLevel", (userLevel = 0));
+    location.reload();
+  });
 };
 
 const levelUp = () => {
-  if (userExp >= (userLevel +1) * 100) {
-    window.localStorage.setItem("userExp", userExp -= (userLevel +1) * 100);
-    window.localStorage.setItem("userLevel", userLevel += 1);
+  window.localStorage.setItem("userExp", (userExp += getExp));
+  userExp = window.localStorage.getItem("userExp") * 1;
+  if (userExp >= (userLevel + 1) * 100) {
+    window.localStorage.setItem("userExp", (userExp -= (userLevel + 1) * 100));
+    window.localStorage.setItem("userLevel", (userLevel += 1));
 
-    console.log("levelUp")
+    console.log("levelUp");
     console.log(userLevel);
     console.log(userExp);
   }
-}
+};
 
 // run
 setUser();
 rollStatus();
-rollExp();
-
-
+levelReset();
 
 // =========== 변수 ===========
 // user 참조 객체(순수스탯)
 let user_origin = {
-  attack: userStr * 5,
+  attack: userStr * 10,
   hp: userVit * 10,
-  hit: userDex * 10,
+  hit: userDex * 100,
   defense: userVit,
 };
 
@@ -149,6 +230,8 @@ let user = {
   damage_y: 0, // 크리일때 저항 무시
 };
 
+console.log(`lv : ${user.lv}`);
+
 // mob 객체
 let mob = {
   name: "mob",
@@ -187,7 +270,7 @@ let weapon_list = {
     name: "a_01",
   },
   a_02: {
-    // hit : 100,
+    hit : 100,
     attack: 40,
     name: "a_02",
   },
@@ -196,7 +279,7 @@ let weapon_list = {
 // 변수 설정
 let p_damage = 50;
 let r_damage = p_damage;
-let b_damage;
+let b_damage = 0;
 
 let p_defense = 100;
 let p_resistance = 0;
@@ -249,7 +332,7 @@ function weapon(slot, type) {
   // let user_h = slot.hit;
   let user_a = slot.attack;
 
-  // let wp_h = type.hit;
+  let wp_h = type.hit;
   let wp_a = type.attack;
 
   // console.log(user_h);
@@ -266,7 +349,9 @@ function weapon(slot, type) {
   // console.log(user_equipment);
 
   user_equipment.attack = wp_a;
+  user_equipment.hit = wp_h;
   user.attack = user_origin.attack + user_equipment.attack;
+  user.hit = user_origin.hit + user_equipment.hit
 
   // log_box
   log_text = `user 은(는) ${type.name} 을(를) 장비하였다`;
@@ -336,7 +421,7 @@ function log_box() {
   let text = document.createTextNode(log_text);
   log_line.appendChild(text);
   log_view.appendChild(log_line);
-  console.log(log_wrap_h);
+  // console.log(log_wrap_h);
   log_wrap.scrollTo({
     top: log_wrap_h,
     behavior: "smooth",
@@ -637,8 +722,14 @@ function trun(e) {
     log_box();
   } else if (mob.hp <= 0) {
     // console.log("========= game clear =========");
+    levelUp();
     log_text = `user 은(는) 승리하였다`;
     log_box();
+    log_text = `user 은(는) ${getExp}의 경험치를 얻었다.`;
+    log_box();
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   } else {
     setTimeout(() => {
       btn.classList.add("active");
@@ -655,6 +746,7 @@ function buff(e) {
   console.log("time : " + p_buff);
   console.log("v_buff : " + v_buff);
   console.log(b_damage);
+  user.attack = user_origin.attack + user_equipment.attack + b_damage;
 }
 
 // start 공격 이벤트 버튼
@@ -690,7 +782,6 @@ function start() {
   }
 }
 
-
 // 마우스 오른쪽 이벤트
 document.oncontextmenu = function () {
   // Use document as opposed to window for IE8 compatibility
@@ -702,7 +793,7 @@ window.addEventListener(
   function (e) {
     // Not compatible with IE < 9
     e.preventDefault();
-    console.log("right")
+    console.log("right");
   },
-  false,
+  false
 );

@@ -4,6 +4,10 @@ html {
   font-size: 1px;
 }
 
+.hide {
+  display: none !important;
+}
+
 .test-box {
   border: 1px solid red;
   height: 20rem;
@@ -197,7 +201,7 @@ button {
   display: block;
 }
 .btn-test {
-  display: none;
+  /* display: none; */
 }
 .log-wrap {
   margin-bottom: 20px;
@@ -269,19 +273,64 @@ button {
 .space {
   position: relative;
   margin-top: 20px;
-  width: 300px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.space::before {
+  position: absolute;
+  top: 0;
+  display: block;
+  content: "";
+  width: 100px;
   height: 100px;
   border: 1px solid #000;
+  box-sizing: border-box;
+  z-index: 10;
 }
 .space .player {
   width: 10px;
   height: 10px;
   display: block;
-  background-color: #ff0000;
+  background-color: #000;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 5;
 }
+.space .bg {
+  width: 300px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  transition: all ease 0.5s;
+}
+.space .bg > * {
+  width: 100px;
+  height: 100px;
+}
+.space .bg-1 {
+  background-color: beige;
+}
+.space .bg-1 i {
+  width: 10px;
+  height: 10px;
+  display: block;
+  background-color: #999;
+  position: absolute;
+  top: 45px;
+  left: 90px;
+}
+.space .bg-2 {
+  background-color: aquamarine;
+}
+.space .bg-3 {
+  background-color: cadetblue;
+}
+
 
 .form {
   padding: 10px;

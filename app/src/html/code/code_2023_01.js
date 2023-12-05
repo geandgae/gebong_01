@@ -1,6 +1,7 @@
 // start
 "use strict";
 
+// 키보드 이벤트 자동 실행
 (function () {
   // 키보드 이벤트 - 임시
   document.addEventListener("keydown", function (e) {
@@ -96,7 +97,7 @@ let userStr = window.localStorage.getItem("userStr") * 1;
 let userDex = window.localStorage.getItem("userDex") * 1;
 let userVit = window.localStorage.getItem("userVit") * 1;
 let userLuc = window.localStorage.getItem("userLuc") * 1;
-let getExp = Math.floor(Math.random() * 30) + 1;
+let getExp = Math.floor(Math.random() * 100) + 10;
 
 let levelExp;
 window.localStorage.setItem("levelExp", (userLevel + 1) * 100);
@@ -179,13 +180,13 @@ setUser();
 rollStatus();
 levelReset();
 
-// =========== 변수 ===========
+// =========== 변수 =========== : !!todo 코드 정리
 // user 참조 객체(순수스탯)
 let user_origin = {
-  attack: userStr * 10,
-  hp: userVit * 10,
-  hit: userDex * 100,
-  defense: userVit,
+  attack: (userStr + userLevel) * 10,
+  hp: (userVit + userLevel) * 10,
+  hit: (userDex + userLevel) * 100,
+  defense: (userVit + userLevel),
 };
 
 // user 참조 객체(장비스탯)
@@ -706,7 +707,210 @@ function damage_a(at, tg) {
   // console.log(btn);
 }
 
-// trun stack
+// 보상설정
+const chest_list = {
+  // nm
+  ci_01: {
+    grade: "nm",
+    attack: 10,
+    name: "ci_01",
+  },
+  ci_02: {
+    grade: "nm",
+    attack: 20,
+    name: "ci_02",
+  },
+  ci_03: {
+    grade: "nm",
+    attack: 30,
+    name: "ci_03",
+  },
+  // mg
+  ci_04: {
+    grade: "mg",
+    attack: 40,
+    name: "ci_04",
+  },
+  ci_05: {
+    grade: "mg",
+    attack: 50,
+    name: "ci_05",
+  },
+  // ra
+  ci_06: {
+    grade: "ra",
+    attack: 60,
+    name: "ci_06",
+  },
+  ci_07: {
+    grade: "ra",
+    attack: 70,
+    name: "ci_07",
+  },
+  // ep
+  ci_08: {
+    grade: "ep",
+    attack: 80,
+    name: "ci_08",
+  },
+  ci_09: {
+    grade: "ep",
+    attack: 90,
+    name: "ci_09",
+  },
+  // uq
+  ci_10: {
+    grade: "uq",
+    attack: 100,
+    name: "ci_10",
+  },
+  ci_11: {
+    grade: "uq",
+    attack: 110,
+    name: "ci_11",
+  },
+};
+let chest_selected;
+const chest = () => {
+  
+
+  // 등급
+  const nm = () => {
+    const d =  Math.floor(Math.random() * 3) + 1;
+    // console.log(`nm---- ${d}`);
+    if (d === 1) { chest_selected = chest_list.ci_01.name; }
+    if (d === 2) { chest_selected = chest_list.ci_02.name; }
+    if (d === 3) { chest_selected = chest_list.ci_03.name; }
+    return chest_selected 
+  }
+  const mg = () => {
+    const d =  Math.floor(Math.random() * 2) + 1;
+    // console.log(`mg---- ${d}`);
+    if (d === 1) { chest_selected = chest_list.ci_04.name; }
+    if (d === 2) { chest_selected = chest_list.ci_05.name; }
+    return chest_selected 
+  }
+  const ra = () => {
+    const d =  Math.floor(Math.random() * 2) + 1;
+    // console.log(`ra--- ${d}`);
+    if (d === 1) { chest_selected = chest_list.ci_06.name; }
+    if (d === 2) { chest_selected = chest_list.ci_07.name; }
+    return chest_selected 
+  }
+  const ep = () => {
+    const d =  Math.floor(Math.random() * 2) + 1;
+    // console.log(`ep--- ${d}`);
+    if (d === 1) { chest_selected = chest_list.ci_08.name; }
+    if (d === 2) { chest_selected = chest_list.ci_09.name; }
+    return chest_selected 
+  }
+  const uq = () => {
+    const d =  Math.floor(Math.random() * 100) + 1;
+    // console.log(`uq--- ${d}`);
+    if (d === 100) {
+      console.log("!!!!!");
+      chest_selected = chest_list.ci_11.name; 
+    } else {
+      chest_selected = chest_list.ci_10.name;
+    }
+    return chest_selected 
+  }
+
+  // test용
+  const roll = document.querySelector("#chestRoll");
+  const result = document.querySelector("#chestResult");
+  const roll100 = document.querySelector("#roll100");
+  let array = [];
+  roll.addEventListener("click", () => {
+    // roll 1 아이템 등급 결정 100중에 1~55-nm, 56~75-mg, 76~90-ra, 91~99-ep, 100-uq
+    const dice1 = Math.floor(Math.random() * 100) + 1;
+    if (dice1) {
+      console.log(dice1);
+      if (dice1 >= 1 && dice1 <= 55) {
+        nm();
+        console.log(chest_selected);
+        array.push("nm");
+      } else if (dice1 >= 56 && dice1 <= 75) {
+        mg();
+        console.log(chest_selected);
+        array.push("mg");
+      } else if (dice1 >= 76 && dice1 <= 90) {
+        ra();
+        console.log(chest_selected);
+        array.push("ra");
+      } else if (dice1 >= 91 && dice1 <= 99) {
+        ep();
+        console.log(chest_selected);
+        array.push("ep");
+      } else if (dice1 === 100) {
+        uq();
+        console.log(chest_selected);
+        array.push(chest_selected);
+      }
+    }
+  })
+
+  // 100번 자동
+  roll100.addEventListener("click", () => {
+    for (let i = 1; i <= 1000; i++) {
+      const dice1 = Math.floor(Math.random() * 100) + 1;
+      if (dice1) {
+        if (dice1 >= 1 && dice1 <= 55) {
+          nm();
+          array.push("nm");
+        } else if (dice1 >= 56 && dice1 <= 75) {
+          mg();
+          array.push("mg");
+        } else if (dice1 >= 76 && dice1 <= 90) {
+          ra();
+          array.push("ra");
+        } else if (dice1 >= 91 && dice1 <= 99) {
+          ep();
+          array.push("ep");
+        } else if (dice1 === 100) {
+          uq();
+          array.push(chest_selected);
+        }
+      }
+    }
+  })
+
+  result.addEventListener("click", () => {
+
+    const rnm = array.filter((word) => word === "nm");
+    const rmg = array.filter((word) => word === "mg");
+    const rra = array.filter((word) => word === "ra");
+    const rep = array.filter((word) => word === "ep");
+    const ci_10 = array.filter((word) => word === "ci_10");
+    const ci_11 = array.filter((word) => word === "ci_11");
+    // console.log(`
+    //   [${array}]
+    //   all : ${array.length}
+    //   nm : ${rnm.length}
+    //   mg : ${rmg.length}
+    //   ra : ${rra.length}
+    //   ep : ${rep.length}
+    //   uq : ${ci_10.length}
+    //   suq : ${ci_11.length}
+    // `);
+    console.log(`
+      all : ${array.length}
+      nm : ${rnm.length}
+      mg : ${rmg.length}
+      ra : ${rra.length}
+      ep : ${rep.length}
+      uq : ${ci_10.length}
+      suq : ${ci_11.length}
+    `);
+  })
+  // test용
+
+
+}
+// test
+chest();
+
+// trun stack 전투 종료 결정
 function trun(e) {
   // stack++;
   // p_buff--;
@@ -723,13 +927,16 @@ function trun(e) {
   } else if (mob.hp <= 0) {
     // console.log("========= game clear =========");
     levelUp();
+    chest();
     log_text = `user 은(는) 승리하였다`;
     log_box();
     log_text = `user 은(는) ${getExp}의 경험치를 얻었다.`;
     log_box();
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
+    log_text = `user 은(는) ${chest_selected}을(를) 얻었다.`;
+    log_box();
+    // setTimeout(() => {
+    //   location.reload();
+    // }, 1000);
   } else {
     setTimeout(() => {
       btn.classList.add("active");
@@ -737,7 +944,7 @@ function trun(e) {
   }
 }
 
-// buff 지금은 사용 안 함
+// buff 지금은 사용 안 함 : !!todo 턴 경과후 버프 삭제 및 버프 비율
 function buff(e) {
   p_buff = 3;
   v_buff = "buff";
@@ -749,7 +956,7 @@ function buff(e) {
   user.attack = user_origin.attack + user_equipment.attack + b_damage;
 }
 
-// start 공격 이벤트 버튼
+// start 공격 이벤트 버튼 : !!todo 몹 자동으로 턴 넘어가게 
 let v_turn = "user";
 
 function start() {
@@ -782,7 +989,12 @@ function start() {
   }
 }
 
-// 마우스 오른쪽 이벤트
+
+
+
+
+
+// 마우스 오른쪽 이벤트 테스트용 위 코드랑 관계 없음
 document.oncontextmenu = function () {
   // Use document as opposed to window for IE8 compatibility
   return false;

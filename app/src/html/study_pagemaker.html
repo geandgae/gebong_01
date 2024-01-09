@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intl</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <style>
+    /* reset*/
+    @charset "utf-8";
+
+    * {
+      margin: 0;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+    }
+    *,
+    ::after,
+    ::before {
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    :root {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      cursor: default;
+      overflow-wrap: break-word;
+      tab-size: 4;
+      line-height: 1.5;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    :where(html, body) {
+      height: 100%;
+    }
+    :where(img, picture, video, canvas, svg) {
+      display: block;
+      max-width: 100%;
+    }
+    :where(ol, ul) {
+      list-style: none;
+    }
+    :where(a) {
+      text-decoration: none;
+    }
+    :where(button) {
+      background: none;
+      border: none;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    :where(table) {
+      border-collapse: collapse;
+      border-color: currentColor;
+      border-spacing: 0;
+    }
+    :where(caption, legend) {
+      overflow: hidden;
+      font-size: 1px;
+      line-height: 0;
+      color: transparent;
+    }
+    :where(iframe, fieldset) {
+      border: none;
+      border-style: none;
+    }
+    /* style */
+    #wrap {
+      padding: 50px;
+      color: #111;
+      display: flex;
+    }
+    #wrap section {
+      width: 50%;
+    }
+    .sec-output {
+      border: 1px solid #eee;
+      padding: 20px;
+      height: calc(100vh - 100px);
+      font-size: 11px;
+      overflow: auto;
+      position: relative;
+    }
+    .select, 
+    .input {
+      padding: 5px;
+      border: 1px solid #ddd;
+      height: 34px;
+      line-height: 34px;
+    }
+    .box-bottom {
+      position: fixed;
+      left: 50px;
+      bottom: 50px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .box-bottom .box-input {
+      margin-left: 20px;
+    }
+    .btn {
+      padding: 5px 20px;
+      background-color: #111;
+      color: #fff;
+    }
+    .min-btn {
+      padding: 2px 5px;
+      border: 1px solid #eee;
+      border-top: none;
+      border-right: none;
+      font-size: 11px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .box-input { 
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .box-input label {
+      min-width: 70px;
+    }
+    .box-input + .box-input,
+    .add-target {
+      margin-top: 10px;
+    }
+    .box-bottom .box-input {
+      margin-top: 0 !important;
+    }
+  </style>
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- input -->
+      <section class="sec-input">
+        <div class="box-input">
+          <label for="inType">type</label>
+          <select name="inType" id="inType" class="select">
+            <option value="1">type1</option>
+            <option value="2">type2</option>
+          </select>
+        </div>
+        <div class="box-input">
+          <label for="inTitle">title</label>
+          <input type="text" name="inTitle" id="inTitle" class="input" value="title">
+        </div>
+        <div class="box-input">
+          <label for="inAdd1">add1</label>
+          <input type="checkbox" name="inAdd1" id="inAdd1" class="checkbox">
+        </div>
+        <div class="box-input">
+          <label for="inAdd2">add2</label>
+          <input type="checkbox" name="inAdd2" id="inAdd2" class="checkbox">
+        </div>
+        <div class="add-target">
+
+        </div>
+        <div class="box-bottom">
+          <button type="button" class="btn" id="btnMake">make</button>
+          <div class="box-input">
+            <select name="inSelAdd" id="inSelAdd" class="select">
+              <option value="inCheck0">inCheck0</option>
+              <option value="inCheck1">inCheck1</option>
+            </select>
+            <button type="button" class="btn" id="btnAdd">add</button>
+          </div>
+          <div class="box-input">
+            <select name="inOptAdd" id="inOptAdd" class="select">
+              <option value="inOpt0">opt0</option>
+              <option value="inOpt1">opt1</option>
+              <option value="inOpt2">opt2</option>
+            </select>
+            <button type="button" class="btn" id="btnOpt">opt</button>
+          </div>
+        </div>
+      </section>
+      <!-- output -->
+      <section class="sec-output">
+        <button type="button" class="min-btn" id="btnCopy">copy</button>
+        <pre>
+          <xmp class="box-result">
+            result
+          </xmp>
+        </pre>
+      </section>
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      const pageMaker = () => {
+        // add
+        const addBtn = document.querySelector("#btnAdd");
+        const addSel = document.querySelector("select[name=inSelAdd]");
+        const addTarget = document.querySelector(".sec-input .add-target");
+        const addSet = [
+          `
+          <div class="box-input">
+            <label for="inCheck0">inCheck0</label>
+            <input type="checkbox" name="inCheck0" id="inCheck0" class="checkbox">
+            <input type="text" name="inInput0" id="inInput0" class="input" value="in">
+          </div>
+          `,
+          `
+          <div class="box-input">
+            <label for="inCheck1">inCheck1</label>
+            <input type="checkbox" name="inCheck1" id="inCheck1" class="checkbox">
+          </div>
+        `,
+        ]
+        addBtn.addEventListener("click", () => {
+          const selected = addSel.options[addSel.selectedIndex].value;
+          const add = addTarget.querySelector(`.checkbox[name=${selected}]`);
+          const last = selected.charAt(selected.length - 1);
+          // console.log(last);
+          // console.log(add);
+          if (selected === `inCheck${last}` && !add) {
+            // addTarget.innerHTML += `
+            // <div class="box-input">
+            //   <label for="inAdd${last}">add${last}</label>
+            //   <input type="checkbox" name="inAdd${last}" id="inAdd${last}" class="checkbox">
+            // </div>
+            // `;
+            addTarget.innerHTML += addSet[last]
+          }
+        })
+
+        // opt 반복가능
+        const optBtn = document.querySelector("#btnOpt");
+        const addOptSel = document.querySelector("select[name=inOptAdd]");
+        optBtn.addEventListener("click", () => {
+          const selected = addOptSel.options[addOptSel.selectedIndex].value;
+          const last = selected.charAt(selected.length - 1);
+          const copyNum = addTarget.querySelectorAll(".opt-box").length;
+          console.log(copyNum);
+          const addOptSet = [
+            `
+            <div class="box-input opt-box">
+              <label>inOpt0-${copyNum}</label>
+              <input type="text" name="inOpt0-${copyNum}" id="inOpt0-${copyNum}" class="input inOpt0" value="opt0-${copyNum}">
+            </div>
+            `,
+            `
+            <div class="box-input opt-box">
+              <label>inOpt1-${copyNum}</label>
+              <input type="text" name="inOpt1-${copyNum}" id="inOpt1-${copyNum}" class="input inOpt1" value="opt1-${copyNum}">
+            </div>
+            `,
+            `
+            <div class="box-input opt-box">
+              <label>inOpt2-${copyNum}</label>
+              <input type="text" name="inOpt2-${copyNum}" id="inOpt2-${copyNum}" class="input inOpt2" value="opt2-${copyNum}">
+            </div>
+            `,
+          ]
+          if (selected === `inOpt${last}`) {
+            addTarget.innerHTML += addOptSet[last]
+          }
+        })
+        
+        // copy
+        const copyBtn = document.querySelector("#btnCopy");
+        copyBtn.addEventListener("click", () => {
+          window.navigator.clipboard.writeText(result.textContent).then(() => {
+            console.log("복사완료");
+            console.log(result.textContent);
+          });
+        });
+        
+        // make
+        const btn = document.querySelector("#btnMake");
+        const result = document.querySelector(".box-result");
+        btn.addEventListener("click", () => {
+          // 옵션
+          const title = document.querySelector(".input[name=inTitle]").value;
+          const add1 = document.querySelector(".checkbox[name=inAdd1]").checked;
+          const add2 = document.querySelector(".checkbox[name=inAdd2]").checked;
+          let addTags = ``;
+          // 추가옵션
+          const check1 = document.querySelector(".checkbox[name=inCheck0]");
+          const check2 = document.querySelector(".checkbox[name=inCheck1]");
+          
+          // 타입선택
+          const type = document.querySelector("select[name=inType]");
+          let typeSelected;
+          for (i = 0; i < type.options.length; i++) {
+            if (type.options[i].selected == true) {
+              typeSelected = type.options[i].text;
+              // typeSelected = type.options[i].value;
+              break;
+            }
+          }
+          // typeSelected = type.options[type.selectedIndex].text
+          // typeSelected = type.options[type.selectedIndex].val
+
+          // 태그추가
+          if (add1 === true) {
+            addTags += `
+                  <div class="card">
+                    card
+                  </div>
+            `
+          }
+          if (add2 === true) {
+            addTags += `
+                  <div class="box-input">
+                    <label for="inAdd3">add3</label>
+                    <input type="checkbox" name="inAdd3" id="inAdd3" class="checkbox">
+                  </div>
+            `
+          }
+          // 옵션태그 추가
+          if (check1) {
+            if (check1.checked === true) {
+              const inInput0 = document.querySelector(".input[name=inInput0]").value;
+              addTags += `
+                  <div class="box-input">
+                    <label for="inCheck0">inCheck0</label>
+                    <input type="checkbox" name="inCheck0" id="inCheck0" class="checkbox">
+                    <div>${inInput0}</div>
+                  </div>
+              `
+            }
+          }
+          if (check2) {
+            if (check2.checked === true) {
+              addTags += `
+                  <div class="box-input">
+                    <label for="inCheck1">inCheck1</label>
+                    <input type="checkbox" name="inCheck1" id="inCheck1" class="checkbox">
+                  </div>
+              `
+            }
+          }
+          // 옵션태그 추가2
+          const optBox0 = document.querySelectorAll(".input.inOpt0");
+          for (const item of optBox0) {
+            addTags += `
+                  <div class="box-input0">${item.value}</div>
+            `
+          }
+          const optBox1 = document.querySelectorAll(".input.inOpt1");
+          for (const item of optBox1) {
+            addTags += `
+                  <div class="box-input1">${item.value}</div>
+            `
+          }
+          const optBox2 = document.querySelectorAll(".input.inOpt2");
+          for (const item of optBox2) {
+            addTags += `
+                  <div class="box-input2">${item.value}</div>
+            `
+          }
+
+          // 기본 세트
+          const type1Header = `
+          <!DOCTYPE html>
+          <html lang="kor">
+            <head>
+              <meta charset="UTF-8" />
+              <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>${title}</title>
+
+              <!-- font -->
+              <link rel="preconnect" href="https://fonts.googleapis.com" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+              <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+            </head>
+            <body>
+              <!-- wrap -->
+              <div id="wrap">
+          `;
+          const type1Body = `
+                <div class="cont">
+                  ${addTags}
+                </div>
+          `;
+          const type1Footer = `
+              </div>
+              <!-- //wrap -->
+            <body>
+          </html>
+          `;
+          const type2Header = `
+          <!DOCTYPE html>
+          <html lang="kor">
+            <head>
+              <meta charset="UTF-8" />
+              <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>${title}</title>
+            </head>
+            <body>
+              <!-- outland -->
+              <div id="outland">
+          `;
+          const type2Body = `
+                <div class="pop">
+                  ${addTags}
+                </div>
+          `;
+          const type2Footer = `
+              </div>
+              <!-- //outland -->
+            <body>
+          </html>
+          `;
+
+          // 최종결과
+          let output;
+          function out(val1, val2, val3) {
+            output = val1 + val2 + val3;
+          }
+          if (typeSelected === "type1") {
+            out(type1Header, type1Body, type1Footer);
+            result.innerHTML = output;
+          }
+          if (typeSelected === "type2") {
+            out(type2Header, type2Body, type2Footer);
+            result.innerHTML = output;
+          }
+          
+        });
+      };
+      pageMaker();
+    </script>
+  </body>
+</html>

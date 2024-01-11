@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intl</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <style>
+    /* reset*/
+    @charset "utf-8";
+
+    * {
+      margin: 0;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+    }
+    *,
+    ::after,
+    ::before {
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    :root {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      cursor: default;
+      overflow-wrap: break-word;
+      tab-size: 4;
+      line-height: 1.5;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    :where(html, body) {
+      height: 100%;
+    }
+    :where(img, picture, video, canvas, svg) {
+      display: block;
+      max-width: 100%;
+    }
+    :where(ol, ul) {
+      list-style: none;
+    }
+    :where(a) {
+      text-decoration: none;
+    }
+    :where(button) {
+      background: none;
+      border: none;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    :where(table) {
+      border-collapse: collapse;
+      border-color: currentColor;
+      border-spacing: 0;
+    }
+    :where(caption, legend) {
+      overflow: hidden;
+      font-size: 1px;
+      line-height: 0;
+      color: transparent;
+    }
+    :where(iframe, fieldset) {
+      border: none;
+      border-style: none;
+    }
+    /* style */
+    #wrap {
+      padding: 50px;
+      color: #111;
+      display: flex;
+      font-size: 11px;
+      gap: 20px;
+    }
+    #wrap section {
+      width: 50%;
+    }
+    .sec-output {
+      border: 1px solid #ddd;
+      padding: 20px;
+      height: calc(100vh - 100px);
+      font-size: 11px;
+      overflow: auto;
+      position: relative;
+    }
+    .select, 
+    .input {
+      padding: 5px;
+      border: 1px solid #ddd;
+      height: 26px;
+      line-height: 26px;
+    }
+    .btn {
+      padding: 5px 20px;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 26px;
+      line-height: 26px;
+    }
+    .box-bottom {
+      position: fixed;
+      left: 50px;
+      bottom: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .box-bottom .box-input {
+      gap: 0;
+    }
+    .box-input { 
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .box-input label {
+      min-width: 70px;
+    }
+    .box-input + .box-input,
+    .add-target {
+      margin-top: 10px;
+    }
+    .box-bottom .box-input {
+      margin-top: 0 !important;
+    }
+    .box-input .input {
+      flex: 1;
+    }
+    .box-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 26px;
+      cursor: pointer;
+    }
+    .box-checkbox label {
+      cursor: pointer;
+    }
+    .box-checkbox label {
+      min-width: auto;
+    }
+    .box-options {
+      border: 1px solid #ddd;
+      padding: 20px;
+      background-color: #f9f9f9;
+      margin-top: 20px;
+    }
+    .box-options .inchk {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .add-target {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hide {
+      display: none !important;
+    }
+  </style>
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- sec-input -->
+      <section class="sec-input">
+        <!-- inputs -->
+        <div class="box-input">
+          <label for="inTitle">title</label>
+          <input type="text" name="inTitle" id="inTitle" class="input" value="title">
+        </div>
+        <div class="box-input type-select">
+          <label for="inType">type</label>
+          <div class="box-checkbox">
+            <label for="typeA">typeA</label>
+            <input type="radio" name="type" id="typeA" class="radio" checked>
+          </div>
+          <div class="box-checkbox">
+            <label for="typeB">typeB</label>
+            <input type="radio" name="type" id="typeB" class="radio">
+          </div>
+          <div class="box-checkbox">
+            <label for="typeC">typeC</label>
+            <input type="radio" name="type" id="typeC" class="radio">
+          </div>
+        </div>
+        <!-- inputs -->
+        
+        <!-- type options -->
+        <div class="box-options typeA">
+          <div class="box-input">
+            <label for="inputA">inputA</label>
+            <input type="text" name="inputA" id="inputA" class="input" value="value1">
+          </div>
+          <div class="box-input">
+            <label for="checkboxA">checkboxA</label>
+            <input type="checkbox" name="checkboxA" id="checkboxA" class="checkbox">
+          </div>
+          <div class="box-input">
+            <label for="selectA">selectA</label>
+            <select name="selectA" id="selectA" class="select">
+              <option value="selectA1">selectA1</option>
+              <option value="selectA2">selectA2</option>
+              <option value="selectA3">selectA3</option>
+            </select>
+            <button type="button" class="btn" id="btnAdd">add</button>
+          </div>
+          <!-- add -->
+          <div class="add-target">
+          </div>
+          <!-- //add -->
+        </div>
+        <!-- //type options -->
+        <!-- type options -->
+        <div class="box-options typeB hide">
+          <div class="box-input">
+            <label for="inputB">inputB</label>
+            <input type="text" name="inputB" id="inputB" class="input" value="value1">
+          </div>
+          <div class="box-input">
+            <label for="inputB2">inputB2</label>
+            <input type="text" name="inputB2" id="inputB2" class="input" value="value2">
+          </div>
+          <div class="box-input">
+            <label for="inputB3">inputB3</label>
+            <input type="text" name="inputB3" id="inputB3" class="input" value="value3">
+          </div>
+          <div class="box-input">
+            <label for="checkboxB">checkboxB</label>
+            <input type="checkbox" name="checkboxB" id="checkboxB" class="checkbox">
+          </div>
+        </div>
+        <!-- //type options -->
+        <!-- type options -->
+        <div class="box-options typeC hide">
+          <div class="box-input">
+            <label for="inputC">inputC</label>
+            <input type="text" name="inputC" id="inputC" class="input" value="value1">
+          </div>
+          <div class="box-input">
+            <label for="inputC2">inputC2</label>
+            <input type="text" name="inputC2" id="inputC2" class="input" value="value2">
+          </div>
+          <div class="box-input">
+            <label for="checkboxC">checkboxC</label>
+            <input type="checkbox" name="checkboxC" id="checkboxC" class="checkbox">
+          </div>
+        </div>
+        <!-- //type options -->
+        
+        <!-- box-bottom -->
+        <div class="box-bottom">
+          <button type="button" class="btn" id="btnMake">make</button>
+          <button type="button" class="btn" id="btnCopy">copy</button>
+          <div class="box-input">
+            <input type="text" name="fileName" id="fileName" class="input" value="fileName" size="10">
+            <button type="button" class="btn" id="btnSave">save</button>
+          </div>
+        </div>
+        <!-- //box-bottom -->
+      </section>
+      <!-- //sec-input -->
+
+      <!-- sec-output -->
+      <section class="sec-output">
+        <pre>
+          <xmp class="box-result">
+            result
+          </xmp>
+        </pre>
+      </section>
+      <!-- sec-output -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      const pageSet = () => {
+        // 선언
+        const btnMake = document.querySelector("#btnMake");
+        const btnCopy = document.querySelector("#btnCopy");
+        const btnSave = document.querySelector("#btnSave");
+        const result = document.querySelector(".box-result");
+        const typeSelect = document.querySelectorAll(".type-select .radio");
+        let type = document.querySelector(".type-select .radio:checked").id;
+        const typeOptions = document.querySelectorAll(".box-options");
+
+        // type
+        for (const item of typeSelect) {
+          item.addEventListener("click", () => {
+            if (item.checked === true) {
+              type = item.id;
+            }
+            console.log(type);
+            typeOptions.forEach(el => {
+              el.classList.add("hide");
+              if (el.classList.contains(type)) {
+                el.classList.remove("hide");
+                console.log(el);
+              }
+            });
+          })
+        }
+
+        // typeA add options
+        const addTarget = document.querySelector(".add-target");
+        const aOptions = document.querySelector(".typeA .select");
+        const bntAdd = document.querySelector(".typeA #btnAdd");
+        let aOptSel;
+        btnAdd.addEventListener("click", () => {
+          aOptSel = aOptions.options[aOptions.selectedIndex].value;
+          addTarget.innerHTML += `
+          <div class="inchk">
+            <label for="${aOptSel}">${aOptSel}</label>
+            <input type="checkbox" name="${aOptSel}" class="checkbox add-span" checked disabled>
+          </div>
+          `;
+        })
+
+        // make
+        btnMake.addEventListener("click", () => {
+          // dom
+          let contents = ``;
+          let addTag = ``;
+          let title = document.querySelector("input[name=inTitle]").value;
+
+          // inputs, check
+          const inputs = document.querySelectorAll(`.${type} .input`);
+          const check = document.querySelector(`.${type} .checkbox`).checked;
+          const contInputs = [];
+          for (const item of inputs) {
+            contInputs.push(item.value);
+          }
+
+          // addItem
+          const addItem = document.querySelectorAll(".add-target .add-span");
+          const selectA1 = `
+                <div class="add1">selectA1</div>
+          `;
+          const selectA2 = `
+                <div class="add2">selectA2</div>
+          `;
+          const selectA3 = `
+                <div class="add3">selectA3</div>
+          `;
+          for (const item of addItem) {
+            if (item.name === "selectA1") {
+              addTag += selectA1;
+            }
+            if (item.name === "selectA2") {
+              addTag += selectA2;
+            }
+            if (item.name === "selectA3") {
+              addTag += selectA3;
+            }
+            // console.log((item.name === selectA1));
+          }
+
+          // typeA
+          if (type === "typeA") {
+            contents = `
+            <!-- bodyA -->
+            <div class="bodyA">
+              <div>${contInputs[0]}</div>
+              <div>${check}</div>
+              <div>
+                ${addTag}
+              </div>
+            </div>
+            <!-- //bodyA -->
+            `;
+          }
+          // typeB
+          if (type === "typeB") {
+            contents = `
+            <!-- bodyB -->
+            <div class="bodyB">
+              <div>${contInputs[0]}</div>
+              <div>${contInputs[1]}</div>
+              <div>${contInputs[2]}</div>
+              <div>${check}</div>
+            </div>
+            <!-- //bodyB -->
+            `;
+          }
+          // typeC
+          if (type === "typeC") {
+            contents = `
+            <!-- bodyC -->
+            <div class="bodyC">
+              <div>${contInputs[0]}</div>
+              <div>${contInputs[1]}</div>
+              <div>${check}</div>
+            </div>  
+            <!-- //bodyC -->
+            `;
+          }
+          
+          // fix dom
+          let domHeader = `
+          <div class="header">${title}</div>
+          `;
+          let domBody = `
+          <div class="body">
+            ${contents}
+          </div>
+          `;
+          let domFooter = `
+          <div class="footer">footer</div>
+          `;
+          
+          // out put
+          function domMaker(el1, el2, el3) {
+            result.innerHTML = el1 + el2 + el3;
+          }
+          domMaker(domHeader, domBody, domFooter);
+        });
+
+        // copy
+        btnCopy.addEventListener("click", () => {
+          window.navigator.clipboard.writeText(result.textContent).then(() => {
+            console.log("복사완료");
+            console.log(result.textContent);
+          });
+        });
+
+        // save
+        btnSave.addEventListener("click", () => {
+          const fileName = document.querySelector("#fileName");
+          const blob = new Blob([result.innerHTML], {
+            type:'text/html'
+          });
+          // 저장 부분
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          a.download = fileName.value;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => {
+              document.body.removeChild(a);
+              window.URL.revokeObjectURL(url);
+          }, 100);
+          // 저장 부분
+          console.log(blob);
+          console.log(url);
+        })
+
+      }
+      pageSet();
+    </script>
+  </body>
+</html>

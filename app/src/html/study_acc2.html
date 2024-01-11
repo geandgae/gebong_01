@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide Up/Down 예제</title>
+  </head>
+  <body>
+    <style>
+      #myDiv {
+        overflow: hidden;
+        transition: height 0.5s, visibility 0.5s, opacity 0.5s;
+        height: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      #myDiv .content {
+        padding: 20px;
+      }
+
+      .hidden {
+        height: 0 !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+      }
+
+      .visible {
+        height: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    </style>
+    <div id="myDiv" class="hidden">
+      <div class="content">이것은 숨겨질 수 있는 내용입니다.</div>
+    </div>
+
+    <button id="toggleBtn" onclick="toggleSlide()">Toggle Slide</button>
+
+    <script>
+      const toggleSlide = () => {
+        const element = document.getElementById("myDiv");
+
+        if (element.classList.contains("hidden")) {
+          // SlideDown
+          element.classList.remove("hidden");
+          element.classList.add("visible");
+          element.style.height = "auto";
+          const height = element.scrollHeight;
+          element.style.height = "0";
+          element.offsetHeight; // 강제 리플로우
+          element.style.height = `${height}px`;
+        } else {
+          // SlideUp
+          const height = element.scrollHeight;
+          element.style.height = `${height}px`;
+          element.offsetHeight; // 강제 리플로우
+          element.style.height = "0";
+
+          const transitionEndHandler = () => {
+            element.classList.remove("visible");
+            element.classList.add("hidden");
+            element.style.height = "";
+            element.removeEventListener("transitionend", transitionEndHandler);
+          };
+
+          element.addEventListener("transitionend", transitionEndHandler, { once: true });
+        }
+      };
+    </script>
+  </body>
+</html>

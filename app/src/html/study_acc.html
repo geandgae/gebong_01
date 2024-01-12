@@ -126,6 +126,16 @@
       //   element.addEventListener("transitionend", transitionEndHandler, { once: true });
       // };
 
+
+      // 높이 구할때 auto 상태를 잠깐 주고 구한기
+      panel.style.height = "auto";
+      let ph = panel.clientHeight;
+      panel.style.height = "0";
+      setTimeout(() => {
+        panel.style.height = `${ph}px`;
+      }, 0);
+
+
       const toggleSlide = () => {
         const element = document.getElementById("myDiv");
 

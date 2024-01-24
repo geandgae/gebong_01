@@ -11,11 +11,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
 
-    <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- <link href="./assets/css/ia.css" type="text/css" media="all" rel="stylesheet" /> -->
   </head>
   <body>
     <!-- wrap -->
-    <div id="wrap">Intl</div>
+    <div id="wrap">
+      <div>
+        <label for="inputDate">date : </label>
+        <input type="text" id="inputDate" />
+        <button onclick="calculateDateDifference2()">계산</button>
+        <p id="result"></p>
+      </div>
+      <div>
+        <label for="inputDate">날짜를 입력하세요: </label>
+        <input type="date" id="inputDate2">
+        <button onclick="calculateDateDifference3()">계산</button>
+        <p id="result2"></p>
+      </div>
+    </div>
     <!-- //wrap -->
 
     <!-- outland -->
@@ -23,8 +36,85 @@
     <!-- //outland -->
 
     <script>
+      // 날짜 차이 계산 1
+      function calculateDateDifference(inputDate) {
+        // 현재 날짜를 얻습니다.
+        const today = new Date();
 
-      // 날짜 차이 계산
+        // 입력한 날짜를 파싱합니다.
+        const input = new Date(inputDate);
+
+        // 날짜 차이를 계산합니다.
+        const timeDifference = input.getTime() - today.getTime();
+
+        // 차이를 일 단위로 변환합니다.
+        const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        return dayDifference;
+      }
+      // 테스트를 위해 오늘로부터 3일 뒤의 날짜를 구합니다.
+      const futureDate = new Date();
+      futureDate.setDate(futureDate.getDate() + 3);
+      // 함수 호출
+      const difference = calculateDateDifference(futureDate);
+      console.log(`오늘과 입력한 날짜의 차이는 ${difference}일 입니다.`);
+
+
+      // 날짜 차이 계산 2
+      function calculateDateDifference2() {
+        // 입력한 날짜를 얻습니다.
+        const inputDateElement = document.getElementById("inputDate");
+        const inputDateValue = inputDateElement.value;
+        // 현재 날짜를 얻습니다.
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);  // 시간을 00:00:00으로 설정
+        // 입력한 날짜를 파싱합니다.
+        const input = new Date(inputDateValue);
+        // 날짜가 올바르게 파싱되었는지 확인합니다.
+        if (isNaN(input.getTime())) {
+          alert("올바른 날짜 형식을 입력하세요 (YYYY-MM-DD).");
+          return;
+        }
+        // 날짜 차이를 계산합니다.
+        const timeDifference = input.getTime() - today.getTime();
+        // 차이를 일 단위로 변환합니다.
+        const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        // 결과를 출력합니다.
+        const resultElement = document.getElementById("result");
+        resultElement.innerHTML = `오늘과 입력한 날짜의 차이는 ${dayDifference}일 입니다.`;
+      }
+
+      // 날짜 차이 계산 3
+      function calculateDateDifference3() {
+        // 입력한 날짜를 얻습니다.
+        const inputDateElement = document.getElementById("inputDate2");
+        const inputDateValue = inputDateElement.value;
+
+        // 현재 날짜를 얻습니다.
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);  // 시간을 00:00:00으로 설정
+        
+        // 입력한 날짜를 파싱합니다.
+        const input = new Date(inputDateValue);
+
+        // 날짜 차이를 계산합니다.
+        const timeDifference = input.getTime() - today.getTime();
+
+        // 차이를 일 단위로 변환합니다.
+        const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        // 결과를 출력합니다.
+        const resultElement = document.getElementById("result2");
+        resultElement.innerHTML = `오늘과 입력한 날짜의 차이는 ${dayDifference}일 입니다.`;
+      }
+
+
+
+
+
+
+
+
 
       //  숫자 0 제거
       // function _setLeftZeroRemove(vValue) {
@@ -36,7 +126,7 @@
       //     if (vVal.length == 0) {
       //       vVal = 0;
       //     }
-      //   } 
+      //   }
 
       //   return vVal;
       // }
@@ -67,8 +157,6 @@
       //     return `${day}/${month}/${year}`;
       //   }
       // };
-      
-      
 
       // new Intl.DateTimeFormat("fr-CA", {year: "numeric", month: "2-digit", day: "2-digit"}).format(Date.now())
       // yyyy-mm-dd

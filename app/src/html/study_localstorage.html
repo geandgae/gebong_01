@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ls</title>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>wrap</header>
+      <main>
+        <div class="input">
+          <input type="text" value="1" />
+          <button>submit</button>
+        </div>
+        <div class="input">
+          <input type="text" value="2" />
+          <button>submit</button>
+        </div>
+        <div class="input">
+          <input type="text" value="3" />
+          <button>submit</button>
+        </div>
+        <div class="input">
+          <input type="text" value="4" />
+          <button>submit</button>
+        </div>
+        <div class="input">
+          <input type="text" value="5" />
+          <button>submit</button>
+        </div>
+        <div class="output"></div>
+      </main>
+    </div>
+
+    <script>
+      // const localStorage = () => {
+      //   // localStorage
+      //   let arr = [];
+
+      //   try {
+      //     // Try to parse the existing data in localStorage
+      //     let output = window.localStorage.getItem("data");
+      //     arr = JSON.parse(output) || [];
+      //   } catch (error) {
+      //     // Handle the error if parsing fails
+      //     console.error("Error parsing localStorage data:", error);
+      //     arr = [0];
+      //   }
+
+      //   // Check if there is data in localStorage
+      //   // if (window.localStorage.getItem("data")) {
+      //   //   let output = window.localStorage.getItem("data");
+      //   //   arr = JSON.parse(output);
+      //   // } else {
+      //   //   // If no data, initialize with [0]
+      //   //   arr = [0];
+      //   //   window.localStorage.setItem("data", JSON.stringify(arr));
+      //   // }
+
+      //   // if (window.localStorage.length === 0) {
+      //   //   window.localStorage.setItem("data", JSON.stringify(arr));
+      //   //   let output = window.localStorage.getItem("data");
+      //   //   arr = JSON.parse(output);
+      //   // } else {
+      //   // }
+
+      //   const result = document.querySelector(".output");
+      //   const inputs = document.querySelectorAll(".input");
+      //   for (const item of inputs) {
+      //     const btn = item.querySelector("button");
+      //     const val = item.querySelector("input").value;
+      //     btn.addEventListener("click", () => {
+      //       arr.push(val);
+      //       window.localStorage.setItem("data", JSON.stringify(arr));
+      //       result.innerHTML = `output : ${arr}`
+      //     })
+      //   }
+      //   result.innerHTML = `output : ${arr}`
+      // }
+      // localStorage();
+
+      const localStorageFunction = () => {
+        let arr = [];
+
+        // try {
+        //   let output = window.localStorage.getItem("data");
+        //   arr = JSON.parse(output) || [];
+        // } catch (error) {
+        //   console.error("Error parsing localStorage data:", error);
+        //   arr = [0];
+        // }
+
+        // Check if there is data in localStorage
+        if (window.localStorage.getItem("data")) {
+          let output = window.localStorage.getItem("data");
+          arr = JSON.parse(output);
+        } else {
+          // If no data, initialize with [0]
+          arr = [0];
+          window.localStorage.setItem("data", JSON.stringify(arr));
+        }
+
+        const result = document.querySelector(".output");
+        const inputs = document.querySelectorAll(".input");
+
+        inputs.forEach((item) => {
+          const btn = item.querySelector("button");
+
+          btn.addEventListener("click", () => {
+            const val = item.querySelector("input").value;
+            arr.push(val);
+            window.localStorage.setItem("data", JSON.stringify(arr));
+            result.innerHTML = `output : ${arr}`;
+          });
+        });
+
+        console.log(window.localStorage);
+        console.log(arr);
+        result.innerHTML = `output : ${arr}`;
+      };
+
+      localStorageFunction();
+    </script>
+  </body>
+</html>

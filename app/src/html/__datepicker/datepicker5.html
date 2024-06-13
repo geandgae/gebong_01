@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>date</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="../../assets/jq/jquery-ui.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../../assets/jq/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/jq/jquery-ui.js"></script>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .wrap {
+      margin: 100px;
+    }
+    .ui-datepicker {
+      width: 400px;
+    }
+    .ui-datepicker-days-cell-over {
+      background-color: aquamarine;
+    }
+    .ui-state-disabled.reserved-date span {
+      color: red !important;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <p style="margin-top: 20px">Date: <input type="text" id="datepicker" /></p>
+    </div>
+    <div id="reserved-days"></div>
+  </body>
+
+  <script>
+    $(function () {
+      const reservedDate = [
+        "2023-11-01",
+        "2023-11-02",
+        "2023-11-04",
+        "2023-11-07",
+        "2023-11-09",
+        "2023-11-11",
+        "2023-11-12",
+        "2023-11-20",
+        "2023-11-21",
+        "2023-11-22",
+        "2023-11-24",
+        "2023-11-26",
+        "2023-11-27",
+        "2023-12-27",
+        "2023-12-28",
+      ];
+
+      $("#datepicker").datepicker({
+        changeMonth: true, // 월 선택 화살표 활성화
+        // showButtonPanel: true, // Done 버튼 표시
+        defaultDate: +5, // 현재 날짜에서 하루를 더한 날짜를 기본으로 설정
+        maxDate: "+6D", // defaultDate 기준으로 7일 이내까지만 선택 가능
+        beforeShowDay: (date) => {
+          const formattedDate = $.datepicker.formatDate("yy-mm-dd", date);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0); // 현재 날짜를 시간 부분을 0으로 초기화
+
+          // 예약된 날짜는 선택 불가능하게 설정
+          // return [!reservedDate.includes(formattedDate), "reserved-date"]; // reserved-date 클래스 적용
+
+          // 현재 날짜 이후의 날짜는 선택할 수 없도록 설정
+          const isAfterToday = date.getTime() >= today.getTime();
+
+          // 예약된 날짜는 선택할 수 없는 날과 구분하여 설정 v2
+          const isReserved = reservedDate.includes(formattedDate);
+
+          // // 시작일을 기준으로 7일 이내의 날짜만 선택 가능하게 설정
+          // const startDate = $("#datepicker").datepicker("getDate");
+          // const daysDifference = Math.ceil((date - startDate) / (1000 * 60 * 60 * 24));
+
+          // // if (isAfterToday && !isReserved) {
+          // //   return [true, ""]; // 선택 가능한 날짜
+          // // } else if (!isAfterToday && !isReserved) {
+          // //   return [false, "not-available"]; // 현재 날짜 이전의 선택 불가능한 날짜
+          // // } else {
+          // //   return [false, "reserved-date"]; // 예약된 날짜
+          // // }
+          // if (isAfterToday && daysDifference <= 7 && !isReserved) {
+          //   return [true, ""]; // 선택 가능한 날짜
+          // } else if (!isAfterToday && !isReserved) {
+          //   return [false, "not-available"]; // 현재 날짜 이전의 선택 불가능한 날짜
+          // } else {
+          //   return [false, "reserved-date"]; // 예약된 날짜
+          // }
+
+          // 시작일을 기준으로 7일 이내의 날짜만 선택 가능하게 설정
+          // const startDate = $("#datepicker").datepicker("getDate") || today; // 시작일이 없으면 현재 날짜를 기본으로 사용
+          // const daysDifference = Math.ceil((date - startDate) / (1000 * 60 * 60 * 24));
+
+          // if (isAfterToday && daysDifference >= 0 && daysDifference <= 6 && !isReserved) {
+          //   return [true, ""]; // 선택 가능한 날짜
+          // } else if (!isAfterToday && !isReserved) {
+          //   return [false, "not-available"]; // 현재 날짜 이전의 선택 불가능한 날짜
+          // } else {
+          //   return [false, "reserved-date"]; // 예약된 날짜
+          // }
+
+          // 시작일을 기준으로 7일 이내의 날짜만 선택 가능하게 설정
+          const startDate = $("#datepicker").datepicker("getDate") || today; // 시작일이 없으면 현재 날짜를 기본으로 사용
+          const daysDifference = Math.ceil((date - startDate) / (1000 * 60 * 60 * 24));
+          const isWithin7Days = daysDifference >= 0 && daysDifference <= 6;
+
+          if (isAfterToday && isWithin7Days && !isReserved) {
+            return [true, ""]; // 선택 가능한 날짜
+          } else if (!isAfterToday && !isReserved) {
+            return [false, "not-available"]; // 현재 날짜 이전의 선택 불가능한 날짜
+          } else {
+            return [false, "reserved-date"]; // 예약된 날짜
+          }
+        },
+        onChangeMonthYear: (year, month, inst) => {
+          // 새로운 월에 해당하는 예약된 날짜 업데이트
+          updateReservedDays(year, month);
+        },
+        beforeShow: (input, inst) => {
+          // 초기 로딩 시 예약된 날짜 표시
+          updateReservedDays(inst.selectedYear, inst.selectedMonth + 1);
+        },
+      });
+
+
+      // 예약된 날짜를 달력 아래 표시
+      const updateReservedDays = (year, month) => {
+        // 예약된 날짜 중에서 해당 월에 해당하는 일만 추출하여 달력 아래에 표시
+        const reservedDays = reservedDate
+          .filter((dateString) => {
+            const date = new Date(dateString);
+            return date.getFullYear() === year && date.getMonth() + 1 === month;
+          })
+          .map((date) => new Date(date).getDate());
+
+        // 연속된 날짜 구간을 찾아서 표시
+        const consecutiveRanges = findConsecutiveRanges(reservedDays);
+
+        // 달력 아래에 표시
+        $("#reserved-days").text(`예약된 날짜: ${formatConsecutiveRanges(consecutiveRanges)}`);
+      };
+
+      const findConsecutiveRanges = (arr) => {
+        const ranges = [];
+        let currentRange = [arr[0]];
+
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] === arr[i - 1] + 1) {
+            currentRange.push(arr[i]);
+          } else {
+            ranges.push(currentRange);
+            currentRange = [arr[i]];
+          }
+        }
+
+        ranges.push(currentRange);
+        return ranges;
+      };
+
+      const formatConsecutiveRanges = (ranges) => {
+        return ranges.map((range) => (range.length === 1 ? `${range[0]}` : `${range[0]}-${range[range.length - 1]}`)).join(", ");
+      };
+    });
+  </script>
+</html>

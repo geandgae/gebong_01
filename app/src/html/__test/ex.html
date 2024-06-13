@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ia</title>
+    <link href="../../assets/css/ia_test.css" type="text/css" media="all" rel="stylesheet">
+    <link href="../../assets/css/ia.css" type="text/css" media="all" rel="stylesheet">
+    <!-- <script src="./assets/js/ia.js"></script> -->
+    <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
+    <!-- <script async src="./assets/js/ia.js"></script>  -->
+    <!-- 덜 중요한 리소스 로드(ex 접근성) -->
+    <!-- <script defer src="./assets/js/ia.js"></script> -->
+  </head>
+  <body>
+
+    <script>
+      // for(let i = 1; i < 6; i++)  {
+      //   for(let j = 1; j <= i; j++)  {
+      //     document.write('*');
+      //   }
+      //   document.write('<br>');
+      // }
+
+      // for(let i = 9; i >= 0; i--)  {
+      //   if (i == 1) {
+      //     document.write('*');
+      //     document.write('<br>');
+      //   } else if ( i == 3) {
+      //     document.write('*');
+      //     document.write('<br>');
+      //   } else if ( i == 6) {
+      //     document.write('*');
+      //     document.write('<br>');
+      //   } else {
+      //     document.write('*');
+      //   }
+      // }
+      
+      let star = 10;
+      let dot = {
+        x : "*",
+        n : 1,
+      };
+      let total = star * 2 - 1;
+      let space = "&nbsp";
+      for(let i = 0; i < star; i++)  {
+        // console.log(dot.n);
+        let al = (total - dot.n) / 2;
+        document.write(space.repeat(al) + dot.x + "<br>");
+        dot.n += 2;
+        dot.x += "**";
+      }
+    </script>
+
+    <!-- rel 예 -->
+    <!-- <div class="site-navigation" rel="js-site-navigation"></div>
+  <script>
+    const nav = document.querySelector("[rel='js-site-navigation']")
+  </script> -->
+
+    <!-- <img src="" alt="">
+    <picture></picture>
+    <video src=""></video>
+    <canvas></canvas>
+    <svg width="" height="">
+    </svg> -->
+
+
+    <!-- <div>
+      배열 :
+      <span id="nums"></span>
+    </div>
+
+    <select id="search-select">
+      <option value="index">id</option>
+      <option value="depth1">name</option>
+      <option value="depth2">favorites</option>
+    </select>
+    <input type="text" class="search-text" />
+    <button id="btn">Search</button>
+
+    <div>
+      결과 :
+      <span id="result"></span>
+    </div> -->
+    <script>
+      // let nums = [1, 2, 3, 4, 5];
+      // document.getElementById("nums").innerHTML = nums;
+
+      // function search() {
+      //   let text = document.getElementsByClassName("search-text")[0].value;
+      //   text = parseInt(text);
+
+      //   let res = nums.find((element) => {
+      //     return element === text;
+      //   });
+
+      //   document.getElementById("result").innerText = res;
+      // }
+      // document.getElementById("btn").addEventListener("click", search);
+    </script>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="day">Day (initial)</div>
+    <div class="day light-scheme">Day (changes in light scheme)</div>
+    <div class="day dark-scheme">Day (changes in dark scheme)</div>
+
+    <div class="night">Night (initial)</div>
+    <div class="night light-scheme">Night (changes in light scheme)</div>
+    <div class="night dark-scheme">Night (changes in dark scheme)</div>
+
+    <div class="dark-theme">
+      <a href="#">plum</a>
+      <div class="light-theme">
+        <a href="#">also plum???</a>
+      </div>
+    </div>
+
+    <img />
+
+    <article>
+      <h2>:where()</h2>
+      <section class="where">
+        <p>Section</p>
+      </section>
+      <aside class="where">
+        <p>Aside</p>
+      </aside>
+      <footer class="where">
+        <p>Footer</p>
+      </footer>
+    </article>
+    <article>
+      <h2>:is()</h2>
+      <section class="is">
+        <p>Section</p>
+      </section>
+      <aside class="is">
+        <p>Aside</p>
+      </aside>
+      <footer class="is">
+        <p>Footer</p>
+      </footer>
+    </article>
+
+    <!-- table_ia -->
+    <table class="table">
+      <caption>
+        ia
+      </caption>
+      <thead>
+        <tr>
+          <th>index</th>
+          <th>picture</th>
+          <th>age</th>
+          <th>eyeColor</th>
+          <th>name</th>
+          <th>gender</th>
+          <th>company</th>
+          <th>email</th>
+          <th>phone</th>
+          <th>address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>o</td>
+          <td>"http://placehold.it/32x32"</td>
+          <td>35</td>
+          <td>"brown"</td>
+          <td>"Cain Nicholson"</td>
+          <td>"male"</td>
+          <td>"NIXELT"</td>
+          <td>"cainnicholson@nixelt.com"</td>
+          <td>"+1 (923) 489-3725"</td>
+          <td>"207 Townsend Street, Garberville, Vermont, 2378"</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- //table_ia -->
+
+    <!-- <div class="radiobox c">
+      <label for="sdtDvCd_1" class="radio" role="radio" aria-checked="false">
+        <input type="radio" id="sdtDvCd_1" name="sdtDvCd" data-ui-tab-btn="tab_rb" aria-controls="tab_rb_1" value="1" aria-hidden="true">
+        <span class="txt">남성</span>
+      </label>
+      <label for="sdtDvCd_2" class="radio" role="radio" aria-checked="false">
+        <input type="radio" id="sdtDvCd_2" name="sdtDvCd" data-ui-tab-btn="tab_rb" aria-controls="tab_rb_2" value="2" aria-hidden="true">
+        <span class="txt">여성</span>
+      </label>
+    </div>
+    
+    
+    <div class="radiobox c">
+      <label for="ph-set-1" class="radio" role="radio" aria-checked="true">
+        <input type="radio" value="B" id="ph-set-1" name="radio_c1" data-ui-tab-btn="tab_rb_p" aria-controls="tab_rb_m" checked="" aria-hidden="true">
+        <span class="txt">휴대폰</span>
+      </label>
+      <label for="ph-set-2" class="radio" role="radio" aria-checked="false">
+        <input type="radio" value="A" id="ph-set-2" name="radio_c1" data-ui-tab-btn="tab_rb_p" aria-controls="tab_rb_t" aria-hidden="true">
+        <span class="txt">집/직장</span>
+      </label>
+    </div> -->
+
+  </body>
+</html>
+
+
+

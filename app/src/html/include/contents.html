@@ -1,29 +1,100 @@
 <style>
- article a {
-   display: block;
-   width: 100%;
- }
+  article a {
+    display: block;
+    width: 100%;
+  }
 </style>
 <article>
-  <ul>
-    <li><a href="./core.html" target="_blank">core.html</a></li>
-    <li><a href="./calendar.html" target="_blank">calendar.html</a></li>
-    <li><a href="./modal.html" target="_blank">modal.html(v1 - 현재 작업중인 기능)</a></li>
-    <li><a href="./modal2.html" target="_blank">modal.html2(v2 - 간략화)</a></li>
-    <li><a href="./ia_v1.html" target="_blank">ia_v1.html</a></li>
-    <li><a href="./ia_v2.html" target="_blank">ia_v2.html(test??)</a></li>
-    <li><a href="./reset.html" target="_blank">reset.html</a></li>
-    <li><a href="./ex.html" target="_blank">ex.html</a></li>
-    <li><a href="./sort.html" target="_blank">sort.html</a></li>
-    <li><a href="./auto.html" target="_blank">auto.html</a></li>
-    <li><a href="./resize.html" target="_blank">resize.html</a></li>
-    <li><a href="./study_clipboard.html" target="_blank">document.execCommand 대체 navigator.clipboard</a></li>
-    <li><a href="./study_select.html" target="_blank">study_select</a></li>
-    <li><a href="./study_intl.html" target="_blank">study_intl_DateTimeFormat</a></li>
-    <li><a href="./study_svg.html" target="_blank">svg auto</a></li>
-    <li><a href="./study_ani.html" target="_blank">ani</a></li>
-    <li><a href="./observe.html" target="_blank">mutations - observe</a></li>
-    <li><a href="./accordion.html" target="_blank">accordion</a></li>
-    <li><a href="./datepicker.html" target="_blank">datepicker</a></li>
-  </ul>
+  <h5>__datepicker</h5>
+  <ul class="__datepicker"></ul>
+
+  <h5>__game</h5>
+  <ul class="__game"></ul>
+
+  <h5>__ia_old</h5>
+  <ul class="__ia_old"></ul>
+
+  <h5>__modal</h5>
+  <ul class="__modal"></ul>
+
+  <h5>__test</h5>
+  <ul class="__test"></ul>
+
+  <h5>__study</h5>
+  <ul class="__study"></ul>
+
 </article>
+
+<script>
+  const makeList = () => {
+    const targetDatePicker = document.querySelector(".__datepicker");
+    const datePicker = [
+      { link: "@@html/__datepicker/calendar.html", name: "calendar" },
+      { link: "@@html/__datepicker/datepicker1.html", name: "datepicker1" },
+      { link: "@@html/__datepicker/datepicker2.html", name: "datepicker2" },
+      { link: "@@html/__datepicker/datepicker3.html", name: "datepicker3" },
+      { link: "@@html/__datepicker/datepicker4.html", name: "datepicker4" },
+      { link: "@@html/__datepicker/datepicker5.html", name: "datepicker5" },
+      { link: "@@html/__datepicker/datepicker6.html", name: "datepicker6" },
+      { link: "@@html/__datepicker/datepicker7.html", name: "datepicker7" },
+    ];
+    targetDatePicker.innerHTML = datePicker.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+
+    const targetGame = document.querySelector(".__game");
+    const game = [
+      { link: "@@html/__game/test_000.html", name: "test_000" },
+      { link: "@@html/__game/test_001.html", name: "test_001" },
+      { link: "@@html/__game/code_2023_01.html", name: "code_2023_01" },
+    ];
+    targetGame.innerHTML = game.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+
+    const targetIaOld = document.querySelector(".__ia_old");
+    const iaOld = [
+      { link: "@@html/__ia_old/ia_v1.html", name: "ia_v1" },
+      { link: "@@html/__ia_old/ia_v2.html", name: "ia_v2" },
+    ];
+    targetIaOld.innerHTML = iaOld.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+
+    const targetModal = document.querySelector(".__modal");
+    const modal = [
+      { link: "@@html/__modal/modal_layer_autoclick.html", name: "modal_layer_autoclick" },
+      { link: "@@html/__modal/modal1.html", name: "modal1" },
+      { link: "@@html/__modal/modal2.html", name: "modal2" },
+    ];
+    targetModal.innerHTML = modal.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+
+    const targetTest = document.querySelector(".__test");
+    const test = [
+      { link: "@@html/__test/ex.html", name: "ex" },
+      { link: "@@html/__test/mobile_test.html", name: "mobile_test" },
+      { link: "@@html/__test/reset.html", name: "reset" },
+    ];
+    targetTest.innerHTML = test.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+
+    const targetStudy = document.querySelector(".__study");
+    const study = [
+      { link: "@@html/__study/study_acc.html", name: "study_acc" },
+      { link: "@@html/__study/study_acc2.html", name: "study_acc2" },
+      { link: "@@html/__study/study_acc3.html", name: "study_acc3" },
+      { link: "@@html/__study/study_acc4.html", name: "study_acc4" },
+      { link: "@@html/__study/study_ani.html", name: "study_ani" },
+      { link: "@@html/__study/study_ani2.html", name: "study_ani2" },
+      { link: "@@html/__study/study_ani3.html", name: "study_ani3" },
+      { link: "@@html/__study/study_ani4.html", name: "study_ani4" },
+      { link: "@@html/__study/study_ani5.html", name: "study_ani5" },
+      { link: "@@html/__study/study_clipboard.html", name: "study_clipboard" },
+      { link: "@@html/__study/study_intl.html", name: "study_intl" },
+      { link: "@@html/__study/study_loading.html", name: "study_loading" },
+      { link: "@@html/__study/study_localstorage.html", name: "study_localstorage" },
+      { link: "@@html/__study/study_observe.html", name: "study_observe" },
+      { link: "@@html/__study/study_pagemaker.html", name: "study_pagemaker" },
+      { link: "@@html/__study/study_pagemaker2.html", name: "study_pagemaker2" },
+      { link: "@@html/__study/study_resize.html", name: "study_resize" },
+      { link: "@@html/__study/study_select.html", name: "study_select" },
+      { link: "@@html/__study/study_sort.html", name: "study_sort" },
+      { link: "@@html/__study/study_svg.html", name: "study_svg" },
+    ];
+    targetStudy.innerHTML = study.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+  };
+  window.onload = makeList;
+</script>

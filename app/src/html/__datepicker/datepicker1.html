@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>date</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="../../assets/jq/jquery-ui.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../../assets/jq/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/jq/jquery-ui.js"></script>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .wrap {
+      margin: 100px;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <!-- Datepicker -->
+      <div id="datepicker"></div>
+      <div style="margin-top: 20px" id="mydate2"></div>
+
+      <p style="margin-top: 20px">Date: <input type="text" id="datepickerIP" /></p>
+      <!-- <p style="margin-top: 20px">Date2: <input type="text" id="datepickerBB" /></p> -->
+
+      <div style="margin-top: 20px" id="mydate"></div>
+
+      <div class="sid">
+        <span class="a1"></span>
+        <span class="a2"></span>
+        <span class="a3"></span>
+        <span class="a4"></span>
+        <span class="a5"></span>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // $("#datepicker").datepicker({
+    //   inline: true,
+    // });
+
+    $("#datepicker").datepicker({
+      dateFormat: "yy-mm-dd", //Input Display Format 변경
+      showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+      showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+      changeYear: true, //콤보박스에서 년 선택 가능
+      changeMonth: true, //콤보박스에서 월 선택 가능
+      showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+      buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+      buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+      buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+      yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+      monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+      monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+      dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+      dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+      minDate: "-1y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+      maxDate: "+1M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+
+    // $(function () {
+    //   $("#datepickerIP").datepicker();
+    // });
+
+    // $(function () {
+    //   //input을 datepicker로 선언
+    //   $("#datepickerIP").datepicker({
+    //     dateFormat: "yy-mm-dd", //Input Display Format 변경
+    //     showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+    //     showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+    //     changeYear: true, //콤보박스에서 년 선택 가능
+    //     changeMonth: true, //콤보박스에서 월 선택 가능
+    //     showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+    //     buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+    //     buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+    //     buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+    //     yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+    //     monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+    //     monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+    //     dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+    //     dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+    //     minDate: "-1M", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+    //     maxDate: "+1M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+    //     // firstDay: 5, // 한주의 시작일
+    //   });
+
+    //   //초기값을 오늘 날짜로 설정
+    //   // $("#datepicker").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    // });
+
+    // $("#BtnDateSearch").click(function () {
+    //   if (!$("#Date1").val()) {
+    //     alert("시작날짜를 선택하세요");
+    //     return false;
+    //   }
+    //   if (!$("#Date2").val()) {
+    //     alert("끝날짜를 선택하세요");
+    //     return false;
+    //   }
+    //   var date1 = new Date($("#Date1").datepicker("getDate"));
+    //   var date2 = new Date($("#Date2").datepicker("getDate"));
+    //   if (date2 - date1 < 0) {
+    //     alert("끝 날짜가 시작날짜보다 이전일수 없습니다");
+    //     return false;
+    //   }
+    //   $("#DateSearchForm").submit();
+    // });
+
+    let fdate;
+    let sdate;
+    let findate = [20231120, 20231101];
+
+    $(function () {
+      //모든 datepicker에 대한 공통 옵션 설정
+      $.datepicker.setDefaults({
+        dateFormat: "yy-mm-dd", //Input Display Format 변경
+        showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+        changeYear: true, //콤보박스에서 년 선택 가능
+        changeMonth: true, //콤보박스에서 월 선택 가능
+        showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+        buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+        buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+        yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+        monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+        monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+        dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+        dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+        minDate: "-1Y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        maxDate: "+1M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        onSelect: function (d) {
+          //-------------------------여기까지가 달력형태로 만든 후 클릭했을 때를 설정해주는 부분이야
+          //-------------------------여기서부터는 선택한 날짜를 잘라서 각각의 요소에 넣어주는 부분이야
+          // alert("d = " + d);
+
+          // var arr = d.split("/");
+
+          // $("#year").text(arr[0].trim());
+          // $("#month").text(arr[1].trim());
+          // $("#day").text(arr[2].trim());
+
+          //-------------------------가져온 날짜를 Date Class 에 넣어주는 부분이야
+          // let date = new Date($("#datepicker").datepicker({ dataFormat: "yy/mm/dd" }).val());
+          let date = new Date($("#datepicker").datepicker("getDate"));
+          let day = date.getDate();
+          let month = date.getMonth() + 1;
+          let year = date.getFullYear();
+          day = day < 10 ? `0${day}` : day;
+          month = month < 10 ? `0${month}` : month;
+          // console.log(day);
+          // console.log(month);
+          fdate = `${year}${month}${day}` * 1;
+          // alert("요일번호:" + date.getDay());
+          // 선택한 날짜의 요일 번호를 가져와서 무슨 요일인지 알아보려는거야
+          let week = new Array("일", "월", "화", "수", "목", "금", "토");
+          // $("#mydate2").text(week[date.getDay()]);
+          // $("#mydate2").text(date);
+          $("#mydate2").text(fdate);
+          // console.log(fdate);
+        },
+      });
+
+      //input을 datepicker로 선언
+      $("#datepickerIP").datepicker({
+        // Type: Function
+        // onSelect: function (dateText, inst) {
+        //   console.log(dateText);
+        // },
+
+        // onChangeMonthYear: function() {
+        //   console.log("onChangeMonthYear");
+        // },
+        // onClose: function() {
+        //   console.log("onClose");
+        // },
+        // onUpdateDatepicker: function() {
+        //   console.log("onUpdateDatepicker");
+        // },
+        // beforeShow: function() {
+        //   console.log("beforeShow");
+        // },
+        // calculateWeek: function() {
+        //   console.log("calculateWeek");
+        // },
+        // beforeShowDay: function() {
+        //   console.log("beforeShowDay");
+        // },
+
+        onSelect: function (d) {
+          //-------------------------여기까지가 달력형태로 만든 후 클릭했을 때를 설정해주는 부분이야
+          //-------------------------여기서부터는 선택한 날짜를 잘라서 각각의 요소에 넣어주는 부분이야
+          // alert("d = " + d);
+
+          // var arr = d.split("/");
+
+          // $("#year").text(arr[0].trim());
+          // $("#month").text(arr[1].trim());
+          // $("#day").text(arr[2].trim());
+
+          //-------------------------가져온 날짜를 Date Class 에 넣어주는 부분이야
+          // let date = new Date($("#datepickerIP").datepicker({ dataFormat: "yy/mm/dd" }).val());
+          let date = new Date($("#datepickerIP").datepicker("getDate"));
+          let day = date.getDate();
+          let month = date.getMonth() + 1;
+          let year = date.getFullYear();
+          day = day < 10 ? `0${day}` : day;
+          month = month < 10 ? `0${month}` : month;
+          sdate = `${year}${month}${day}` * 1;
+          // alert("요일번호:" + date.getDay());
+          // 선택한 날짜의 요일 번호를 가져와서 무슨 요일인지 알아보려는거야
+          let week = new Array("일", "월", "화", "수", "목", "금", "토");
+          // $("#mydate").text(week[date.getDay()]);
+          $("#mydate").text(sdate);
+          // console.log(sdate);
+          // console.log("result");
+          // console.log(sdate - fdate);
+          // console.log("array");
+          // console.log(findate[0] - sdate);
+
+          // 예약날짜 비교
+          let len = [];
+          let loop;
+          let reDate = ["2023.11.19", "2023.11.20", "2023.11.27", "2023.11.30", "2023.12.05", "2023.12.29"];
+          console.log(`reDate : ${reDate}`);
+          for (const item of reDate) {
+            let nd = new Date(item);
+            let v = (nd - date) / 86400000;
+            if (v > 0 && v <= 15) {
+              len.push(v);
+            }
+          }
+
+          console.log("----------------");
+          console.log(len);
+          // console.log(len.length);
+          // loop 설정 len.length === 0 일때 최대값 노출
+          if (len.length === 0) {
+            len.push(15);
+          }
+          // console.log(typeof(len[0]));
+          loop = len[0];
+
+          for (let i = 1; i <= loop; i++) {
+            console.log(i);
+          }
+        },
+      });
+      // $("#datepickerBB").datepicker();
+
+      //From의 초기값을 오늘 날짜로 설정
+      $("#datepickerIP").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+      //To의 초기값을 내일로 설정
+      // $("#datepickerBB").datepicker("setDate", "+1D"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+
+    // getdate
+    const getDate = () => {
+      const inp = document.querySelector("#datepickerIP");
+      inp.addEventListener("change", () => {
+        let val = inp.value;
+        console.log(val);
+        console.log("!!!!");
+      });
+    };
+    getDate();
+
+    let goal = 2;
+    function func(tarray, goal) {
+      // console.log(tarray);
+      for (let i = 0; i < tarray.length; i++) {
+        let cnt = 1;
+        let num = tarray[i];
+
+        while (true)
+          if (tarray.includes(++num)) cnt++;
+          else break;
+        console.log(num);
+
+        // 연속된 숫자가 목표개 있음
+        if (cnt === goal) {
+          // console.log("goal");
+        }
+      }
+    }
+    // func(tarray, goal);
+
+    let tarray = [1, 2, 3, 4, 5, 6, 10, 12, 14, 20, 21, 22, 23, 25, 26, 28, 29];
+    let newArray = [];
+    let outArray = [];
+    let cntn = 0;
+
+    // arr[5][2] (빈 배열 생성)
+    const tarr1 = Array.from(Array(tarray.length), () => new Array(0));
+
+    // arr[5][2] (null로 초기화하여 생성)
+    // const tarr2 = Array.from(Array(5), () => Array(2).fill(null));
+
+    function result() {
+      for (let i = 0; i < tarray.length - 1; i++) {
+        // if (tarray[i] + 1 != tarray[i + 1]) return "NO";
+        // console.log(tarray[i] + 1 === tarray[i + 1]);
+        // if (tarray[i] + 1 != tarray[i + 1]) {
+        //   tarray[i] = "/"
+        // }
+        if (tarray[i] + 1 === tarray[i + 1]) {
+          if (tarr1[cntn].includes("/")) {
+            cntn += 1;
+          }
+          tarr1[cntn].push(tarray[i]);
+        } else {
+          cntn += 1;
+          if (tarray[i] - 1 === tarray[i - 1]) {
+            // tarr1[cntn].push(tarray[i]);
+          } else {
+            tarr1[cntn].push("/");
+            tarr1[cntn].push(tarray[i]);
+          }
+        }
+      }
+      console.log(tarray);
+      console.log(tarr1);
+      console.log("--------------");
+      // console.log(newArray);
+      // console.log(tarr1);
+      // return "YES";
+      // for (let j = 0; j < newArray.length - 1; j++) {
+      //   if (newArray[j] + 1 === newArray[j + 1]) {
+      //     outArray.push(newArray[j]);
+      //   }
+      // }
+      // console.log(outArray);
+
+      for (const item of tarr1) {
+        let out;
+        let max = item[item.length - 1] + 1;
+        if (item.length >= 1 && !item.includes("/")) {
+          out = `${item[0]} ~ ${max}`;
+        } else {
+          out = `${item[1]}`;
+        }
+        // console.log(out);
+        if (!out.includes(undefined)) {
+          console.log(out);
+        }
+        // if (out.indexOf(undefined) != -1) {
+        //   console.log(out);
+        // }
+      }
+    }
+    result();
+
+
+    let testsib = document.querySelector(".sid .a1");
+    const tempArr = [];
+    function siblings(t) {
+      const children = t.parentElement.children;
+
+      for (let i = 0; i < children.length; i++) {
+        tempArr.push(children[i]);
+      }
+
+      return tempArr.filter(function (e) {
+        return e != t;
+      });
+    }
+    // function siblings(t, removeClass) {
+    //   const children = t.parentElement.children;
+
+    //   for (let i = 0; i < children.length; i++) {    
+    //     children[i].classList.remove(removeClass)
+    //   }  
+    // }
+
+    siblings(testsib);
+
+    console.log(testsib.nextSibling);
+    console.log(tempArr);
+
+    
+  </script>
+</html>

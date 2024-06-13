@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reset</title>
+    <link href="../../assets/css/ia.css" type="text/css" media="all" rel="stylesheet">
+  </head>
+  <body>
+    <!-- 테스트용 css -->
+    <style>
+      .ex {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 5px;
+      }
+      .ex + .ex {
+        margin-top: 0;
+      }
+      :where(img, picture, video, canvas, svg) {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+      }
+      button {
+        border: 1px solid #000;
+      }
+      p {
+        white-space: pre;
+      }
+      ul li {
+        padding: 10px;
+      }
+    </style>
+    <!-- //테스트용 css -->
+
+    <!-- tabsize -->
+    <p>&#0009;tabsize</p>
+    <p>   tabsize</p>
+    <p>&nbsp;&nbsp;tabsize</p>
+    <!-- //tabsize -->
+
+    <!-- ex -->
+    <div class="ex">
+      <img src="../../assets/images/temp/0.jpg" alt="img">
+
+      <picture>
+        <!-- <source media="(max-width: 1200px)" srcset="../../assets/images/temp/1.jpg"> -->
+        <source media="(max-width: 400px)" srcset="../../assets/images/temp/0.jpg">
+        <img src="../../assets/images/temp/1.jpg" alt="img">
+      </picture>
+
+      <video src=""></video>
+
+      <canvas></canvas>
+
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          :root { color: blue }
+          @media (prefers-color-scheme: dark) {
+            :root { color: purple }
+          }
+        </style>
+        <circle fill="currentColor" cx="16" cy="16" r="16"/>
+      </svg>
+    </div>
+    <!-- //ex -->
+
+    <!-- ex -->
+    <div class="ex">
+      <button type="button">button</button>
+      <input type="button" value="input">
+      <input type="reset">
+      <input type="submit">
+    </div>
+    <!-- //ex -->
+
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li><a href="#;">link</a></li>
+    </ul>
+
+    
+    <br>
+
+    <!-- table_ia -->
+    <table class="table">
+      <caption>
+        ia
+      </caption>
+      <thead>
+        <tr>
+          <th>index</th>
+          <th>picture</th>
+          <th>age</th>
+          <th>eyeColor</th>
+          <th>name</th>
+          <th>gender</th>
+          <th>company</th>
+          <th>email</th>
+          <th>phone</th>
+          <th>address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>o</td>
+          <td>"http://placehold.it/32x32"</td>
+          <td>35</td>
+          <td>"brown"</td>
+          <td>"Cain Nicholson"</td>
+          <td>"male"</td>
+          <td>"NIXELT"</td>
+          <td>"cainnicholson@nixelt.com"</td>
+          <td>"+1 (923) 489-3725"</td>
+          <td>"207 Townsend Street, Garberville, Vermont, 2378"</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- //table_ia -->
+
+    <iframe src="" frameborder="1"></iframe>
+
+  </body>
+</html>

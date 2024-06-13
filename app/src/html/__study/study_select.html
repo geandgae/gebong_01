@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>select</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <style>
+      .card {
+        display: block;
+        width: 400px;
+        height: 200px;
+        border: 1px solid #111;
+        position: relative;
+        margin-top: 30px;
+      }
+      .card.selected {
+        border: 1px solid red;
+      }
+      .radioitem {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        gap: 5px;
+        font-size: 14px;
+      }
+      .radioitem .val {
+        margin-left: auto;
+      }
+      .total {
+        color: red;
+        font-size: 24px;
+        text-align: right;
+      }
+      .chk {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        background-color: aqua;
+        z-index: 100;
+        height: 50px;
+        width: 50px;
+      }
+      .chk label {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .chk input {
+        display: none;
+      }
+      .chk input:checked + label {
+        background-color: red;
+      }
+      .radioitems {
+        margin-top: 50px;
+      }
+      .radioitem {
+        margin-top: 10px;
+        background-color: #999;
+      }
+      .radioitem label {
+        width: 100px;
+        background-color: aquamarine;
+      }
+    </style>
+
+    <!-- wrap -->
+    <div id="wrap">
+      <div class="selector">
+        <span class="all">
+          <label for="chkAll">전체선택</label>
+          <input type="checkbox" id="chkAll" name="chkAll" />
+        </span>
+        <div class="cards">
+          <!-- card -->
+          <div class="card">
+            <span class="chk">
+              <input type="checkbox" id="chk1" name="chk1" value="a" />
+              <label for="chk1">chk1</label>
+            </span>
+            <div class="radioitems">
+              <span class="radioitem">
+                <input type="radio" id="rd1-1" name="radio1" value="1" />
+                <label for="rd1-1">rd1-1</label>
+                <span class="val">10000</span>
+              </span>
+              <span class="radioitem">
+                <input type="radio" id="rd1-2" name="radio1" value="2" />
+                <label for="rd1-2">rd1-2</label>
+                <span class="val">20000</span>
+              </span>
+            </div>
+            <div class="total">0</div>
+          </div>
+          <!-- card -->
+          <!-- card -->
+          <div class="card">
+            <span class="chk">
+              <input type="checkbox" id="chk2" name="chk2" value="b" />
+              <label for="chk2">chk2</label>
+            </span>
+            <div class="radioitems">
+              <span class="radioitem">
+                <input type="radio" id="rd2-1" name="radio2" value="1" />
+                <label for="rd2-1">rd2-1</label>
+                <span class="val">12000</span>
+              </span>
+              <span class="radioitem">
+                <input type="radio" id="rd2-2" name="radio2" value="2" />
+                <label for="rd2-2">rd2-2</label>
+                <span class="val">20000</span>
+              </span>
+            </div>
+            <div class="total">0</div>
+          </div>
+          <!-- card -->
+          <!-- card -->
+          <div class="card">
+            <span class="chk">
+              <input type="checkbox" id="chk3" name="chk3" value="c" />
+              <label for="chk3">chk3</label>
+            </span>
+            <div class="radioitems">
+              <span class="radioitem">
+                <input type="radio" id="rd3-1" name="radio3" value="1" />
+                <label for="rd3-1">rd3-1</label>
+                <span class="val">13000</span>
+              </span>
+              <span class="radioitem">
+                <input type="radio" id="rd3-2" name="radio3" value="2" />
+                <label for="rd3-2">rd3-2</label>
+                <span class="val">20000</span>
+              </span>
+            </div>
+            <div class="total">0</div>
+          </div>
+          <!-- card -->
+        </div>
+      </div>
+    </div>
+    <!-- //wrap -->
+
+    <!-- outland -->
+    <div id="outland"></div>
+    <!-- //outland -->
+
+    <script>
+      // cardClick
+      function cardClick() {
+        const card = document.querySelectorAll(".card");
+        const all = document.querySelector(".selector .all input[type=checkbox]");
+
+        let selectd = document.querySelectorAll(".selected");
+
+        // reset
+        const chk = document.querySelectorAll(".chk");
+        const radio = document.querySelectorAll(".radioitem input[type=radio]");
+        // const radio = document.querySelectorAll(".radioitem");
+
+        function selected(val) {
+          let tc = val.closest(".card");
+          selectd = document.querySelectorAll(".selected");
+          console.log(tc);
+        }
+
+        // reset
+        for (const item of chk) {
+          item.addEventListener("click", function (event) {
+            event.preventDefault();
+          });
+        }
+
+        // radio
+        // for (const item of radio) {
+        //   item.addEventListener("click", function (event) {
+        //     event.stopPropagation();
+        //     // event.preventDefault();
+        //     let total = item.closest(".card").querySelector(".total");
+        //     let inchk = item.closest(".card").querySelector(".chk input[type=checkbox]");
+        //     let cardin = item.closest(".card");
+        //     let val = item.closest(".radioitem").querySelector(".val").innerHTML;
+        //     console.log(card);
+        //     total.innerHTML = `${val}원`;
+        //     inchk.checked = true;
+        //     cardin.classList.add("selected");
+
+        //     selectd = document.querySelectorAll(".selected");
+        //     console.log(card.length);
+        //     console.log(selectd.length);
+
+        //     if (card.length === selectd.length) {
+        //       all.checked = true;
+        //     } else {
+        //       all.checked = false;
+        //     }
+        //   });
+        // }
+
+        // for (var i = 0; i < ele.length; i++) {
+        //   if (ele[i].checked === true) {
+        //     // checked 속성이 true 와 같은지 비교합니다.
+        //     console.log(ele[i].value); //blue 만 출력합니다.
+        //   }
+        // }
+
+        for (const item of radio) {
+          item.addEventListener("click", function (event) {
+            event.stopPropagation();
+            let inchk = item.closest(".card").querySelector(".chk input[type=checkbox]");
+            let cardin = item.closest(".card");
+            let total = item.closest(".card").querySelector(".total");
+            if (item.checked === true) {
+              total.innerHTML = `${item.value}원`;
+              inchk.checked = true;
+              cardin.classList.add("selected");
+            }
+
+            selected(item);
+          });
+        }
+
+        // card
+        for (const item of card) {
+          item.addEventListener("click", function () {
+            let inchk = item.querySelector(".chk input[type=checkbox]");
+            let radio = item.querySelectorAll(".radioitem input[type=radio]");
+            // let val = radio.closest(".radioitems").querySelector(".val").innerHTML;
+            let val = radio[0].closest(".radioitems").querySelector(".val").innerHTML;
+            let total = item.querySelector(".total");
+            // let val = radio.nextElementSibling
+            if (item.classList.contains("selected")) {
+              item.classList.remove("selected");
+              inchk.checked = false;
+              for (const item of radio) {
+                item.checked = false;
+              }
+              total.innerHTML = "0";
+            } else {
+              item.classList.add("selected");
+              inchk.checked = true;
+              radio[0].checked = true;
+              total.innerHTML = `${val}원`;
+            }
+
+            selected(item);
+
+            // selectd = document.querySelectorAll(".selected");
+            if (card.length === selectd.length) {
+              all.checked = true;
+            } else {
+              all.checked = false;
+            }
+
+            // console.log(card.length);
+            // console.log(selectd.length);
+            // if (nor.length === checked.length) {
+            //   all.checked = true;
+            // } else {
+            //   all.checked = false;
+            // }
+            // checked = document.querySelectorAll(".selector .boxs input[type=checkbox]:checked");
+          });
+        }
+
+        // all
+        all.addEventListener("click", function () {
+          if (all.checked === true) {
+            for (const item of card) {
+              item.classList.add("selected");
+              item.querySelector(".chk input[type=checkbox]").checked = true;
+              item.querySelector(".radioitem input[type=radio][value='1']").checked = true;
+              let radio = item.querySelector(".radioitem input[type=radio][value='1']");
+              let val = radio.closest(".radioitems").querySelector(".val").innerHTML;
+              item.querySelector(".total").innerHTML = `${val}원`;
+            }
+          } else {
+            for (const item of card) {
+              item.classList.remove("selected");
+              item.querySelector(".chk input[type=checkbox]").checked = false;
+              item.querySelector(".radioitem input[type=radio][value='1']").checked = false;
+              item.querySelector(".radioitem input[type=radio][value='2']").checked = false;
+              item.querySelector(".total").innerHTML = "0";
+            }
+          }
+        });
+      }
+      cardClick();
+
+      // selectAll
+      function selectAll() {
+        const all = document.querySelector(".selector .all input[type=checkbox]");
+        const nor = document.querySelectorAll(".selector .boxs input[type=checkbox]");
+        let checked = document.querySelectorAll(".selector .boxs input[type=checkbox]:checked");
+
+        all.addEventListener("click", function () {
+          if (all.checked === true) {
+            for (const item of nor) {
+              item.checked = true;
+            }
+          } else {
+            for (const item of nor) {
+              item.checked = false;
+            }
+          }
+        });
+
+        for (const item of nor) {
+          item.addEventListener("click", function () {
+            if (nor.length === checked.length) {
+              all.checked = true;
+            } else {
+              all.checked = false;
+            }
+            checked = document.querySelectorAll(".selector .boxs input[type=checkbox]:checked");
+          });
+        }
+      }
+      // selectAll();
+    </script>
+  </body>
+</html>

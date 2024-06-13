@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sort</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <link href="../../assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- 덜 중요한 리소스 로드(ex 접근성) -->
+    <!-- <script type="module" async src="./assets/js/sort.js"></script> -->
+  </head>
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+
+      <p>정렬하기 <button onclick="sortLI()">▲</button> <button onclick="reverseLI()">▼</button></p>
+
+      <ul id="lists">
+        <li class="li">064-1234-5678</li>
+        <li class="li">063-1234-5678</li>
+        <li class="li">061-1234-5678</li>
+        <li class="li">055-1234-5678</li>
+        <li class="li">054-1234-5678</li>
+        <li class="li">044-1234-5678</li>
+        <li class="li">2</li>
+        <li class="li">041-1234-5678</li>
+        <li class="li">033-1234-5678</li>
+        <li class="li">032-1234-5678</li>
+        <li class="li">031-1234-5678</li>
+        <li class="li">0</li>
+      </ul>
+
+      <!-- <table class="table" id="lists">
+        <tbody>
+          <tr><td> 아바타 </td></tr>
+          <tr><td> 어벤져스 : 에이지 오브 울트론 </td></tr>
+          <tr><td> 인터스텔라 </td></tr>
+          <tr><td> 트랜스포머 </td></tr>
+          <tr><td> 겨울왕국 </td></tr>
+        </tbody>
+      </table> -->
+
+      <!-- NodeList prototype -->
+      <!-- NodeList에 프로토타입을 추가할 수도 있다. -->
+      <!-- <div class="suggestions">suggestions</div>
+      <script>
+        let elements = document.querySelectorAll(".suggestions");
+
+        NodeList.prototype.addEventListener = function(event, func) {
+          this.forEach(function(content, item) {
+            content.addEventListener(event, func);
+          });
+        }
+
+        function log() {
+          console.log(this, " was clicked");
+        }
+
+        elements.addEventListener("click", log);
+        //or
+        elements.addEventListener("click", function() {
+            console.log(this, "  awas clicked");
+        });
+      </script> -->
+
+    </div>
+    <!-- //wrap -->
+    
+    <style>
+      #wrap {
+        padding: 20px;
+        font-size: 12px;
+      }
+      ul {
+        width: 200px;
+        margin-top: 20px;
+      }
+      li {
+        padding: 5px;
+        border: 1px solid #7a7a7a;
+        margin-top: -1px;
+      }
+    </style>
+
+    <script>
+      function sortingNumber(a, b) {
+        if (typeof a == "number" && typeof b == "number") return a - b;
+
+        // 천단위 쉼표와 공백문자만 삭제하기.
+        var a = (a + "").replace(/[,\s\xA0]+/g, "");
+        var b = (b + "").replace(/[,\s\xA0]+/g, "");
+
+        var numA = parseFloat(a) + "";
+        var numB = parseFloat(b) + "";
+
+        if (numA == "NaN" || numB == "NaN" || a != numA || b != numB) return false;
+
+        return parseFloat(a) - parseFloat(b);
+      }
+
+      /* changeForSorting() : 문자열 바꾸기. */
+      function changeForSorting(first, second) {
+        // 문자열의 복사본 만들기.
+        var a = first.toString().replace(/[\s\xA0]+/g, " ");
+        var b = second.toString().replace(/[\s\xA0]+/g, " ");
+
+        var change = { first: a, second: b };
+
+        if (a.search(/\d/) < 0 || b.search(/\d/) < 0 || a.length == 0 || b.length == 0) return change;
+
+        var regExp = /(\d),(\d)/g; // 천단위 쉼표를 찾기 위한 정규식.
+
+        a = a.replace(regExp, "$1" + "$2");
+        b = b.replace(regExp, "$1" + "$2");
+
+        var unit = 0;
+        var aNb = a + " " + b;
+        var numbers = aNb.match(/\d+/g); // 문자열에 들어있는 숫자 찾기
+
+        for (var x = 0; x < numbers.length; x++) {
+          var length = numbers[x].length;
+          if (unit < length) unit = length;
+        }
+
+        var addZero = function (string) {
+          // 숫자들의 단위 맞추기
+
+          var match = string.match(/^0+/);
+
+          if (string.length == unit) return match == null ? string : match + string;
+
+          var zero = "0";
+
+          for (var x = string.length; x < unit; x++) string = zero + string;
+
+          return match == null ? string : match + string;
+        };
+
+        change.first = a.replace(/\d+/g, addZero);
+        change.second = b.replace(/\d+/g, addZero);
+
+        return change;
+      }
+
+      /* byLocale() */
+      function byLocale() {
+        var compare = function (a, b) {
+          var sorting = sortingNumber(a, b);
+
+          if (typeof sorting == "number") return sorting;
+
+          var change = changeForSorting(a, b);
+
+          var a = change.first;
+          var b = change.second;
+
+          return a.localeCompare(b);
+        };
+
+        var ascendingOrder = function (a, b) {
+          return compare(a, b);
+        };
+        var descendingOrder = function (a, b) {
+          return compare(b, a);
+        };
+
+        return { ascending: ascendingOrder, descending: descendingOrder };
+      }
+
+      /* replacement() */
+      function replacement(parent) {
+
+        // 오브젝트 속성 확인 test 무시함
+        let obj = new Object(parent)
+        let msg = '';
+        for(let temp in obj){
+          msg += temp + ' = ' + obj[temp] + '\n';
+        }
+        // console.log(msg);
+        // 오브젝트 속성 확인 test 무시함
+
+        // 태그 네임 소문자로 변환
+        let tagName = parent.tagName.toLowerCase();
+        // children 변수 생성
+        let children;
+
+        // 테이블일때
+        if (tagName == "table") {
+          // 선택 요소에 첫번째 tbody 대입 
+          parent = parent.tBodies[0];
+          // children 에 tr 대입
+          // console.log(parent.rows);
+          children = parent.rows;
+
+        // 그밖에 ul 일때 
+        } else {
+          // children = parent.getElementsByTagName("li");
+          // children = parent.getElementsByClassName("li");
+          children = parent.querySelectorAll("li");
+        }
+        
+        console.log(parent);
+        console.log(tagName);
+        console.log(children);
+        
+
+        // replace 오브젝트 생성
+        let replace = {
+          order: byLocale(),
+          index: false,
+          // array return 함수 : children 배열을 새로운 array 배열에 담는다.
+          // children querySelectorAll 로 생성된 유사 배열 nodelist
+          // array childrend을 바탕으로 새롭게 만든 배열
+          // 참고: NodeList 가 Array 는 아니지만, forEach() 를 사용하여 반복할 수 있습니다. 또한 Array.from() 을 사용하여 Array 로 변환 할 수도 있습니다.그러나 일부 오래된 브라우저는 아직 NodeList.forEach() 또는 Array.from() 를 구현하지 않았습니다. 이것은 Array.prototype.forEach() 를 사용하여 회피할 수 있습니다. — 이 문서의 예제를 참조하세요.
+          array: (function () {
+            let array = [];
+            for (let x = 0; x < children.length; x++) {
+              array[x] = children[x];
+            }
+            // return array : replace 오브젝트 array에 return 
+            return array;
+          })(),
+          // array 변환 예
+          // var div_list = document.querySelectorAll('div'); // returns NodeList
+          // var div_array = Array.prototype.slice.call(div_list); // converts NodeList to Array
+          array2: (function () {
+            let array = Array.prototype.slice.call(children);
+            console.log("array 변환 예 테스트");
+            console.log(array);
+            return array;
+          })(),
+          // array 변환 예
+          // checkIndex
+          checkIndex: function (index) {
+            if (index) this.index = parseInt(index, 10); //index 10진수 변환
+            let tagName = parent.tagName.toLowerCase(); // 태그 네임 소문자로 변환 위에 선언한 tagName과 뭐가 다름?
+            if (tagName == "tbody" && !index) this.index = 0;
+          },
+          // getText
+          getText: function (child) {
+            if (this.index) child = child.cells[this.index];
+            return getTextByClone(child);
+          },
+          // setChildren
+          setChildren: function () {
+            var array = this.array;
+            while (parent.hasChildNodes()) parent.removeChild(parent.firstChild);
+            for (var x = 0; x < array.length; x++) parent.appendChild(array[x]);
+          },
+          // 오름차순
+          ascending: function (index) {
+            this.checkIndex(index);
+            let _self = this;
+            let order = this.order;
+            let ascending = function (a, b) {
+              var a = _self.getText(a);
+              var b = _self.getText(b);
+              return order.ascending(a, b);
+            };
+            this.array.sort(ascending);
+            this.setChildren();
+          },
+          // 내림차순
+          descending: function (index) {
+            this.checkIndex(index);
+            let _self = this;
+            let order = this.order;
+            let descending = function (a, b) {
+              var a = _self.getText(a);
+              var b = _self.getText(b);
+              return order.descending(a, b);
+            };
+            this.array.sort(descending);
+            this.setChildren();
+          },
+        };
+
+        console.log(replace);
+        
+
+        // replace 반환 replacement에 반환
+        return replace;
+      }
+
+      function getTextByClone(tag) {
+        var clone = tag.cloneNode(true); // 태그의 복사본 만들기.
+        var br = clone.getElementsByTagName("br");
+        while (br[0]) {
+          var blank = document.createTextNode(" ");
+          clone.insertBefore(blank, br[0]);
+          clone.removeChild(br[0]);
+        }
+        var isBlock = function (tag) {
+          var display = "";
+          if (window.getComputedStyle) display = window.getComputedStyle(tag, "")["display"];
+          else display = tag.currentStyle["display"];
+          return display == "block" ? true : false;
+        };
+        var children = clone.getElementsByTagName("*");
+        for (var x = 0; x < children.length; x++) {
+          var child = children[x];
+          if (!("value" in child) && isBlock(child)) child.innerHTML = child.innerHTML + " ";
+        }
+        var textContent = "textContent" in clone ? clone.textContent : clone.innerText;
+        return textContent;
+      }
+
+      // 실행
+      var myUL = document.getElementById("lists");
+      var rep = replacement(myUL);
+      function sortLI() {
+        rep.ascending();
+      }
+      function reverseLI() {
+        rep.descending();
+      }
+
+
+      // closer test
+      function makeAdder(x) {
+        var y = 1;
+        return function(z) {
+          y = 100;
+          return x + y + z;
+        };
+      }
+      var add5 = makeAdder(5);
+      console.log("closer " + add5(2)); 
+
+      // foreach test
+      function logArrayElements(element, index, array) {
+        // console.log('a[' + index + '] = ' + element);
+      }
+      [2, 5, , 9].forEach(logArrayElements);
+
+      // thisArg
+      function Counter() {
+        this.sum = 0
+        this.count = 0
+      }
+      Counter.prototype.add = function(array) {
+        array.forEach(function(entry) {
+          this.sum += entry
+          ++this.count
+        }, this)
+        // ^---- 주의
+      }
+      const obj = new Counter();
+      // console.log(obj);
+      obj.add([2, 5, 9]);
+      // console.log(obj.count);
+      // console.log(obj.sum);
+
+      // test
+      let test_words = ['one', 'two', 'three', 'four'];
+      // console.log(words);
+      // console.log(words.shift());
+      test_words.forEach(function(word) {
+        // console.log(word);
+        if (word === 'two') {
+          test_words.shift();
+        }
+        // console.log(test_words);
+      })
+      
+    </script>
+  </body>
+</html>

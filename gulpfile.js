@@ -12,23 +12,23 @@ const browserSync = require("browser-sync").create();
 
 
 // path
-const src = "./src";
+const src = "./app/src";
 const dist = "./dist";
 const assets = "/assets";
 const html = "/html";
 const pathSrc = {
   root: src,
-  scss: `${src + assets}/styles/scss`,
-  css: `${src + assets}/styles/css`,
-  fonts: `${src + assets}/styles/fonts`,
+  scss: `${src + assets}/scss`,
+  css: `${src + assets}/css`,
+  fonts: `${src + assets}/fonts`,
   js: `${src + assets}/js`,
   images: `${src + assets}/images`,
   html: src + html,
 };
 const pathDist = {
   root: dist,
-  css: `${dist + assets}/styles/css`,
-  fonts: `${dist + assets}/styles/fonts`,
+  css: `${dist + assets}/css`,
+  fonts: `${dist + assets}/fonts`,
   images: `${dist + assets}/images`,
   js: `${dist + assets}/js`,
   html: dist + html,
@@ -53,9 +53,6 @@ gulp.task("fileinclude", function () {
       prefix: "@@",
       basepath: "@file",
       context: {
-        // cssPath: "/assets/styles/css",
-        // jsPath: "/assets/js",
-        // imgPath: "/assets/images",
         assets: "/assets",
         html: "/html"
       }
@@ -73,14 +70,6 @@ gulp.task("scripts", function () {
     // .pipe(terser())
     // 난독화
     .pipe(obfusc())
-    // {
-    //   compact: true,
-    //   renameGlobals: true,
-    //   unicodeEscapeSequence: true,
-    //   splitStrings: true,
-    //   selfDefending: true,
-    //   controlFlowFlattening: true,
-    // }
     .pipe(gulp.dest(pathDist.js))
     .pipe(browserSync.stream());
 
@@ -135,7 +124,6 @@ gulp.task("server", function () {
   gulp.watch(pathSrc.html + "/**/*.html", gulp.series("fileinclude"));
   gulp.watch(pathSrc.js + "/**/*", gulp.series("scripts"));
   gulp.watch(pathSrc.scss + "/**/*", gulp.series("sass"));
-  // .on("change", browserSync.reload);
 });
 
 // gulp start

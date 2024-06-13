@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calendar</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <link href="../../assets/css/ia.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- <script type="module src="./assets/js/ia.js"></script> -->
+    <!-- 로드 프로세스 초기에 스크립트를 실행해야 하는 경우 -->
+    <!-- <script type="module async src="./assets/js/ia.js"></script>  -->
+    <!-- 덜 중요한 리소스 로드(ex 접근성) -->
+    <script type="module" defer src="../../assets/js/calendar.js"></script>
+  </head>
+  <body>
+    
+    <!-- style -->
+    <style>
+      .calendar {
+        height: 600px;
+        width: 700px;
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        border: 1px solid #d2d2d2;
+      }
+      .calendar .day {
+        width: 14.28571428571429%;
+        height: 100px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .calendar .day:hover {
+        background-color: #eaeaea;
+      }
+      .calendar .day.disabled {
+        color: #ffb1b1;
+      }
+      .calendar .day.current {
+        color: #000;
+        font-weight: bold;
+      }
+      .calendar .day.current.today {
+        color: #000;
+        font-weight: bold;
+        background-color: rgb(225, 240, 255);
+      }
+      .calendar .day.dday {
+        color: rgb(255, 0, 0);
+      }
+      .calendar .day.sat {
+        color: rgb(0, 153, 255);
+      }
+      .month {
+        width: 700px;
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        padding: 5px;
+      }
+      .btnset {
+        display: flex;
+        align-items: center;
+      }
+      .btnset button {
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+    <!-- style -->
+    
+    <!-- wrap -->
+    <div id="wrap">
+      <span>calendar</span>
+      <div class="btnset">
+        <button class="prev"><</button>
+        <button class="next">></button>
+        <button class="top">-</button>
+        <button class="bottom">+</button>
+      </div>
+      <div class="month"></div>
+      <div class="calendar">
+      </div>
+    </div>
+    <!-- //wrap -->
+
+    <!-- script -->
+    <script>
+      
+    </script>
+    <!-- //script -->
+
+  </body>
+</html>

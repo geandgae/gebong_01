@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>date</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="../../assets/jq/jquery-ui.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../../assets/jq/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/jq/jquery-ui.js"></script>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    .wrap {
+      margin: 100px;
+    }
+    .ui-datepicker {
+      width: 400px;
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <p style="margin-top: 20px">Date: <input type="text" id="datepicker"/></p>
+    </div>
+    <div id="reserved-days"></div>
+  </body>
+
+  <script>
+    $(function () {
+      var reservedDate = ["2023-11-01", "2023-11-02", "2023-11-04", "2023-11-07", "2023-11-09", "2023-11-11", "2023-11-12", "2023-11-20", "2023-11-21", "2023-11-22", "2023-11-24", "2023-11-26", "2023-11-27", "2023-12-27", "2023-12-28"];
+
+      $("#datepicker").datepicker({
+        // dateFormat: "yy-mm-dd", //Input Display Format 변경
+        // showOtherMonths: true, //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        // showMonthAfterYear: true, //년도 먼저 나오고, 뒤에 월 표시
+        // changeYear: true, //콤보박스에서 년 선택 가능
+        changeMonth: true, //콤보박스에서 월 선택 가능
+        // showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        // buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", //버튼 이미지 경로
+        // buttonImageOnly: true, //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+        // buttonText: "선택", //버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+        // yearSuffix: "년", //달력의 년도 부분 뒤에 붙는 텍스트
+        // monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], //달력의 월 부분 텍스트
+        // monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], //달력의 월 부분 Tooltip 텍스트
+        // dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"], //달력의 요일 부분 텍스트
+        // dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"], //달력의 요일 부분 Tooltip 텍스트
+        // minDate: "1", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        // maxDate: "+10D", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        beforeShowDay: function (date) {
+          var formattedDate = $.datepicker.formatDate("yy-mm-dd", date);
+
+          // 예약된 날짜는 선택 불가능하게 설정
+          if (reservedDate.indexOf(formattedDate) !== -1) {
+            return [false, "reserved-date"]; // reserved-date 클래스 적용
+          } else {
+            return [true, ""];
+          }
+        },
+        onChangeMonthYear: function (year, month, inst) {
+          // 새로운 월에 해당하는 예약된 날짜 업데이트
+          updateReservedDays(year, month);
+        },
+        beforeShow: function (input, inst) {
+          // 초기 로딩 시 예약된 날짜 표시
+          updateReservedDays(inst.selectedYear, inst.selectedMonth + 1);
+        },
+      });
+
+      function updateReservedDays(year, month) {
+        // 예약된 날짜 중에서 해당 월에 해당하는 일만 추출하여 달력 아래에 표시
+        var reservedDays = reservedDate
+          .filter(function (dateString) {
+            var date = new Date(dateString);
+            return date.getFullYear() === year && date.getMonth() + 1 === month;
+          })
+          .map(function (date) {
+            return new Date(date).getDate();
+          });
+
+        // 연속된 날짜 구간을 찾아서 표시
+        var consecutiveRanges = findConsecutiveRanges(reservedDays);
+
+        // 달력 아래에 표시
+        $("#reserved-days").text("예약된 날짜: " + formatConsecutiveRanges(consecutiveRanges));
+      }
+
+      function findConsecutiveRanges(arr) {
+        var ranges = [];
+        var currentRange = [arr[0]];
+
+        for (var i = 1; i < arr.length; i++) {
+          if (arr[i] === arr[i - 1] + 1) {
+            currentRange.push(arr[i]);
+          } else {
+            ranges.push(currentRange);
+            currentRange = [arr[i]];
+          }
+        }
+
+        ranges.push(currentRange);
+        return ranges;
+      }
+
+      function formatConsecutiveRanges(ranges) {
+        return ranges
+          .map(function (range) {
+            if (range.length === 1) {
+              return range[0];
+            } else {
+              return range[0] + "~" + range[range.length - 1];
+            }
+          })
+          .join(", ");
+      }
+    });
+  </script>
+</html>

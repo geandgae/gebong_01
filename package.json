@@ -1,36 +1,24 @@
 {
   "name": "gebong_01",
   "version": "1.0.0",
-  "description": "gebong_01 test",
-  "main": "app.js",
+  "description": "",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test speccified\" && exit 1",
-    "hello": "echo hello",
-    "start": "node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/geandgae/gebong_01.git"
+    "start": "gulp"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/geandgae/gebong_01/issues"
-  },
-  "homepage": "https://github.com/geandgae/gebong_01#readme",
   "devDependencies": {
-    "browser-sync": "^2.27.10",
-    "gulp": "^4.0.2",
+    "browser-sync": "^3.0.2",
+    "del": "^7.1.0",
+    "fs-extra": "^11.2.0",
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-dart-sass": "^1.1.0",
     "gulp-file-include": "^2.3.0",
     "gulp-javascript-obfuscator": "^1.1.6",
-    "gulp-minify-css": "^1.2.4",
-    "gulp-pug": "^5.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-uglify-es": "^3.0.0",
-    "gulp-webserver": "^0.9.1",
-    "sass": "^1.69.5"
+    "gulp-terser": "^2.1.0"
   }
 }

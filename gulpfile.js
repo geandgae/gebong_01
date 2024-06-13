@@ -46,8 +46,8 @@ gulp.task("clean", function () {
 gulp.task("fileinclude", function () {
   return gulp
     .src([
-      pathSrc.root + "/**/*.html", // 불러올 파일의 위치
-      "!" + pathSrc.html + "/inc/**/*.html", // include 위치
+      pathSrc.root + "/**/*", // 불러올 파일의 위치
+      "!" + pathSrc.html + "/include/**/*.html", // include 위치
     ])
     .pipe(fileinclude({
       prefix: "@@",

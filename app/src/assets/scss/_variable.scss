@@ -4,3 +4,39 @@
 // css 주석 비노출
 // 형태(btn) - 의미(cancel) - 순서(01) - 상태(on off active)
 $color-primary: #f1cc65;
+
+$font-size: (
+  display-sm: 4rem,
+  display-md: 5rem,
+  display-lg: 6.6rem,
+  heading-sm: 3.2rem,
+  heading-md: 4rem,
+  heading-lg: 5rem,
+  title-xsm: 1.5rem,
+  title-sm: 1.7rem,
+  title-md: 1.9rem,
+  title-lg: 2.1rem,
+  title-xlg: 2.5rem,
+  title-xxlg: 3.2rem,
+  body-sm: 1.5rem,
+  body-md: 1.7rem,
+  body-lg: 1.9rem,
+  link-sm: 1.5rem,
+  link-md: 1.7rem,
+  link-lg: 1.9rem,
+  detail-sm: 1.3rem,
+  detail-md: 1.5rem,
+  detail-lg: 1.7rem,
+  label-xsm: 1.3rem,
+  label-sm: 1.5rem,
+  label-md: 1.7rem,
+  label-lg: 1.9rem,
+) !default;
+
+$prefix: "krds-" !default;
+
+:root {
+  @each $key, $value in $font-size {
+    --#{$prefix}#{$key}: #{$value};
+  }
+}

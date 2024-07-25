@@ -138,6 +138,7 @@ gulp.task("server", function () {
   gulp.watch(pathSrc.html + "/**/*.html", gulp.series("fileinclude"));
   gulp.watch(pathSrc.js + "/**/*", gulp.series("scripts"));
   gulp.watch(pathSrc.scss + "/**/*", gulp.series("sass"));
+  // gulp.watch(pathSrc.root + "/**/*").on("change", browserSync.reload);
 });
 
 // gulp start

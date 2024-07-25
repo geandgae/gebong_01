@@ -132,7 +132,14 @@ gulp.task("server", function () {
   browserSync.init({
     server: {
       baseDir: pathDist.root
-    }
+    },
+    logLevel: "info", // 로그 레벨을 "info"로 설정
+    // logLevel 옵션
+    // "silent": 로그를 출력하지 않습니다.
+    // "info": 기본 로그 레벨입니다.
+    // "debug": 디버그 정보를 포함한 자세한 로그를 출력합니다.
+    logFileChanges: false, // 파일 변경 사항 로그 비활성화
+    notify: false // 브라우저 알림 비활성화
   });
   // watch
   gulp.watch(pathSrc.html + "/**/*.html", gulp.series("fileinclude"));

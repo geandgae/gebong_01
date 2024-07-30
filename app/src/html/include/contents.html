@@ -5,6 +5,9 @@
   }
 </style>
 <article>
+  <h5>__ui*****************************************</h5>
+  <ul class="__ui"></ul>
+
   <h5>__datepicker</h5>
   <ul class="__datepicker"></ul>
 
@@ -27,6 +30,12 @@
 
 <script>
   const makeList = () => {
+    const targetUi = document.querySelector(".__ui");
+    const ui = [
+      { link: "@@html/__ui/accordion.html", name: "아코디언" },
+    ];
+    targetUi.innerHTML = ui.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
+
     const targetDatePicker = document.querySelector(".__datepicker");
     const datePicker = [
       { link: "@@html/__datepicker/calendar.html", name: "calendar" },
@@ -77,6 +86,7 @@
       { link: "@@html/__study/study_acc2.html", name: "study_acc2" },
       { link: "@@html/__study/study_acc3.html", name: "study_acc3" },
       { link: "@@html/__study/study_acc4.html", name: "study_acc4" },
+      { link: "@@html/__study/study_acc5.html", name: "study_acc5" },
       { link: "@@html/__study/study_ani.html", name: "study_ani" },
       { link: "@@html/__study/study_ani2.html", name: "study_ani2" },
       { link: "@@html/__study/study_ani3.html", name: "study_ani3" },

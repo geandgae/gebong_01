@@ -37,29 +37,12 @@
     }
     .tab-content {
       display: none;
-      padding: 10px;
+      padding: 20px;
+      margin: 10px;
+      border: 1px solid #111;
       &.active {
         display: block;
       }
-    }
-
-    .tab {
-      padding: 10px;
-      display: flex;
-      button {
-        font-weight: bold;
-        padding: 5px 10px;
-      }
-    }
-    .div {
-      display: none;
-      width: 800px;
-      height: 800px;
-      border: 1px solid #111;
-      margin: 50px;
-    }
-    .div.active {
-      display: block;
     }
     button {
       padding: 5px;
@@ -70,7 +53,25 @@
       border-radius: 5px;
       box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
+    .d-flex {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .test-btn {
+      background-color: rgb(215, 255, 230);
+      &.test-ex {
+        z-index: 100;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /* transform: translateY(-50%); */
+      }
+    }
 
+    [data-accordion="item"] {
+      position: relative;
+    }
     [data-accordion="item"] + [data-accordion="item"] {
       margin-top: 20px;
     }
@@ -93,18 +94,21 @@
         display: block;
       }
       [data-accordion="button"]::after {
-        content: "v닫기";
+        content: "::after 닫기";
       }
     }
     [data-accordion="panel"] {
       background-color: rgb(250, 250, 250);
       display: none;
       .inner {
-        padding: 50px;
+        padding: 30px;
       }
     }
+    #accordion-container2 [data-accordion="header"] {
+      background-color: rgb(247, 255, 250);
+    }
     [data-accordion="button"]::after {
-      content: "v열기";
+      content: "::after 열기";
     }
     [data-accordion="header"] {
       display: flex;
@@ -135,192 +139,22 @@
         }
       }
     }
-    .accordion-item .accordion-collapse {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-    }
-    .accordion-item.active .accordion-collapse {
-      height: auto;
-      max-height: 1000vh;
-      transition: max-height 1.5s ease-in-out;
-    }
   </style>
   <body>
     <div class="tabs">
-      <button class="tab-button active" data-tab="tab1">Tab 1</button>
-      <button class="tab-button" data-tab="tab2">Tab 2</button>
-      <button class="tab-button" data-tab="tab3">Tab 3</button>
+      <button class="tab-button active" data-tab="tab1">기본</button>
+      <button class="tab-button" data-tab="tab2">헤더버튼</button>
+      <button class="tab-button" data-tab="tab3">트랜지션</button>
     </div>
     <div id="tab1" class="tab-content active">
-      <p>Content for Tab 1</p>
+      <div id="accordion-container" data-accordion="accordion"></div>
     </div>
     <div id="tab2" class="tab-content">
-      <p>Content for Tab 2</p>
+      <div id="accordion-container2" data-accordion="accordion"></div>
     </div>
     <div id="tab3" class="tab-content">
-      <p>Content for Tab 3</p>
+      <div id="accordion-container3" data-accordion="accordion" class="acc-ani"></div>
     </div>
-
-    <div class="tab">
-      <button class="btn1">tab1</button>
-      <button class="btn2">tab2</button>
-    </div>
-    <div class="tab-panel"></div>
-
-    <div id="accordion-container" data-accordion="accordion" class="acc-ani2"></div>
-
-    <div class="div tab1 active">
-      <!-- accordion -->
-      <div data-accordion="accordion">
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span>1</span>
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-          </div>
-        </div>
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span>2</span>
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-          </div>
-        </div>
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span
-              >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-              sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?</span
-            >
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-          </div>
-        </div>
-      </div>
-      <!-- accordion -->
-    </div>
-    <div class="div tab2">
-      <!-- accordion -->
-      <div data-accordion="accordion" class="acc-ani">
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span>2</span>
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            <div class="inner">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-              sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
-              ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-            </div>
-          </div>
-        </div>
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-          </div>
-        </div>
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span>1</span>
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-          </div>
-        </div>
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span>2</span>
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            <div class="inner">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-              sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-              laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-            </div>
-          </div>
-        </div>
-        <div data-accordion="item">
-          <div data-accordion="header">
-            <span
-              >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-              sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-              voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?</span
-            >
-            <button data-accordion="button">열기</button>
-          </div>
-          <div data-accordion="panel">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
-            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
-            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
-            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
-          </div>
-        </div>
-      </div>
-      <!-- accordion -->
-    </div>
-
-    <div id="accordion-container2" data-accordion="accordion" class="acc-ani2"></div>
 
     <script>
       // tab
@@ -338,47 +172,79 @@
             });
             button.classList.add("active");
             document.getElementById(tabId).classList.add("active");
+            exoptTest();
           });
         });
       };
       tabex();
 
-      const tab = () => {
-        const div1 = document.querySelector(".tab1");
-        const div2 = document.querySelector(".tab2");
-        const btn1 = document.querySelector(".btn1");
-        const btn2 = document.querySelector(".btn2");
-
-        btn1.addEventListener("click", () => {
-          div1.classList.add("active");
-          div2.classList.remove("active");
-        });
-        btn2.addEventListener("click", () => {
-          div1.classList.remove("active");
-          div2.classList.add("active");
-        });
-      };
-      tab();
-
       // dataAccordion
       const dataAccordion = [
         {
-          header: "a1",
-          content: "content-a1",
+          header: `initAccordion("#accordion-container")`,
+          content: "토글 : data-accordion=button / 동작 : 개별 / 트랜지션 없음",
         },
         {
-          header: "a2",
-          content: "content-a2",
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트1-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
         },
       ];
       const dataAccordion2 = [
         {
-          header: "a12",
-          content: "content-a1 accordion-container2 accordion-container2 accordion-container2 accordion-container2 accordion-container2",
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
         },
         {
-          header: "a23",
-          content: "content-a2 accordion-container2",
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+      const dataAccordion3 = [
+        {
+          header: `initAccordion("#accordion-container3")`,
+          content: "토글 : data-accordion=button / 동작 : 개별 / 트랜지션 있음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트3</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?,`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore`,
         },
       ];
 
@@ -388,6 +254,11 @@
         data.forEach((item, idx) => {
           const accordionItem = document.createElement("div");
           accordionItem.setAttribute("data-accordion", "item");
+
+          // 에외처리 버튼 테스트
+          if (item.exopt) {
+            accordionItem.innerHTML = item.exopt;
+          }
 
           const header = document.createElement("div");
           header.setAttribute("data-accordion", "header");
@@ -404,14 +275,15 @@
       };
       createAccordion("accordion-container", dataAccordion);
       createAccordion("accordion-container2", dataAccordion2);
+      createAccordion("accordion-container3", dataAccordion3);
 
       // 아코디언 : clickArea, behavior 옵션으로 클릭범위 동작 제어
       // css 트랜지션을 사용하는 클래스로 애니메이션 효과 적용 (setAttribute("hidden", "true");) 같이 사용 트랜지션 없을땐 높이 구하는 로직 삭제
       // 기본오픈상태도 추가 ? active
 
-      // initAccordion
-      const initAccordion = (clickArea, behavior) => {
-        const accordions = document.querySelectorAll("[data-accordion=accordion]");
+      // initAccordion id 임시
+      const initAccordion = (id, clickArea, behavior) => {
+        const accordions = document.querySelectorAll(`${id}[data-accordion=accordion]`);
 
         accordions.forEach((accordion, accordionIdx) => {
           accordion.setAttribute("id", `ui-accordion-${accordionIdx}`);
@@ -494,15 +366,44 @@
             };
 
             trigger.addEventListener("click", togglePanel);
-
-            // test
-            console.log(trigger);
           });
         });
       };
 
       // initAccordion();
-      initAccordion("header2", "single2");
+      initAccordion("#accordion-container");
+      initAccordion("#accordion-container2", "header", "single");
+      initAccordion("#accordion-container3");
+
+      // 에외처리 버튼 테스트 (왠만하면 하지말자 너무 어거지)
+      const exoptTest = () => {
+        document.querySelectorAll("[data-accordion=item]").forEach((accItem) => {
+          const button = accItem.querySelector(".test-btn.test-ex");
+          if (button) {
+            const accHead = accItem.querySelector("[data-accordion=header]");
+            const accHeadIn = accHead.querySelector("span");
+            const btnH = button.clientHeight / 2;
+            const accHeadW = accHeadIn.clientWidth + 20;
+            const accHeadH = (accHead.clientHeight / 2) - btnH;
+            // console.log(accHeadW);
+            // console.log(accHeadH);
+            console.log(btnH);
+            button.style.left = `${accHeadW}px`
+            button.style.top = `${accHeadH}px`
+          }
+        });
+      };
+      exoptTest();
+      // testConsole
+      const testConsole = () => {
+        const btn = document.querySelectorAll(".test-btn");
+        btn.forEach((button) => {
+          button.addEventListener("click", () => {
+            console.log(button.textContent);
+          });
+        });
+      };
+      testConsole();
     </script>
   </body>
 </html>

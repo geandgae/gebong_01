@@ -88,19 +88,25 @@
       display: none !important;
     }
     .acc-ani {
-      [data-accordion="panel"] {
-        display: block;
-        overflow: hidden;
-        opacity: 0;
-        height: 0;
-        transition: all 0.3s ease;
-        .inner {
-          padding: 50px;
+      [data-accordion="item"] {
+        [data-accordion="panel"] {
+          display: block;
+          overflow: hidden;
+          opacity: 0;
+          /* transition: all 0.3s ease; */
+          max-height: 0;
+          transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+          .inner {
+            padding: 50px;
+          }
         }
       }
       [data-accordion="item"].active {
         [data-accordion="panel"] {
           opacity: 1;
+          height: auto;
+          max-height: 1000vh;
+          transition: max-height 1.5s ease-in-out;
         }
       }
     }
@@ -379,35 +385,35 @@
               }
 
               // 트랜지션 효과 없을땐 이렇게...
-              // trigger.setAttribute("aria-expanded", !isExpanded);
-              // item.classList.toggle("active", !isExpanded);
-              // btn.textContent = isExpanded ? "열기" : "닫기";
-              // panel.hidden = isExpanded;
+              trigger.setAttribute("aria-expanded", !isExpanded);
+              item.classList.toggle("active", !isExpanded);
+              btn.textContent = isExpanded ? "열기" : "닫기";
+              panel.hidden = isExpanded;
 
-              if (!isExpanded) {
-                panel.hidden = false;
-                trigger.setAttribute("aria-expanded", true);
-                const fullHeight = panel.scrollHeight + "px";
-                panel.style.height = fullHeight;
-                item.classList.add("active");
-                btn.textContent = "닫기";
-                panel.addEventListener("transitionend", function handleTransitionEnd() {
-                  panel.style.height = "auto";
-                  panel.removeEventListener("transitionend", handleTransitionEnd);
-                });
-              } else {
-                panel.style.height = panel.scrollHeight + "px";
-                trigger.setAttribute("aria-expanded", false);
-                item.classList.remove("active");
-                btn.textContent = "열기";
-                setTimeout(() => {
-                  panel.style.height = "0";
-                }, 0);
-                panel.addEventListener("transitionend", function handleTransitionEnd() {
-                  panel.hidden = true;
-                  panel.removeEventListener("transitionend", handleTransitionEnd);
-                });
-              }
+              // if (!isExpanded) {
+              //   panel.hidden = false;
+              //   trigger.setAttribute("aria-expanded", true);
+              //   const fullHeight = panel.scrollHeight + "px";
+              //   panel.style.height = fullHeight;
+              //   item.classList.add("active");
+              //   btn.textContent = "닫기";
+              //   panel.addEventListener("transitionend", function handleTransitionEnd() {
+              //     panel.style.height = "auto";
+              //     panel.removeEventListener("transitionend", handleTransitionEnd);
+              //   });
+              // } else {
+              //   panel.style.height = panel.scrollHeight + "px";
+              //   trigger.setAttribute("aria-expanded", false);
+              //   item.classList.remove("active");
+              //   btn.textContent = "열기";
+              //   setTimeout(() => {
+              //     panel.style.height = "0";
+              //   }, 0);
+              //   panel.addEventListener("transitionend", function handleTransitionEnd() {
+              //     panel.hidden = true;
+              //     panel.removeEventListener("transitionend", handleTransitionEnd);
+              //   });
+              // }
             };
 
             trigger.addEventListener("click", togglePanel);

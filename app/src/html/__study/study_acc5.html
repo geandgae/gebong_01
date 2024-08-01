@@ -157,7 +157,7 @@
             <span>1</span>
             <button data-accordion="button">열기</button>
           </div>
-          <div data-accordion="panel">
+          <div data-accordion="panel" tabindex="0">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
             sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
             voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
@@ -346,6 +346,7 @@
             panel.setAttribute("id", `acc-controls-${uniqueIdx}`);
             panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
             panel.setAttribute("hidden", "true");
+            panel.setAttribute("roll", "region");
             // 패널 초기화 css 설정할 경우
             // panel.style.height = "0"; 
             // panel.style.overflow = "hidden";

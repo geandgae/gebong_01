@@ -151,6 +151,8 @@
     </div>
     <div id="tab2" class="tab-content">
       <div id="accordion-container2" data-accordion="accordion"></div>
+      <div id="accordion-container2-2" data-accordion="accordion"></div>
+      <div id="accordion-container2-3" data-accordion="accordion"></div>
     </div>
     <div id="tab3" class="tab-content">
       <div id="accordion-container3" data-accordion="accordion" class="acc-ani"></div>
@@ -196,6 +198,48 @@
         },
       ];
       const dataAccordion2 = [
+        {
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+      const dataAccordion2_2 = [
+        {
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+      const dataAccordion2_3 = [
         {
           header: `initAccordion("#accordion-container2", "header", "single")`,
           content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
@@ -275,6 +319,8 @@
       };
       createAccordion("accordion-container", dataAccordion);
       createAccordion("accordion-container2", dataAccordion2);
+      createAccordion("accordion-container2-2", dataAccordion2_2);
+      createAccordion("accordion-container2-3", dataAccordion2_3);
       createAccordion("accordion-container3", dataAccordion3);
 
       // 아코디언 : clickArea, behavior 옵션으로 클릭범위 동작 제어
@@ -373,6 +419,8 @@
       // initAccordion();
       initAccordion("#accordion-container");
       initAccordion("#accordion-container2", "header", "single");
+      initAccordion("#accordion-container2-2", "header", "single");
+      initAccordion("#accordion-container2-3", "header", "single");
       initAccordion("#accordion-container3");
 
       // 에외처리 버튼 테스트 (왠만하면 하지말자 너무 어거지)

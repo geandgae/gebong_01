@@ -304,7 +304,7 @@
             accordionItem.innerHTML = item.exopt;
           }
 
-          const header = document.createElement("div");
+          const header = document.createElement("h2");
           header.setAttribute("data-accordion", "header");
           header.innerHTML = `<span>${item.header}</span><button data-accordion="button">열기</button>`;
           accordionItem.appendChild(header);

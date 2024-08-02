@@ -92,10 +92,13 @@
         [data-accordion="panel"] {
           display: block;
           overflow: hidden;
-          opacity: 0;
+          /* opacity: 0; */
           /* transition: all 0.3s ease; */
           max-height: 0;
           transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+          /* transition-property: all;
+          transition-duration: .5s;
+          transition-timing-function: cubic-bezier(1, 1, 1, 1); */
           .inner {
             padding: 50px;
           }
@@ -103,10 +106,32 @@
       }
       [data-accordion="item"].active {
         [data-accordion="panel"] {
-          opacity: 1;
-          height: auto;
-          max-height: 1000vh;
+          /* opacity: 1; */
+          /* height: auto; */
+          max-height: 100vh;
           transition: max-height 1.5s ease-in-out;
+        }
+      }
+    }
+    .acc-ani2 {
+      [data-accordion="item"] {
+        [data-accordion="panel"] {
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: all .5s ease-in-out;
+          .panel-cont {
+            overflow: hidden;
+          }
+          .inner {
+            padding: 50px;
+            max-height: 300px;
+            overflow-y: auto;
+          }
+        }
+      }
+      [data-accordion="item"].active {
+        [data-accordion="panel"] {
+          grid-template-rows: 1fr;
         }
       }
     }
@@ -147,7 +172,8 @@
 
     <div class="d-flex">
       <button class="btn1">tab1</button>
-      <button class="btn2">tab2</button>
+      <button class="btn2">transition maxheight</button>
+      <button class="btn3">transition grid</button>
     </div>
     <div class="div tab1 active">
       <!-- accordion -->
@@ -298,14 +324,112 @@
       </div>
       <!-- accordion -->
     </div>
+    <div class="div tab3">
+      <!-- accordion -->
+      <div data-accordion="accordion" class="acc-ani2">
+        <div data-accordion="item">
+          <h2 data-accordion="header">
+            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
+            <button data-accordion="button">열기</button>
+          </h2>
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+                sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-accordion="item">
+          <h2 data-accordion="header">
+            <span>2</span>
+            <button data-accordion="button">열기</button>
+          </h2>
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+                sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+                dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+                laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+              </div>
+            </div>  
+          </div>
+        </div>
+        <div data-accordion="item">
+          <h2 data-accordion="header">
+            <span>1</span>
+            <button data-accordion="button">열기</button>
+          </h2>
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt,
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-accordion="item">
+          <h2 data-accordion="header">
+            <span>2</span>
+            <button data-accordion="button">열기</button>
+          </h2>
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner" id="test-async">
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <!-- accordion -->
+    </div>
 
     <script>
       // tab
       const tab = function () {
         const div1 = document.querySelector(".tab1");
         const div2 = document.querySelector(".tab2");
+        const div3 = document.querySelector(".tab3");
         const btn1 = document.querySelector(".btn1");
         const btn2 = document.querySelector(".btn2");
+        const btn3 = document.querySelector(".btn3");
 
         // console.log(div.clientHeight);
         // console.log(div.offsetHeight);
@@ -314,10 +438,17 @@
         btn1.addEventListener("click", () => {
           div1.classList.add("active");
           div2.classList.remove("active");
+          div3.classList.remove("active");
         });
         btn2.addEventListener("click", () => {
-          div1.classList.remove("active");
           div2.classList.add("active");
+          div1.classList.remove("active");
+          div3.classList.remove("active");
+        });
+        btn3.addEventListener("click", () => {
+          div3.classList.add("active");
+          div1.classList.remove("active");
+          div2.classList.remove("active");
         });
       };
       tab();
@@ -372,7 +503,7 @@
             const togglePanel = () => {
               const isExpanded = trigger.getAttribute("aria-expanded") === "true";
 
-              if (behavior === "single" && !isExpanded) {
+              if (behavior === "single") {
                 accItems.forEach((otherItem, otherIdx) => {
                   if (otherIdx !== itemIdx) {
                     const otherTrigger = otherItem.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
@@ -382,7 +513,6 @@
                     otherItem.classList.remove("active");
                     otherPanel.setAttribute("hidden", "true");
                     otherBtn.textContent = "열기";
-                    otherPanel.style.height = "0";
                   }
                 });
               }
@@ -392,31 +522,6 @@
               item.classList.toggle("active", !isExpanded);
               btn.textContent = isExpanded ? "열기" : "닫기";
               panel.hidden = isExpanded;
-
-              // if (!isExpanded) {
-              //   panel.hidden = false;
-              //   trigger.setAttribute("aria-expanded", true);
-              //   const fullHeight = panel.scrollHeight + "px";
-              //   panel.style.height = fullHeight;
-              //   item.classList.add("active");
-              //   btn.textContent = "닫기";
-              //   panel.addEventListener("transitionend", function handleTransitionEnd() {
-              //     panel.style.height = "auto";
-              //     panel.removeEventListener("transitionend", handleTransitionEnd);
-              //   });
-              // } else {
-              //   panel.style.height = panel.scrollHeight + "px";
-              //   trigger.setAttribute("aria-expanded", false);
-              //   item.classList.remove("active");
-              //   btn.textContent = "열기";
-              //   setTimeout(() => {
-              //     panel.style.height = "0";
-              //   }, 0);
-              //   panel.addEventListener("transitionend", function handleTransitionEnd() {
-              //     panel.hidden = true;
-              //     panel.removeEventListener("transitionend", handleTransitionEnd);
-              //   });
-              // }
             };
 
             // 최상위 요소가 "is-open" 클래스를 가지는 경우
@@ -437,7 +542,56 @@
       };
 
       // initAccordion();
-      initAccordion("header", "single2");
+      initAccordion("header", "single");
+
+
+      // test
+      const testasync = () => {
+        const target = document.querySelector("#test-async");
+        setTimeout(() => {
+          target.innerHTML = `
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+          `
+        }, 5000);
+      }
+      testasync();
     </script>
   </body>
 </html>

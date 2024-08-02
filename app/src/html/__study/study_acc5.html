@@ -151,7 +151,7 @@
     </div>
     <div class="div tab1 active">
       <!-- accordion -->
-      <div data-accordion="accordion">
+      <div data-accordion="accordion" class="is-open">
         <div data-accordion="item">
           <h2 data-accordion="header">
             <span>1</span>
@@ -205,7 +205,7 @@
             </div>
           </div>
         </div>
-        <div data-accordion="item">
+        <div data-accordion="item" class="active">
           <h2 data-accordion="header">
             <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
             <button data-accordion="button">열기</button>
@@ -215,7 +215,7 @@
             sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?
           </div>
         </div>
-        <div data-accordion="item">
+        <div data-accordion="item" class="active">
           <h2 data-accordion="header">
             <span>1</span>
             <button data-accordion="button">열기</button>
@@ -333,12 +333,14 @@
         accordions.forEach((accordion, accordionIdx) => {
           accordion.setAttribute("id", `ui-accordion-${accordionIdx}`);
           const accItems = accordion.querySelectorAll("[data-accordion=item]");
+          const isAccordionOpen = accordion.classList.contains("is-open");
           // accItems
           accItems.forEach((item, itemIdx) => {
             const trigger = item.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
             const btn = item.querySelector("[data-accordion=button]");
             const panel = item.querySelector("[data-accordion=panel]");
             const uniqueIdx = `${accordionIdx}-${itemIdx}`;
+            const isActive = item.classList.contains("active");
 
             trigger.setAttribute("id", `acc-labelledby-${uniqueIdx}`);
             trigger.setAttribute("aria-controls", `acc-controls-${uniqueIdx}`);
@@ -416,6 +418,14 @@
               //   });
               // }
             };
+
+            // 최상위 요소가 "is-open" 클래스를 가지는 경우
+            if (isAccordionOpen || isActive) {
+              trigger.setAttribute("aria-expanded", "true");
+              item.classList.add("active");
+              btn.textContent = "닫기";
+              panel.hidden = false;
+            }
 
             trigger.addEventListener("click", togglePanel);
 

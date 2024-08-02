@@ -147,7 +147,7 @@
       <button class="tab-button" data-tab="tab3">트랜지션</button>
     </div>
     <div id="tab1" class="tab-content active">
-      <div id="accordion-container" data-accordion="accordion"></div>
+      <div id="accordion-container" data-accordion="accordion" class="is-open"></div>
     </div>
     <div id="tab2" class="tab-content">
       <div id="accordion-container2" data-accordion="accordion"></div>
@@ -334,12 +334,14 @@
         accordions.forEach((accordion, accordionIdx) => {
           accordion.setAttribute("id", `ui-accordion-${accordionIdx}`);
           const accItems = accordion.querySelectorAll("[data-accordion=item]");
+          const isAccordionOpen = accordion.classList.contains("is-open");
           // accItems
           accItems.forEach((item, itemIdx) => {
             const trigger = item.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
             const btn = item.querySelector("[data-accordion=button]");
             const panel = item.querySelector("[data-accordion=panel]");
             const uniqueIdx = `${accordionIdx}-${itemIdx}`;
+            const isActive = item.classList.contains("active");
 
             trigger.setAttribute("id", `acc-labelledby-${uniqueIdx}`);
             trigger.setAttribute("aria-controls", `acc-controls-${uniqueIdx}`);
@@ -413,6 +415,15 @@
             };
 
             trigger.addEventListener("click", togglePanel);
+
+            // 최상위 요소가 "is-open" 클래스를 가지는 경우
+            if (isAccordionOpen || isActive) {
+              trigger.setAttribute("aria-expanded", "true");
+              item.classList.add("active");
+              btn.textContent = "닫기";
+              panel.hidden = false;
+            }
+
           });
         });
       };

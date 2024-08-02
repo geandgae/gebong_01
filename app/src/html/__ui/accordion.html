@@ -142,11 +142,11 @@
   </style>
   <body>
     <div class="tabs">
-      <button class="tab-button active" data-tab="tab1">기본</button>
+      <button class="tab-button" data-tab="tab1">기본</button>
       <button class="tab-button" data-tab="tab2">헤더버튼</button>
-      <button class="tab-button" data-tab="tab3">트랜지션</button>
+      <button class="tab-button active" data-tab="tab3">트랜지션</button>
     </div>
-    <div id="tab1" class="tab-content active">
+    <div id="tab1" class="tab-content">
       <div id="accordion-container" data-accordion="accordion" class="is-open"></div>
     </div>
     <div id="tab2" class="tab-content">
@@ -154,8 +154,14 @@
       <div id="accordion-container2-2" data-accordion="accordion"></div>
       <div id="accordion-container2-3" data-accordion="accordion"></div>
     </div>
-    <div id="tab3" class="tab-content">
+    <div id="tab3" class="tab-content active">
       <div id="accordion-container3" data-accordion="accordion" class="acc-ani is-open"></div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div id="accordion-container4" data-accordion="accordion" class="acc-ani is-open"></div>
     </div>
 
     <script>
@@ -271,6 +277,20 @@
         },
         {
           header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore`,
+        },
+      ];
+      const dataAccordion4 = [
+        {
+          header: `initAccordion("#accordion-container3")`,
+          content: "토글 : data-accordion=button / 동작 : 개별 / 트랜지션 있음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트3</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
           content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
             sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
         },
@@ -322,6 +342,7 @@
       createAccordion("accordion-container2-2", dataAccordion2_2);
       createAccordion("accordion-container2-3", dataAccordion2_3);
       createAccordion("accordion-container3", dataAccordion3);
+      createAccordion("accordion-container4", dataAccordion4);
 
       // 아코디언 : clickArea, behavior 옵션으로 클릭범위 동작 제어
       // css 트랜지션을 사용하는 클래스로 애니메이션 효과 적용 (setAttribute("hidden", "true");) 같이 사용 트랜지션 없을땐 높이 구하는 로직 삭제
@@ -373,7 +394,7 @@
             const togglePanel = () => {
               const isExpanded = trigger.getAttribute("aria-expanded") === "true";
 
-              if (behavior === "single" && !isExpanded) {
+              if (behavior === "single") {
                 accItems.forEach((otherItem, otherIdx) => {
                   if (otherIdx !== itemIdx) {
                     const otherTrigger = otherItem.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
@@ -430,11 +451,12 @@
       };
 
       // initAccordion();
-      initAccordion("#accordion-container");
+      initAccordion("#accordion-container", "header", "single");
       initAccordion("#accordion-container2", "header", "single");
       initAccordion("#accordion-container2-2", "header", "single");
       initAccordion("#accordion-container2-3", "header", "single");
-      initAccordion("#accordion-container3");
+      initAccordion("#accordion-container3", "header", "single");
+      initAccordion("#accordion-container4");
 
       // 에외처리 버튼 테스트 (왠만하면 하지말자 너무 어거지)
       const exoptTest = () => {

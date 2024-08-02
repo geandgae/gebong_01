@@ -420,7 +420,8 @@
                 const fullHeight = panel.scrollHeight + "px";
                 panel.style.height = fullHeight;
                 panel.addEventListener("transitionend", function handleTransitionEnd() {
-                  // panel.style.height = "auto"; // 이거 있으면 아코디언 되돌아가는 움직임 어색
+                  // 이거 있으면 아코디언 모두 펼쳤을때 되돌아가는 움직임 어색
+                  panel.style.height = "auto"; 
                   panel.removeEventListener("transitionend", handleTransitionEnd);
                 });
               } else {

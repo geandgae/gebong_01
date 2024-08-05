@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>accordion / option / wacc</title>
+
+    <link href="../../assets/css/reset.css" type="text/css" media="all" rel="stylesheet">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+
+    /* tabs */
+    .tabs {
+      display: flex;
+      cursor: pointer;
+      margin-bottom: 10px;
+      padding: 10px;
+      transition: background 0.3s ease;
+      button {
+        font-weight: bold;
+        padding: 5px 10px;
+        &.active {
+          background: gray;
+          color: white;
+        }
+      }
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+      margin: 10px;
+      border: 1px solid #111;
+      &.active {
+        display: block;
+      }
+    }
+    button {
+      padding: 5px;
+      display: block;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #666666;
+      border-radius: 5px;
+      box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .d-flex {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .test-btn {
+      background-color: rgb(215, 255, 230);
+      &.test-ex {
+        z-index: 100;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /* transform: translateY(-50%); */
+      }
+    }
+
+    [data-accordion="item"] {
+      position: relative;
+    }
+    [data-accordion="item"] + [data-accordion="item"] {
+      margin-top: 20px;
+    }
+    [data-accordion="header"],
+    [data-accordion="panel"] {
+      border-top: 1px solid red;
+      border-bottom: 1px solid red;
+      background-color: rgb(255, 247, 247);
+    }
+
+    /* 임시 디자인 */
+    [data-accordion="accordion"] + [data-accordion="accordion"] {
+      margin-top: 50px;
+    }
+    [data-accordion="accordion"] {
+      font-size: 11px;
+    }
+    [data-accordion="item"].active {
+      [data-accordion="panel"] {
+        display: block;
+      }
+      [data-accordion="button"]::after {
+        content: "::after 닫기";
+      }
+    }
+    [data-accordion="panel"] {
+      background-color: rgb(250, 250, 250);
+      display: none;
+      .inner {
+        padding: 30px;
+      }
+    }
+    #accordion-container2 [data-accordion="header"] {
+      background-color: rgb(247, 255, 250);
+    }
+    [data-accordion="button"]::after {
+      content: "::after 열기";
+    }
+    [data-accordion="header"] {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+      font-weight: bold;
+      [data-accordion="button"] {
+        margin-left: auto;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+    }
+    .hide {
+      display: none !important;
+    }
+    .acc-ani {
+      [data-accordion="panel"] {
+        display: block;
+        overflow: hidden;
+        opacity: 0;
+        height: 0;
+        transition: all 0.3s ease;
+      }
+      [data-accordion="item"].active {
+        [data-accordion="panel"] {
+          opacity: 1;
+        }
+      }
+    }
+  </style>
+  <body>
+    <div class="tabs">
+      <button class="tab-button" data-tab="tab1">기본</button>
+      <button class="tab-button" data-tab="tab2">헤더버튼</button>
+      <button class="tab-button active" data-tab="tab3">트랜지션</button>
+    </div>
+    <div id="tab1" class="tab-content">
+      <div id="accordion-container" data-accordion="accordion" class="is-open"></div>
+    </div>
+    <div id="tab2" class="tab-content">
+      <div id="accordion-container2" data-accordion="accordion"></div>
+      <div id="accordion-container2-2" data-accordion="accordion"></div>
+      <div id="accordion-container2-3" data-accordion="accordion"></div>
+    </div>
+    <div id="tab3" class="tab-content active">
+      <div id="accordion-container3" data-accordion="accordion" class="acc-ani is-open"></div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div id="accordion-container4" data-accordion="accordion" class="acc-ani is-open"></div>
+    </div>
+
+    <script>
+      // tab
+      const tabex = () => {
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tabId = button.getAttribute("data-tab");
+            tabButtons.forEach((btn) => {
+              btn.classList.remove("active");
+            });
+            tabContents.forEach((content) => {
+              content.classList.remove("active");
+            });
+            button.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+            exoptTest();
+          });
+        });
+      };
+      tabex();
+
+      // dataAccordion
+      const dataAccordion = [
+        {
+          header: `initAccordion("#accordion-container")`,
+          content: "토글 : data-accordion=button / 동작 : 개별 / 트랜지션 없음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트1-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+        },
+      ];
+      const dataAccordion2 = [
+        {
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+      const dataAccordion2_2 = [
+        {
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+      const dataAccordion2_3 = [
+        {
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: "토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트2</button></span>`,
+          content: "content-ex",
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+      const dataAccordion3 = [
+        {
+          header: `initAccordion("#accordion-container3")`,
+          content: "토글 : data-accordion=button / 동작 : 개별 / 트랜지션 있음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트3</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore`,
+        },
+      ];
+      const dataAccordion4 = [
+        {
+          header: `initAccordion("#accordion-container3")`,
+          content: "토글 : data-accordion=button / 동작 : 개별 / 트랜지션 있음",
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트3</button></span>`,
+          content: "content-ex",
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum
+            dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi
+            laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?,`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore`,
+        },
+      ];
+
+      // createAccordion
+      const createAccordion = (id, data) => {
+        const accordionContainer = document.getElementById(`${id}`);
+        data.forEach((item, idx) => {
+          const accordionItem = document.createElement("div");
+          accordionItem.setAttribute("data-accordion", "item");
+
+          // 에외처리 버튼 테스트
+          if (item.exopt) {
+            accordionItem.innerHTML = item.exopt;
+          }
+
+          const header = document.createElement("h2");
+          header.setAttribute("data-accordion", "header");
+          header.innerHTML = `<span>${item.header}</span><button data-accordion="button">열기</button>`;
+          accordionItem.appendChild(header);
+
+          const panel = document.createElement("div");
+          panel.setAttribute("data-accordion", "panel");
+          panel.innerHTML = `<div class="inner">${item.content}</div>`;
+          accordionItem.appendChild(panel);
+
+          accordionContainer.appendChild(accordionItem);
+        });
+      };
+      createAccordion("accordion-container", dataAccordion);
+      createAccordion("accordion-container2", dataAccordion2);
+      createAccordion("accordion-container2-2", dataAccordion2_2);
+      createAccordion("accordion-container2-3", dataAccordion2_3);
+      createAccordion("accordion-container3", dataAccordion3);
+      createAccordion("accordion-container4", dataAccordion4);
+
+      // 아코디언 : clickArea, behavior 옵션으로 클릭범위 동작 제어
+      // css 트랜지션을 사용하는 클래스로 애니메이션 효과 적용 (setAttribute("hidden", "true");) 같이 사용 트랜지션 없을땐 높이 구하는 로직 삭제
+      // 기본오픈상태도 추가 ? active
+
+      // initAccordion id 임시
+      const initAccordion = (id, clickArea, behavior) => {
+        const accordions = document.querySelectorAll(`${id}[data-accordion=accordion]`);
+
+        accordions.forEach((accordion, accordionIdx) => {
+          accordion.setAttribute("id", `ui-accordion-${accordionIdx}`);
+          const accItems = accordion.querySelectorAll("[data-accordion=item]");
+          const isAccordionOpen = accordion.classList.contains("is-open");
+          // accItems
+          accItems.forEach((item, itemIdx) => {
+            const trigger = item.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
+            const btn = item.querySelector("[data-accordion=button]");
+            const panel = item.querySelector("[data-accordion=panel]");
+            const uniqueIdx = `${accordionIdx}-${itemIdx}`;
+            const isActive = item.classList.contains("active");
+
+            trigger.setAttribute("id", `acc-labelledby-${uniqueIdx}`);
+            trigger.setAttribute("aria-controls", `acc-controls-${uniqueIdx}`);
+            trigger.setAttribute("aria-expanded", "false");
+            panel.setAttribute("id", `acc-controls-${uniqueIdx}`);
+            panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
+            panel.setAttribute("hidden", "true");
+            panel.setAttribute("roll", "region");
+            // 패널 초기화 css 설정할 경우 주석
+            // panel.style.height = "0";
+            // panel.style.overflow = "hidden";
+            // panel.style.transition = "height 0.3s ease";
+
+            if (clickArea === "header") {
+              trigger.style.cursor = "pointer";
+              trigger.setAttribute("role", "button");
+              trigger.setAttribute("tabindex", "0");
+              btn.setAttribute("role", "presentation");
+              btn.setAttribute("tabindex", "-1");
+              trigger.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  togglePanel();
+                }
+              });
+            }
+
+            // togglePanel
+            const togglePanel = () => {
+              const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+              if (behavior === "single") {
+                accItems.forEach((otherItem, otherIdx) => {
+                  if (otherIdx !== itemIdx) {
+                    const otherTrigger = otherItem.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
+                    const otherBtn = otherItem.querySelector("[data-accordion=button]");
+                    const otherPanel = otherItem.querySelector("[data-accordion=panel]");
+                    otherTrigger.setAttribute("aria-expanded", "false");
+                    otherItem.classList.remove("active");
+                    otherPanel.setAttribute("hidden", "true");
+                    otherBtn.textContent = "열기";
+                    otherPanel.style.height = "0";
+                  }
+                });
+              }
+
+              // 트랜지션 효과 없을땐 이렇게...
+              trigger.setAttribute("aria-expanded", !isExpanded);
+              item.classList.toggle("active", !isExpanded);
+              btn.textContent = isExpanded ? "열기" : "닫기";
+              panel.hidden = isExpanded;
+
+              if (!isExpanded) {
+                panel.hidden = false;
+                const fullHeight = panel.scrollHeight + "px";
+                panel.style.height = fullHeight;
+                panel.addEventListener("transitionend", function handleTransitionEnd() {
+                  // 이거 있으면 아코디언 모두 펼쳤을때 되돌아가는 움직임 어색
+                  panel.style.height = "auto"; 
+                  panel.removeEventListener("transitionend", handleTransitionEnd);
+                });
+              } else {
+                panel.style.height = panel.scrollHeight + "px";
+                setTimeout(() => {
+                  panel.style.height = "0";
+                }, 0);
+                panel.addEventListener("transitionend", function handleTransitionEnd() {
+                  panel.hidden = true;
+                  panel.removeEventListener("transitionend", handleTransitionEnd);
+                });
+              }
+            };
+
+            trigger.addEventListener("click", togglePanel);
+
+            // 최상위 요소가 "is-open" 클래스를 가지는 경우
+            if (isAccordionOpen || isActive) {
+              trigger.setAttribute("aria-expanded", "true");
+              item.classList.add("active");
+              btn.textContent = "닫기";
+              panel.hidden = false;
+              panel.style.height = "auto";
+            }
+
+          });
+        });
+      };
+
+      // initAccordion();
+      initAccordion("#accordion-container", "header", "single");
+      initAccordion("#accordion-container2", "header", "single");
+      initAccordion("#accordion-container2-2", "header", "single");
+      initAccordion("#accordion-container2-3", "header", "single");
+      initAccordion("#accordion-container3", "header", "single");
+      initAccordion("#accordion-container4");
+
+      // 에외처리 버튼 테스트 (왠만하면 하지말자 너무 어거지)
+      const exoptTest = () => {
+        document.querySelectorAll("[data-accordion=item]").forEach((accItem) => {
+          const button = accItem.querySelector(".test-btn.test-ex");
+          if (button) {
+            const accHead = accItem.querySelector("[data-accordion=header]");
+            const accHeadIn = accHead.querySelector("span");
+            const btnH = button.clientHeight / 2;
+            const accHeadW = accHeadIn.clientWidth + 20;
+            const accHeadH = (accHead.clientHeight / 2) - btnH;
+            // console.log(accHeadW);
+            // console.log(accHeadH);
+            console.log(btnH);
+            button.style.left = `${accHeadW}px`
+            button.style.top = `${accHeadH}px`
+          }
+        });
+      };
+      exoptTest();
+      // testConsole
+      const testConsole = () => {
+        const btn = document.querySelectorAll(".test-btn");
+        btn.forEach((button) => {
+          button.addEventListener("click", () => {
+            console.log(button.textContent);
+          });
+        });
+      };
+      testConsole();
+    </script>
+  </body>
+</html>

@@ -161,7 +161,7 @@
           opacity: 0;
           display: grid !important;
           grid-template-rows: 0fr;
-          transition: all .5s ease-in-out;
+          transition: all 0.5s ease-in-out;
           .panel-cont {
             overflow: hidden;
           }
@@ -461,7 +461,7 @@
           // accItems
           accItems.forEach((item, itemIdx) => {
             // uniqueIdx
-            const keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const randomA = keys[Math.floor(Math.random() * keys.length)];
             const randomB = keys[Math.floor(Math.random() * keys.length)];
             const randomC = Math.floor(Math.random() * 10000) + 1;
@@ -519,6 +519,29 @@
               item.classList.toggle("active", !isExpanded);
               btn.textContent = isExpanded ? "열기" : "닫기";
               panel.hidden = isExpanded;
+
+              // // 접근성과 css 애니메이션 모두를 만족 시키려면 이 타입
+              // if (!$isExpanded) {
+              //   panel.hidden = false;
+              //   setTimeout(() => {
+              //     trigger.setAttribute("aria-expanded", !$isExpanded);
+              //     item.classList.toggle("active", !$isExpanded);
+              //   }, 0);
+              //   panel.addEventListener("transitionend", function handleTransitionEnd() {
+              //     // panel.style.height = "auto";
+              //     console.log("panel.hidden = false;");
+              //     panel.removeEventListener("transitionend", handleTransitionEnd);
+              //   });
+              // } else {
+              //   trigger.setAttribute("aria-expanded", !$isExpanded);
+              //   item.classList.toggle("active", !$isExpanded);
+              //   panel.addEventListener("transitionend", function handleTransitionEnd() {
+              //     panel.hidden = true;
+              //     console.log("panel.hidden = true;");
+              //     panel.removeEventListener("transitionend", handleTransitionEnd);
+              //   });
+              // }
+
             };
 
             trigger.addEventListener("click", togglePanel);
@@ -542,7 +565,7 @@
       initAccordion("#accordion-container4", "header");
       initAccordion("#accordion-container4_2", "header", "single");
 
-      // initAccordionTransition 
+      // initAccordionTransition
       const initAccordionTransition = (id, clickArea, behavior) => {
         const accordions = document.querySelectorAll(`${id}[data-accordion=accordion]`);
         accordions.forEach((accordion) => {
@@ -551,7 +574,7 @@
           // accItems
           accItems.forEach((item, itemIdx) => {
             // uniqueIdx
-            const keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const randomA = keys[Math.floor(Math.random() * keys.length)];
             const randomB = keys[Math.floor(Math.random() * keys.length)];
             const randomC = Math.floor(Math.random() * 10000) + 1;
@@ -569,7 +592,7 @@
             panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
             panel.setAttribute("hidden", "true");
             panel.setAttribute("roll", "region");
- 
+
             if (clickArea === "header") {
               trigger.style.cursor = "pointer";
               trigger.setAttribute("role", "button");
@@ -639,8 +662,8 @@
           });
         });
       };
-      initAccordionTransition ("#accordion-container5", "header", "single");
-      initAccordionTransition ("#accordion-container5_2");
+      initAccordionTransition("#accordion-container5", "header", "single");
+      initAccordionTransition("#accordion-container5_2");
 
       // testConsole
       const testConsole = () => {

@@ -477,7 +477,12 @@
             trigger.setAttribute("aria-expanded", "false");
             panel.setAttribute("id", `acc-controls-${uniqueIdx}`);
             panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
+            panel.setAttribute("hidden", "true");
             panel.setAttribute("roll", "region");
+            // 패널 초기화 css 설정할 경우 주석
+            // panel.style.height = "0";
+            // panel.style.overflow = "hidden";
+            // panel.style.transition = "height 0.3s ease";
 
             if (clickArea === "header") {
               trigger.style.cursor = "pointer";
@@ -505,6 +510,7 @@
                     const otherPanel = otherItem.querySelector("[data-accordion=panel]");
                     otherTrigger.setAttribute("aria-expanded", "false");
                     otherItem.classList.remove("active");
+                    otherPanel.setAttribute("hidden", "true");
                     otherBtn.textContent = "열기";
                   }
                 });
@@ -512,6 +518,7 @@
               trigger.setAttribute("aria-expanded", !isExpanded);
               item.classList.toggle("active", !isExpanded);
               btn.textContent = isExpanded ? "열기" : "닫기";
+              panel.hidden = isExpanded;
             };
 
             trigger.addEventListener("click", togglePanel);
@@ -521,6 +528,7 @@
               trigger.setAttribute("aria-expanded", "true");
               item.classList.add("active");
               btn.textContent = "닫기";
+              panel.hidden = false;
               panel.style.height = "auto";
             }
           });
@@ -559,6 +567,7 @@
             trigger.setAttribute("aria-expanded", "false");
             panel.setAttribute("id", `acc-controls-${uniqueIdx}`);
             panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
+            panel.setAttribute("hidden", "true");
             panel.setAttribute("roll", "region");
  
             if (clickArea === "header") {
@@ -587,6 +596,7 @@
                     const otherPanel = otherItem.querySelector("[data-accordion=panel]");
                     otherTrigger.setAttribute("aria-expanded", "false");
                     otherItem.classList.remove("active");
+                    otherPanel.setAttribute("hidden", "true");
                     otherBtn.textContent = "열기";
                     otherPanel.style.height = "0";
                   }
@@ -596,6 +606,7 @@
               trigger.setAttribute("aria-expanded", !isExpanded);
               item.classList.toggle("active", !isExpanded);
               btn.textContent = isExpanded ? "열기" : "닫기";
+              panel.hidden = isExpanded;
 
               if (!isExpanded) {
                 const fullHeight = panel.scrollHeight + "px";
@@ -622,6 +633,7 @@
               trigger.setAttribute("aria-expanded", "true");
               item.classList.add("active");
               btn.textContent = "닫기";
+              panel.hidden = false;
               panel.style.height = "auto";
             }
           });

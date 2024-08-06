@@ -419,7 +419,7 @@
             const trigger = item.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
             const btn = item.querySelector("[data-accordion=button]");
             const panel = item.querySelector("[data-accordion=panel]");
-            const pnaelCont = panel.querySelector(":scope > *");
+            const panelCont = panel.querySelector(":scope > *");
             const isActive = item.classList.contains("active");
 
             // Setting ARIA attributes
@@ -451,7 +451,7 @@
               item.classList.add("active");
               btn.textContent = "닫기";
               panel.hidden = "false";
-              pnaelCont.style.display = "block";
+              panelCont.style.display = "block";
             }
             
             // togglePanel
@@ -479,18 +479,23 @@
               if (!isExpanded) {
                 btn.textContent = "닫기";
                 panel.hidden = "false";
-                pnaelCont.style.display = "block";
+                panelCont.style.display = "block";
                 setTimeout(() => {
                   trigger.setAttribute("aria-expanded", "true");
                   item.classList.add("active");
                 }, 0);
+                panel.addEventListener("transitionend", function handleTransitionEnd() {
+                  // panel.hidden = "false";
+                  panelCont.style.display = "block";
+                  panel.removeEventListener("transitionend", handleTransitionEnd);
+                });
               } else {
                 btn.textContent = "열기";
                 trigger.setAttribute("aria-expanded", "false");
                 item.classList.remove("active");
                 panel.addEventListener("transitionend", function handleTransitionEnd() {
                   panel.hidden = "true";
-                  pnaelCont.style.display = "none";
+                  panelCont.style.display = "none";
                   panel.removeEventListener("transitionend", handleTransitionEnd);
                 });
               }

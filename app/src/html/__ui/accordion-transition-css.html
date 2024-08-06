@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>accordion / option / wacc</title>
+
+    <link href="../../assets/css/reset.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: content-box;
+    }
+    *:focus {
+      background-color: rgb(251, 255, 0);
+    }
+
+    /* tabs */
+    .tabs {
+      display: flex;
+      cursor: pointer;
+      margin-bottom: 10px;
+      padding: 10px;
+      transition: background 0.3s ease;
+      button {
+        font-weight: bold;
+        padding: 5px 10px;
+        &.active {
+          background: gray;
+          color: white;
+        }
+      }
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+      margin: 10px;
+      border: 1px solid #111;
+      &.active {
+        display: block;
+      }
+    }
+    button {
+      padding: 5px;
+      display: block;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #666666;
+      border-radius: 5px;
+      box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .d-flex {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .test-btn {
+      background-color: rgb(215, 255, 230);
+    }
+
+    /* 임시 디자인 */
+    [data-accordion="accordion"] {
+      font-size: 11px;
+      & + [data-accordion="accordion"] {
+        margin-top: 100px;
+      }
+      [data-accordion="item"] {
+        position: relative;
+        & + [data-accordion="item"] {
+          margin-top: -1px;
+        }
+        [data-accordion="header"] {
+          border-top: 1px solid red;
+          border-bottom: 1px solid red;
+          background-color: rgb(255, 247, 247);
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          gap: 10px;
+          font-weight: bold;
+          [data-accordion="button"] {
+            margin-left: auto;
+            flex-shrink: 0;
+            min-width: 50px;
+          }
+        }
+        [data-accordion="panel"] {
+          display: none;
+          background-color: rgb(250, 250, 250);
+          .inner {
+            padding: 30px;
+          }
+        }
+        [data-accordion="button"]::after {
+          content: "::after 열기";
+        }
+        &.active {
+          [data-accordion="panel"] {
+            display: block;
+          }
+          [data-accordion="button"]::after {
+            content: "::after 닫기";
+          }
+        }
+      }
+    }
+
+    .transition {
+      [data-accordion="item"] {
+        [data-accordion="panel"] {
+          opacity: 0;
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: all 0.5s ease-in-out;
+          .panel-cont {
+            overflow: hidden;
+          }
+          .inner {
+            padding: 50px;
+            max-height: 300px;
+            overflow-y: auto;
+          }
+        }
+      }
+      [data-accordion="item"].active {
+        [data-accordion="panel"] {
+          display: grid;
+          opacity: 1;
+          grid-template-rows: 1fr;
+          .panel-cont {
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  </style>
+  <body>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="tab1">트랜지션:grid</button>
+      <button class="tab-button" data-tab="tab2">비동기</button>
+    </div>
+    <div id="tab1" class="tab-content active">
+      <!-- accordion -->
+      <div id="accordion-container0" data-accordion="accordion" class="transition">
+        <!-- accordion-item -->
+        <div data-accordion="item">
+          <!-- accordion-header -->
+          <h2 data-accordion="header">
+            <span>data-accordion="header"</span>
+            <button class="test-btn">버튼테스트</button>
+            <!-- accordion-button -->
+            <button data-accordion="button">data-accordion="button"</button>
+            <!-- //accordion-button  -->
+          </h2>
+          <!-- //accordion-header -->
+          <!-- accordion-panel -->
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner">
+                <input type="text" />
+                <br />
+                <button>test</button>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt
+              </div>
+            </div>
+          </div>
+          <!-- //accordion-panel -->
+        </div>
+        <!-- //accordion-item -->
+        <!-- accordion-item -->
+        <div data-accordion="item">
+          <!-- accordion-header -->
+          <h2 data-accordion="header">
+            <span>data-accordion="header"</span>
+            <!-- accordion-button -->
+            <button data-accordion="button">data-accordion="button"</button>
+            <!-- //accordion-button  -->
+          </h2>
+          <!-- //accordion-header -->
+          <!-- accordion-panel -->
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner">
+                <input type="text" />
+                <br />
+                <button>test</button>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+                voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+                amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+                cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+                sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+                nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+                amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+                cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+                sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+                nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+                amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+                cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+                sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+                nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+                amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+                cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+                sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+                nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+                amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+                cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+                sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+                nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+                amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+                cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+                sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+                nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+                ipsum voluptatum nesciunt
+              </div>
+            </div>
+          </div>
+          <!-- //accordion-panel -->
+        </div>
+        <!-- //accordion-item -->
+        <!-- accordion-item -->
+        <div data-accordion="item">
+          <!-- accordion-header -->
+          <h2 data-accordion="header">
+            <span>data-accordion="header"</span>
+            <!-- accordion-button -->
+            <button data-accordion="button">data-accordion="button"</button>
+            <!-- //accordion-button  -->
+          </h2>
+          <!-- //accordion-header -->
+          <!-- accordion-panel -->
+          <div data-accordion="panel">
+            <div class="panel-cont">
+              <div class="inner">
+                <input type="text" />
+                <br />
+                <button>test</button>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt
+              </div>
+            </div>
+          </div>
+          <!-- //accordion-panel -->
+        </div>
+        <!-- //accordion-item -->
+      </div>
+      <!-- //accordion -->
+
+      <!-- create -->
+      <div id="accordion-container1" data-accordion="accordion" class="transition is-open"></div>
+    </div>
+    <div id="tab2" class="tab-content">
+      <!-- accordion -->
+      <div id="accordion-container2" data-accordion="accordion" class="transition is-open">
+        <!-- accordion-item -->
+        <div data-accordion="item">
+          <!-- accordion-header -->
+          <h2 data-accordion="header">
+            <span>비동기테스트</span>
+            <button class="test-btn">버튼테스트</button>
+            <!-- accordion-button -->
+            <button data-accordion="button">data-accordion="button"</button>
+            <!-- //accordion-button  -->
+          </h2>
+          <!-- //accordion-header -->
+          <!-- accordion-panel -->
+          <div data-accordion="panel">
+            <div class="panel-cont load-test1"></div>
+          </div>
+          <!-- //accordion-panel -->
+        </div>
+        <!-- //accordion-item -->
+        <!-- accordion-item -->
+        <div data-accordion="item">
+          <!-- accordion-header -->
+          <h2 data-accordion="header">
+            <span>비동기테스트2</span>
+            <!-- accordion-button -->
+            <button data-accordion="button">data-accordion="button"</button>
+            <!-- //accordion-button  -->
+          </h2>
+          <!-- //accordion-header -->
+          <!-- accordion-panel -->
+          <div data-accordion="panel">
+            <div class="panel-cont load-test2"></div>
+          </div>
+          <!-- //accordion-panel -->
+        </div>
+        <!-- //accordion-item -->
+      </div>
+      <!-- //accordion -->
+    </div>
+
+    <script>
+      // tab
+      const tabex = () => {
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tabId = button.getAttribute("data-tab");
+            tabButtons.forEach((btn) => {
+              btn.classList.remove("active");
+            });
+            tabContents.forEach((content) => {
+              content.classList.remove("active");
+            });
+            button.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+          });
+        });
+      };
+      tabex();
+
+      // dataAccordion
+      const dataAccordion1 = [
+        {
+          header: `initAccordion("#accordion-container2", "header", "single")`,
+          content: `<input type="text"> 토글 : data-accordion=header / 동작 : 전체 / 트랜지션 없음`,
+        },
+        {
+          header: `<span class="d-flex">ex <button class="test-btn">버튼테스트</button></span>`,
+          content: `<input type="text"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam laboreLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+        },
+        {
+          header: `<span class="d-flex">버튼테스트2 ex <button class="test-btn">버튼테스트</button></span>`,
+          content: `<input type="text"> content-ex`,
+          exopt: `<button class="test-btn test-ex">버튼테스트2-ex</button>`,
+        },
+        {
+          header: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt",
+          content: `<input type="text"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt, rem deleniti voluptate animi quisquam labore
+            sequi laboriosam! Sed mollitia dolor ab nihil ducimus cupiditate in?Lorem ipsum dolor sit amet consectetur,`,
+          exopt: `<button class="test-btn test-ex">버튼테스트3-ex</button>`,
+        },
+      ];
+
+      // createAccordion
+      const createAccordion = (id, data) => {
+        const accordionContainer = document.getElementById(`${id}`);
+        data.forEach((item, idx) => {
+          const accordionItem = document.createElement("div");
+          accordionItem.setAttribute("data-accordion", "item");
+          // 클래스가 있는 경우
+          if (item.class) {
+            accordionItem.setAttribute("class", item.class);
+          }
+          const header = document.createElement("h2");
+          header.setAttribute("data-accordion", "header");
+          header.innerHTML = `<span>${item.header}</span><button data-accordion="button">열기</button>`;
+          accordionItem.appendChild(header);
+
+          const panel = document.createElement("div");
+          panel.setAttribute("data-accordion", "panel");
+          panel.innerHTML = `<div class="panel-cont"><div class="inner">${item.content}</div></div>`;
+          accordionItem.appendChild(panel);
+
+          accordionContainer.appendChild(accordionItem);
+        });
+      };
+
+      createAccordion("accordion-container1", dataAccordion1);
+
+      // initAccordion
+      const initAccordion = (id, clickArea, behavior) => {
+        const accordions = document.querySelectorAll(`${id}[data-accordion=accordion]`);
+        accordions.forEach((accordion) => {
+          const accItems = accordion.querySelectorAll("[data-accordion=item]");
+          const isAccordionOpen = accordion.classList.contains("is-open");
+          // accItems
+          accItems.forEach((item, itemIdx) => {
+            // uniqueIdx
+            const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const randomA = keys[Math.floor(Math.random() * keys.length)];
+            const randomB = keys[Math.floor(Math.random() * keys.length)];
+            const randomC = Math.floor(Math.random() * 10000) + 1;
+            const uniqueIdx = `${itemIdx}-${randomA}${randomB}${randomC}`;
+            console.log(uniqueIdx);
+            const trigger = item.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
+            const btn = item.querySelector("[data-accordion=button]");
+            const panel = item.querySelector("[data-accordion=panel]");
+            const isActive = item.classList.contains("active");
+
+            // Setting ARIA attributes
+            trigger.setAttribute("id", `acc-labelledby-${uniqueIdx}`);
+            trigger.setAttribute("aria-controls", `acc-controls-${uniqueIdx}`);
+            trigger.setAttribute("aria-expanded", "false");
+            panel.setAttribute("id", `acc-controls-${uniqueIdx}`);
+            panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
+            panel.setAttribute("hidden", "true");
+            panel.setAttribute("roll", "region");
+
+            if (clickArea === "header") {
+              trigger.style.cursor = "pointer";
+              trigger.setAttribute("role", "button");
+              trigger.setAttribute("tabindex", "0");
+              btn.setAttribute("role", "presentation");
+              btn.setAttribute("tabindex", "-1");
+              trigger.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  togglePanel();
+                }
+              });
+            }
+
+            // Initial open state
+            if (isAccordionOpen || isActive) {
+              trigger.setAttribute("aria-expanded", "true");
+              item.classList.add("active");
+              btn.textContent = "닫기";
+              panel.hidden = "false";
+            }
+            
+            // togglePanel
+            const togglePanel = () => {
+              const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+              const pnaelCont = panel.querySelector(":scope > *");
+
+              if (behavior === "single") {
+                accItems.forEach((otherItem, otherIdx) => {
+                  if (otherIdx !== itemIdx) {
+                    const otherTrigger = otherItem.querySelector(clickArea === "header" ? "[data-accordion=header]" : "[data-accordion=button]");
+                    const otherBtn = otherItem.querySelector("[data-accordion=button]");
+                    const otherPanel = otherItem.querySelector("[data-accordion=panel]");
+                    otherTrigger.setAttribute("aria-expanded", "false");
+                    otherItem.classList.remove("active");
+                    otherBtn.textContent = "열기";
+                    otherPanel.hidden = "true";
+                    setTimeout(() => {
+                      otherPanel.querySelector(":scope > *").style.display = "none";
+                    }, 500);
+                  }
+                });
+              }
+
+              if (!isExpanded) {
+                btn.textContent = "닫기";
+                panel.hidden = "false";
+                pnaelCont.style.display = "block";
+                setTimeout(() => {
+                  trigger.setAttribute("aria-expanded", "true");
+                  item.classList.add("active");
+                }, 0);
+              } else {
+                btn.textContent = "열기";
+                trigger.setAttribute("aria-expanded", "false");
+                item.classList.remove("active");
+                panel.addEventListener("transitionend", function handleTransitionEnd() {
+                  panel.hidden = "true";
+                  pnaelCont.style.display = "none";
+                  panel.removeEventListener("transitionend", handleTransitionEnd);
+                });
+              }
+            };
+
+            trigger.addEventListener("click", togglePanel);
+
+            
+          });
+        });
+      };
+
+      initAccordion("#accordion-container0");
+      initAccordion("#accordion-container1", "header", "single");
+      initAccordion("#accordion-container2", "header");
+
+      // test
+      const loadingTest = () => {
+        const target1 = document.querySelector(".load-test1");
+        const target2 = document.querySelector(".load-test2");
+        const cont1 = `
+          <div class="inner">
+            <input type="text" />
+            <br />
+            <button>test</button>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciunt
+          </div>
+        `;
+        const cont2 = `
+          <div class="inner">
+            <input type="text" />
+            <br />
+            <button>test</button>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum
+            voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+            ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+            amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+            cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+            sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum
+            nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+            ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit
+            amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex
+            cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor
+            sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit.
+            nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Nostrum ex cum ipsum voluptatum nesciuntLorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum ex cum
+            ipsum voluptatum nesciunt
+          </div>
+        `;
+        setTimeout(() => {
+          target1.innerHTML = cont1;
+        }, 5000);
+        setTimeout(() => {
+          target2.innerHTML = cont2;
+        }, 7000);
+      }
+      loadingTest();
+      // testConsole
+      const testConsole = () => {
+        const btn = document.querySelectorAll(".test-btn");
+        btn.forEach((button) => {
+          button.addEventListener("click", () => {
+            console.log(button.textContent);
+          });
+        });
+      };
+      testConsole();
+    </script>
+  </body>
+</html>

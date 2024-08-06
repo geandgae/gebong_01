@@ -116,13 +116,12 @@
     .transition {
       [data-accordion="item"] {
         [data-accordion="panel"] {
-          opacity: 0;
-          display: grid;
-          grid-template-rows: 0fr;
+          display: block;
+          overflow: hidden;
+          height: 0;
           transition: all 0.5s ease-in-out;
           .panel-cont {
             display: none;
-            overflow: hidden;
           }
           .inner {
             padding: 50px;
@@ -133,12 +132,8 @@
       }
       [data-accordion="item"].active {
         [data-accordion="panel"] {
-          display: grid;
-          opacity: 1;
-          grid-template-rows: 1fr;
           .panel-cont {
             display: block;
-            overflow: hidden;
           }
         }
       }
@@ -291,7 +286,7 @@
     </div>
     <div id="tab2" class="tab-content">
       <!-- accordion -->
-      <div id="accordion-container2" data-accordion="accordion" class="transition is-open">
+      <div id="accordion-container2" data-accordion="accordion" class="transition">
         <!-- accordion-item -->
         <div data-accordion="item">
           <!-- accordion-header -->
@@ -430,6 +425,9 @@
             panel.setAttribute("aria-labelledby", `acc-labelledby-${uniqueIdx}`);
             panel.setAttribute("hidden", "true");
             panel.setAttribute("roll", "region");
+            
+            // Track the transition state 버그
+            let isTransitioning = false;
 
             if (clickArea === "header") {
               trigger.style.cursor = "pointer";
@@ -450,15 +448,20 @@
               trigger.setAttribute("aria-expanded", "true");
               item.classList.add("active");
               btn.textContent = "닫기";
-              panel.hidden = "false";
+              panel.hidden = false;
+              panel.style.height = "auto";
               pnaelCont.style.display = "block";
             }
             
             // togglePanel
             const togglePanel = () => {
-              const isExpanded = trigger.getAttribute("aria-expanded") === "true";
-              
+              // 버그
+              if (isTransitioning) return;
+              isTransitioning = true;
 
+              // const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+              const isExpanded = item.classList.contains("active");
+              
               if (behavior === "single") {
                 accItems.forEach((otherItem, otherIdx) => {
                   if (otherIdx !== itemIdx) {
@@ -468,37 +471,63 @@
                     otherTrigger.setAttribute("aria-expanded", "false");
                     otherItem.classList.remove("active");
                     otherBtn.textContent = "열기";
-                    otherPanel.hidden = "true";
+                    
+                    otherPanel.style.height = otherPanel.scrollHeight + "px";
                     setTimeout(() => {
+                      otherPanel.style.height = "0";
+                    }, 0);
+                    // 이 부분 딜레이 주면 버그
+                    setTimeout(() => {
+                      otherPanel.hidden = "true";
                       otherPanel.querySelector(":scope > *").style.display = "none";
-                    }, 500);
+                    }, 0);
                   }
                 });
               }
 
               if (!isExpanded) {
+                pnaelCont.style.display = "block";
+                const fullHeight = panel.scrollHeight + "px";
+                panel.style.height = fullHeight;
                 btn.textContent = "닫기";
                 panel.hidden = "false";
-                pnaelCont.style.display = "block";
                 setTimeout(() => {
                   trigger.setAttribute("aria-expanded", "true");
                   item.classList.add("active");
                 }, 0);
+                // Transition complete
+                panel.addEventListener("transitionend", function handleTransitionEnd() {
+                  panel.style.height = "auto";
+                  panel.removeEventListener("transitionend", handleTransitionEnd);
+                  // 버그
+                  isTransitioning = false;
+                });
               } else {
+                panel.style.height = panel.scrollHeight + "px";
+                setTimeout(() => {
+                  panel.style.height = "0";
+                }, 0);
                 btn.textContent = "열기";
                 trigger.setAttribute("aria-expanded", "false");
                 item.classList.remove("active");
+                // Transition complete
                 panel.addEventListener("transitionend", function handleTransitionEnd() {
                   panel.hidden = "true";
                   pnaelCont.style.display = "none";
                   panel.removeEventListener("transitionend", handleTransitionEnd);
+                  // 버그
+                  isTransitioning = false; 
                 });
               }
             };
 
-            trigger.addEventListener("click", togglePanel);
+            trigger.addEventListener("click", () => {
+              // 버그
+              if (!isTransitioning) {
+                togglePanel();
+              }
+            });
 
-            
           });
         });
       };

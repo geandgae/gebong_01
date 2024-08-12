@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>accordion / option / wacc</title>
+
+    <link href="../../assets/css/reset.css" type="text/css" media="all" rel="stylesheet" />
+
+    <script defer src="../../assets/js/ui/menu-lnb.js"></script>
+  </head>
+
+  <style>
+    /* 기본적인 레이아웃 */
+    .lnb-wrap {
+      margin: 50px;
+      width: 300px;
+      
+    }
+
+    /* 제목 스타일 */
+    .lnb-wrap h2 {
+      font-size: 10px;
+      background-color: #3a3a3a;
+      color: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* 메뉴 스타일 */
+    .lnb-menu {
+      border: 1px solid #3a3a3a;
+      font-size: 10px;
+      color: #333;
+      li {
+        /* margin-top: -1px; */
+        margin-top: 0;
+      }
+      button, a {
+        border-top: 1px solid #3a3a3a;
+      }
+      & > li > button {
+        padding: 10px;
+      }
+      & > li > a {
+        padding: 10px;
+      }
+      .link, button, a {
+        display: block;
+        width: 100%;
+        text-align: left;
+        &:hover, &:focus {
+          background-color: #fffdee;
+        }
+      }
+      .link {
+        text-decoration: underline;
+      }
+      /* depth-2 스타일 */
+      .depth-2 {
+        background-color: #fafafa;
+        & > li > button {
+          padding: 10px 20px;
+        }
+        & > li > a {
+          padding: 10px 20px;
+        }
+      }
+
+      /* depth-3 스타일 */
+      .depth-3 {
+        background-color: #d8d8d8;
+        & > li > button {
+          padding: 10px 30px;
+        }
+        & > li > a {
+          padding: 10px 30px;
+        }
+      }
+
+      /* depth-4 스타일 */
+      .depth-4 {
+        background-color: #eaf5ff;
+        & > li > button {
+          padding: 10px 40px;
+        }
+        & > li > a {
+          padding: 10px 40px;
+        }
+      }
+    }
+
+    .lnb-menu {
+      .toggle::after {
+        content: "  +";
+      }
+      .toggle.active::after {
+        content: " -";
+      }
+      ul {
+        overflow: hidden;
+        max-height: 0;
+        transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+        visibility: hidden;
+        /* pointer-events: none; */
+      }
+      .toggle.active + ul {
+        max-height: 100vh;
+        transition: all 1.5s ease-in-out;
+        visibility: visible;
+        /* pointer-events: auto; */
+      }
+    }
+
+    /* 숨겨진 서브메뉴를 표시할 때 */
+    /* .lnb-menu ul[hidden] {
+      display: none;
+    }
+    .lnb-menu button[aria-expanded="true"] + ul {
+      display: block;
+    } */
+
+    
+
+  
+  </style>
+  <body>
+
+    <ul class="lnb-menu" data-lnb="menubar">
+      <!-- depth-1 -->
+      <li>
+        <button class="toggle">depth-1 menu-1 test1</button>
+        <!-- depth-2 -->
+        <ul class="depth-2">
+          <li>
+            <button class="toggle">depth-2 submenu-1-1</button>
+            <!-- depth-3 -->
+            <ul class="depth-3">
+              <li>
+                <button class="toggle">depth-3 submenu-1-1-1</button>
+                <!-- depth-4 -->
+                <ul class="depth-4">
+                  <li><a class="link" href="#;">depth-4 link-1-1-1-1</a></li>
+                </ul>
+                <!-- depth-4 -->
+              </li>
+              <li>
+                <button class="toggle">depth-3 submenu-1-1-1</button>
+                <!-- depth-4 -->
+                <ul class="depth-4">
+                  <li><a class="link" href="#;">depth-4 link-1-1-1-1</a></li>
+                </ul>
+                <!-- depth-4 -->
+              </li>
+            </ul>
+            <!-- depth-3 -->
+          </li>
+          <li>
+            <button class="toggle">depth-2 submenu-1-1</button>
+            <!-- depth-3 -->
+            <ul class="depth-3">
+              <li>
+                <button class="toggle">depth-3 submenu-1-1-1</button>
+                <!-- depth-4 -->
+                <ul class="depth-4">
+                  <li><a class="link" href="#;">depth-4 link-1-1-1-1</a></li>
+                </ul>
+                <!-- depth-4 -->
+              </li>
+            </ul>
+            <!-- depth-3 -->
+          </li>
+        </ul>
+        <!-- //depth-2 -->
+      </li>
+      <!-- //depth-1 -->
+      <!-- depth-1 -->
+      <li>
+        <button class="toggle">depth-1 menu-1 test3</button>
+        <!-- depth-2 -->
+        <ul class="depth-2">
+          <li>
+            <button class="toggle">depth-2 submenu-1-1</button>
+            <!-- depth-3 -->
+            <ul class="depth-3">
+              <li>
+                <button class="toggle">depth-3 submenu-1-1-1</button>
+                <!-- depth-4 -->
+                <ul class="depth-4">
+                  <li><a class="link" href="#;">depth-4 link-1-1-1-1</a></li>
+                </ul>
+                <!-- depth-4 -->
+              </li>
+            </ul>
+            <!-- depth-3 -->
+          </li>
+        </ul>
+        <!-- //depth-2 -->
+      </li>
+      <!-- //depth-1 -->
+      <!-- depth-1 -->
+      <li>
+        <button class="toggle">depth-1 menu-1 test2</button>
+        <!-- depth-2 -->
+        <ul class="depth-2">
+          <li><a class="link" href="#;">depth-2 link-1-1</a></li>
+        </ul>
+        <!-- //depth-2 -->
+      </li>
+      <!-- //depth-1 -->
+      <li><a class="link" href="#;">depth-1 link-1</a></li>
+      <li><button class="link">depth-1 link-1</button></li>
+    </ul>
+
+    <!-- * 일반적인 토글은 aria-expanded="false" -->
+    <!-- * 팝업, 다이얼로그를 불러오는 메뉴 aria-haspopup="true" -->
+    <nav class="lnb-wrap" style="display: none;">
+      <h2>title</h2>
+      <ul class="lnb-menu" data-lnb="menubar-sample" role="menubar">
+        <!-- depth-1 -->
+        <li role="none">
+          <button class="toggle" aria-controls="menu-1" aria-expanded="false">depth-1 menu-1</button>
+          <!-- depth-2 -->
+          <ul class="depth-2" id="menu-1" role="menu" hidden>
+            <li role="none">
+              <button class="toggle" role="menuitem" aria-controls="submenu-1-1" aria-expanded="false">depth-2 submenu-1-1</button>
+              <!-- depth-3 -->
+              <ul class="depth-3" id="submenu-1-1" role="menu" hidden>
+                <li role="none">
+                  <button class="toggle" role="menuitem" aria-controls="submenu-1-1-1" aria-expanded="false">depth-3 submenu-1-1-1</button>
+                  <!-- depth-4 -->
+                  <ul class="depth-4" id="submenu-1-1-1" role="menu" hidden>
+                    <li role="none"><a class="link" href="#;" role="menuitem">depth-4 link-1-1-1-1</a></li>
+                  </ul>
+                  <!-- depth-4 -->
+                  <li role="none"><a class="link" href="#;" role="menuitem">depth-3 link-1-1-1</a></li>
+                </li>
+              </ul>
+              <!-- depth-3 -->
+            </li>
+            <li role="none"><a class="link" href="#;" role="menuitem">depth-2 link-1-1</a></li>
+          </ul>
+          <!-- //depth-2 -->
+        </li>
+        <!-- //depth-1 -->
+        <li role="none"><a class="link" href="#;" role="menuitem">depth-1 link-1</a></li>
+        <li role="none"><button class="link">depth-1 link-1</button></li>
+      </ul>
+    </nav>
+
+  </body>
+</html>

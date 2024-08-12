@@ -33,6 +33,9 @@
     const targetUi = document.querySelector(".__ui");
     const ui = [
       { link: "@@html/__ui/accordion.html", name: "아코디언" },
+      { link: "@@html/__ui/accordion-transition-css.html", name: "아코디언2" },
+      { link: "@@html/__ui/accordion-transition-hegiht.html", name: "아코디언3" },
+      { link: "@@html/__ui/menu-lnb.html", name: "메뉴-lnb" },
     ];
     targetUi.innerHTML = ui.map((item) => `<li><a href="${item.link}">${item.name}</a></li>`).join("\n");
 

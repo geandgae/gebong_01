@@ -42,36 +42,7 @@ const initializeMenu = () => {
 };
 initializeMenu();
 
-// 메뉴 초기화 함수
-const initializeMenu2 = () => {
-  document.querySelectorAll("[data-lnb='menubar']").forEach((menubar) => {
-    menubar.setAttribute("role", "menubar");
 
-    menubar.querySelectorAll("li").forEach((item) => {
-      item.setAttribute("role", "none");
-
-      const button = item.querySelector("button.toggle");
-      if (button) {
-        const submenu = button.nextElementSibling;
-        const uniqueId = submenu ? `menu-${Math.random().toString(36).substring(2, 9)}` : null;
-
-        button.setAttribute("aria-controls", uniqueId);
-        button.setAttribute("aria-expanded", "false");
-        button.setAttribute("role", "menuitem");
-
-        if (submenu && submenu.tagName === "UL") {
-          submenu.setAttribute("id", uniqueId);
-          submenu.setAttribute("role", "menu");
-        }
-      }
-
-      const link = item.querySelector(".link");
-      if (link) {
-        link.setAttribute("role", "menuitem");
-      }
-    });
-  });
-};
 
 // 메뉴 토글 핸들러 함수
 const handleDepthToggle = (triggers) => {
@@ -148,8 +119,36 @@ lnbToggle();
 
 
 
+// 메뉴 초기화 함수
+const initializeMenu2 = () => {
+  document.querySelectorAll("[data-lnb='menubar']").forEach((menubar) => {
+    menubar.setAttribute("role", "menubar");
 
+    menubar.querySelectorAll("li").forEach((item) => {
+      item.setAttribute("role", "none");
 
+      const button = item.querySelector("button.toggle");
+      if (button) {
+        const submenu = button.nextElementSibling;
+        const uniqueId = submenu ? `menu-${Math.random().toString(36).substring(2, 9)}` : null;
+
+        button.setAttribute("aria-controls", uniqueId);
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("role", "menuitem");
+
+        if (submenu && submenu.tagName === "UL") {
+          submenu.setAttribute("id", uniqueId);
+          submenu.setAttribute("role", "menu");
+        }
+      }
+
+      const link = item.querySelector(".link");
+      if (link) {
+        link.setAttribute("role", "menuitem");
+      }
+    });
+  });
+};
 
 const handleDepthToggle2 = (triggers) => {
   triggers.forEach((trigger) => {

@@ -1,0 +1,3829 @@
+sample_appl_0102.html:
+
+기준 클래스 포함된 클래스 갯수: 49
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- sch-filter-box
+- filter-form
+- form-select
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- active
+- m-sort-btn
+- ico-filter
+- open-modal
+- search-list
+- card-top
+- krds-badge
+- btn-area
+- ico-share
+- ico-like
+- card-body
+- c-btn
+- primary
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 29
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- sm
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- li
+- in
+- c-text
+- c-tit
+- c-txt
+- c-date
+- key
+- value
+- tag
+- bg3
+- bg2
+- prev
+- next
+
+
+
+sample_appl_0101.html:
+
+기준 클래스 포함된 클래스 갯수: 57
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- sch-filter-box
+- filter-form
+- form-select
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- active
+- m-sort-btn
+- ico-filter
+- open-modal
+- search-list
+- chk-area
+- form-check
+- chk
+- card-top
+- krds-badge
+- btn-area
+- ico-share
+- ico-like
+- card-body
+- c-btn
+- primary
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+- page-btn-wrap
+- page-appl-btn
+- page-appl-in
+- secondary
+- ico-arr-down
+
+기준 클래스 포함되지 않은 클래스 갯수: 30
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- sm
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- li
+- 
+- c-text
+- c-tit
+- c-txt
+- c-date
+- key
+- value
+- tag
+- bg3
+- bg2
+- prev
+- next
+- xlg
+
+
+
+sample_appl_0103.html:
+
+기준 클래스 포함된 클래스 갯수: 57
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- sch-filter-box
+- filter-form
+- form-select
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- active
+- m-sort-btn
+- ico-filter
+- open-modal
+- search-list
+- chk-area
+- form-check
+- chk
+- card-top
+- krds-badge
+- btn-area
+- ico-share
+- ico-like
+- card-body
+- c-btn
+- primary
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+- page-btn-wrap
+- page-appl-btn
+- page-appl-in
+- secondary
+- ico-arr-down
+
+기준 클래스 포함되지 않은 클래스 갯수: 31
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- sm
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- li
+- 
+- in
+- c-text
+- c-tit
+- c-txt
+- c-date
+- key
+- value
+- tag
+- bg3
+- bg2
+- prev
+- next
+- xlg
+
+
+
+sample_appl_01.html:
+
+기준 클래스 포함된 클래스 갯수: 49
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- sch-filter-box
+- filter-form
+- form-select
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- active
+- m-sort-btn
+- ico-filter
+- open-modal
+- search-list
+- card-top
+- krds-badge
+- btn-area
+- ico-share
+- ico-like
+- card-body
+- c-btn
+- primary
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- sm
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- li
+- c-text
+- c-tit
+- c-txt
+- c-date
+- key
+- value
+- tag
+- bg3
+- bg2
+- prev
+- next
+
+
+
+sample_appl_02.html:
+
+기준 클래스 포함된 클래스 갯수: 43
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- quick-nav-inner
+- page-title-wrap
+- conts-area
+- quick-nav-type
+- conts-detail-wrap
+- quick-nav-area
+- quick-list
+- active
+- conts-wrap
+- section-link
+- tbl-wrap
+- tbl
+- conts-desc
+- helper-box
+- helper-tit
+- helper-desc-wrap
+- conts-expand-area
+- step
+- expand-wrap
+- service-step
+- btn-conts-expand
+- box-group-area
+- btn-wrap
+- btn
+- btn-txt
+- ico-down
+- ico-go
+- chk-group-area
+- chk-all-wrap
+- form-group
+- chk-area
+- form-check
+- chk-num
+- chk-group-wrap
+- chk-column
+- ico-arr
+- btn-txt-list
+- txt-box
+- quick-title-wrap
+- primary
+- page-btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 29
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- guide-txt
+- mobile
+- mob-only
+- scroll-check
+- sec-tit
+- def-list
+- col
+- data
+- ar
+- info-list
+- decimal
+- dash
+- refer
+- br
+- calc-wrap
+- total-txt
+- calc-list
+- num
+- tit-area
+- tit
+- period
+- sm
+- fieldset
+- pc-only
+- guide
+
+
+
+sample_appl_0301.html:
+
+기준 클래스 포함된 클래스 갯수: 53
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- krds-badge-wrap
+- krds-badge
+- btn
+- btn-ico
+- ico-help
+- btn-help-exec
+- sr-only
+- conts-area
+- conts-wrap
+- txt-box
+- conts-desc-wrap
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-tit
+- form-conts
+- input-group
+- form-control
+- secondary
+- form-group-addr
+- form-select
+- chk-area
+- chk-column
+- form-check
+- form-check-cnt
+- btn-helper
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- helper-conts
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- sm-m
+- outline
+- outline-tit
+- outline-txt
+- type1
+- sec-tit
+- info-list
+- decimal
+- bg-white
+- addr-division
+- addr-number
+- row
+- 
+- lg
+- layer
+- line
+- created
+- tit
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_appl_03.html:
+
+기준 클래스 포함된 클래스 갯수: 26
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- active
+- sr-only
+- step
+- step-tit
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- conts-desc-wrap
+- conts-desc
+- tbl-wrap
+- tbl
+- agree-box
+- form-group
+- chk-area
+- form-check
+- page-btn-wrap
+- btn
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 19
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- between
+- h-tit
+- sec-tit
+- outline
+- outline-tit
+- outline-txt
+- br
+- check-list
+- col
+- data
+- info-list
+- decimal
+- fieldset
+- both
+- xlg
+
+
+
+sample_appl_0304.html:
+
+기준 클래스 포함된 클래스 갯수: 28
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- tbl-no-data
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 13
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- between
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- w-hide
+- both
+- xlg
+
+
+
+sample_appl_0302.html:
+
+기준 클래스 포함된 클래스 갯수: 51
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- krds-badge-wrap
+- krds-badge
+- btn
+- btn-ico
+- ico-help
+- btn-help-exec
+- sr-only
+- conts-area
+- conts-wrap
+- txt-box
+- conts-desc-wrap
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- chk-area
+- chk-column
+- form-check
+- input-group
+- form-control
+- secondary
+- form-check-cnt
+- form-check-p
+- btn-helper
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- helper-conts
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+
+기준 클래스 포함되지 않은 클래스 갯수: 25
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- sm-m
+- outline
+- outline-tit
+- outline-txt
+- check-list
+- bg-white
+- row
+- 
+- full
+- lg
+- md
+- layer
+- line
+- created
+- tit
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_appl_0201.html:
+
+기준 클래스 포함된 클래스 갯수: 48
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- quick-nav-inner
+- page-title-wrap
+- conts-area
+- quick-nav-type
+- conts-detail-wrap
+- tab-area
+- quick-nav-tab
+- tab
+- active
+- btn-tab
+- sr-only
+- quick-nav-area
+- quick-list
+- conts-wrap
+- section-link
+- tbl-wrap
+- tbl
+- conts-desc
+- helper-box
+- helper-tit
+- helper-desc-wrap
+- conts-expand-area
+- step
+- expand-wrap
+- service-step
+- btn-conts-expand
+- box-group-area
+- btn-wrap
+- btn
+- btn-txt
+- ico-down
+- ico-go
+- chk-group-area
+- chk-all-wrap
+- form-group
+- chk-area
+- form-check
+- chk-num
+- chk-group-wrap
+- chk-column
+- ico-arr
+- btn-txt-list
+- txt-box
+- quick-title-wrap
+- primary
+- page-btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 31
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- guide-txt
+- line
+- created
+- mobile
+- mob-only
+- scroll-check
+- sec-tit
+- def-list
+- col
+- data
+- ar
+- info-list
+- decimal
+- dash
+- refer
+- br
+- calc-wrap
+- total-txt
+- calc-list
+- num
+- tit-area
+- tit
+- period
+- sm
+- fieldset
+- pc-only
+- guide
+
+
+
+sample_appl_0303.html:
+
+기준 클래스 포함된 클래스 갯수: 55
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- conts-area
+- conts-wrap
+- txt-box
+- conts-desc-wrap
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- btn
+- btn-ico
+- ico-help
+- btn-help-exec
+- sr-only
+- form-group-row
+- form-group
+- form-tit
+- form-conts
+- input-group
+- form-control
+- chk-area
+- chk-column
+- form-check
+- text-primary
+- agree-box
+- btn-helper
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- helper-conts
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+
+기준 클래스 포함되지 않은 클래스 갯수: 33
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- outline
+- outline-tit
+- check-list
+- info
+- txt-refer
+- list-bullet
+- bg-white
+- book-info-ul
+- key
+- value
+- sm-m
+- text-right
+- 
+- row
+- lg
+- full
+- textarea-wrap
+- textarea-count
+- text-num
+- layer
+- line
+- created
+- tit
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_appl_0305.html:
+
+기준 클래스 포함된 클래스 갯수: 32
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 18
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- between
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- info-ul
+- key
+- value
+- col
+- data
+- text-center
+- both
+- xlg
+
+
+
+sample_appl_04.html:
+
+기준 클래스 포함된 클래스 갯수: 9
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- comp-info-box
+- comp-btn-wrap
+- btn
+- tertiary
+- comp-link-box
+- btn-txt
+- ico-arr
+
+기준 클래스 포함되지 않은 클래스 갯수: 11
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- comp-msg-wrap
+- point
+- key
+- value
+- p
+- xlg
+- tit
+- sm
+
+
+
+sample_assess_01.html:
+
+기준 클래스 포함된 클래스 갯수: 23
+포함된 클래스들:
+- page-title-wrap
+- txt-box
+- assess-question-wrap
+- assess-qu
+- assess-an
+- form-chip
+- form-chip-outline
+- assess-opinion-wrap
+- assess-opinion-tit
+- assess-opinion-list
+- form-qu
+- form-group
+- form-conts
+- chk-area
+- chk-column
+- form-check
+- form-control
+- text-primary
+- btm-btn-wrap
+- btn
+- secondary
+- primary
+- assess-end-message
+
+기준 클래스 포함되지 않은 클래스 갯수: 13
+포함되지 않은 클래스들:
+- inner
+- narrow
+- h-tit
+- bg-gray
+- radio
+- li
+- md
+- full
+- textarea-wrap
+- textarea-count
+- text-num
+- tit
+- txt
+
+
+
+sample_cart_01.html:
+
+기준 클래스 포함된 클래스 갯수: 55
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- tab-area
+- tab
+- active
+- btn-tab
+- sr-only
+- tab-conts-wrap
+- tab-conts
+- fade
+- txt-box
+- conts-desc-wrap
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- search-list-top
+- sch-left
+- chk-area
+- form-check
+- chk
+- btn
+- btn-txt
+- ico-email
+- ico-before
+- ico-print
+- ico-down
+- ico-scrap
+- sch-sort
+- sort-select
+- w-sort-btn
+- m-sort-btn
+- search-list
+- card-body
+- krds-badge
+- text-primary-60
+- c-btn
+- primary
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+- page-btn-wrap
+- page-appl-btn
+- page-appl-in
+- secondary
+- ico-arr-down
+- page-appl-list
+- ico-del
+
+기준 클래스 포함되지 않은 클래스 갯수: 37
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- layer
+- full
+- line
+- created
+- outline
+- outline-tit
+- check-list
+- info
+- txt-refer
+- list-bullet
+- type1
+- align-top
+- 
+- side-line-ul
+- sm
+- li1
+- sort-label
+- li2
+- type2
+- li
+- in
+- c-text
+- c-tit
+- span
+- c-txt
+- c-txt-ul
+- key
+- value
+- c-txt-p
+- md
+- prev
+- next
+- xlg
+
+
+
+sample_coach_01.html:
+
+기준 클래스 포함된 클래스 갯수: 59
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- helper-sm-tit
+- helper-desc
+- btn-wrap
+- btn-txt
+- ico-link
+- ico-before
+- ico-comment
+- accordion
+- accordion-item
+- accordion-header
+- btn-accordion
+- accordion-collapse
+- accordion-body
+- page-btn-wrap
+- tertiary
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- info-ul
+- key
+- value
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- xsm
+- collapse
+- info-txt
+- info-list
+- decimal
+- sm
+- fold
+- both
+- xlg
+
+
+
+sample_coach_0101.html:
+
+기준 클래스 포함된 클래스 갯수: 62
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- coach-highligt
+- coach-balloon
+- coach-tit
+- coach-controls
+- btn-wrap
+- btn
+- btn-txt
+- tertiary
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- secondary
+- form-addr-result
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- page-btn
+- ico-prev
+- ico-before
+- coach-help-process
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- coach-btn-stop
+- page-btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- desc
+- num
+- sm
+- m-column
+- info-ul
+- key
+- value
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- tit
+- current
+- list-bullet
+- fold
+- both
+- xlg
+
+
+
+sample_coach_0104.html:
+
+기준 클래스 포함된 클래스 갯수: 63
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- page-btn
+- btn-txt
+- ico-prev
+- ico-before
+- coach-help-process
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- coach-btn-stop
+- page-btn-wrap
+- coach-highligt
+- tertiary
+- btn-wrap
+- coach-btn
+- coach-balloon
+- coach-tit
+- coach-controls
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- info-ul
+- key
+- value
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- sm
+- tit
+- current
+- list-bullet
+- fold
+- both
+- xlg
+- desc
+- num
+
+
+
+sample_coach_0102.html:
+
+기준 클래스 포함된 클래스 갯수: 62
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- coach-highligt
+- coach-balloon
+- coach-tit
+- coach-controls
+- btn-wrap
+- btn-txt
+- tertiary
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- page-btn
+- ico-prev
+- ico-before
+- coach-help-process
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- coach-btn-stop
+- page-btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- desc
+- num
+- sm
+- info-ul
+- key
+- value
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- tit
+- current
+- list-bullet
+- fold
+- both
+- xlg
+
+
+
+sample_coach_0103.html:
+
+기준 클래스 포함된 클래스 갯수: 62
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- coach-highligt
+- coach-balloon
+- coach-tit
+- coach-controls
+- btn-wrap
+- btn-txt
+- tertiary
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- page-btn
+- ico-prev
+- ico-before
+- coach-help-process
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- coach-btn-stop
+- page-btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- info-ul
+- key
+- value
+- desc
+- num
+- sm
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- tit
+- current
+- list-bullet
+- fold
+- both
+- xlg
+
+
+
+sample_footer_link.html:
+
+기준 클래스 포함된 클래스 갯수: 2
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+
+기준 클래스 포함되지 않은 클래스 갯수: 4
+포함되지 않은 클래스들:
+- scroll-no
+- home
+- txt
+- inner
+
+
+
+sample_coach_0105.html:
+
+기준 클래스 포함된 클래스 갯수: 63
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- page-btn
+- btn-txt
+- ico-prev
+- ico-before
+- coach-help-process
+- krds-disclosure
+- conts-expand-area
+- btn-conts-expand
+- expand-wrap
+- expand-in
+- coach-btn-stop
+- page-btn-wrap
+- tertiary
+- btn-wrap
+- coach-highligt
+- coach-btn
+- coach-balloon
+- coach-tit
+- coach-controls
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- info-ul
+- key
+- value
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- sm
+- tit
+- current
+- list-bullet
+- fold
+- both
+- xlg
+- desc
+- num
+
+
+
+sample_helper_type2.html:
+
+기준 클래스 포함된 클래스 갯수: 54
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- krds-badge-wrap
+- krds-badge
+- btn
+- btn-ico
+- ico-help
+- btn-help-exec
+- sr-only
+- conts-area
+- conts-wrap
+- txt-box
+- conts-desc-wrap
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-tit
+- form-conts
+- input-group
+- form-control
+- secondary
+- form-group-addr
+- form-select
+- chk-area
+- chk-column
+- form-check
+- form-check-cnt
+- form-label
+- btn-helper
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- helper-conts
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+
+기준 클래스 포함되지 않은 클래스 갯수: 29
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- flexible
+- h-tit
+- sm-m
+- outline
+- outline-tit
+- outline-txt
+- type1
+- sec-tit
+- info-list
+- decimal
+- bg-white
+- addr-division
+- addr-number
+- row
+- 
+- lg
+- layer
+- line
+- created
+- tit
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_login_01.html:
+
+기준 클래스 포함된 클래스 갯수: 17
+포함된 클래스들:
+- page-title-wrap
+- conts-area
+- form-switch
+- btn
+- btn-ico
+- ico-info
+- sr-only
+- login-link
+- btn-wrap
+- btn-txt
+- ico-arr
+- ico-func
+- ico-before
+- helper-box
+- helper-tit
+- helper-desc-wrap
+- link
+
+기준 클래스 포함되지 않은 클래스 갯수: 27
+포함되지 않은 클래스들:
+- inner
+- narrow
+- h-tit
+- small-txt
+- h-txt
+- br
+- login-type
+- login-opt-wrap
+- sm
+- certify-sel-wrap
+- certify-option
+- certify-opt-tit
+- certify-type
+- mobile
+- type-tit
+- type-desc
+- pc-only
+- public
+- simplicity
+- sns
+- mob-line
+- id
+- guest
+- join-member-bn-wrap
+- txt-desc
+- info-list
+- decimal
+
+
+
+sample_login_0101.html:
+
+기준 클래스 포함된 클래스 갯수: 26
+포함된 클래스들:
+- page-title-wrap
+- conts-area
+- login-form
+- form-switch
+- btn
+- btn-ico
+- ico-info
+- sr-only
+- login-form-area
+- form-group
+- form-tit
+- form-conts
+- form-control
+- btn-ico-wrap
+- ico-pw-visible
+- chk-area
+- form-check
+- primary
+- link-group
+- btn-txt
+- btn-wrap
+- ico-arr
+- helper-box
+- helper-tit
+- helper-desc-wrap
+- link-txt
+
+기준 클래스 포함되지 않은 클래스 갯수: 14
+포함되지 않은 클래스들:
+- inner
+- narrow
+- h-tit
+- small-txt
+- login-opt-wrap
+- sm
+- login-wrap
+- fieldset
+- md
+- login-info-wrap
+- info-list
+- decimal
+- join-member-bn-wrap
+- txt-desc
+
+
+
+sample_login_02.html:
+
+기준 클래스 포함된 클래스 갯수: 33
+포함된 클래스들:
+- page-title-wrap
+- conts-area
+- login-type-tab
+- tab-area
+- tab
+- active
+- btn-tab
+- sr-only
+- tab-conts-wrap
+- tab-conts
+- login-form-area
+- type-tab
+- form-group
+- form-tit
+- form-conts
+- form-control
+- btn-ico-wrap
+- btn
+- btn-ico
+- ico-pw-visible
+- chk-area
+- form-check
+- primary
+- link-group
+- btn-txt
+- btn-wrap
+- tertiary
+- ico-func
+- ico-before
+- helper-box
+- helper-tit
+- helper-desc-wrap
+- link-txt
+
+기준 클래스 포함되지 않은 클래스 갯수: 20
+포함되지 않은 클래스들:
+- inner
+- narrow
+- h-tit
+- small-txt
+- layer
+- line
+- full
+- created
+- text-gray-70
+- br
+- login-wrap
+- in
+- fieldset
+- md
+- login-info-wrap
+- tit
+- login-method
+- sm
+- info-list
+- decimal
+
+
+
+sample_main_01.html:
+
+기준 클래스 포함된 클래스 갯수: 35
+포함된 클래스들:
+- vb-swiper
+- swiper
+- swiper-wrapper
+- swiper-slide
+- btn
+- primary
+- swiper-button-prev
+- sr-only
+- swiper-button-next
+- swiper-indicator
+- swiper-pagination
+- swiper-button-more
+- btn-txt
+- ico-setting
+- ico-before
+- menu-swiper-in
+- ico
+- ico-more
+- contents-swiper-in
+- d-card
+- c-btn
+- ico-plus
+- c-badge
+- krds-badge
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- service-swiper-in
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- swiper-navigation
+
+기준 클래스 포함되지 않은 클래스 갯수: 39
+포함되지 않은 클래스들:
+- main-vban-wrap
+- bg
+- inner
+- in
+- text
+- tit
+- w-hide
+- txt
+- xlg
+- im
+- text-center
+- main-sect
+- main-tit-wrap
+- sm
+- menu-list
+- type1
+- outline
+- menu-item
+- i1
+- i2
+- i3
+- i4
+- i5
+- i6
+- i7
+- i8
+- contents-wrap
+- contents-text
+- contents-list
+- c-tit
+- c-txt
+- policy-list
+- line
+- layer
+- created
+- news-list
+- d-row
+- service-list
+- d-responsive
+
+
+
+sample_login_04.html:
+
+기준 클래스 포함된 클래스 갯수: 36
+포함된 클래스들:
+- page-title-wrap
+- conts-area
+- terms-agree-all
+- form-check
+- conts-desc
+- txt-box
+- terms-agree-ul
+- agree-tit
+- btn
+- secondary
+- open-modal
+- agree-box
+- chk-area
+- modal
+- fade
+- modal-dialog
+- modal-content
+- modal-header
+- modal-title
+- modal-conts
+- pop-agree-wrap
+- agree-head
+- agree-navigation
+- btn-ico
+- ico-page-prev
+- sr-only
+- ico-page-next
+- agree-body
+- agree-t1
+- modal-btn
+- btn-wrap
+- tertiary
+- close-modal
+- primary
+- btn-close
+- modal-back
+
+기준 클래스 포함되지 않은 클래스 갯수: 19
+포함되지 않은 클래스들:
+- inner
+- narrow
+- h-tit
+- sec-tit
+- m-hide
+- bg-white
+- mgt0
+- xsm
+- txt
+- tit
+- disabled
+- in
+- info-list
+- ordered
+- fraction
+- num
+- dash
+- decimal
+- md
+
+
+
+sample_login_03.html:
+
+기준 클래스 포함된 클래스 갯수: 6
+포함된 클래스들:
+- page-title-wrap
+- conts-area
+- btn-wrap
+- btn
+- tertiary
+- ico-arr
+
+기준 클래스 포함되지 않은 클래스 갯수: 12
+포함되지 않은 클래스들:
+- inner
+- narrow
+- h-tit
+- small-txt
+- w-hide
+- h-txt
+- m-hide
+- login-type-ul
+- in
+- tit
+- txt
+- text-bold
+
+
+
+sample_main_0101.html:
+
+기준 클래스 포함된 클래스 갯수: 37
+포함된 클래스들:
+- vb-card
+- main-d-links
+- btn
+- btn-txt
+- ico-more
+- ico-setting
+- ico-before
+- menu-swiper-in
+- swiper
+- swiper-wrapper
+- swiper-slide
+- ico
+- swiper-button-prev
+- sr-only
+- swiper-button-next
+- swiper-indicator
+- swiper-pagination
+- swiper-navigation
+- swiper-button-more
+- ico-plus
+- d-card
+- noti-primary-item
+- krds-badge
+- noti-swiper
+- main-box-responsive
+- main-d-ban-swiper
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- c-btn
+- c-badge
+
+기준 클래스 포함되지 않은 클래스 갯수: 41
+포함되지 않은 클래스들:
+- main-vban-wrap
+- inner
+- in
+- main-d-text
+- tit
+- txt
+- im
+- d-row
+- main-sect
+- main-tit-wrap
+- sm
+- menu-list
+- type1
+- menu-item
+- i1
+- i2
+- i3
+- i4
+- i5
+- i6
+- i7
+- i8
+- w-hide
+- main-noti-wrap
+- line
+- date
+- text
+- c-tit
+- c-txt
+- type-wrap
+- d-auto
+- one-serv-wrap
+- cate
+- d-fix
+- layer
+- created
+- news-list
+- bg
+- policy-list
+- bgm
+- d-responsive
+
+
+
+sample_main_0102.html:
+
+기준 클래스 포함된 클래스 갯수: 40
+포함된 클래스들:
+- main-urgent-wrap
+- urgent-ban-list
+- urgent-ban
+- urgent-badge
+- urgent-txt
+- btn
+- btn-txt
+- ico-more
+- vb-swiper
+- swiper
+- swiper-wrapper
+- swiper-slide
+- primary
+- swiper-button-prev
+- sr-only
+- swiper-button-next
+- swiper-indicator
+- swiper-pagination
+- swiper-button-more
+- ico-setting
+- ico-before
+- menu-swiper-in
+- ico
+- contents-swiper-in
+- d-card
+- c-btn
+- ico-plus
+- c-badge
+- krds-badge
+- tab-area
+- tab
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- service-swiper-in
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- swiper-navigation
+
+기준 클래스 포함되지 않은 클래스 갯수: 43
+포함되지 않은 클래스들:
+- danger
+- sm
+- m-hide
+- ok
+- info
+- main-vban-wrap
+- bg
+- inner
+- in
+- text
+- tit
+- w-hide
+- txt
+- xlg
+- im
+- text-center
+- main-sect
+- main-tit-wrap
+- menu-list
+- type1
+- outline
+- menu-item
+- i1
+- i2
+- i3
+- i4
+- i5
+- i6
+- i7
+- i8
+- contents-wrap
+- contents-text
+- contents-list
+- c-tit
+- c-txt
+- policy-list
+- line
+- layer
+- created
+- news-list
+- d-row
+- service-list
+- d-responsive
+
+
+
+sample_main_0201.html:
+
+기준 클래스 포함된 클래스 갯수: 39
+포함된 클래스들:
+- main-box-responsive
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- sch-ranking
+- swiper
+- swiper-wrapper
+- swiper-slide
+- swiper-in
+- d-card
+- swiper-indicator
+- swiper-pagination
+- swiper-pagination-bg
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- swiper-navigation
+- swiper-button-prev
+- swiper-button-next
+- swiper-button-more
+- btn-txt
+- ico-setting
+- ico-before
+- main-d-links
+- ico-more
+- menu-swiper-in
+- ico
+- ico-plus
+- news-tbl-list
+- main-d-ban-swiper
+- c-badge
+- krds-badge
+- c-btn
+- contents-swiper-in
+- service-swiper-in
+
+기준 클래스 포함되지 않은 클래스 갯수: 46
+포함되지 않은 클래스들:
+- main-vban-wrap
+- inner
+- d-auto
+- in
+- vert
+- xlg
+- dl
+- ranking-txt
+- ranking-state
+- up
+- same
+- down
+- d-row
+- main-d-text
+- tit
+- txt
+- im
+- d-fix
+- main-tit-wrap
+- sm
+- main-sect
+- menu-list
+- type2
+- menu-item
+- i1
+- text
+- outline
+- xsm
+- date
+- bg
+- cate
+- policy-list
+- line
+- c-tit
+- c-txt
+- i2
+- i3
+- type-wrap
+- one-serv-wrap
+- contents-wrap
+- contents-text
+- contents-list
+- text-center
+- w-hide
+- bgm
+- service-list
+
+
+
+sample_main_02.html:
+
+기준 클래스 포함된 클래스 갯수: 39
+포함된 클래스들:
+- main-box-responsive
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- sch-ranking
+- swiper
+- swiper-wrapper
+- swiper-slide
+- swiper-in
+- d-card
+- swiper-indicator
+- swiper-pagination
+- swiper-pagination-bg
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- swiper-navigation
+- swiper-button-prev
+- swiper-button-next
+- swiper-button-more
+- primary
+- login-links
+- btn-txt
+- ico-setting
+- ico-before
+- menu-swiper-in
+- ico
+- ico-plus
+- c-badge
+- krds-badge
+- c-btn
+- ico-more
+- main-d-links
+- main-d-ban-swiper
+- service-swiper-in
+
+기준 클래스 포함되지 않은 클래스 갯수: 39
+포함되지 않은 클래스들:
+- main-vban-wrap
+- inner
+- d-auto
+- in
+- vert
+- xlg
+- dl
+- ranking-txt
+- ranking-state
+- up
+- same
+- down
+- d-row
+- main-d-text
+- tit
+- txt
+- im
+- d-fix
+- d-login-wrap
+- md
+- main-sect
+- main-tit-wrap
+- sm
+- menu-list
+- type2
+- menu-item
+- i1
+- text
+- policy-list
+- line
+- c-tit
+- c-txt
+- i2
+- i3
+- type-wrap
+- one-serv-wrap
+- cate
+- bgm
+- service-list
+
+
+
+sample_main_03.html:
+
+기준 클래스 포함된 클래스 갯수: 36
+포함된 클래스들:
+- main-top-sch
+- sch-tit
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- sch-tag
+- krds-badge
+- btn-txt
+- ico-setting
+- ico-before
+- ico-more
+- d-card
+- c-btn
+- main-box-responsive
+- ico-plus
+- news-tbl-list
+- main-d-ban-swiper
+- swiper
+- swiper-wrapper
+- swiper-slide
+- swiper-indicator
+- swiper-pagination
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- swiper-navigation
+- swiper-button-prev
+- swiper-button-next
+- swiper-button-more
+- main-d-links
+- contents-swiper-in
+- service-swiper-in
+
+기준 클래스 포함되지 않은 클래스 갯수: 39
+포함되지 않은 클래스들:
+- main-vban-wrap
+- inner
+- vert
+- xlg
+- bg2
+- main-sect
+- main-tit-wrap
+- tit
+- sm
+- menu-list-rel
+- li1
+- fill
+- in
+- text
+- c-tit
+- c-txt
+- li2
+- d-auto
+- outline
+- xsm
+- date
+- d-fix
+- bg
+- cate
+- im
+- type-wrap
+- one-serv-wrap
+- main-d-text
+- txt
+- contents-wrap
+- contents-text
+- contents-list
+- i1
+- i2
+- i3
+- d-responsive
+- bgm
+- service-list
+- line
+
+
+
+sample_move_process_01.html:
+
+기준 클래스 포함된 클래스 갯수: 34
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- quick-nav-inner
+- page-title-wrap
+- conts-area
+- quick-nav-type
+- conts-detail-wrap
+- quick-nav-area
+- quick-list
+- active
+- conts-wrap
+- section-link
+- tbl-wrap
+- tbl
+- btn
+- btn-txt
+- ico-arr
+- ico-go
+- conts-desc
+- helper-box
+- helper-tit
+- helper-desc-wrap
+- conts-expand-area
+- step
+- expand-wrap
+- service-step
+- btn-txt-list
+- box-group-area
+- btn-wrap
+- ico-down
+- ico-more
+- quick-title-wrap
+- primary
+- page-btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 22
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- guide-txt
+- mobile
+- mob-only
+- scroll-check
+- sec-tit
+- def-list
+- sm
+- refer
+- info-list
+- decimal
+- num
+- tit-area
+- tit
+- period
+- col
+- data
+- pc-only
+- guide
+
+
+
+sample_move_process_02.html:
+
+기준 클래스 포함된 클래스 갯수: 42
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- active
+- sr-only
+- step
+- step-tit
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- conts-desc-wrap
+- conts-desc
+- tbl-wrap
+- tbl
+- agree-box
+- form-group
+- chk-area
+- form-check
+- btn
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-conts
+- btn-ico
+- ico-help
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 23
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- sec-tit
+- outline
+- outline-tit
+- outline-txt
+- br
+- check-list
+- col
+- data
+- info-list
+- decimal
+- fieldset
+- tit
+- sm-m
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_main_0301.html:
+
+기준 클래스 포함된 클래스 갯수: 36
+포함된 클래스들:
+- main-top-sch
+- sch-tit
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- sch-tag
+- krds-badge
+- btn-txt
+- ico-setting
+- ico-before
+- ico-more
+- d-card
+- c-btn
+- main-box-responsive
+- ico-plus
+- news-tbl-list
+- main-d-ban-swiper
+- swiper
+- swiper-wrapper
+- swiper-slide
+- swiper-indicator
+- swiper-pagination
+- swiper-controller
+- swiper-button-play
+- swiper-button-stop
+- swiper-navigation
+- swiper-button-prev
+- swiper-button-next
+- swiper-button-more
+- main-d-links
+- contents-swiper-in
+- service-swiper-in
+
+기준 클래스 포함되지 않은 클래스 갯수: 38
+포함되지 않은 클래스들:
+- main-vban-wrap
+- inner
+- vert
+- xlg
+- bg2
+- main-sect
+- main-tit-wrap
+- tit
+- sm
+- menu-list-rel
+- outline
+- li1
+- line
+- in
+- text
+- c-tit
+- c-txt
+- li2
+- d-auto
+- xsm
+- date
+- d-fix
+- bg
+- cate
+- im
+- type-wrap
+- one-serv-wrap
+- main-d-text
+- txt
+- contents-wrap
+- contents-text
+- contents-list
+- i1
+- i2
+- i3
+- d-responsive
+- bgm
+- service-list
+
+
+
+sample_move_process_03.html:
+
+기준 클래스 포함된 클래스 갯수: 46
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- form-group
+- form-tit
+- form-conts
+- form-control
+- box-tit2
+- chk-area
+- chk-column
+- form-check
+- btn
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-conts
+- btn-ico
+- ico-help
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 18
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- fieldset-msg
+- bg-white
+- row
+- lg
+- tit
+- sm-m
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_move_process_04.html:
+
+기준 클래스 포함된 클래스 갯수: 57
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-conts
+- input-group
+- form-select
+- btn
+- secondary
+- form-addr-result
+- tbl-no-data
+- text-primary-60
+- tbl-wrap
+- tbl
+- form-check
+- ico-only
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-in
+- tab-area
+- tab
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- helper-conts
+- btn-ico
+- ico-help
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 26
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- m-column
+- info-ul
+- key
+- value
+- w-hide
+- col
+- data
+- text-center
+- layer
+- line
+- created
+- tit
+- sm-m
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_move_process_05.html:
+
+기준 클래스 포함된 클래스 갯수: 55
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- box-cnt
+- box-sec
+- box-tit2
+- form-group
+- form-tit
+- form-conts
+- input-group
+- form-control
+- btn
+- secondary
+- form-group-addr
+- form-select
+- form-hint
+- chk-area
+- chk-column
+- form-check
+- form-check-cnt
+- form-check-p
+- tbl-wrap
+- tbl
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-conts
+- btn-ico
+- ico-help
+- conts-desc
+- link-list
+- btn-txt
+- ico-go
+- ico-call
+- ico-before
+- ico-faq
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 24
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- fieldset-msg
+- bg-white
+- addr-division
+- addr-number
+- m-column
+- row
+- lg
+- col
+- data
+- text-center
+- tit
+- sm-m
+- sm
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_move_process_06.html:
+
+기준 클래스 포함된 클래스 갯수: 54
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-step
+- page-title-wrap
+- step-wrap
+- step
+- step-tit
+- active
+- sr-only
+- conts-area
+- step-type
+- conts-wrap
+- step-now
+- txt-box
+- box-tit1
+- form-group
+- form-conts
+- chk-area
+- chk-column
+- form-check
+- box-sec
+- file-upload
+- btn
+- primary
+- ico-before
+- ico-upload
+- box-tit-wrap
+- btn-txt
+- ico-go
+- box-cnt
+- box-tit2
+- form-tit
+- form-control
+- tbl-wrap
+- tbl
+- ico-only
+- agree-box
+- btn-helper
+- btn-help-exec
+- expand
+- helper-area
+- helper-wrap
+- helper-tit
+- helper-conts-area
+- helper-conts
+- btn-ico
+- ico-help
+- conts-desc
+- link-list
+- ico-call
+- ico-faq
+- page-btn-wrap
+- tertiary
+- btn-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 21
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- narrow
+- h-tit
+- done
+- sec-tit
+- bg-white
+- md
+- sm
+- info-list
+- decimal
+- col
+- data
+- text-center
+- tit
+- sm-m
+- related-service
+- fold
+- both
+- xlg
+
+
+
+sample_move_process_07.html:
+
+기준 클래스 포함된 클래스 갯수: 10
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- comp-info-box
+- comp-btn-wrap
+- btn
+- tertiary
+- comp-link-box
+- btn-txt
+- ico-go
+- ico-arr
+
+기준 클래스 포함되지 않은 클래스 갯수: 12
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- comp-msg-wrap
+- w-hide
+- point
+- key
+- value
+- p
+- xlg
+- tit
+- sm
+
+
+
+sample_quest_01.html:
+
+기준 클래스 포함된 클래스 갯수: 49
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- sch-filter-box
+- filter-form
+- form-select
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- active
+- m-sort-btn
+- ico-filter
+- open-modal
+- search-list
+- card-top
+- krds-badge
+- btn-area
+- ico-share
+- ico-like
+- card-body
+- c-btn
+- primary
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 27
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- sm
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- li
+- c-text
+- c-tit
+- c-txt
+- c-date
+- key
+- value
+- tag
+- bg2
+- prev
+- next
+
+
+
+sample_quest_0102.html:
+
+기준 클래스 포함된 클래스 갯수: 65
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- total-search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- search-between-conts
+- filter-dl
+- ico-reset
+- filter-list
+- accordion
+- accordion-item
+- active
+- accordion-header
+- btn-accordion
+- accordion-collapse
+- accordion-body
+- chk-area
+- chk-column
+- form-check
+- form-group
+- chip-wrap
+- form-chip
+- form-chip-outline
+- form-conts
+- datepicker-conts
+- input-group
+- form-tit
+- datepicker
+- filter-btn
+- filter-chip-box
+- ico-refresh
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- m-sort-btn
+- ico-filter
+- open-modal
+- total-search-list
+- krds-badge
+- url-link
+- btn-area
+- ico-go
+- ico-more
+- ico-down
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 39
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- vert
+- xlg
+- sm
+- aside
+- dt
+- dd
+- li
+- tit
+- num
+- collapse
+- radio
+- range
+- mark
+- row
+- contents
+- sm-l
+- md
+- type2
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- info-top
+- i-date
+- info-body
+- w-hide
+- in
+- text
+- info-btm
+- thum
+- i-cate
+- prev
+- next
+
+
+
+sample_quest_02.html:
+
+기준 클래스 포함된 클래스 갯수: 49
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- btn-txt
+- ico-sch1
+- ico-before
+- sch-filter-box
+- filter-form
+- form-select
+- primary
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- active
+- m-sort-btn
+- ico-filter
+- open-modal
+- search-list
+- card-top
+- krds-badge
+- btn-area
+- ico-share
+- ico-like
+- card-body
+- c-btn
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 28
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- sm
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- li
+- c-text
+- c-tit
+- c-txt
+- c-date
+- key
+- value
+- tag
+- bg3
+- bg2
+- prev
+- next
+
+
+
+sample_quest_0101.html:
+
+기준 클래스 포함된 클래스 갯수: 46
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- search-top-box
+- sch-form-wrap
+- input-group
+- form-select
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- sch-filter-box
+- filter-form
+- filter-chip
+- ico-refresh
+- chip-wrap
+- btn-chip-outline
+- btn-del
+- search-list-top
+- sch-info
+- sch-sort
+- w-sort-btn
+- active
+- m-sort-btn
+- sort-select
+- btn-txt
+- ico-filter
+- open-modal
+- search-list
+- card-top
+- krds-badge
+- btn-area
+- ico-like
+- ico-before
+- card-body
+- card-btm
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 21
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- label
+- md
+- num
+- sm-l
+- type1
+- keyword
+- li2
+- sort-label
+- span
+- li
+- sm
+- c-text
+- c-tit
+- c-txt
+- tag
+- prev
+- next
+
+
+
+sample_search_01.html:
+
+기준 클래스 포함된 클래스 갯수: 2
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+
+기준 클래스 포함되지 않은 클래스 갯수: 4
+포함되지 않은 클래스들:
+- scroll-no
+- home
+- txt
+- inner
+
+
+
+sample_search_0101.html:
+
+기준 클래스 포함된 클래스 갯수: 2
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+
+기준 클래스 포함되지 않은 클래스 갯수: 4
+포함되지 않은 클래스들:
+- scroll-no
+- home
+- txt
+- inner
+
+
+
+sample_search_0201.html:
+
+기준 클래스 포함된 클래스 갯수: 3
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 5
+포함되지 않은 클래스들:
+- scroll-no
+- home
+- txt
+- inner
+- h-tit
+
+
+
+sample_search_0202.html:
+
+기준 클래스 포함된 클래스 갯수: 3
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+
+기준 클래스 포함되지 않은 클래스 갯수: 5
+포함되지 않은 클래스들:
+- scroll-no
+- home
+- txt
+- inner
+- h-tit
+
+
+
+sample_sub_02.html:
+
+기준 클래스 포함된 클래스 갯수: 22
+포함된 클래스들:
+- lnb-menu
+- lnb-tit
+- lnb-list
+- lnb-item
+- lnb-btn
+- lnb-toggle
+- lnb-submenu
+- lnb-subitem
+- lnb-toggle-popup
+- lnb-submenu-lv2
+- lnb-btn-tit
+- lnb-link
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- krds-drop-wrap
+- h-tit-drop
+- drop-btn
+- drop-menu
+- drop-in
+- drop-list
+- item-link
+
+기준 클래스 포함되지 않은 클래스 갯수: 6
+포함되지 않은 클래스들:
+- inner
+- in-between
+- contents
+- home
+- txt
+- h-tit
+
+
+
+sample_sub_01.html:
+
+기준 클래스 포함된 클래스 갯수: 0
+포함된 클래스들:
+
+
+기준 클래스 포함되지 않은 클래스 갯수: 1
+포함되지 않은 클래스들:
+- inner
+
+
+
+sample_search_02.html:
+
+기준 클래스 포함된 클래스 갯수: 46
+포함된 클래스들:
+- breadcrumb-wrap
+- breadcrumb
+- page-title-wrap
+- total-search-top-box
+- sch-form-wrap
+- sch-input
+- form-control
+- btn
+- btn-ico
+- ico-sch
+- sr-only
+- sch-etc
+- btn-txt
+- ico-sch1
+- ico-before
+- tab-area
+- tab
+- tab-mutation
+- m-tab-btn
+- active
+- btn-tab
+- tab-conts-wrap
+- tab-conts
+- search-list-top
+- sch-info
+- sch-sort
+- sort-select
+- w-sort-btn
+- m-sort-btn
+- ico-filter
+- open-modal
+- total-search-list
+- krds-badge
+- url-link
+- btn-area
+- ico-go
+- ico-more
+- ico-down
+- pagination
+- w-page
+- page-navi
+- page-links
+- page-link
+- link-dot
+- m-page
+- page-navis
+
+기준 클래스 포함되지 않은 클래스 갯수: 32
+포함되지 않은 클래스들:
+- home
+- txt
+- inner
+- h-tit
+- vert
+- xlg
+- sm
+- layer
+- mutation
+- full
+- fill
+- type2
+- keyword
+- li1
+- m-hide
+- sort-label
+- li2
+- span
+- num
+- li
+- info-top
+- i-date
+- info-body
+- tit
+- w-hide
+- in
+- text
+- info-btm
+- thum
+- i-cate
+- prev
+- next
+
+
+
